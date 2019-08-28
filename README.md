@@ -6,3 +6,5 @@ Repositório destinado ao trabalho de Estrutura de Dados II.
 >[Caio Oliveira](https://github.com/caiosdeo)
 
 >[Elias Assis](https://github.com/eliascassis)
+
+>[Paula Rinco](https://github.com/PaulaRRP)
