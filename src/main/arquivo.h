@@ -10,8 +10,6 @@ class Arquivo{
 
     public:
         void leitura(fstream &arquivo);
-        int* leituraDados(fstream &arquivo, int n);
-
 
 };
 
