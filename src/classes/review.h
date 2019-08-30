@@ -13,6 +13,9 @@ class Review{
         float rating;
         int id;
 
+    public:
+        Review* leituraDados(fstream &arquivo, int n);
+
 };
 
-#endif //ARQUIVO_H_INCLUDED
+#endif //REVIEW_H_INCLUDED
