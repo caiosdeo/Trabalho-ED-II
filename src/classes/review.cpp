@@ -1,6 +1,14 @@
 #include "review.h"
 
-Review* Review::leituraDados(fstream &arquivo, int n){
+/**
+ * Atribuição de dados a cada conjunto, retornando-o em um vetor.
+ *
+ * @author caiosdeo
+ * @param dataset Arquivo com os dados
+ * @param n Tamanho do conjunto
+ * @return r Vetor com dados
+ */
+Review* Review::leituraDados(fstream &dataset, int n){
 
     Review* r = new Review[n];
     
@@ -12,9 +20,9 @@ Review* Review::leituraDados(fstream &arquivo, int n){
 
     srand(time(NULL));
 
-	while(arquivo && i < n){
+	while(dataset && i < n){
 
-        arquivo >> user >> rating >> id;
+        dataset >> user >> rating >> id;
 
         if(rand() % 2 == 1){
 
@@ -28,5 +36,7 @@ Review* Review::leituraDados(fstream &arquivo, int n){
         
 
 	}
+
+    return r;
 
 }
