@@ -24,7 +24,7 @@ Review* Review::leituraDados(fstream &dataset, int n){
 
         dataset >> user >> rating >> id;
 
-        if(rand() % 2 == 1){
+        if(rand() % 11 == 0){ // Selecionando registros a partir do resto de uma divisão por 11
 
             r[i].user = user;
             r[i].rating = rating;
