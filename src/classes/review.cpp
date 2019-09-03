@@ -30,3 +30,9 @@ Review* Review::leituraDados(fstream &arquivo, int n){
 	}
 
 }
+
+int Review::getId(){
+
+    return this->getId();
+
+}
