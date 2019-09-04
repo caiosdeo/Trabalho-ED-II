@@ -1,0 +1,73 @@
+[33mcommit f952231d451c41ccc4e2a32925d77fb1ed67f361[m[33m ([m[1;36mHEAD -> [m[1;32mmasterAnd[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: caiosdeo <caiosdeo@hotmail.com>
+Date:   Fri Aug 30 20:56:28 2019 -0300
+
+    funçao de leitura de dados removida da classe arquivo
+
+[33mcommit 746d6d05375a9b14001f853693187c340eec636c[m
+Author: caiosdeo <caiosdeo@hotmail.com>
+Date:   Fri Aug 30 20:46:40 2019 -0300
+
+    funçao de leitura de dados implementada
+
+[33mcommit 0c882d71982fce7ca42c5ea0b8ca1fc3b1dfa868[m
+Author: caiosdeo <caiosdeo@hotmail.com>
+Date:   Wed Aug 28 21:07:47 2019 -0300
+
+    Classe para manipulacao de arquivo definida
+
+[33mcommit 44d002e3db207b6e40ec6017ec85b33fcc713981[m
+Author: caiosdeo <caiosdeo@hotmail.com>
+Date:   Wed Aug 28 21:06:54 2019 -0300
+
+    Classe Review definida
+
+[33mcommit 0904f1c3062e289e186068ec1e9f74fa4e70f2c0[m
+Author: caiosdeo <caiosdeo@hotmail.com>
+Date:   Wed Aug 28 21:06:00 2019 -0300
+
+    Novos colaboradores adicionados
+
+[33mcommit 388888e0c1e40009867f6092e26b9c2d36190d4a[m
+Author: caiosdeo <caiosdeo@hotmail.com>
+Date:   Wed Aug 28 14:52:25 2019 -0300
+
+    Corpo da main definido
+
+[33mcommit 7c14b381ce4c189481e590e040de9e32ce15634c[m
+Author: caiosdeo <caiosdeo@hotmail.com>
+Date:   Wed Aug 28 14:51:53 2019 -0300
+
+    Algumas mudanças no README
+
+[33mcommit e45baea4266a69096c8eb59d5e02f98154fcea05[m
+Author: caiosdeo <caiosdeo@hotmail.com>
+Date:   Wed Aug 28 14:51:02 2019 -0300
+
+    .vscode/ adicionado ao git ignore
+
+[33mcommit 5bc47467ff3008bfb07ce8e1c02d605d0d6922f5[m
+Author: caiosdeo <caiosdeo@hotmail.com>
+Date:   Sat Aug 24 20:38:49 2019 -0300
+
+    Definida a organização inicial do repositório
+
+[33mcommit e8afdaacfd9c87212d86dc2e921bcd822e0451b4[m
+Author: caiosdeo <caiosdeo@hotmail.com>
+Date:   Sat Aug 24 19:57:17 2019 -0300
+
+    Revert "Organização inicial do repositório"
+    
+    This reverts commit c8fa5e4c1ecb652306ceb91446f4dc0af18d5268.
+
+[33mcommit c8fa5e4c1ecb652306ceb91446f4dc0af18d5268[m
+Author: caiosdeo <caiosdeo@hotmail.com>
+Date:   Sat Aug 24 19:54:00 2019 -0300
+
+    Organização inicial do repositório
+
+[33mcommit 6cba3f9688aaead30aa93a1f5f9e0dcdd34a08e7[m
+Author: caiosdeo <42946625+caiosdeo@users.noreply.github.com>
+Date:   Sat Aug 24 18:19:32 2019 -0300
+
+    Initial commit
