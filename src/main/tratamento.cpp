@@ -1,5 +1,7 @@
+#include <iostream>
+#include <fstream>
 #include "tratamento.h"
-#include "review.h"
+#include "../classes/review.h"
 
 void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, float numCopias, float tempoProcessamento){
 
@@ -16,9 +18,7 @@ void leitura(fstream &entrada, fstream &dataset, fstream &saida, int estrutura){
 
     Review** conjuntos = new Review*[qtdConjuntos];
 
-    for(int i = 0; i < qtdConjuntos; i++){
-        
-        entrada >> n;
+    for(int i = 0; entrada >> n; i++){
 
         conjuntos[i] = new Review[n];
 
@@ -35,7 +35,7 @@ void leitura(fstream &entrada, fstream &dataset, fstream &saida, int estrutura){
 
         // TODO: calcular médias das métricas de desempenho dividindo as variáveis por 5 
 
-        // * imprimirSaida(saida, estrutura, n, numComparacoes, numCopias, tempoProcessamento);
+        imprimirSaida(saida, estrutura, n, numComparacoes, numCopias, tempoProcessamento);
 
     }
     

@@ -1,3 +1,5 @@
+#include <iostream>
+#include <fstream>
 #include "review.h"
 
 /**
@@ -20,9 +22,10 @@ Review* Review::leituraDados(fstream &dataset, int n){
 
     srand(time(NULL));
 
-	while(dataset && i < n){
+    // Eliminando a primeira linha do arquivo
+    dataset >> user >> rating >> id;
 
-        dataset >> user >> rating >> id;
+    while(dataset >> user >> rating >> id){
 
         if(rand() % 11 == 0){ // Selecionando registros a partir do resto de uma divisão por 11
 
@@ -34,8 +37,7 @@ Review* Review::leituraDados(fstream &dataset, int n){
 
         }
         
-
-	}
+    }
 
     return r;
 

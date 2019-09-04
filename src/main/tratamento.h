@@ -20,8 +20,9 @@ using namespace std;
  * @param entrada Arquivo de entrada
  * @param dataset Arquivo com os dados
  * @param saida Arquivo de saída com as médias das métricas
+ * @param estrutura 0 para vetor de int; 1 para vetor de struct
  */
-void leitura(fstream &entrada, fstream &dataset, fstream &saida);
+void leitura(fstream &entrada, fstream &dataset, fstream &saida, int estrutura);
 
 /**
  * Impressão das médias das métricas em um arquivo de saída
