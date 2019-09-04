@@ -23,37 +23,37 @@ void swap(int *a, int i, int j){
 
 // Quick Sort
 
-int partition(int *a, int start, int end, int *nComparisons, int *nSwaps){
+int particao(int *a, int inicio, int fim, int *numComparacoes, int *nTrocas){
 
-    int pivot = a[end];
-    int i = start - 1;
+    int pivo = a[fim];
+    int i = inicio - 1;
 
-    for(int j = start; j < end; j++){
+    for(int j = inicio; j < fim; j++){
 
-        (*nComparisons)++;
-        if(a[j] <= pivot){
+        (*numComparacoes)++;
+        if(a[j] <= pivo){
 
             i++;
             swap(a, i, j);
-            (*nSwaps)++;
+            (*nTrocas)++;
 
         }
 
     }
 
-    swap(a, i+1, end);
-    (*nSwaps)++;
+    swap(a, i+1, fim);
+    (*nTrocas)++;
     return i+1;
 
 }
 
-void quickSortRecursivo(int *a, int start, int end, int *nComparisons, int *nSwaps){
+void quickSortRecursivo(int *a, int inicio, int fim, int *numComparacoes, int *nTrocas){
 
-    if(start < end){
+    if(inicio < fim){
 
-        int part = partition(a, start, end, nComparisons, nSwaps);
-        quickSortRecursivo(a, start, part-1, nComparisons, nSwaps);
-        quickSortRecursivo(a, part+1, end, nComparisons, nSwaps);
+        int pivo = particao(a, inicio, fim, numComparacoes, nTrocas);
+        quickSortRecursivo(a, inicio, pivo-1, numComparacoes, nTrocas);
+        quickSortRecursivo(a, pivo+1, fim, numComparacoes, nTrocas);
 
     }
 
