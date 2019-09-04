@@ -1,6 +1,14 @@
 #include "../classes/review.h"
 
 // Monta o vetor de ids
+/**
+ * Atribuição de dados a cada conjunto, retornando-o em um vetor.
+ *
+ * @author eliascassis
+ * @param review Vetor de reviews
+ * @param n Tamanho do conjunto
+ * @return vetorIds Vetor com os ids do jogo.
+ */
 int* fazerVetorIds(Review* review, int n){
 
     int* vetorIds = new int(n);
@@ -11,6 +19,13 @@ int* fazerVetorIds(Review* review, int n){
 }
 
 // Swap function
+/**
+ * @author eliascassis
+ * @param a Vetor de inteiros
+ * @param i posição i
+ * @param j posição j
+ * @return void
+ */
 void swap(int *a, int i, int j){
 
     int aux;
@@ -22,8 +37,16 @@ void swap(int *a, int i, int j){
 }
 
 // Quick Sort
-
-int particao(int *a, int inicio, int fim, int *numComparacoes, int *nTrocas){
+/**
+ * @author eliascassis
+ * @param a Vetor de inteiros
+ * @param inicio início da partição
+ * @param fim fim da partição
+ * @param numComparacoes número de comparações
+ * @param numTrocas número de trocas
+ * @return i+1 id do novo pivô
+ */
+int particao(int *a, int inicio, int fim, int *numComparacoes, int *numTrocas){
 
     int pivo = a[fim];
     int i = inicio - 1;
@@ -35,25 +58,34 @@ int particao(int *a, int inicio, int fim, int *numComparacoes, int *nTrocas){
 
             i++;
             swap(a, i, j);
-            (*nTrocas)++;
+            (*numTrocas)++;
 
         }
 
     }
 
     swap(a, i+1, fim);
-    (*nTrocas)++;
+    (*numTrocas)++;
     return i+1;
 
 }
-
-void quickSortRecursivo(int *a, int inicio, int fim, int *numComparacoes, int *nTrocas){
+// quickSortRecursivo
+/**
+ * @author eliascassis
+ * @param a Vetor de inteiros
+ * @param inicio início da partição
+ * @param fim fim da partição
+ * @param numComparacoes número de comparações
+ * @param numTrocas número de trocas
+ * @return void
+ */
+void quickSortRecursivo(int *a, int inicio, int fim, int *numComparacoes, int *numTrocas){
 
     if(inicio < fim){
 
-        int pivo = particao(a, inicio, fim, numComparacoes, nTrocas);
-        quickSortRecursivo(a, inicio, pivo-1, numComparacoes, nTrocas);
-        quickSortRecursivo(a, pivo+1, fim, numComparacoes, nTrocas);
+        int pivo = particao(a, inicio, fim, numComparacoes, numTrocas);
+        quickSortRecursivo(a, inicio, pivo-1, numComparacoes, numTrocas);
+        quickSortRecursivo(a, pivo+1, fim, numComparacoes, numTrocas);
 
     }
 
