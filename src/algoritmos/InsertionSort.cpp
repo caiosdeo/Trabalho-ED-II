@@ -1,9 +1,10 @@
-#include <iostream>
+#include "InsertionSort.h"
 #include "review.h"
 #include <fstream>
 
 using namespace std;
 
+/// implementacao do Insertion Sort
 void insertionSort(int *vet, Review *r, int sizev, int sizer, int *numComp, int *numReg)
 {
     int i, ch, j;
@@ -23,7 +24,8 @@ void insertionSort(int *vet, Review *r, int sizev, int sizer, int *numComp, int 
     {
         int id = r[i].getId();
         float rat = r[i].getRating();
-        string use = r[i].getUser();
+        string user = r[i].getUser();
+        *numReg+=1;
         j = i-1;
         while(j >= 0 && r[j].getId() > id)
         {
@@ -31,6 +33,6 @@ void insertionSort(int *vet, Review *r, int sizev, int sizer, int *numComp, int 
             j--;
             *numComp+=1;
         }
-        r[j+1].setNewInfo(use,rat,id);
+        r[j+1].setNewInfo(user,rat,id);
     }
 }
