@@ -2,6 +2,7 @@
 #include <fstream>
 #include "tratamento.h"
 #include "../classes/review.h"
+#include "../algoritmos/quickSortRecursivo.cpp"
 
 int* leituraDadosVetor(fstream &dataset, int n){
 
@@ -45,6 +46,7 @@ int* leituraDadosVetor(fstream &dataset, int n){
 
 }
 
+// ! FLUXO PARA DADOS EM VETOR DE INTEIRO
 void executarDadosVetor(fstream &entrada, fstream &dataset, fstream &saida){
 
     // Variaveis para leitura do arquivo de entrada
@@ -64,7 +66,7 @@ void executarDadosVetor(fstream &entrada, fstream &dataset, fstream &saida){
         conjuntos[i] = leituraDadosVetor(dataset, n); // Colocando dados no conjunto
 
         // Métricas de desempenho
-        float numComparacoes = 0, numCopias = 0, tempoProcessamento = 0;
+        int numComparacoes = 0, numCopias = 0, tempoProcessamento = 0;
 
         /**
          * ! serão 5 execuções para cada conjunto, sementes diferentes
@@ -76,12 +78,13 @@ void executarDadosVetor(fstream &entrada, fstream &dataset, fstream &saida){
         // TODO: calcular médias das métricas de desempenho dividindo as variáveis por 5 
 
         // Imprimindo resultados no arquivo de saída
-        imprimirSaida(saida, 0, n, numComparacoes, numCopias, tempoProcessamento);
+        imprimirSaida(saida, 0, n, numComparacoes/5.0, numCopias/5.0, tempoProcessamento);
 
     }
     
 }
 
+// ! FLUXO PARA DADOS EM VETOR DE REVIEWS
 void executarDadosReview(fstream &entrada, fstream &dataset, fstream &saida){
 
     // Variaveis para leitura do arquivo de entrada
