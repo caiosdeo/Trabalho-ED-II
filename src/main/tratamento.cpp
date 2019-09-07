@@ -2,7 +2,7 @@
 #include <fstream>
 #include "tratamento.h"
 #include "../classes/review.h"
-#include "../algoritmos/quickSortRecursivo.cpp"
+#include "../algoritmos/quickSortRecursivo.h"
 
 int* leituraDadosVetor(fstream &dataset, int n){
 
@@ -47,11 +47,11 @@ int* leituraDadosVetor(fstream &dataset, int n){
 }
 
 // ! FLUXO PARA DADOS EM VETOR DE INTEIRO
+
 void executarDadosVetor(fstream &entrada, fstream &dataset, fstream &saida){
 
     // Variaveis para leitura do arquivo de entrada
-    int qtdConjuntos;
-    int n;
+    int qtdConjuntos, n;
 
     // Lendo quantos conjuntos teremos
     entrada >> qtdConjuntos;
@@ -69,27 +69,30 @@ void executarDadosVetor(fstream &entrada, fstream &dataset, fstream &saida){
         int numComparacoes = 0, numCopias = 0, tempoProcessamento = 0;
 
         /**
-         * ! serão 5 execuções para cada conjunto, sementes diferentes
-         * TODO: aqui vai ficar as chamadas para funções de ordenação
-         * TODO: passando os endereços das métricas de desempenho
-         * TODO: estas variáveis são acumulativas para as métricas
+         * TODO: aqui vai ficar as chamadas para funções de ordenação passando os endereços 
+         * TODO: das métricas de desempenho estas variáveis são acumulativas para as métricas
          */
+        quickSortRecursivoIds(conjuntos[i], 0, n-1, &numComparacoes, &numCopias);
 
         // TODO: calcular médias das métricas de desempenho dividindo as variáveis por 5 
-
         // Imprimindo resultados no arquivo de saída
-        imprimirSaida(saida, 0, n, numComparacoes/5.0, numCopias/5.0, tempoProcessamento);
+        imprimirSaida(saida, 0, n, numComparacoes, numCopias, tempoProcessamento);
 
     }
+
+    // Desalocando os conjuntos
+    for(int i = 0; i < qtdConjuntos; i++)
+        delete [] conjuntos[i];
+    delete [] conjuntos;
     
 }
 
 // ! FLUXO PARA DADOS EM VETOR DE REVIEWS
+
 void executarDadosReview(fstream &entrada, fstream &dataset, fstream &saida){
 
     // Variaveis para leitura do arquivo de entrada
-    int qtdConjuntos;
-    int n;
+    int qtdConjuntos, n;
 
     // Lendo quantos conjuntos teremos
     entrada >> qtdConjuntos;
@@ -104,21 +107,24 @@ void executarDadosReview(fstream &entrada, fstream &dataset, fstream &saida){
         conjuntos[i] = conjuntos[i]->leituraDados(dataset, n); // Colocando dados no conjunto
 
         // Métricas de desempenho
-        float numComparacoes = 0, numCopias = 0, tempoProcessamento = 0;
+        int numComparacoes = 0, numCopias = 0, tempoProcessamento = 0;
 
         /**
-         * ! serão 5 execuções para cada conjunto, sementes diferentes
-         * TODO: aqui vai ficar as chamadas para funções de ordenação
-         * TODO: passando os endereços das métricas de desempenho
-         * TODO: estas variáveis são acumulativas para as métricas
+         * TODO: aqui vai ficar as chamadas para funções de ordenação passando os endereços 
+         * TODO: das métricas de desempenho estas variáveis são acumulativas para as métricas
          */
+        quickSortRecursivoEstruturas(conjuntos[i], 0, n-1, &numComparacoes, &numCopias);
 
         // TODO: calcular médias das métricas de desempenho dividindo as variáveis por 5 
-
         // Imprimindo resultados no arquivo de saída
         imprimirSaida(saida, 1, n, numComparacoes, numCopias, tempoProcessamento);
 
     }
+
+    // Desalocando os conjuntos
+    for (int i = 0; i < qtdConjuntos; i++)
+        delete [] conjuntos[i];
+    delete [] conjuntos;
     
 }
 
