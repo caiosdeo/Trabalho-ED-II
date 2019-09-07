@@ -53,3 +53,9 @@ Review* Review::leituraDados(fstream &dataset, int n){
     return r;
 
 }
+
+int Review::getId(){
+
+    return this->getId();
+
+}

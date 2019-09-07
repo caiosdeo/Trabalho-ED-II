@@ -14,7 +14,8 @@ class Review{
         int id;
 
     public:
-        Review* leituraDados(fstream &dataset, int n);
+        Review* leituraDados(fstream &arquivo, int n);
+        int getId();
 
 };
 
