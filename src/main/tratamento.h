@@ -13,6 +13,7 @@ using namespace std;
 /////////////////////////////////////////
 
 /**
+ * Execução específica para dados do tipo inteiro
  * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
  * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
  *
@@ -20,9 +21,30 @@ using namespace std;
  * @param entrada Arquivo de entrada
  * @param dataset Arquivo com os dados
  * @param saida Arquivo de saída com as médias das métricas
- * @param estrutura 0 para vetor de int; 1 para vetor de struct
  */
-void leitura(fstream &entrada, fstream &dataset, fstream &saida, int estrutura);
+void executarDadosVetor(fstream &entrada, fstream &dataset, fstream &saida);
+
+/**
+ * Atribuição de dados a cada conjunto, retornando-o em um vetor.
+ *
+ * @author caiosdeo
+ * @param dataset Arquivo com os dados
+ * @param n Tamanho do conjunto
+ * @return r Vetor com dados
+ */
+int* leituraDadosVetor(fstream &dataset, int n);
+
+/**
+ * Execução específica para dados do tipo Review
+ * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
+ * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
+ *
+ * @author caiosdeo
+ * @param entrada Arquivo de entrada
+ * @param dataset Arquivo com os dados
+ * @param saida Arquivo de saída com as médias das métricas
+ */
+void executarDadosReview(fstream &entrada, fstream &dataset, fstream &saida);
 
 /**
  * Impressão das médias das métricas em um arquivo de saída

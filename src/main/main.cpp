@@ -9,6 +9,13 @@ int main(){
     // Variaveis para manipular arquivos
     fstream entrada, dataset, saida; 
 
+    /**
+     * Variavel para controlar o tipo de dado:
+     * 0 - Vetores de inteiros
+     * 1 - Vetores de Reviews
+     */
+    int estrutura = 0;
+
     entrada.open("../../entrada.txt", ios::in); // Arquivo de entrada só como leitura
     saida.open("../../saida.txt", ios::out); // Arquivo de saída como escrita
     dataset.open("../../processados.txt", ios::in); // Arquivo de dados como leitura
@@ -17,7 +24,10 @@ int main(){
     if(entrada.is_open())
         if(dataset.is_open())
             if(saida.is_open())
-                leitura(entrada, dataset, saida, 1); // Executando
+                if(estrutura)
+                    executarDadosReview(entrada, dataset, saida); // Executando fluxo para conjunto de reviews
+                else
+                    executarDadosVetor(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
             else
                 cout << "Não foi possível abrir o arquivo de saída" << endl;
         else
