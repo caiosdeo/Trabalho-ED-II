@@ -12,26 +12,36 @@
  */
 Review* Review::leituraDados(fstream &dataset, int n){
 
+    // Conjunto de Reviews
     Review* r = new Review[n];
     
-    int id;
-    string user;
-    float rating;
+    //Variaveis para ler o documento
+    string id, user, rating;
 
+    //Variavel auxiliar para controlar o tamanho do conjunto
     int i = 0;
 
+    // Alterando a semente com o tempo
     srand(time(NULL));
 
     // Eliminando a primeira linha do arquivo
-    dataset >> user >> rating >> id;
+    getline(dataset, user, ',');
+    getline(dataset, rating, ',');
+    getline(dataset, id, '\n');
 
-    while(dataset >> user >> rating >> id){
+    // Extração de dados até o tamanho do conjunto e o fim do arquivo
+    while(dataset.good() && i < n){
+
+        // Pegando as informações de cada registro
+        getline(dataset, user, ',');
+        getline(dataset, rating, ',');
+        getline(dataset, id, '\n');
 
         if(rand() % 11 == 0){ // Selecionando registros a partir do resto de uma divisão por 11
 
-            r[i].user = user;
-            r[i].rating = rating;
-            r[i].id = id;
+            r[i].user = user; //Atribuindo um nome de usuário 
+            r[i].rating = stof(rating); // Atribuindo o rating do review
+            r[i].id = stoi(id); // Atribuindo o id do jogo do review
 
             i++;
 
@@ -39,6 +49,7 @@ Review* Review::leituraDados(fstream &dataset, int n){
         
     }
 
+    // Retornando o conjunto de reviews
     return r;
 
 }

@@ -6,18 +6,18 @@ using namespace std;
 
 int main(){
 
-    fstream entrada;
-    fstream dataset;
-    fstream saida; 
+    // Variaveis para manipular arquivos
+    fstream entrada, dataset, saida; 
 
-    entrada.open("../../entrada.txt", ios::in);
-    saida.open("../../saida.txt", ios::out);
-    dataset.open("../../processados.txt", ios::in);
+    entrada.open("../../entrada.txt", ios::in); // Arquivo de entrada só como leitura
+    saida.open("../../saida.txt", ios::out); // Arquivo de saída como escrita
+    dataset.open("../../processados.txt", ios::in); // Arquivo de dados como leitura
 
+    // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
     if(entrada.is_open())
         if(dataset.is_open())
             if(saida.is_open())
-                leitura(entrada, dataset, saida, 1);
+                leitura(entrada, dataset, saida, 1); // Executando
             else
                 cout << "Não foi possível abrir o arquivo de saída" << endl;
         else
@@ -25,6 +25,7 @@ int main(){
     else
         cout << "Não foi possível abrir o arquivo de entrada" << endl;
 
+    // Salvando e fechando os arquivos usados
     entrada.close();
     saida.close();
     dataset.close();
