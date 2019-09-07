@@ -7,7 +7,7 @@ using namespace std;
 /// implementacao do Merge Sort
 
 /// merge para vetor de inteiros
-void mergeV(int *vet, int esq, int med, int dir)
+void MergeSort::mergeV(int *vet, int esq, int med, int dir)
 {
     int i, j, k;
     int tamE = med - esq +1, tamD = dir - med;
@@ -24,7 +24,7 @@ void mergeV(int *vet, int esq, int med, int dir)
 }
 
 /// Merge para vetor Review
-void mergeR(Review *r, int esq, int med, int dir, int *numComp, int *numReg)
+void MergeSort::mergeR(Review *r, int esq, int med, int dir, int *numComp, int *numReg)
 {
     int i,j,k = esq;
     int sizeE = med - esq +1, sizeD = dir - med;
@@ -44,7 +44,7 @@ void mergeR(Review *r, int esq, int med, int dir, int *numComp, int *numReg)
     }
 }
 
-void mergeSort(int *vet, Review *r, int esqV, int dirV, int esqR, int dirR, int *numComp, int *numReg)
+void MergeSort::mergeSort(int *vet, Review *r, int esqV, int dirV, int esqR, int dirR, int *numComp, int *numReg)
 {
     if(esqV >= 0 && dirV >= 0)
     {

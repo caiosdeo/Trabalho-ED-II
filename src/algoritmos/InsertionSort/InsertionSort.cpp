@@ -5,7 +5,7 @@
 using namespace std;
 
 /// implementacao do Insertion Sort
-void insertionSort(int *vet, Review *r, int sizev, int sizer, int *numComp, int *numReg)
+void InsertionSort::insertionSort(int *vet, Review *r, int sizev, int sizer, int *numComp, int *numReg)
 {
     int i, ch, j;
     for(i = 1; i < sizev; i++)
