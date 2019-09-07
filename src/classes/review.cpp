@@ -56,6 +56,18 @@ Review* Review::leituraDados(fstream &dataset, int n){
 
 int Review::getId(){
 
-    return this->getId();
+    return this->id;
+
+}
+
+string Review::getUser(){
+
+    return this->user;
+
+}
+
+float Review::getRating(){
+
+    return this->rating;
 
 }

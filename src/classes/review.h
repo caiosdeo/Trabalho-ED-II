@@ -16,6 +16,8 @@ class Review{
     public:
         Review* leituraDados(fstream &arquivo, int n);
         int getId();
+        string getUser();
+        float getRating();
 
 };
 
