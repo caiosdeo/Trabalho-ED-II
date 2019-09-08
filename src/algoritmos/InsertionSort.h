@@ -1,6 +1,6 @@
 #ifndef INSERTIONSORT_H
 #define INSERTIONSORT_H
-#include "review.h"
+#include "../classes/review.h"
 #include <fstream>
 
 using namespace std;

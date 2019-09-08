@@ -1,5 +1,5 @@
 #include "MergeSort.h"
-#include "review.h"
+#include "../classes/review.h"
 #include <fstream>
 
 using namespace std;

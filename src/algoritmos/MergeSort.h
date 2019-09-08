@@ -1,6 +1,6 @@
 #ifndef MERGESORT_H
 #define MERGESORT_H
-#include "review.h"
+#include "../classes/review.h"
 #include <fstream>
 
 using namespace std;
