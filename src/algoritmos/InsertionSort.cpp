@@ -1,36 +1,56 @@
-#include <iostream>
-#include "review.h"
+#include "InsertionSort.h"
+#include "../classes/review.h"
 #include <fstream>
 
 using namespace std;
 
-void insertionSort(int *vet, Review *r, int sizev, int sizer, int *numComp, int *numReg)
+void insertionSort(int *vet, int size, int *numComp, int *numReg)
 {
     int i, ch, j;
-    for(i = 1; i < sizev; i++)
-    {
+    for(i = 1; i < size; i++){
+
         ch = vet[i];
         j = i-1;
-        while(j >= 0 && vet[j] > ch)
-        {
+        
+        (*numComp)++;
+
+        while(j >= 0 && vet[j] > ch){
+
             vet[j+1] = vet[j];
             j--;
+            (*numComp)++;
+            (*numReg)++;
+
         }
+        
         vet[j+1] = ch;
+        (*numReg)++;
+    
     }
 
-    for(i = 1; i < sizer; i++)
-    {
-        int id = r[i].getId();
-        float rat = r[i].getRating();
-        string use = r[i].getUser();
-        j = i-1;
-        while(j >= 0 && r[j].getId() > id)
-        {
-            r[j+1].setNewInfo(r[j].getUser(),r[j].getRating(),r[j].getId());
+}
+
+
+void insertionSortReviews(Review *r, int size, int *numComp, int *numReg){
+
+    for(int i = 1; i < size; i++){
+
+        Review pivo = r[i];
+        int j = i-1;
+
+        (*numComp)++;
+
+        while(j >= 0 && r[j].getId() > pivo.getId()){
+
+            r[j+1] = r[j];
             j--;
-            *numComp+=1;
+            (*numComp)++;
+            (*numReg)++;
+
         }
-        r[j+1].setNewInfo(use,rat,id);
+
+        r[j+1] = pivo;
+        (*numReg)++;
     }
+
 }

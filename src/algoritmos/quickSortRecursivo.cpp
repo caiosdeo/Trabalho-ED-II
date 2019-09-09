@@ -1,31 +1,8 @@
 #include "../classes/review.h"
-
-// Monta o vetor de ids
-/**
- * Atribuição de dados a cada conjunto, retornando-o em um vetor.
- *
- * @author eliascassis
- * @param review Vetor de reviews
- * @param n Tamanho do conjunto
- * @return vetorIds Vetor com os ids do jogo.
- */
-int* fazerVetorIds(Review* review, int n){
-
-    int* vetorIds = new int(n);
-
-    for(int i = 0; i < n; i++)
-        vetorIds[i] = review[i].getId();
-
-}
+#include "quickSortRecursivo.h"
+#include <iostream>
 
 // Swap function
-/**
- * @author eliascassis
- * @param a Vetor de inteiros
- * @param i posição i
- * @param j posição j
- * @return void
- */
 void swap(int *a, int i, int j){
 
     int aux;
@@ -37,15 +14,8 @@ void swap(int *a, int i, int j){
 }
 
 // Quick Sort
-/**
- * @author eliascassis
- * @param a Vetor de inteiros
- * @param inicio início da partição
- * @param fim fim da partição
- * @param numComparacoes número de comparações
- * @param numTrocas número de trocas
- * @return i+1 id do novo pivô
- */
+
+// Partição para ids
 int particaoIds(int *a, int inicio, int fim, int *numComparacoes, int *numTrocas){
 
     int pivo = a[fim];
@@ -69,16 +39,8 @@ int particaoIds(int *a, int inicio, int fim, int *numComparacoes, int *numTrocas
     return i+1;
 
 }
+
 // quickSortRecursivo para ids
-/**
- * @author eliascassis
- * @param a Vetor de inteiros
- * @param inicio início da partição
- * @param fim fim da partição
- * @param numComparacoes número de comparações
- * @param numTrocas número de trocas
- * @return void
- */
 void quickSortRecursivoIds(int *a, int inicio, int fim, int *numComparacoes, int *numTrocas){
 
     if(inicio < fim){
@@ -92,16 +54,9 @@ void quickSortRecursivoIds(int *a, int inicio, int fim, int *numComparacoes, int
 }
 
 // Swap para estruturas
-/**
- * @author eliascassis
- * @param a Vetor de reviews
- * @param i posição i
- * @param j posição j
- * @return void
- */
-void swapEstruturas(Review** a, int i, int j){
+void swapEstruturas(Review* a, int i, int j){
 
-    Review* aux;
+    Review aux;
 
     aux = a[i];
     a[i] = a[j];
@@ -110,24 +65,15 @@ void swapEstruturas(Review** a, int i, int j){
 }
 
 // particao para estruturas
-/**
- * @author eliascassis
- * @param a Vetor de reviews
- * @param inicio início da partição
- * @param fim fim da partição
- * @param numComparacoes número de comparações
- * @param numTrocas número de trocas
- * @return i+1 id do novo pivô
- */
-int particaoEstruturas(Review** a, int inicio, int fim, int *numComparacoes, int *numTrocas){
+int particaoEstruturas(Review* a, int inicio, int fim, int *numComparacoes, int *numTrocas){
 
-    int pivo = a[fim]->getId();
+    int pivo = a[fim].getId();
     int i = inicio - 1;
 
     for(int j = inicio; j < fim; j++){
 
         (*numComparacoes)++;
-        if(a[j]->getId() <= pivo){
+        if(a[j].getId() <= pivo){
 
             i++;
             swapEstruturas(a, i, j);
@@ -144,16 +90,7 @@ int particaoEstruturas(Review** a, int inicio, int fim, int *numComparacoes, int
 }
 
 // quickSortRecursivo para estruturas
-/**
- * @author eliascassis
- * @param a Vetor de reviews
- * @param inicio início da partição
- * @param fim fim da partição
- * @param numComparacoes número de comparações
- * @param numTrocas número de trocas
- * @return void
- */
-void quickSortRecursivoEstruturas(Review** a, int inicio, int fim, int *numComparacoes, int *numTrocas){
+void quickSortRecursivoEstruturas(Review* a, int inicio, int fim, int *numComparacoes, int *numTrocas){
 
     if(inicio < fim){
 
