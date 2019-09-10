@@ -11,7 +11,7 @@ void insertionSort(int *vet, int size, int *numComp, int *numReg)
 
         ch = vet[i];
         j = i-1;
-        
+
         (*numComp)++;
 
         while(j >= 0 && vet[j] > ch){
@@ -22,10 +22,10 @@ void insertionSort(int *vet, int size, int *numComp, int *numReg)
             (*numReg)++;
 
         }
-        
+
         vet[j+1] = ch;
         (*numReg)++;
-    
+
     }
 
 }
@@ -38,7 +38,6 @@ void insertionSortReviews(Review *r, int size, int *numComp, int *numReg){
         Review pivo = r[i];
         int j = i-1;
 
-        (*numComp)++;
 
         while(j >= 0 && r[j].getId() > pivo.getId()){
 
