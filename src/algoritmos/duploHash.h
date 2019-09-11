@@ -1,5 +1,3 @@
-#include "../classes/review.h"
-
 // Definição e funções da classe duploHash
 class duploHash{
 
