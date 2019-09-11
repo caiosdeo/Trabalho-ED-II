@@ -5,7 +5,7 @@ using namespace std;
 /* Sorts the array using pigeonhole algorithm */
 void pigeonholeSort(int *a, int inicio, int fim) 
 { 
-    // Find minimum and maximum values in arr[] 
+    // Find minimum and maximum values in a
     int min = a[0], max = a[0]; 
     for (int i = 1; i < (fim-inicio); i++) 
     { 
@@ -39,7 +39,7 @@ void pigeonholeSort(int *a, int inicio, int fim)
 
 void pigeonholeSortReview(Review *r, int inicio, int fim) 
 { 
-    // Find minimum and maximum values in arr[] 
+    // Find minimum and maximum values in a
     Review min = r[0], max = r[0]; 
     for (int i = 1; i < (fim-inicio); i++) 
     { 
@@ -50,19 +50,11 @@ void pigeonholeSortReview(Review *r, int inicio, int fim)
     } 
     int range = max.getId() - min.getId() + 1; // Find range 
   
-    // Create an array of vectors. Size of array 
-    // range. Each vector represents a hole that 
-    // is going to contain matching elements. 
+    // Create an array of vectors.
     vector<Review> holes[range]; 
   
-    // Traverse through input array and put every 
-    // element in its respective hole 
     for (int i = 0; i < (fim-inicio); i++) 
         holes[r[i].getId()-min.getId()].push_back(r[i]); 
-  
-    // Traverse through all holes one by one. For 
-    // every hole, take its elements and put in 
-    // array. 
     int index = 0;  // index in sorted array 
     for (int i = 0; i < range; i++) 
     { 
