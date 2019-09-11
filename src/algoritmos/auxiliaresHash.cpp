@@ -16,7 +16,7 @@ int* gerarConjuntoChaves(Review* review, int n){
     int* chaves = new int(n);
 
     for(int i =0; i < n; i++)
-        chaves[i] = review->getId() + converterStringInteiro(review->getUser());
+        chaves[i] = review[i].getId() + converterStringInteiro(review[i].getUser());
 
     return chaves;
 
