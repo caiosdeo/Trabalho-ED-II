@@ -47,49 +47,53 @@ bool duploHash::ePrimo(int num){
 }
 
 // função para inserir a chave na tabela de hash
-void duploHash::inserirHash(int chave){ 
+void duploHash::inserirHash(int chave, int* numColisoes){ 
    
     if (this->estaCheia()) 
         return; 
-
      
     int indice = hash1(chave); 
 
-    if (this->tabelaHash[indice] != -1) 
-    { 
+    if(this->tabelaHash[indice] != -1){ 
 
+        *(numColisoes)++;
         int indice2 = hash2(chave); 
         int i = 1; 
-        while (1) 
-        { 
+
+        while(1){ 
 
             int novoIndice = (indice + i * indice2) % this->tamanhoTabela; 
 
-            if (tabelaHash[novoIndice] == -1) 
-            { 
+            if (tabelaHash[novoIndice] == -1){ 
                 tabelaHash[novoIndice] = chave; 
                 break; 
             } 
+
             i++; 
+
         } 
+
     } 
 
     else
         tabelaHash[indice] = chave; 
-    this->tamanhoAtual++; 
+
+    this->tamanhoAtual++;
+
 } 
 
 void duploHash::mostrarHash(){ 
 
-        for (int i = 0; i < this->tamanhoTabela; i++) 
-        { 
+        for (int i = 0; i < this->tamanhoTabela; i++){ 
+
             if (tabelaHash[i] != -1) 
-                cout << i << " --> "
-                     << tabelaHash[i] << endl; 
+                cout << i << " --> " << tabelaHash[i] << endl; 
+
             else
                 cout << i << endl; 
+
         } 
-        
+
 }
 
 int duploHash::getPrimo(){

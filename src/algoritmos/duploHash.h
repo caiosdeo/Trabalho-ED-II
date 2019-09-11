@@ -17,7 +17,7 @@ class duploHash{
         int hash2(int chave);
         bool ePrimo(int x);
         int getPrimo();
-        void inserirHash(int chave);
+        void inserirHash(int chave, int *numColisoes);
         void mostrarHash();
 
 };
