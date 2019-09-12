@@ -5,6 +5,7 @@
 
 //Inclusão de outras interfaces/bibliotecas
 #include <fstream>
+#include <chrono>
 
 using namespace std;
 
@@ -57,6 +58,6 @@ void executarDadosReview(fstream &entrada, fstream &dataset, fstream &saida);
  * @param numCopias Valor médio de cópias
  * @param tempoProcessamento valor médio de tempo de processamento
  */
-void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, float numCopias, float tempoProcessamento);
+void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, float numCopias, chrono::__enable_if_is_duration<chrono::milliseconds> tempoProcessamento);
 
 #endif //TRATAMENTO_H_INCLUDED
