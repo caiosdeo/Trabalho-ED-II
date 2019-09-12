@@ -64,17 +64,3 @@ void pigeonholeSortReview(Review *r, int inicio, int fim)
     } 
 } 
   
-// Driver program to test the above function 
-int main() 
-{ 
-    int arr[] = {8, 3, 2, 7, 4, 6, 8}; 
-    int n = sizeof(arr)/sizeof(arr[0]); 
-  
-    pigeonholeSort(arr, 0, n); 
-  
-    printf("Sorted order is : "); 
-    for (int i = 0; i < n; i++) 
-        printf("%d ", arr[i]); 
-  
-    return 0; 
-} 
