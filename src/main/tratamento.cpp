@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <chrono>
 #include "tratamento.h"
 #include "../classes/review.h"
 #include "../algoritmos/quickSortRecursivo.h"
@@ -66,18 +67,23 @@ void executarDadosVetor(fstream &entrada, fstream &dataset, fstream &saida){
         conjuntos[i] = leituraDadosVetor(dataset, n); // Colocando dados no conjunto
 
         // Métricas de desempenho
-        int numComparacoes = 0, numCopias = 0, tempoProcessamento = 0;
+        int numComparacoes = 0, numCopias = 0;
 
-        /**
-         * TODO: aqui vai ficar as chamadas para funções de ordenação passando os endereços 
-         * TODO: das métricas de desempenho estas variáveis são acumulativas para as métricas
-         */
+        // Ponto de inicio de contagem para tempo de execução do algoritmo
+        auto inicio = chrono::high_resolution_clock::now();
+
+        // * Chamada dos algoritmos
         quickSortRecursivoIds(conjuntos[i], 0, n-1, &numComparacoes, &numCopias);
 
-        // TODO: calcular médias das métricas de desempenho dividindo as variáveis por 5 
+        // Ponto de parada de contagem para o tempo de execução do algoritmo
+        auto parada = chrono::high_resolution_clock::now();
+
+        //Tempo de processamento do algoritmo
+        auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio);
+
         // Imprimindo resultados no arquivo de saída
         imprimirSaida(saida, 0, n, numComparacoes, numCopias, tempoProcessamento);
-
+        
     }
 
     // Desalocando os conjuntos
@@ -107,15 +113,20 @@ void executarDadosReview(fstream &entrada, fstream &dataset, fstream &saida){
         conjuntos[i] = conjuntos[i]->leituraDados(dataset, n); // Colocando dados no conjunto
 
         // Métricas de desempenho
-        int numComparacoes = 0, numCopias = 0, tempoProcessamento = 0;
+        int numComparacoes = 0, numCopias = 0;
 
-        /**
-         * TODO: aqui vai ficar as chamadas para funções de ordenação passando os endereços 
-         * TODO: das métricas de desempenho estas variáveis são acumulativas para as métricas
-         */
+        // Ponto de inicio de contagem para tempo de execução do algoritmo
+        auto inicio = chrono::high_resolution_clock::now();
+
+        // * Chamada dos algoritmos
         quickSortRecursivoEstruturas(conjuntos[i], 0, n-1, &numComparacoes, &numCopias);
 
-        // TODO: calcular médias das métricas de desempenho dividindo as variáveis por 5 
+        // Ponto de parada de contagem para o tempo de execução do algoritmo
+        auto parada = chrono::high_resolution_clock::now();
+
+        //Tempo de processamento do algoritmo
+        auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio);
+
         // Imprimindo resultados no arquivo de saída
         imprimirSaida(saida, 1, n, numComparacoes, numCopias, tempoProcessamento);
 
@@ -128,8 +139,8 @@ void executarDadosReview(fstream &entrada, fstream &dataset, fstream &saida){
     
 }
 
-void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, float numCopias, float tempoProcessamento){
+void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, float numCopias, std::chrono::__enable_if_is_duration<std::chrono::milliseconds> tempoProcessamento){
 
-    saida << estrutura << "," << n << "," << numComparacoes << "," << numCopias << "," << tempoProcessamento << endl;
+    saida << estrutura << "," << n << "," << numComparacoes << "," << numCopias << "," << tempoProcessamento.count() << endl;
 
 }
