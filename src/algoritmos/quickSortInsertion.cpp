@@ -32,21 +32,3 @@ void insertionQuickSortReview(Review *r, int inicio, int fim, int *numComparacoe
         quickSortRecursivoEstruturas(r, pivo+1, fim, numComparacoes, numTrocas);
 	}	
 }
-
-/*
-int main() 
-{ 
-    int arr[] = {8, 3, 2, 7, 4, 6, 8}; 
-    int n = sizeof(arr)/sizeof(arr[0]); 
-	int numComparacoes = 0;
-	int numTrocas = 0;
-  
-    insertionQuickSort(arr, 0, n, &numComparacoes, &numTrocas);
-  
-    printf("Sorted order is : "); 
-    for (int i = 0; i < n; i++) 
-        printf("%d ", arr[i]); 
-  
-    return 0; 
-}
-*/
