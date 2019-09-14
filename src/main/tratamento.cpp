@@ -3,7 +3,7 @@
 #include <chrono>
 #include "tratamento.h"
 #include "../classes/review.h"
-#include "../algoritmos/quickSortRecursivo.h"
+#include "../algoritmos/ordenacao.h"
 
 int* leituraDadosVetor(fstream &dataset, int n){
 
