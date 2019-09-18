@@ -16,17 +16,17 @@ void trocarId(int *vetor, int a, int b) {
 
 int particaoId(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
     int meio = (inicio + fim) / 2;
-    int valI = vetor[inicio], valM = vetor[meio], valF = vetor[fim];
+    int idI = vetor[inicio], idM = vetor[meio], idF = vetor[fim];
     int mediana = 0;
     comparacoes++;
-    if (valI < valM) {
+    if (idI < idM) {
         comparacoes++;
-        if (valM < valF) {
+        if (idM < idF) {
             mediana = meio;
         }
         else {
             comparacoes++;
-            if (valI < valF) {
+            if (idI < idF) {
                 mediana = fim;
             }
             else {
@@ -36,12 +36,12 @@ int particaoId(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
     }
     else {
         comparacoes++;;
-        if (valF < valM) {
+        if (idF < idM) {
             mediana = meio;
         }
         else {
             comparacoes++;
-            if (valF < valI) {
+            if (idF < idI) {
                 mediana = fim;
             }
             else {
