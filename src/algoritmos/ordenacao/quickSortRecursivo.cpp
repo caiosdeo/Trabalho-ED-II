@@ -1,4 +1,4 @@
-#include "../classes/review.h"
+#include "../../classes/review.h"
 #include "quickSortRecursivo.h"
 #include <iostream>
 
@@ -10,6 +10,7 @@ void swap(int *a, int i, int j){
     aux = a[i];
     a[i] = a[j];
     a[j] = aux;
+
 
 }
 
