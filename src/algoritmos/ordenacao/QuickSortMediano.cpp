@@ -16,17 +16,17 @@ void trocarId(int *vetor, int a, int b) {
 
 int particaoId(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
     int meio = (inicio + fim) / 2;
-    int a= vetor[inicio], b = vetor[meio], c = vetor[fim];
+    int valI = vetor[inicio], valM = vetor[meio], valF = vetor[fim];
     int mediana = 0;
     comparacoes++;
-    if (a < b) {
+    if (valI < valM) {
         comparacoes++;
-        if (b < c) {
+        if (valM < valF) {
             mediana = meio;
         }
         else {
             comparacoes++;
-            if (a < c) {
+            if (valI < valF) {
                 mediana = fim;
             }
             else {
@@ -36,12 +36,12 @@ int particaoId(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
     }
     else {
         comparacoes++;;
-        if (c < b) {
+        if (valF < valM) {
             mediana = meio;
         }
         else {
             comparacoes++;
-            if (c < a) {
+            if (valF < valI) {
                 mediana = fim;
             }
             else {
@@ -84,17 +84,17 @@ void trocarReview(Review* r, int a, int b) {
 
 int particaoReview(Review* r, int inicio, int fim, int *trocas, int *comparacoes) {
     int meio = r[(inicio + fim) / 2)].getId();
-    int a = r[inicio].getId(), b = r[meio].getId(), c = r[fim].getId();
+    int reviewI = r[inicio].getId(), reviewM = r[meio].getId(), reviewF = r[fim].getId();
     int mediana = 0;
     comparacoes++;
-    if (a < b) {
+    if (reviewI < reviewM) {
         comparacoes++;
-        if (b < c) {
+        if (reviewM < reviewF) {
             mediana = meio;
         }
         else {
             comparacoes++;
-            if (a < c) {
+            if (reviewI < reviewF) {
                 mediana = fim;
             }
             else {
@@ -104,12 +104,12 @@ int particaoReview(Review* r, int inicio, int fim, int *trocas, int *comparacoes
     }
     else {
         comparacoes++;;
-        if (c < b) {
+        if (reviewF < reviewM) {
             mediana = meio;
         }
         else {
             comparacoes++;
-            if (c < a) {
+            if (reviewF < reviewI) {
                 mediana = fim;
             }
             else {
