@@ -1,10 +1,10 @@
 #include "InsertionSort.h"
-#include "../classes/review.h"
+#include "../../classes/review.h"
 #include <fstream>
 
 using namespace std;
 
-void insertionSort(int *vet, int size, int *numComp, int *numReg)
+void insertionSortInteiros(int *vet, int size, int *numComp, int *numReg)
 {
     int i, ch, j;
     for(i = 1; i < size; i++){

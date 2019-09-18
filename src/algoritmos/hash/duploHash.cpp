@@ -8,6 +8,7 @@ duploHash::duploHash(int tamanhoTabela){
     this->tabelaHash = new int(tamanhoTabela);
     this->tamanhoTabela = tamanhoTabela;
     this->tamanhoAtual = 0;
+    this->numColisoes = 0;
     this->primo = this->getPrimo();
 
     for(int i = 0; i < tamanhoTabela; i++)
@@ -47,7 +48,7 @@ bool duploHash::ePrimo(int num){
 }
 
 // função para inserir a chave na tabela de hash
-void duploHash::inserirHash(int chave, int* numColisoes){ 
+void duploHash::inserirHash(int chave){ 
    
     if (this->estaCheia()) 
         return; 
@@ -56,7 +57,7 @@ void duploHash::inserirHash(int chave, int* numColisoes){
 
     if(this->tabelaHash[indice] != -1){ 
 
-        *(numColisoes)++;
+        this->numColisoes++;
         int indice2 = hash2(chave); 
         int i = 1; 
 

@@ -3,7 +3,7 @@
 #include <chrono>
 #include "tratamento.h"
 #include "../classes/review.h"
-#include "../algoritmos/quickSortRecursivo.h"
+#include "../algoritmos/ordenacao.h"
 
 int* leituraDadosVetor(fstream &dataset, int n){
 
@@ -79,7 +79,7 @@ void executarDadosVetor(fstream &entrada, fstream &dataset, fstream &saida){
         auto parada = chrono::high_resolution_clock::now();
 
         //Tempo de processamento do algoritmo
-        auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio);
+        auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
         // Imprimindo resultados no arquivo de saída
         imprimirSaida(saida, 0, n, numComparacoes, numCopias, tempoProcessamento);
@@ -125,7 +125,7 @@ void executarDadosReview(fstream &entrada, fstream &dataset, fstream &saida){
         auto parada = chrono::high_resolution_clock::now();
 
         //Tempo de processamento do algoritmo
-        auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio);
+        auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
         // Imprimindo resultados no arquivo de saída
         imprimirSaida(saida, 1, n, numComparacoes, numCopias, tempoProcessamento);
@@ -139,8 +139,8 @@ void executarDadosReview(fstream &entrada, fstream &dataset, fstream &saida){
     
 }
 
-void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, float numCopias, std::chrono::__enable_if_is_duration<std::chrono::milliseconds> tempoProcessamento){
+void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, float numCopias, float tempoProcessamento){
 
-    saida << estrutura << "," << n << "," << numComparacoes << "," << numCopias << "," << tempoProcessamento.count() << endl;
+    saida << estrutura << "," << n << "," << numComparacoes << "," << numCopias << "," << tempoProcessamento << endl;
 
 }
