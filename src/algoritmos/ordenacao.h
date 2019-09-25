@@ -4,3 +4,4 @@
 #include "ordenacao/pigeonholesort.h"
 #include "ordenacao/quickSortRecursivo.h"
 #include "ordenacao/quickSortInsertion.h"
+#include "ordenacao/quickSortMediano.h"
