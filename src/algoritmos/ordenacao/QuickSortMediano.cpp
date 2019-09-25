@@ -16,17 +16,17 @@ void trocarId(int *vetor, int a, int b) {
 
 int particaoId(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
     int meio = (inicio + fim) / 2;
-    int a= vetor[inicio], b = vetor[meio], c = vetor[fim];
+    int idI = vetor[inicio], idM = vetor[meio], idF = vetor[fim];
     int mediana = 0;
-    comparacoes++;
-    if (a < b) {
-        comparacoes++;
-        if (b < c) {
+    (*comparacoes)++;
+    if (idI < idM) {
+        (*comparacoes)++;
+        if (idM < idF) {
             mediana = meio;
         }
         else {
-            comparacoes++;
-            if (a < c) {
+            (*comparacoes)++;
+            if (idI < idF) {
                 mediana = fim;
             }
             else {
@@ -35,13 +35,13 @@ int particaoId(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
         }
     }
     else {
-        comparacoes++;;
-        if (c < b) {
+        (*comparacoes)++;
+        if (idF < idM) {
             mediana = meio;
         }
         else {
-            comparacoes++;
-            if (c < a) {
+            (*comparacoes)++;
+            if (idF < idI) {
                 mediana = fim;
             }
             else {
@@ -49,25 +49,25 @@ int particaoId(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
             }
         }
     }
-    trocas++;
+    (*trocas)++;
     trocarId(vetor, mediana, fim);
     int pivo = vetor[fim];
     int i = inicio - 1;
     for (int j = 0; j < fim - 1; j++) {
-        comparacoes++;
+        (*comparacoes)++;
         if (vetor[j] <= pivo) {
             i++;
-            trocas++;
+            (*trocas)++;
             trocarId(vetor, i, j);
         }
     }
-    trocas++;
+    (*trocas)++;
     trocarId(vetor, i + 1, fim);
     return i + 1;
 }
 
 void quickSortMedianoId(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
-comparacoes++;
+(*comparacoes)++;
 if (inicio < fim) {
         int q = particaoId(vetor, inicio, fim, trocas, comparacoes);
         quickSortMedianoId(vetor, inicio, q - 1, trocas, comparacoes);
@@ -84,17 +84,17 @@ void trocarReview(Review* r, int a, int b) {
 
 int particaoReview(Review* r, int inicio, int fim, int *trocas, int *comparacoes) {
     int meio = r[(inicio + fim) / 2)].getId();
-    int a = r[inicio].getId(), b = r[meio].getId(), c = r[fim].getId();
+    int reviewI = r[inicio].getId(), reviewM = r[meio].getId(), reviewF = r[fim].getId();
     int mediana = 0;
-    comparacoes++;
-    if (a < b) {
-        comparacoes++;
-        if (b < c) {
+    (*comparacoes)++;
+    if (reviewI < reviewM) {
+        (*comparacoes)++;
+        if (reviewM < reviewF) {
             mediana = meio;
         }
         else {
-            comparacoes++;
-            if (a < c) {
+            (*comparacoes)++;
+            if (reviewI < reviewF) {
                 mediana = fim;
             }
             else {
@@ -103,13 +103,13 @@ int particaoReview(Review* r, int inicio, int fim, int *trocas, int *comparacoes
         }
     }
     else {
-        comparacoes++;;
-        if (c < b) {
+        (*comparacoes)++;
+        if (reviewF < reviewM) {
             mediana = meio;
         }
         else {
-            comparacoes++;
-            if (c < a) {
+            (*comparacoes)++;
+            if (reviewF < reviewI) {
                 mediana = fim;
             }
             else {
@@ -117,19 +117,20 @@ int particaoReview(Review* r, int inicio, int fim, int *trocas, int *comparacoes
             }
         }
     }
-    trocas++;
+    //(*comparacoes)++;
+    (*trocas)++;
     trocarReview(r, mediana, fim);
     int pivo = r[fim].getId();
     int i = inicio - 1;
     for (int j = 0; j < fim - 1; j++) {
-        comparacoes++;
+        (*comparacoes)++;
         if (r[j].getId() <= pivo) {
             i++;
-            trocas++;
+            (*trocas)++;
             trocarReview(r, i, j);
         }
     }
-    trocas++;
+    (*trocas)++;
     trocarReview(r, i + 1, fim);
     return i + 1;
 }
