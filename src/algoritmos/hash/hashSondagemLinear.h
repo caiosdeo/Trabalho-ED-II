@@ -11,8 +11,6 @@ class HashNode
     public: 
     int value; 
     int key; 
-      
-    //Constructor of hashnode  
     HashNode(int key, int value); 
     int getKey();
 };

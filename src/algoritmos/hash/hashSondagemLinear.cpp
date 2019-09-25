@@ -1,4 +1,4 @@
-#include "hash.h"
+#include "hashSondagemLinear.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
