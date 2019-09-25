@@ -1,7 +1,7 @@
-#include <bits/stdc++.h> 
+#include <bits/stdc++.h>
 #include "pigeonholesort.h"
-using namespace std; 
-  
+using namespace std;
+
 /* Sorts the array using pigeonhole algorithm */
 void pigeonholeSort(int *a, int inicio, int fim, int *numComparacoes, int *numTrocas) 
 { 
@@ -39,36 +39,3 @@ void pigeonholeSort(int *a, int inicio, int fim, int *numComparacoes, int *numTr
        }
     } 
 } 
-
-
-void pigeonholeSortReview(Review *r, int inicio, int fim, int *numComparacoes, int *numTrocas) 
-{ 
-    // Find minimum and maximum values in a
-    Review min = r[0], max = r[0]; 
-    for (int i = 1; i < (fim-inicio); i++) 
-    { 
-        (*numComparacoes)++; 
-        if (r[i].getId() < min.getId()) 
-            min = r[i]; 
-        (*numComparacoes)++; 
-        if (r[i].getId() > max.getId()) 
-            max = r[i]; 
-    } 
-    int range = max.getId() - min.getId() + 1; // Find range 
-  
-    // Create an array of vectors.
-    vector<Review> holes[range]; 
-  
-    for (int i = 0; i < (fim-inicio); i++) 
-        holes[r[i].getId()-min.getId()].push_back(r[i]); 
-    int index = 0;  // index in sorted array 
-    for (int i = 0; i < range; i++) 
-    { 
-       vector<Review>::iterator it; 
-       for (it = holes[i].begin(); it != holes[i].end(); ++it){
-            r[index++]  = *it;
-            (*numTrocas)++;
-       } 
-    } 
-} 
-  
