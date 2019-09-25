@@ -14,16 +14,17 @@ using namespace std;
 /////////////////////////////////////////
 
 /**
- * Execução específica para dados do tipo inteiro
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
+ * Impressão das médias das métricas em um arquivo de saída
  *
  * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
  * @param saida Arquivo de saída com as médias das métricas
+ * @param estrutura 0 para vetor de int; 1 para vetor de struct
+ * @param n Tamanho do conjunto
+ * @param numComparacoes Valor médio de comparações
+ * @param numCopias Valor médio de cópias
+ * @param tempoProcessamento valor médio de tempo de processamento
  */
-void executarDadosVetor(fstream &entrada, fstream &dataset, fstream &saida);
+void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, float numCopias, float tempoProcessamento);
 
 /**
  * Atribuição de dados a cada conjunto, retornando-o em um vetor.
@@ -35,6 +36,20 @@ void executarDadosVetor(fstream &entrada, fstream &dataset, fstream &saida);
  */
 int* leituraDadosVetor(fstream &dataset, int n);
 
+// * Cenário 1
+
+/**
+ * Execução específica para dados do tipo inteiro
+ * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
+ * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
+ *
+ * @author caiosdeo
+ * @param entrada Arquivo de entrada
+ * @param dataset Arquivo com os dados
+ * @param saida Arquivo de saída com as médias das métricas
+ */
+void fluxoQuickSortInteiro(fstream &entrada, fstream &dataset, fstream &saida);
+
 /**
  * Execução específica para dados do tipo Review
  * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
@@ -45,19 +60,9 @@ int* leituraDadosVetor(fstream &dataset, int n);
  * @param dataset Arquivo com os dados
  * @param saida Arquivo de saída com as médias das métricas
  */
-void executarDadosReview(fstream &entrada, fstream &dataset, fstream &saida);
+void fluxoQuickSortReview(fstream &entrada, fstream &dataset, fstream &saida);
 
-/**
- * Impressão das médias das métricas em um arquivo de saída
- *
- * @author caiosdeo
- * @param saida Arquivo de saída com as médias das métricas
- * @param estrutura 0 para vetor de int; 1 para vetor de struct
- * @param n Tamanho do conjunto
- * @param numComparacoes Valor médio de comparações
- * @param numCopias Valor médio de cópias
- * @param tempoProcessamento valor médio de tempo de processamento
- */
-void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, float numCopias, chrono::__enable_if_is_duration<chrono::milliseconds> tempoProcessamento);
+//* Cenário 2
+
 
 #endif //TRATAMENTO_H_INCLUDED
