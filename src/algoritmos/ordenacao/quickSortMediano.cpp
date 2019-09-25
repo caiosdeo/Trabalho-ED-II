@@ -1,4 +1,4 @@
-#include "QuickSortMediano.h"
+#include "quickSortMediano.h"
 #include <iostream>
 #include "quickSortInsertion.h"
 #include "InsertionSort.h"
@@ -74,74 +74,3 @@ if (inicio < fim) {
         quickSortMedianoId(vetor, q+1, fim, trocas, comparacoes);
     }
 }
-
-void trocarReview(Review* r, int a, int b) {
-    Review aux;
-    r[a] = aux;
-    r[a] = r[b];
-    r[b] = aux;
-}
-
-int particaoReview(Review* r, int inicio, int fim, int *trocas, int *comparacoes) {
-    int meio = r[(inicio + fim) / 2)].getId();
-    int reviewI = r[inicio].getId(), reviewM = r[meio].getId(), reviewF = r[fim].getId();
-    int mediana = 0;
-    (*comparacoes)++;
-    if (reviewI < reviewM) {
-        (*comparacoes)++;
-        if (reviewM < reviewF) {
-            mediana = meio;
-        }
-        else {
-            (*comparacoes)++;
-            if (reviewI < reviewF) {
-                mediana = fim;
-            }
-            else {
-                mediana = inicio;
-            }
-        }
-    }
-    else {
-        (*comparacoes)++;
-        if (reviewF < reviewM) {
-            mediana = meio;
-        }
-        else {
-            (*comparacoes)++;
-            if (reviewF < reviewI) {
-                mediana = fim;
-            }
-            else {
-                mediana = inicio;
-            }
-        }
-    }
-    //(*comparacoes)++;
-    (*trocas)++;
-    trocarReview(r, mediana, fim);
-    int pivo = r[fim].getId();
-    int i = inicio - 1;
-    for (int j = 0; j < fim - 1; j++) {
-        (*comparacoes)++;
-        if (r[j].getId() <= pivo) {
-            i++;
-            (*trocas)++;
-            trocarReview(r, i, j);
-        }
-    }
-    (*trocas)++;
-    trocarReview(r, i + 1, fim);
-    return i + 1;
-}
-
-void quickSortMedianoReview(Review* r, int inicio, int fim, int *trocas, int *comparacoes) {
-    comparacoes++;
-    if (inicio < fim) {
-        int q = particaoReview(r, inicio, fim, trocas, comparacoes);
-        quickSortMedianoReview(r, inicio, q - 1, trocas, comparacoes);
-        quickSortMedianoReview(r, q+1, fim, trocas, comparacoes);
-    }
-}
-
-
