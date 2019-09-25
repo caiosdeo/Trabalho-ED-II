@@ -22,8 +22,8 @@ class HashMap
     int capacity; 
     //current size 
     int size; 
-    //dummy node 
-    HashNode *dummy; 
+    //auxiliar node 
+    HashNode *aux; 
   
     public: 
     HashMap();

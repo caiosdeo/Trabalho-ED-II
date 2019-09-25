@@ -27,8 +27,8 @@ HashMap::HashMap()
     for(int i=0 ; i < capacity ; i++) 
         arr[i] = NULL; 
       
-    //dummy node with value and key -1 
-    HashNode* dummy = new HashNode(-1, -1); 
+    //aux node with value and key -1 
+    HashNode* aux = new HashNode(-1, -1); 
 } 
 
 // This implements hash function to find index 
@@ -38,13 +38,12 @@ int HashMap::hashCode(int key)
     return key % capacity; 
 } 
 
-//Function to add key value pair 
+
 void HashMap::insertNode(int key, int value) 
 { 
     HashNode* temp = new HashNode(key, value); 
     // Apply hash function to find index for given key 
     int hashIndex = hashCode(key); 
-          
     //find next free space  
     while(arr[hashIndex] != NULL && arr[hashIndex]->key != key 
             && arr[hashIndex]->key != -1) 
@@ -73,8 +72,8 @@ int HashMap::deleteNode(int key)
         { 
             HashNode *temp = arr[hashIndex]; 
                   
-            //Insert dummy node here for further use 
-            arr[hashIndex] = dummy; 
+            //Insert aux node here for further use 
+            arr[hashIndex] = aux; 
                   
             // Reduce size 
             size--; 
@@ -84,7 +83,6 @@ int HashMap::deleteNode(int key)
         hashIndex %= capacity; 
   
         } 
-          
     //If not found return null 
     return -1; 
 } 
@@ -92,10 +90,8 @@ int HashMap::deleteNode(int key)
 //Function to search the value for a given key 
 int HashMap::get(int key) 
 { 
-    // Apply hash function to find index for given key 
-
     //finding the node with given key    
-    for(int i = 0; i<capacity; i++){
+    for(int i = 0; i < capacity; i++){
         int index = hashCode(key);
         if(arr[index]->key == key) 
             return arr[index]->value; 
@@ -116,13 +112,3 @@ bool HashMap::isEmpty()
 { 
     return size == 0; 
 } 
-
-//Function to display the stored key value pairs 
-void HashMap::display() 
-{ 
-    for(int i=0 ; i<capacity ; i++) 
-    { 
-        if(arr[i] != NULL && arr[i]->key != -1) 
-            printf("key = %i   value = %i\n", arr[i]->key, arr[i]->value);
-    } 
-}         
