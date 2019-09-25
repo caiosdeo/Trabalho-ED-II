@@ -5,6 +5,12 @@
 #include "../classes/review.h"
 #include "../algoritmos/ordenacao.h"
 
+void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, float numCopias, float tempoProcessamento){
+
+    saida << estrutura << "," << n << "," << numComparacoes << "," << numCopias << "," << tempoProcessamento << endl;
+
+}
+
 int* leituraDadosVetor(fstream &dataset, int n){
 
     // Conjunto de IDs
@@ -47,9 +53,11 @@ int* leituraDadosVetor(fstream &dataset, int n){
 
 }
 
-// ! FLUXO PARA DADOS EM VETOR DE INTEIRO
+// * Cenário 1
 
-void executarDadosVetor(fstream &entrada, fstream &dataset, fstream &saida){
+// ! FLUXO PARA DADOS EM VETOR DE INTEIRO QUICKSORT
+
+void fluxoQuickSortInteiro(fstream &entrada, fstream &dataset, fstream &saida){
 
     // Variaveis para leitura do arquivo de entrada
     int qtdConjuntos, n;
@@ -93,9 +101,9 @@ void executarDadosVetor(fstream &entrada, fstream &dataset, fstream &saida){
     
 }
 
-// ! FLUXO PARA DADOS EM VETOR DE REVIEWS
+// ! FLUXO PARA DADOS EM VETOR DE REVIEWS QUICKSORT
 
-void executarDadosReview(fstream &entrada, fstream &dataset, fstream &saida){
+void fluxoQuickSortReview(fstream &entrada, fstream &dataset, fstream &saida){
 
     // Variaveis para leitura do arquivo de entrada
     int qtdConjuntos, n;
@@ -139,8 +147,4 @@ void executarDadosReview(fstream &entrada, fstream &dataset, fstream &saida){
     
 }
 
-void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, float numCopias, float tempoProcessamento){
-
-    saida << estrutura << "," << n << "," << numComparacoes << "," << numCopias << "," << tempoProcessamento << endl;
-
-}
+// * Cenário 2
