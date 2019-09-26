@@ -1,10 +1,5 @@
 #include "quickSortMediano.h"
 #include <iostream>
-#include "quickSortInsertion.h"
-#include "InsertionSort.h"
-#include "quickSortRecursivo.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 using namespace std;
 
@@ -14,7 +9,7 @@ void trocarId(int *vetor, int a, int b) {
     vetor[b] = h;
 }
 
-int particaoId(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
+int particao(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
     int meio = (inicio + fim) / 2;
     int idI = vetor[inicio], idM = vetor[meio], idF = vetor[fim];
     int mediana = 0;
@@ -66,11 +61,11 @@ int particaoId(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
     return i + 1;
 }
 
-void quickSortMedianoId(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
-(*comparacoes)++;
+void quickSortMediano(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
+
 if (inicio < fim) {
-        int q = particaoId(vetor, inicio, fim, trocas, comparacoes);
-        quickSortMedianoId(vetor, inicio, q - 1, trocas, comparacoes);
-        quickSortMedianoId(vetor, q+1, fim, trocas, comparacoes);
+        int q = particao(vetor, inicio, fim, trocas, comparacoes);
+        quickSortMediano(vetor, inicio, q - 1, trocas, comparacoes);
+        quickSortMediano(vetor, q+1, fim, trocas, comparacoes);
     }
 }

@@ -4,7 +4,7 @@
 using namespace std;
 
 /// Funcao Insertion Sort para vetor de inteiros de tamanho size
-void insertionSortInteiros(int *vet, int size, int *numComp, int *numReg)
+void insertionSort(int *vet, int size, int *numComp, int *numReg)
 {
     int i, chave, j;
     for(i = 1; i < size; i++){

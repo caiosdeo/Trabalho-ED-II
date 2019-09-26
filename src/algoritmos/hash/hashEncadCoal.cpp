@@ -25,7 +25,7 @@ void hashEncadCoal::insereItem(int chave)
 {
     int indice = funcaoHash(chave);
     /// verifica se posicao esta vazia
-    if(tabela[indice] /*?*/)
+    if(tabela[indice])
     {
         tabela[indice].push_back(chave); ///insere chave na posicao
     }
@@ -33,14 +33,14 @@ void hashEncadCoal::insereItem(int chave)
     {
         int i = indice;
         ///se proxima colisao nao for -1
-        if(proxColisao[i] /*?*/)
+        if(proxColisao[i])
         {
-            while(proxColisao[i] /*?*/) ///enquanto houver colisoes regitradas
+            while(proxColisao[i] ) ///enquanto houver colisoes regitradas
                     i = proxColisao[i];     ///busca pela proxima posicao de colisao vazia
             int j;
             for(j = i; j > tabela[indice].begin(); j--) ///busca posicao vazia a partir da ultima colisao
             {
-                if(tabela[j] /*?*/)
+                if(tabela[j])
                 {
                     tabela[j].push_back(chave); ///insere valor na posicao encontrada
                     proxColisao[i].push_back(j);///insere o endereco da ultima colisao
@@ -53,7 +53,7 @@ void hashEncadCoal::insereItem(int chave)
             list<int>::iterator j;
             for(j = tabela[i].end(); j != tabela[i].begin(); j--) ///procura pela proxima posicao vazia a partir do final
             {
-                if(*j /*?*/)
+                if(*j )
                 {
                     tabela[j].push_back(chave); ///insere chave na nova posicao
                     proxColisao[i].push_back(j);///insere o endereco da colisao
@@ -63,7 +63,7 @@ void hashEncadCoal::insereItem(int chave)
             proxColisao[i].push_back(j);///insere o endereco da colisao
         }
     }
-    /// /*?*/ --> Como verificar se posicao tal esta preenchido ou nao?
+    // --> Como verificar se posicao tal esta preenchido ou nao?
 }
 
 void hashEncadCoal::removeItem(int chave)

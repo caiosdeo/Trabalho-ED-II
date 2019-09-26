@@ -2,8 +2,8 @@
 #define QUICKSORTMEDIANO_H
 #include "../../classes/review.h"
 
-int particaoId(int *vetor, int inicio, int fim, int *trocas, int *comparacoes);
+int particao(int *vetor, int inicio, int fim, int *trocas, int *comparacoes);
 void trocarId(int *vetor, int a, int b);
-void quickSortMedianoId(int *vetor, int inicio, int fim, int *trocas, int *comparacoes);
+void quickSortMediano(int *vetor, int inicio, int fim, int *trocas, int *comparacoes);
 
 #endif // QUICKSORTMEDIANO_H

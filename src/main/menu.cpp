@@ -38,6 +38,8 @@ void selecionar(int selecao, fstream& saida){
             //Cenário 1
             case 1:{
 
+                saida << endl << "Cenário 1" << endl;
+
                 //Loop para rodar para os dois tipos de estruturas em única execução
                 for(int j = 0; j < 2; j++){
 
@@ -77,6 +79,52 @@ void selecionar(int selecao, fstream& saida){
 
             //Cenário 2
             case 2:{
+                
+                saida << endl << "Cenário 2" << endl;
+
+                //Loop para rodar para os dois tipos de estruturas em única execução
+                for(int j = 0; j < 3; j++){
+
+                    entrada.open("../../entrada.txt", ios::in); // Arquivo de entrada só como leitura
+                    saida.open("../../saida.csv", ios::out | ios::app); // Arquivo de saída como escrita
+                    dataset.open("../../processados.txt", ios::in); // Arquivo de dados como leitura   
+
+                    // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
+                    if(entrada.is_open())
+                        if(dataset.is_open())
+                            if(saida.is_open()){
+                                if(j == 0){ // * j = 0 quicksort comum
+                                
+                                    cout << "Inicio de execução quicksort" << endl;
+                                    fluxoQuickSortInteiro(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
+                                    cout << "Fim de execução quicksort" << endl;
+                                
+                                }else if(j == 1){ // * j = 1 quicksort mediana
+                                
+                                    cout << "Inicio de execução quicksort mediana" << endl;
+                                    //fluxoQuickSortMediana(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
+                                    cout << "Fim de execução quicksort mediana" << endl;
+
+                                }else{ // j = 2
+
+                                    cout << "Inicio de execução quicksort insercao" << endl;
+                                    fluxoQuickSortInsercao(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
+                                    cout << "Fim de execução quicksort insercao" << endl;
+
+                                }
+                            }else
+                                cout << "Não foi possível abrir o arquivo de saída" << endl;
+                        else
+                            cout << "Não foi possível abrir o arquivo de dados" << endl;
+                    else
+                        cout << "Não foi possível abrir o arquivo de entrada" << endl;
+
+                    // Salvando e fechando os arquivos usados
+                    entrada.close();
+                    saida.close();
+                    dataset.close();
+
+                }
 
                 break;
             }
@@ -103,12 +151,16 @@ void selecionar(int selecao, fstream& saida){
 
 }
 
-int mainMenu(fstream& saida){
+int mainMenu(){
 
     int selecao = 1;
 
-    while(selecao != 0){
-        saida.open("../../saida.csv", ios::out);    
+    fstream saida;
+
+    while(selecao != 0){   
+
+        saida.open("../../saida.csv", ios::out | ios::app); 
+
         int i = system("clear");
         selecao = menu();
 
@@ -117,8 +169,6 @@ int mainMenu(fstream& saida){
 
         else
             cout << "Não foi possível abrir o arquivo de saida" << endl;
-
-        saida << endl;
 
     }
 

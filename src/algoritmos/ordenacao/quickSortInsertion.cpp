@@ -10,7 +10,7 @@ void insertionQuickSort(int *a, int inicio, int fim, int *numComparacoes, int *n
 
 		if(fim - inicio < 10)
 		{
-			insertionSortInteiros(a, fim-inicio, numComparacoes, numTrocas);
+			insertionSort(a, fim-inicio, numComparacoes, numTrocas);
 		}
 		else
 		{

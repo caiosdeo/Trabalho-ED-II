@@ -6,7 +6,7 @@ void trocarId (int a, int b) {
     b = aux;
 }
 
-void heapifyId(int *id, int tam, int indice, int *trocas, int *comparacoes) {
+void heapify(int *id, int tam, int indice, int *trocas, int *comparacoes) {
             int maior = indice;
             int esq = 2*indice + 1;
             int dir = 2*indice + 2;
@@ -24,14 +24,14 @@ void heapifyId(int *id, int tam, int indice, int *trocas, int *comparacoes) {
             if (maior != indice) {
                 trocarId (id[indice], id[maior]);
                 (*trocas)++;
-                heapifyId(id, tam, maior, trocas, comparacoes);
+                heapify(id, tam, maior, trocas, comparacoes);
             }
 
         }
-void heapSortId(int *id, int tam, int *trocas, int *comparacoes) {
+void heapSort(int *id, int tam, int *trocas, int *comparacoes) {
     // Build heap (rearrange array)
     for (int i = tam / 2 - 1; i >= 0; i--)
-        heapifyId(id, tam, i, trocas, comparacoes);
+        heapify(id, tam, i, trocas, comparacoes);
 
     // One by one extract an element from heap
     for (int i=tam-1; i>=0; i--)
@@ -40,5 +40,6 @@ void heapSortId(int *id, int tam, int *trocas, int *comparacoes) {
         trocarId(id[0], id[i]);
 
         // call max heapify on the reduced heap
-        heapify(id, i, 0);
+        heapify(id, tam, i, trocas, comparacoes);
     }
+}

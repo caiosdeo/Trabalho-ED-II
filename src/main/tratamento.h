@@ -39,7 +39,7 @@ int* leituraDadosVetor(fstream &dataset, int n);
 // * Cenário 1
 
 /**
- * Execução específica para dados do tipo inteiro
+ * Execução específica para dados do tipo inteiro para o quicksort 
  * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
  * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
  *
@@ -64,5 +64,28 @@ void fluxoQuickSortReview(fstream &entrada, fstream &dataset, fstream &saida);
 
 //* Cenário 2
 
+/**
+ * Execução específica para dados do tipo inteiro para o quicksort com mediana
+ * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
+ * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
+ *
+ * @author caiosdeo
+ * @param entrada Arquivo de entrada
+ * @param dataset Arquivo com os dados
+ * @param saida Arquivo de saída com as médias das métricas
+ */
+void fluxoQuickSortMediana(fstream &entrada, fstream &dataset, fstream &saida);
+
+/**
+ * Execução específica para dados do tipo inteiro para o quicksort com inserção
+ * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
+ * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
+ *
+ * @author caiosdeo
+ * @param entrada Arquivo de entrada
+ * @param dataset Arquivo com os dados
+ * @param saida Arquivo de saída com as médias das métricas
+ */
+void fluxoQuickSortInsercao(fstream &entrada, fstream &dataset, fstream &saida);
 
 #endif //TRATAMENTO_H_INCLUDED

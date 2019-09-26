@@ -10,11 +10,9 @@ int main(){
     fstream saida; 
 
     //Limpando o arquivo de saída 
-    saida.open("../../../saida.csv", ios::out);    
+    saida.open("../../saida.csv", ios::out);    
 
-    mainMenu(saida);
-
-    saida.close();
+    mainMenu();
 
     return 0;
 

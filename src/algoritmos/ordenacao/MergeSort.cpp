@@ -4,7 +4,7 @@
 using namespace std;
 
 /// Funcao auxiliar merge
-void mergeInteiros(int *vet, int esq, int med, int dir, int *numComp, int *numReg){
+void merge(int *vet, int esq, int med, int dir, int *numComp, int *numReg){
 
     int i, j, k;
     int tamE = med - esq + 1;
@@ -70,10 +70,10 @@ void mergeSort(int *vet, int esq, int dir, int *numComp, int *numReg){
         // media entre esq e dir
         int med = (esq + dir)/2;
 
-        mergeSortInteiros(vet, esq, med, numComp, numReg);
-        mergeSortInteiros(vet, med+1, dir, numComp, numReg);
+        mergeSort(vet, esq, med, numComp, numReg);
+        mergeSort(vet, med+1, dir, numComp, numReg);
 
-        mergeInteiros(vet, esq, med, dir, numComp, numReg);
+        merge(vet, esq, med, dir, numComp, numReg);
     }
 
 }

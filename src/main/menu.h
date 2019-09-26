@@ -31,6 +31,6 @@ void selecionar(int selecao, fstream& saida);
  * @param saida ofstream& endereço do arquivo de saída
  * @return 0
 */
-int mainMenu(fstream& saida);
+int mainMenu();
 
 #endif //MENU_H_INCLUDED
