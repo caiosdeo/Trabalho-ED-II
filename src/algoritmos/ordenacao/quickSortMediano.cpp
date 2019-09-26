@@ -4,14 +4,10 @@
 
 using namespace std;
 
-int* gerarVetor(int* v, int k){
-
-    int aux[k];
+void gerarVetor(int* v, int k, int* aux){
     
     for(int i = 0; i < k; i++ )
         aux[i] = v[i];
-
-    return aux;
 
 }
 
@@ -27,26 +23,35 @@ int medianadek(int* vetor, int k, int* trocas, int *comparacoes){
 
 void quickSortMediano(int *vetor, int inicio, int fim, int k, int *trocas, int *comparacoes) {
 
-    if (fim - inicio < k) {
+
+    if(inicio < fim){
+
+        if (fim - inicio < k) {
+
+            int pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
+            
+            quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
+            quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);
+
+        }else {
+
+            int aux[k];
+
+            gerarVetor(vetor, k, aux);
+
+            int mediana = medianadek(aux, k, trocas, comparacoes);
+
+            (*trocas)++;
+            swap(vetor, mediana, fim);
+
+            int pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
+            
+            quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
+            quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);
         
-        int pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
-        
-        quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
-        quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);
+        }
 
-    }else {
 
-        int* aux = gerarVetor(vetor, k);
-        int mediana = medianadek(aux, k, trocas, comparacoes);
-
-        (*trocas)++;
-        swap(vetor, mediana, fim);
-
-        int pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
-        
-        quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
-        quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);
-    
     }
 
 }
