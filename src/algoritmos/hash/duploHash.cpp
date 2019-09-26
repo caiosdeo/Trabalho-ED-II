@@ -107,3 +107,7 @@ int duploHash::getPrimo(){
     return t;
 
 }
+
+int duploHash::getNumColisoes(){
+    return this->numColisoes;
+}

@@ -22,6 +22,7 @@ HashMap::HashMap()
     capacity = 20; 
     size=0; 
     arr = new HashNode*[capacity]; 
+    this->numColisoes = 0;
           
     //Initialise all elements of array as NULL 
     for(int i=0 ; i < capacity ; i++) 
@@ -42,15 +43,20 @@ int HashMap::hashCode(int key)
 void HashMap::insertNode(int key, int value) 
 { 
     HashNode* temp = new HashNode(key, value); 
+    bool houveColisao = false;
     // Apply hash function to find index for given key 
     int hashIndex = hashCode(key); 
     //find next free space  
     while(arr[hashIndex] != NULL && arr[hashIndex]->key != key 
             && arr[hashIndex]->key != -1) 
     { 
+        houveColisao = true;
         hashIndex++; 
         hashIndex %= capacity; 
     } 
+
+    if(houveColisao)
+        this->numColisoes++;
           
     //if new node to be inserted increase the current size 
     if(arr[hashIndex] == NULL || arr[hashIndex]->key == -1) 
@@ -112,3 +118,9 @@ bool HashMap::isEmpty()
 { 
     return size == 0; 
 } 
+
+int HashMap::getNumColisoes(){
+
+    return this->numColisoes;
+
+}

@@ -24,14 +24,17 @@ class HashMap
     int size; 
     //auxiliar node 
     HashNode *aux; 
+    int numColisoes;
   
     public: 
-    HashMap();
-    int hashCode(int key);
-    void insertNode(int key, int value);
-    int deleteNode(int key);
-    int get(int key);
-    int sizeofMap();
-    bool isEmpty();
-    void display();
+        HashMap();
+        int hashCode(int key);
+        void insertNode(int key, int value);
+        int deleteNode(int key);
+        int get(int key);
+        int sizeofMap();
+        bool isEmpty();
+        void display();
+        int getNumColisoes();
+
 }; 
