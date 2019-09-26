@@ -6,6 +6,7 @@ HashEncadSeparado::HashEncadSeparado(int baldes){
 
     this->balde = baldes;
     this->tabela = new list<int>[this->balde];
+
 }
 
 HashEncadSeparado::~HashEncadSeparado(){
@@ -45,5 +46,16 @@ void HashEncadSeparado::imprimirHash(){
             cout << " --> " << x; 
         cout << endl; 
   } 
+
+}
+
+int HashEncadSeparado::contabilizarColisoes(){
+
+    int numColisoes = 0;
+
+    for(int i = 0; i < this->balde; i++)
+        numColisoes += this->tabela[i].size();
+
+    return numColisoes;
 
 }
