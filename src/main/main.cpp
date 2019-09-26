@@ -11,6 +11,7 @@ int main(){
 
     //Limpando o arquivo de saída 
     saida.open("../../saida.csv", ios::out);    
+    saida.close();
 
     mainMenu();
 

@@ -73,8 +73,9 @@ void fluxoQuickSortReview(fstream &entrada, fstream &dataset, fstream &saida);
  * @param entrada Arquivo de entrada
  * @param dataset Arquivo com os dados
  * @param saida Arquivo de saída com as médias das métricas
+ * @param k int elementos para mediana
  */
-void fluxoQuickSortMediana(fstream &entrada, fstream &dataset, fstream &saida);
+void fluxoQuickSortMediana(fstream &entrada, fstream &dataset, fstream &saida, int k);
 
 /**
  * Execução específica para dados do tipo inteiro para o quicksort com inserção
@@ -85,7 +86,8 @@ void fluxoQuickSortMediana(fstream &entrada, fstream &dataset, fstream &saida);
  * @param entrada Arquivo de entrada
  * @param dataset Arquivo com os dados
  * @param saida Arquivo de saída com as médias das métricas
+ * @param m int tamanho partição para usar o insertionsort
  */
-void fluxoQuickSortInsercao(fstream &entrada, fstream &dataset, fstream &saida);
+void fluxoQuickSortInsercao(fstream &entrada, fstream &dataset, fstream &saida, int m);
 
 #endif //TRATAMENTO_H_INCLUDED

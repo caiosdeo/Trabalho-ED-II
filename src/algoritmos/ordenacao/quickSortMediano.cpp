@@ -1,71 +1,52 @@
 #include "quickSortMediano.h"
+#include "quickSortRecursivo.h"
 #include <iostream>
 
 using namespace std;
 
-void trocarId(int *vetor, int a, int b) {
-    int h = vetor[a];
-    vetor[a] = vetor[b];
-    vetor[b] = h;
+int* gerarVetor(int* v, int k){
+
+    int aux[k];
+    
+    for(int i = 0; i < k; i++ )
+        aux[i] = v[i];
+
+    return aux;
+
 }
 
-int particao(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
-    int meio = (inicio + fim) / 2;
-    int idI = vetor[inicio], idM = vetor[meio], idF = vetor[fim];
-    int mediana = 0;
-    (*comparacoes)++;
-    if (idI < idM) {
-        (*comparacoes)++;
-        if (idM < idF) {
-            mediana = meio;
-        }
-        else {
-            (*comparacoes)++;
-            if (idI < idF) {
-                mediana = fim;
-            }
-            else {
-                mediana = inicio;
-            }
-        }
-    }
-    else {
-        (*comparacoes)++;
-        if (idF < idM) {
-            mediana = meio;
-        }
-        else {
-            (*comparacoes)++;
-            if (idF < idI) {
-                mediana = fim;
-            }
-            else {
-                mediana = inicio;
-            }
-        }
-    }
-    (*trocas)++;
-    trocarId(vetor, mediana, fim);
-    int pivo = vetor[fim];
-    int i = inicio - 1;
-    for (int j = 0; j < fim - 1; j++) {
-        (*comparacoes)++;
-        if (vetor[j] <= pivo) {
-            i++;
-            (*trocas)++;
-            trocarId(vetor, i, j);
-        }
-    }
-    (*trocas)++;
-    trocarId(vetor, i + 1, fim);
-    return i + 1;
+int medianadek(int* vetor, int k, int* trocas, int *comparacoes){
+
+    quickSortRecursivoIds(vetor, 0, k-1, comparacoes, trocas);
+
+    int mediana = k/2;
+
+    return mediana;
+
 }
 
-void quickSortMediano(int *vetor, int inicio, int fim, int *trocas, int *comparacoes) {
+void quickSortMediano(int *vetor, int inicio, int fim, int k, int *trocas, int *comparacoes) {
 
-if (inicio < fim) {
-        int q = particao(vetor, inicio, fim, trocas, comparacoes);
-        quickSortMediano(vetor, inicio, q - 1, trocas, comparacoes);
-        quickSortMediano(vetor, q+1, fim, trocas, comparacoes);
+    if (fim - inicio < k) {
+        
+        int pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
+        
+        quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
+        quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);
+
+    }else {
+
+        int* aux = gerarVetor(vetor, k);
+        int mediana = medianadek(aux, k, trocas, comparacoes);
+
+        (*trocas)++;
+        swap(vetor, mediana, fim);
+
+        int pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
+        
+        quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
+        quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);
+    
     }
+
 }

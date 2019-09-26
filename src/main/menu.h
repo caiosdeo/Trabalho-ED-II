@@ -28,7 +28,6 @@ void selecionar(int selecao, fstream& saida);
 /**
  * Método para selecionar uma opção do menu
  * @author caiosdeo
- * @param saida ofstream& endereço do arquivo de saída
  * @return 0
 */
 int mainMenu();

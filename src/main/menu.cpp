@@ -102,13 +102,13 @@ void selecionar(int selecao, fstream& saida){
                                 }else if(j == 1){ // * j = 1 quicksort mediana
                                 
                                     cout << "Inicio de execução quicksort mediana" << endl;
-                                    //fluxoQuickSortMediana(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
+                                    //fluxoQuickSortMediana(entrada, dataset, saida, 3); // Executando fluxo para conjunto de inteiros
                                     cout << "Fim de execução quicksort mediana" << endl;
 
                                 }else{ // j = 2
 
                                     cout << "Inicio de execução quicksort insercao" << endl;
-                                    fluxoQuickSortInsercao(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
+                                    fluxoQuickSortInsercao(entrada, dataset, saida, 10); // Executando fluxo para conjunto de inteiros
                                     cout << "Fim de execução quicksort insercao" << endl;
 
                                 }

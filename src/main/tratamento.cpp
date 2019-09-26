@@ -151,7 +151,7 @@ void fluxoQuickSortReview(fstream &entrada, fstream &dataset, fstream &saida){
 
 // ! FLUXO PARA DADOS EM VETOR DE INTEIRO QUICKSORT MEDIANA
 
-void fluxoQuickSortMediana(fstream &entrada, fstream &dataset, fstream &saida){
+void fluxoQuickSortMediana(fstream &entrada, fstream &dataset, fstream &saida, int k){
 
     // Variaveis para leitura do arquivo de entrada
     int qtdConjuntos, n;
@@ -175,7 +175,7 @@ void fluxoQuickSortMediana(fstream &entrada, fstream &dataset, fstream &saida){
         auto inicio = chrono::high_resolution_clock::now();
 
         // * Chamada dos algoritmos
-        quickSortMediano(conjuntos[i], 0, n-1, &numComparacoes, &numCopias);
+        quickSortMediano(conjuntos[i], 0, n-1, k, &numComparacoes, &numCopias);
 
         // Ponto de parada de contagem para o tempo de execução do algoritmo
         auto parada = chrono::high_resolution_clock::now();
@@ -197,7 +197,7 @@ void fluxoQuickSortMediana(fstream &entrada, fstream &dataset, fstream &saida){
 
 // ! FLUXO PARA DADOS EM VETOR DE INTEIRO QUICKSORT INSERÇÃO
 
-void fluxoQuickSortInsercao(fstream &entrada, fstream &dataset, fstream &saida){
+void fluxoQuickSortInsercao(fstream &entrada, fstream &dataset, fstream &saida, int m){
 
     // Variaveis para leitura do arquivo de entrada
     int qtdConjuntos, n;
@@ -221,7 +221,7 @@ void fluxoQuickSortInsercao(fstream &entrada, fstream &dataset, fstream &saida){
         auto inicio = chrono::high_resolution_clock::now();
 
         // * Chamada dos algoritmos
-        insertionQuickSort(conjuntos[i], 0, n-1, &numComparacoes, &numCopias);
+        insertionQuickSort(conjuntos[i], 0, n-1, m, &numComparacoes, &numCopias);
 
         // Ponto de parada de contagem para o tempo de execução do algoritmo
         auto parada = chrono::high_resolution_clock::now();
