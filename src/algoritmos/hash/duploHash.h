@@ -18,5 +18,6 @@ class duploHash{
         int getPrimo();
         void inserirHash(int chave);
         void mostrarHash();
+        int getNumColisoes();
 
 };
