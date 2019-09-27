@@ -3,11 +3,11 @@
 using namespace std;
 
 /* Sorts the array using pigeonhole algorithm */
-void pigeonholeSort(int *a, int inicio, int fim, int *numComparacoes, int *numTrocas) 
+void pigeonholeSort(int *a, int n, int *numComparacoes, int *numTrocas) 
 { 
     // Find minimum and maximum values in a
     int min = a[0], max = a[0]; 
-    for (int i = 1; i < (fim-inicio); i++) 
+    for (int i = 1; i < n; i++) 
     { 
         (*numComparacoes)++;
         if (a[i] < min)
@@ -23,7 +23,7 @@ void pigeonholeSort(int *a, int inicio, int fim, int *numComparacoes, int *numTr
   
     // Traverse through input array and put every 
     // element in its respective hole 
-    for (int i = 0; i < (fim-inicio); i++) 
+    for (int i = 0; i < n; i++) 
         holes[a[i]-min].push_back(a[i]); 
   
     // Traverse through all holes one by one. For 
