@@ -3,6 +3,7 @@
 #include "tratamento.h"
 #include "cenario1.h"
 #include "cenario2.h"
+#include "cenario3.h"
 
 using namespace std;
 
@@ -44,7 +45,7 @@ void selecionar(int selecao, fstream& saida){
                 saida << endl << "Cenário 1" << endl;
 
                 //Loop para rodar para os dois tipos de estruturas em única execução
-                for(int j = 0; j < 2; j++){
+                for(int versao = 0; versao < 2; versao++){
 
                     entrada.open("../../entrada.txt", ios::in); // Arquivo de entrada só como leitura
                     saida.open("../../saida.csv", ios::out | ios::app); // Arquivo de saída como escrita
@@ -54,7 +55,7 @@ void selecionar(int selecao, fstream& saida){
                     if(entrada.is_open())
                         if(dataset.is_open())
                             if(saida.is_open()){
-                                if(j){ //Como j só possui dois valores, ele irá alternar nos processos
+                                if(versao){ //Como versao só possui dois valores, ele irá alternar nos processos
                                     cout << "Executando quickSort para Reviews" << endl;
                                     fluxoQuickSortReview(entrada, dataset, saida); // Executando fluxo para conjunto de reviews
                                 }else{
@@ -84,7 +85,7 @@ void selecionar(int selecao, fstream& saida){
                 saida << endl << "Cenário 2" << endl;
 
                 //Loop para rodar para os cinco tipos de versões em única execução
-                for(int j = 0; j < 5; j++){
+                for(int versao = 0; versao < 5; versao++){
 
                     entrada.open("../../entrada.txt", ios::in); // Arquivo de entrada só como leitura
                     saida.open("../../saida.csv", ios::out | ios::app); // Arquivo de saída como escrita
@@ -94,30 +95,30 @@ void selecionar(int selecao, fstream& saida){
                     if(entrada.is_open())
                         if(dataset.is_open())
                             if(saida.is_open()){
-                                if(j == 0){ // * j = 0 quicksort comum
+                                if(versao == 0){ // * versao = 0 quicksort comum
                                 
                                     cout << "Executando quicksort" << endl;
                                     fluxoQuickSortInteiro(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
                                 
-                                }else if(j == 1){ // * j = 1 quicksort mediana k = 3
+                                }else if(versao == 1){ // * versao = 1 quicksort mediana k = 3
                                 
                                     cout << "Executando quicksort mediana k = 3" << endl;
-                                    fluxoQuickSortMediana(entrada, dataset, saida, 3, j); // Executando fluxo para conjunto de inteiros
+                                    fluxoQuickSortMediana(entrada, dataset, saida, 3, versao); // Executando fluxo para conjunto de inteiros
 
-                                }else if(j == 2){ // * j = 2 quicksort mediana k = 5
+                                }else if(versao == 2){ // * versao = 2 quicksort mediana k = 5
                                 
                                     cout << "Executando quicksort mediana k = 5" << endl;
-                                    fluxoQuickSortMediana(entrada, dataset, saida, 5, j); // Executando fluxo para conjunto de inteiros
+                                    fluxoQuickSortMediana(entrada, dataset, saida, 5, versao); // Executando fluxo para conjunto de inteiros
 
-                                }else if(j == 3){ // * j = 3 quicksort inserção m = 10
+                                }else if(versao == 3){ // * versao = 3 quicksort inserção m = 10
                                 
                                     cout << "Executando quicksort insercao m = 10" << endl;
-                                    fluxoQuickSortInsercao(entrada, dataset, saida, 10, j); // Executando fluxo para conjunto de inteiros
+                                    fluxoQuickSortInsercao(entrada, dataset, saida, 10, versao); // Executando fluxo para conjunto de inteiros
 
-                                }else { // * j = 4 quicksort insercao m = 100
+                                }else { // * versao = 4 quicksort insercao m = 100
 
                                     cout << "Executando quicksort insercao m = 100" << endl;
-                                    fluxoQuickSortInsercao(entrada, dataset, saida, 100, j); // Executando fluxo para conjunto de inteiros
+                                    fluxoQuickSortInsercao(entrada, dataset, saida, 100, versao); // Executando fluxo para conjunto de inteiros
 
                                 }
 
@@ -140,6 +141,61 @@ void selecionar(int selecao, fstream& saida){
 
             //Cenário 3
             case 3:{
+
+                saida << endl << "Cenário 3" << endl;
+
+                //Loop para rodar para os cinco tipos de versões em única execução
+                for(int versao = 0; versao < 5; versao++){
+
+                    entrada.open("../../entrada.txt", ios::in); // Arquivo de entrada só como leitura
+                    saida.open("../../saida.csv", ios::out | ios::app); // Arquivo de saída como escrita
+                    dataset.open("../../processados.txt", ios::in); // Arquivo de dados como leitura   
+
+                    // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
+                    if(entrada.is_open())
+                        if(dataset.is_open())
+                            if(saida.is_open()){
+                                // TODO: pegar a melhor versão do cenário 2
+                                if(versao == 0){ // * versao = 0 quicksort comum
+                                
+                                    cout << "Executando quicksort" << endl;
+                                    fluxoQuickSortInteiro(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
+                                
+                                }else if(versao == 1){ // * versao = 1 insertion sort
+                                
+                                    cout << "Executando insertion sort" << endl;
+                                    fluxoInsertionSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
+
+                                }else if(versao == 2){ // * versao = 2 merge sort
+                                
+                                    cout << "Executando merge sort" << endl;
+                                    fluxoMergeSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
+
+                                }else if(versao == 3){ // * versao = 3 heapsort
+                                
+                                    cout << "Executando heapsort" << endl;
+                                    fluxoHeapSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
+
+                                }else { // * versao = 4 pigeonholesort 
+
+                                    cout << "Executando pigeonholesort" << endl;
+                                    fluxoPigeonholeSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
+
+                                }
+
+                            }else
+                                cout << "Não foi possível abrir o arquivo de saída" << endl;
+                        else
+                            cout << "Não foi possível abrir o arquivo de dados" << endl;
+                    else
+                        cout << "Não foi possível abrir o arquivo de entrada" << endl;
+
+                    // Salvando e fechando os arquivos usados
+                    entrada.close();
+                    saida.close();
+                    dataset.close();
+
+                }
 
                 break;
             }

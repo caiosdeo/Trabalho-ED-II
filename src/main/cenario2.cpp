@@ -2,7 +2,6 @@
 #include <fstream>
 #include <chrono>
 #include "tratamento.h"
-#include "../classes/review.h"
 #include "../algoritmos/ordenacao.h"
 
 using namespace std;
@@ -33,7 +32,7 @@ void fluxoQuickSortMediana(fstream &entrada, fstream &dataset, fstream &saida, i
         auto inicio = chrono::high_resolution_clock::now();
 
         // * Chamada dos algoritmos
-        quickSortMediano(conjuntos[i], 0, n-1, k, &numCopias, &numComparacoes);
+        quickSortMediano(conjuntos[i], 0, n-1, k, &numCopias, &numComparacoes);     
 
         // Ponto de parada de contagem para o tempo de execução do algoritmo
         auto parada = chrono::high_resolution_clock::now();

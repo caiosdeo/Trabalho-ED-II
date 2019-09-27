@@ -18,9 +18,9 @@ using namespace std;
  * @param dataset Arquivo com os dados
  * @param saida Arquivo de saída com as médias das métricas
  * @param k int elementos para mediana
- * @param j int parametro para identificar a variação do algoritmos
+ * @param versao int parametro para identificar a variação do algoritmos
  */
-void fluxoQuickSortMediana(fstream &entrada, fstream &dataset, fstream &saida, int k, int j);
+void fluxoQuickSortMediana(fstream &entrada, fstream &dataset, fstream &saida, int k, int versao);
 
 /**
  * Execução específica para dados do tipo inteiro para o quicksort com inserção
@@ -32,8 +32,8 @@ void fluxoQuickSortMediana(fstream &entrada, fstream &dataset, fstream &saida, i
  * @param dataset Arquivo com os dados
  * @param saida Arquivo de saída com as médias das métricas
  * @param m int tamanho partição para usar o insertionsort
- * @param j int parametro para identificar a variação do algoritmos
+ * @param versao int parametro para identificar a variação do algoritmos
  */
-void fluxoQuickSortInsercao(fstream &entrada, fstream &dataset, fstream &saida, int m, int j);
+void fluxoQuickSortInsercao(fstream &entrada, fstream &dataset, fstream &saida, int m, int versao);
 
 #endif //CENARIO2_H_INCLUDED
