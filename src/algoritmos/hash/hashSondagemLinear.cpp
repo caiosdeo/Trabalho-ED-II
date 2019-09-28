@@ -42,7 +42,7 @@ int HashMap::hashCode(int key)
 
 void HashMap::insertNode(int key, int value) 
 { 
-    if(estaCheia){
+    if(estaCheia()){
         return;
     }
     HashNode* temp = new HashNode(key, value); 
