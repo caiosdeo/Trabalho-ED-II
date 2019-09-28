@@ -5,3 +5,4 @@
 #include "ordenacao/quickSortRecursivo.h"
 #include "ordenacao/quickSortInsertion.h"
 #include "ordenacao/quickSortMediano.h"
+#include "ordenacao/GnomeSort.h"
