@@ -171,7 +171,8 @@ void fluxoRadixSort(fstream &entrada, fstream &dataset, fstream &saida, int vers
         auto inicio = chrono::high_resolution_clock::now();
 
         // * Chamada dos algoritmos
-        radixSort(conjuntos[i], n, &numComparacoes, &numCopias);
+        // TODO: Mudar aqui para o gnome sort
+        ////radixSort(conjuntos[i], n, &numComparacoes, &numCopias);
 
         // Ponto de parada de contagem para o tempo de execução do algoritmo
         auto parada = chrono::high_resolution_clock::now();

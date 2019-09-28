@@ -197,9 +197,9 @@ void selecionar(int selecao, fstream& saida){
 
                                         break;
 
-                                    case 4: // * versao = 4 radixsort 
-                                        cout << "Executando radixsort" << endl;
-                                        fluxoRadixSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
+                                    case 4: // * versao = 4 gnomesort 
+                                        cout << "Executando gnomesort" << endl;
+                                        fluxoGnomeSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
 
                                         break;
 
