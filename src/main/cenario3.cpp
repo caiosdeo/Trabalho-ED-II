@@ -147,7 +147,7 @@ void fluxoHeapSort(fstream &entrada, fstream &dataset, fstream &saida, int versa
 
 // ! FLUXO PARA DADOS EM VETOR DE INTEIRO PIGEONHOLESORT
 
-void fluxoPigeonholeSort(fstream &entrada, fstream &dataset, fstream &saida, int versao){
+void fluxoRadixSort(fstream &entrada, fstream &dataset, fstream &saida, int versao){
 
     // Variaveis para leitura do arquivo de entrada
     int qtdConjuntos, n;
@@ -171,7 +171,7 @@ void fluxoPigeonholeSort(fstream &entrada, fstream &dataset, fstream &saida, int
         auto inicio = chrono::high_resolution_clock::now();
 
         // * Chamada dos algoritmos
-        pigeonholeSort(conjuntos[i], n, &numComparacoes, &numCopias);
+        radixSort(conjuntos[i], n, &numComparacoes, &numCopias);
 
         // Ponto de parada de contagem para o tempo de execução do algoritmo
         auto parada = chrono::high_resolution_clock::now();

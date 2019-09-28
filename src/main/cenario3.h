@@ -48,7 +48,7 @@ void fluxoMergeSort(fstream &entrada, fstream &dataset, fstream &saida, int vers
 void fluxoHeapSort(fstream &entrada, fstream &dataset, fstream &saida, int versao);
 
 /**
- * Execução específica para dados do tipo inteiro para o pigeonhole sort
+ * Execução específica para dados do tipo inteiro para o radix sort
  * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
  * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
  *
@@ -58,6 +58,6 @@ void fluxoHeapSort(fstream &entrada, fstream &dataset, fstream &saida, int versa
  * @param saida Arquivo de saída com as médias das métricas
  * @param versao int parametro para identificar a variação do algoritmos
  */
-void fluxoPigeonholeSort(fstream &entrada, fstream &dataset, fstream &saida, int versao);
+void fluxoRadixSort(fstream &entrada, fstream &dataset, fstream &saida, int versao);
 
 #endif //CENARIO3_H_INCLUDED
