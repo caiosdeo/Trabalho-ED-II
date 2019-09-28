@@ -1,14 +1,7 @@
 #include "GnomeSort.h"
+#include "quickSortRecursivo.h"
 
-void swap(int* v, int a, int b){
-
-    int aux = v[a];
-    v[a] = v[b];
-    v[b] = v[aux];
-
-}
-
-void gnomeSort(int *v, int n){ 
+void gnomeSort(int *v, int n, int *numComparacoes, int *numTrocas){ 
 
     int id = 0; 
   
@@ -17,11 +10,13 @@ void gnomeSort(int *v, int n){
         if (id == 0) 
             id++; 
 
+        (*numComparacoes)++;
         if (v[id] >= v[id - 1]) 
             id++; 
 
         else{ 
 
+            (*numTrocas)++;
             swap(v, id, id - 1); 
             id--;
              
