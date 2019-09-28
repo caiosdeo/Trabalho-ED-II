@@ -1,6 +1,6 @@
 #ifndef HASHENCADCOAL_H
 #define HASHENCADCOAL_H
-#include <list>
+#include "NoHash.h"
 
 using namespace std;
 
@@ -9,8 +9,7 @@ class hashEncadCoal
 {
     private:
         int numeroChaves;
-        list<int> *tabela;
-        list<int> *proxColisao;
+        NoHash *inicio;
 
     public:
         hashEncadCoal(int numeroChaves);
@@ -18,6 +17,7 @@ class hashEncadCoal
         int funcaoHash(int chave);
         void insereItem(int chave);
         void removeItem(int chave);
+        NoHash* getPosicao(int chave);
 };
 
 
