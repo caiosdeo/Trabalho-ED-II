@@ -147,7 +147,7 @@ void fluxoHeapSort(fstream &entrada, fstream &dataset, fstream &saida, int versa
 
 // ! FLUXO PARA DADOS EM VETOR DE INTEIRO PIGEONHOLESORT
 
-void fluxoRadixSort(fstream &entrada, fstream &dataset, fstream &saida, int versao){
+void fluxoGnomeSort(fstream &entrada, fstream &dataset, fstream &saida, int versao){
 
     // Variaveis para leitura do arquivo de entrada
     int qtdConjuntos, n;
