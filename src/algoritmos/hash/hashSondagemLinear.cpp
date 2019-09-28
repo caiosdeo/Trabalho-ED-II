@@ -40,8 +40,8 @@ void HashSondLin::insereNo(int chave, int valor)
     // Apply hash function to find index for given chave 
     int hashIndex = hashCode(chave); 
     //find next free space  
-    while(tabela[hashIndex] != NULL && tabela[hashIndex]->chave != chave 
-            && tabela[hashIndex]->chave != -1) 
+    while(tabela[hashIndex] != NULL && tabela[hashIndex]->getChave() != chave 
+            && tabela[hashIndex]->getChave() != -1) 
     { 
         houveColisao = true;
         hashIndex++; 
@@ -52,7 +52,7 @@ void HashSondLin::insereNo(int chave, int valor)
         this->numColisoes++;
           
     //if new node to be inserted increase the current tamanho 
-    if(tabela[hashIndex] == NULL || tabela[hashIndex]->chave == -1) 
+    if(tabela[hashIndex] == NULL || tabela[hashIndex]->getChave() == -1) 
         tamanho++; 
     tabela[hashIndex] = temp; 
 } 
@@ -67,7 +67,7 @@ int HashSondLin::deleteNo(int chave)
     while(tabela[hashIndex] != NULL) 
     { 
         //if node found 
-        if(tabela[hashIndex]->chave == chave) 
+        if(tabela[hashIndex]->getChave() == chave) 
         { 
             NoHash *temp = tabela[hashIndex]; 
                   
@@ -76,7 +76,7 @@ int HashSondLin::deleteNo(int chave)
                   
             // Reduce tamanho 
             tamanho--; 
-            return temp->valor; 
+            return temp->getValor(); 
         } 
         hashIndex++; 
         hashIndex %= capacidade; 
@@ -92,8 +92,8 @@ int HashSondLin::get(int chave)
     //finding the node with given chave    
     for(int i = 0; i < capacidade; i++){
         int index = hashCode(chave);
-        if(tabela[index]->chave == chave) 
-            return tabela[index]->valor; 
+        if(tabela[index]->getChave() == chave) 
+            return tabela[index]->getValor(); 
     }
     
     //If not found return null 
@@ -101,7 +101,7 @@ int HashSondLin::get(int chave)
     } 
 
 //Return current tamanho  
-int HashSondLin::tamanho() 
+int HashSondLin::getTamanho() 
 { 
     return tamanho; 
 } 

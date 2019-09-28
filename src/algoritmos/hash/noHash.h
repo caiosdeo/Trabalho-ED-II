@@ -11,6 +11,7 @@ class NoHash{
         int chave; 
 
     public: 
-        HashNode(int chave, int valor); 
+        NoHash(int chave, int valor); 
         int getChave();
+        int getValor();
 };

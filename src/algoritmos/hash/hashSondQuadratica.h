@@ -18,7 +18,7 @@ class HashSondQuad{
         int hashCode(int chave);
         void insereNo(int chave, int valor);
         int deleteNo(int chave);
-        int tamanho();
+        int getTamanho();
         bool estaVazia();
         bool estaCheia();
         void display();

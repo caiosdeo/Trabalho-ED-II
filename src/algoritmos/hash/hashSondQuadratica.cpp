@@ -40,8 +40,8 @@ void HashSondQuad::insereNo(int chave, int valor)
     // Apply hash function to find index for given chave 
     int hashIndex = hashCode(chave); 
     //find next free space  
-    for(int i = 1; tabela[hashIndex] != NULL && tabela[hashIndex]->chave != chave 
-            && tabela[hashIndex]->chave != -1; i++) 
+    for(int i = 1; tabela[hashIndex] != NULL && tabela[hashIndex]->getChave() != chave 
+            && tabela[hashIndex]->getChave() != -1; i++) 
     { 
         houveColisao = true;
         hashIndex = (chave + (i*i)) % capacidade; 
@@ -51,7 +51,7 @@ void HashSondQuad::insereNo(int chave, int valor)
         this->numColisoes++;
           
     //if new node to be inserted increase the current tamanho 
-    if(tabela[hashIndex] == NULL || tabela[hashIndex]->chave == -1) 
+    if(tabela[hashIndex] == NULL || tabela[hashIndex]->getChave() == -1) 
         tamanho++; 
 
     tabela[hashIndex] = temp; 
@@ -67,20 +67,20 @@ int HashSondQuad::deleteNo(int chave)
     for(int i  = 1; tabela[hashIndex] != NULL; i++) 
     { 
         //if node found 
-        if(tabela[hashIndex]->chave == chave) 
+        if(tabela[hashIndex]->getChave() == chave) 
         { 
             NoHash *temp = tabela[hashIndex];     
             //Insert aux node here for further use 
             tabela[hashIndex] = aux; 
             tamanho--; 
-            return temp->valor; 
+            return temp->getValor(); 
         } 
         hashIndex = (chave + (i*i)) % capacidade; 
     } 
     //If not found return null 
     return -1; 
 }
-int HashSondQuad::tamanho() 
+int HashSondQuad::getTamanho() 
 { 
     return tamanho; 
 }

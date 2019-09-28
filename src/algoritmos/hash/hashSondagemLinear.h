@@ -18,12 +18,13 @@ class HashSondLin{
     int numColisoes;
   
     public: 
-        HashSonLin(int capacidade);
+        HashSondLin(int capacidade);
+        ~HashSondLin();
         int hashCode(int chave);
         void insereNo(int chave, int value);
         int deleteNo(int chave);
         int get(int chave);
-        int tamanho();
+        int getTamanho();
         bool estaVazia();
         bool estaCheia();
         void display();

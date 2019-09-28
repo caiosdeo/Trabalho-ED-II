@@ -9,3 +9,7 @@ NoHash::NoHash(int chave, int valor)
 int NoHash::getChave(){
     return this->chave;
 } 
+
+int NoHash::getValor(){
+    return this->valor;
+} 
