@@ -42,7 +42,7 @@ void selecionar(int selecao, fstream& saida){
             //Cenário 1
             case 1:{
 
-                saida << endl << "Cenário 1" << endl;
+                saida << "Cenário 1" << endl;
 
                 //Loop para rodar para os dois tipos de estruturas em única execução
                 for(int versao = 0; versao < 2; versao++){
@@ -82,7 +82,7 @@ void selecionar(int selecao, fstream& saida){
             //Cenário 2
             case 2:{
                 
-                saida << endl << "Cenário 2" << endl;
+                saida << "Cenário 2" << endl;
 
                 //Loop para rodar para os cinco tipos de versões em única execução
                 for(int versao = 0; versao < 5; versao++){
@@ -95,30 +95,45 @@ void selecionar(int selecao, fstream& saida){
                     if(entrada.is_open())
                         if(dataset.is_open())
                             if(saida.is_open()){
-                                if(versao == 0){ // * versao = 0 quicksort comum
-                                
-                                    cout << "Executando quicksort" << endl;
-                                    fluxoQuickSortInteiro(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
-                                
-                                }else if(versao == 1){ // * versao = 1 quicksort mediana k = 3
-                                
-                                    cout << "Executando quicksort mediana k = 3" << endl;
-                                    fluxoQuickSortMediana(entrada, dataset, saida, 3, versao); // Executando fluxo para conjunto de inteiros
 
-                                }else if(versao == 2){ // * versao = 2 quicksort mediana k = 5
+                                switch (versao){
+                                    case 0: // * versao = 0 quicksort comum
                                 
-                                    cout << "Executando quicksort mediana k = 5" << endl;
-                                    fluxoQuickSortMediana(entrada, dataset, saida, 5, versao); // Executando fluxo para conjunto de inteiros
+                                        cout << "Executando quicksort" << endl;
+                                        fluxoQuickSortInteiro(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
 
-                                }else if(versao == 3){ // * versao = 3 quicksort inserção m = 10
+                                        break;
+
+                                    case 1: // * versao = 1 quicksort mediana k = 3
                                 
-                                    cout << "Executando quicksort insercao m = 10" << endl;
-                                    fluxoQuickSortInsercao(entrada, dataset, saida, 10, versao); // Executando fluxo para conjunto de inteiros
+                                        cout << "Executando quicksort mediana k = 3" << endl;
+                                        fluxoQuickSortMediana(entrada, dataset, saida, 3, versao); // Executando fluxo para conjunto de inteiros
 
-                                }else { // * versao = 4 quicksort insercao m = 100
+                                        break;
 
-                                    cout << "Executando quicksort insercao m = 100" << endl;
-                                    fluxoQuickSortInsercao(entrada, dataset, saida, 100, versao); // Executando fluxo para conjunto de inteiros
+                                    case 2: // * versao = 2 quicksort mediana k = 5
+                                
+                                        cout << "Executando quicksort mediana k = 5" << endl;
+                                        fluxoQuickSortMediana(entrada, dataset, saida, 5, versao); // Executando fluxo para conjunto de inteiros
+
+                                        break;
+
+                                    case 3: // * versao = 3 quicksort inserção m = 10
+                                
+                                        cout << "Executando quicksort insercao m = 10" << endl;
+                                        fluxoQuickSortInsercao(entrada, dataset, saida, 10, versao); // Executando fluxo para conjunto de inteiros
+
+                                        break;                                        
+
+                                    case 4: // * versao = 4 quicksort insercao m = 100
+
+                                        cout << "Executando quicksort insercao m = 100" << endl;
+                                        fluxoQuickSortInsercao(entrada, dataset, saida, 100, versao); // Executando fluxo para conjunto de inteiros
+
+                                        break;
+
+                                    default:
+                                        break;
 
                                 }
 
@@ -142,7 +157,7 @@ void selecionar(int selecao, fstream& saida){
             //Cenário 3
             case 3:{
 
-                saida << endl << "Cenário 3" << endl;
+                saida << "Cenário 3" << endl;
 
                 //Loop para rodar para os cinco tipos de versões em única execução
                 for(int versao = 0; versao < 5; versao++){
@@ -155,32 +170,41 @@ void selecionar(int selecao, fstream& saida){
                     if(entrada.is_open())
                         if(dataset.is_open())
                             if(saida.is_open()){
-                                // TODO: pegar a melhor versão do cenário 2
-                                if(versao == 0){ // * versao = 0 quicksort comum
-                                
-                                    cout << "Executando quicksort" << endl;
-                                    fluxoQuickSortInteiro(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
-                                
-                                }else if(versao == 1){ // * versao = 1 insertion sort
-                                
-                                    cout << "Executando insertion sort" << endl;
-                                    fluxoInsertionSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
 
-                                }else if(versao == 2){ // * versao = 2 merge sort
+                                switch (versao){
                                 
-                                    cout << "Executando merge sort" << endl;
-                                    fluxoMergeSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
-
-                                }else if(versao == 3){ // * versao = 3 heapsort
+                                    case 0: // TODO: pegar a melhor versão do cenário 2 versao = 0 quicksort comum
+                                        cout << "Executando quicksort" << endl;
+                                        fluxoQuickSortInteiro(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
+                        
+                                        break;
                                 
-                                    cout << "Executando heapsort" << endl;
-                                    fluxoHeapSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
+                                    case 1: // * versao = 1 insertion sort
+                                        cout << "Executando insertion sort" << endl;
+                                        fluxoInsertionSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
 
-                                }else { // * versao = 4 pigeonholesort 
+                                        break;
 
-                                    cout << "Executando pigeonholesort" << endl;
-                                    fluxoPigeonholeSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
+                                    case 2: // * versao = 2 merge sort
+                                        cout << "Executando merge sort" << endl;
+                                        fluxoMergeSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
 
+                                        break;
+
+                                    case 3: // * versao = 3 heapsort
+                                        cout << "Executando heapsort" << endl;
+                                        fluxoHeapSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
+
+                                        break;
+
+                                    case 4: // * versao = 4 radixsort 
+                                        cout << "Executando radixsort" << endl;
+                                        fluxoRadixSort(entrada, dataset, saida, versao); // Executando fluxo para conjunto de inteiros
+
+                                        break;
+
+                                    default:
+                                        break;
                                 }
 
                             }else
