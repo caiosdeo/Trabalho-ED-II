@@ -4,8 +4,6 @@
 
 using namespace std;
 
-//SONDAGEM LINEAR
-
 class HashNode 
 { 
     public: 
@@ -17,12 +15,10 @@ class HashNode
 
 class HashMap 
 { 
-    //hash element array 
-    HashNode **arr; 
-    int capacity; 
-    //current size 
+    private:
+    HashNode **hashTable; 
+    int capacity;
     int size; 
-    //auxiliar node 
     HashNode *aux; 
     int numColisoes;
   
@@ -31,7 +27,6 @@ class HashMap
         int hashCode(int key);
         void insertNode(int key, int value);
         int deleteNode(int key);
-        int get(int key);
         int sizeofMap();
         bool estaVazia();
         bool estaCheia();

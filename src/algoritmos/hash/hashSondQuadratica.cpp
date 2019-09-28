@@ -1,4 +1,4 @@
-#include "hashSondagemLinear.h"
+#include "hashSondQuadratica.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -21,12 +21,12 @@ HashMap::HashMap(int capacity)
     //Initial capacity of hash array 
     this->capacity = capacity; 
     size = 0; 
-    arr = new HashNode*[capacity]; 
+    hashTable = new HashNode*[capacity]; 
     this->numColisoes = 0;
           
     //Initialise all elements of array as NULL 
     for(int i=0 ; i < capacity ; i++) 
-        arr[i] = NULL; 
+        hashTable[i] = NULL; 
       
     //aux node with value and key -1 
     HashNode* aux = new HashNode(-1, -1); 
@@ -50,21 +50,21 @@ void HashMap::insertNode(int key, int value)
     // Apply hash function to find index for given key 
     int hashIndex = hashCode(key); 
     //find next free space  
-    while(arr[hashIndex] != NULL && arr[hashIndex]->key != key 
-            && arr[hashIndex]->key != -1) 
+    for(int i = 1; hashTable[hashIndex] != NULL && hashTable[hashIndex]->key != key 
+            && hashTable[hashIndex]->key != -1; i++) 
     { 
         houveColisao = true;
-        hashIndex++; 
-        hashIndex %= capacity; 
+        hashIndex = (key + (i*i)) % capacity; 
     } 
 
     if(houveColisao)
         this->numColisoes++;
           
     //if new node to be inserted increase the current size 
-    if(arr[hashIndex] == NULL || arr[hashIndex]->key == -1) 
+    if(hashTable[hashIndex] == NULL || hashTable[hashIndex]->key == -1) 
         size++; 
-    arr[hashIndex] = temp; 
+
+    hashTable[hashIndex] = temp; 
 } 
 
 //Function to delete a key value pair 
@@ -74,47 +74,26 @@ int HashMap::deleteNode(int key)
     int hashIndex = hashCode(key); 
           
     //finding the node with given key 
-    while(arr[hashIndex] != NULL) 
+    for(int i  = 1; hashTable[hashIndex] != NULL; i++) 
     { 
         //if node found 
-        if(arr[hashIndex]->key == key) 
+        if(hashTable[hashIndex]->key == key) 
         { 
-            HashNode *temp = arr[hashIndex]; 
-                  
+            HashNode *temp = hashTable[hashIndex];     
             //Insert aux node here for further use 
-            arr[hashIndex] = aux; 
-                  
-            // Reduce size 
+            hashTable[hashIndex] = aux; 
             size--; 
             return temp->value; 
         } 
-        hashIndex++; 
-        hashIndex %= capacity; 
-  
+        hashIndex = (key + (i*i)) % capacity; 
         } 
     //If not found return null 
     return -1; 
-} 
-
-//Function to search the value for a given key 
-int HashMap::get(int key) 
-{ 
-    //finding the node with given key    
-    for(int i = 0; i < capacity; i++){
-        int index = hashCode(key);
-        if(arr[index]->key == key) 
-            return arr[index]->value; 
-    }
-    
-    //If not found return null 
-    return -1; 
-    } 
-
-//Return current size  
+}
 int HashMap::sizeofMap() 
 { 
     return size; 
-} 
+}
 bool HashMap::estaCheia()
 {
     return size == capacity;
