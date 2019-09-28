@@ -6,125 +6,115 @@
 
 using namespace std;
 
-HashNode::HashNode(int key, int value)
+HashSondLin::HashSondLin(int capacidade)
 { 
-    this->value = value; 
-    this->key = key; 
-}
-
-int HashNode::getKey(){
-    return this->key;
-} 
-
-HashMap::HashMap(int capacity) 
-{ 
-    //Initial capacity of hash array 
-    this->capacity = capacity; 
-    size = 0; 
-    arr = new HashNode*[capacity]; 
+    //Initial capacidade of hash array 
+    this->capacidade = capacidade; 
+    tamanho = 0; 
+    tabela = new NoHash*[capacidade]; 
     this->numColisoes = 0;
           
     //Initialise all elements of array as NULL 
-    for(int i=0 ; i < capacity ; i++) 
-        arr[i] = NULL; 
+    for(int i=0 ; i < capacidade ; i++) 
+        tabela[i] = NULL; 
       
-    //aux node with value and key -1 
-    HashNode* aux = new HashNode(-1, -1); 
+    //aux node with valor and chave -1 
+    NoHash* aux = new NoHash(-1, -1); 
 } 
 
 // This implements hash function to find index 
-// for a key 
-int HashMap::hashCode(int key) 
+// for a chave 
+int HashSondLin::hashCode(int chave) 
 { 
-    return key % capacity; 
+    return chave % capacidade; 
 } 
 
 
-void HashMap::insertNode(int key, int value) 
+void HashSondLin::insereNo(int chave, int valor) 
 { 
     if(estaCheia()){
         return;
     }
-    HashNode* temp = new HashNode(key, value); 
+    NoHash* temp = new NoHash(chave, valor); 
     bool houveColisao = false;
-    // Apply hash function to find index for given key 
-    int hashIndex = hashCode(key); 
+    // Apply hash function to find index for given chave 
+    int hashIndex = hashCode(chave); 
     //find next free space  
-    while(arr[hashIndex] != NULL && arr[hashIndex]->key != key 
-            && arr[hashIndex]->key != -1) 
+    while(tabela[hashIndex] != NULL && tabela[hashIndex]->chave != chave 
+            && tabela[hashIndex]->chave != -1) 
     { 
         houveColisao = true;
         hashIndex++; 
-        hashIndex %= capacity; 
+        hashIndex %= capacidade; 
     } 
 
     if(houveColisao)
         this->numColisoes++;
           
-    //if new node to be inserted increase the current size 
-    if(arr[hashIndex] == NULL || arr[hashIndex]->key == -1) 
-        size++; 
-    arr[hashIndex] = temp; 
+    //if new node to be inserted increase the current tamanho 
+    if(tabela[hashIndex] == NULL || tabela[hashIndex]->chave == -1) 
+        tamanho++; 
+    tabela[hashIndex] = temp; 
 } 
 
-//Function to delete a key value pair 
-int HashMap::deleteNode(int key) 
+//Function to delete a chave valor pair 
+int HashSondLin::deleteNo(int chave) 
 { 
-    // Apply hash function to find index for given key 
-    int hashIndex = hashCode(key); 
+    // Apply hash function to find index for given chave 
+    int hashIndex = hashCode(chave); 
           
-    //finding the node with given key 
-    while(arr[hashIndex] != NULL) 
+    //finding the node with given chave 
+    while(tabela[hashIndex] != NULL) 
     { 
         //if node found 
-        if(arr[hashIndex]->key == key) 
+        if(tabela[hashIndex]->chave == chave) 
         { 
-            HashNode *temp = arr[hashIndex]; 
+            NoHash *temp = tabela[hashIndex]; 
                   
             //Insert aux node here for further use 
-            arr[hashIndex] = aux; 
+            tabela[hashIndex] = aux; 
                   
-            // Reduce size 
-            size--; 
-            return temp->value; 
+            // Reduce tamanho 
+            tamanho--; 
+            return temp->valor; 
         } 
         hashIndex++; 
-        hashIndex %= capacity; 
+        hashIndex %= capacidade; 
   
         } 
     //If not found return null 
     return -1; 
 } 
 
-//Function to search the value for a given key 
-int HashMap::get(int key) 
+//Function to search the valor for a given chave 
+int HashSondLin::get(int chave) 
 { 
-    //finding the node with given key    
-    for(int i = 0; i < capacity; i++){
-        int index = hashCode(key);
-        if(arr[index]->key == key) 
-            return arr[index]->value; 
+    //finding the node with given chave    
+    for(int i = 0; i < capacidade; i++){
+        int index = hashCode(chave);
+        if(tabela[index]->chave == chave) 
+            return tabela[index]->valor; 
     }
     
     //If not found return null 
     return -1; 
     } 
 
-//Return current size  
-int HashMap::sizeofMap() 
+//Return current tamanho  
+int HashSondLin::tamanho() 
 { 
-    return size; 
+    return tamanho; 
 } 
-bool HashMap::estaCheia()
+bool HashSondLin::estaCheia()
 {
-    return size == capacity;
+    return tamanho == capacidade;
 } 
-bool HashMap::estaVazia() 
+bool HashSondLin::estaVazia() 
 { 
-    return size == 0; 
+    return tamanho == 0; 
 } 
 
-int HashMap::getNumColisoes(){
+int HashSondLin::getNumColisoes(){
 
     return this->numColisoes;
 
