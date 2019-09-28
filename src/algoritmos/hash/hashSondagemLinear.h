@@ -1,38 +1,30 @@
 #include <fstream>
 #include <stack>
 #include <list>
+#include "noHash.h"
 
 using namespace std;
 
 //SONDAGEM LINEAR
 
-class HashNode 
-{ 
-    public: 
-    int value; 
-    int key; 
-    HashNode(int key, int value); 
-    int getKey();
-};
-
-class HashMap 
-{ 
+class HashSondLin{ 
     //hash element array 
-    HashNode **arr; 
-    int capacity; 
-    //current size 
-    int size; 
+    NoHash **tabela; 
+    int capacidade; 
+    //current tamanho 
+    int tamanho; 
     //auxiliar node 
-    HashNode *aux; 
+    NoHash *aux; 
     int numColisoes;
   
     public: 
-        HashMap(int capacity);
-        int hashCode(int key);
-        void insertNode(int key, int value);
-        int deleteNode(int key);
-        int get(int key);
-        int sizeofMap();
+        HashSondLin(int capacidade);
+        ~HashSondLin();
+        int hashCode(int chave);
+        void insereNo(int chave, int value);
+        int deleteNo(int chave);
+        int get(int chave);
+        int getTamanho();
         bool estaVazia();
         bool estaCheia();
         void display();

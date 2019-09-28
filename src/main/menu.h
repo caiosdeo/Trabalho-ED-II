@@ -23,7 +23,7 @@ int menu();
  * @param selecao int opção selecionada
  * @param saida ofstream& endereço do arquivo de saída
 */
-void selecionar(int selecao, fstream& saida);
+void selecionar(int selecao);
 
 /**
  * Método para selecionar uma opção do menu
