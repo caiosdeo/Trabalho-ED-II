@@ -13,14 +13,20 @@ void gnomeSort(int *v, int n){
     int id = 0; 
   
     while(id < n){ 
+
         if (id == 0) 
             id++; 
+
         if (v[id] >= v[id - 1]) 
             id++; 
-        else { 
+
+        else{ 
+
             swap(v, id, id - 1); 
-            id--; 
+            id--;
+             
         } 
+
     } 
 
 } 
