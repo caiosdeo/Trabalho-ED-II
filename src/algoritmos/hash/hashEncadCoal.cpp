@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "hashEncadCoal.h"
 #include "noHashCoal.h"
 
@@ -13,15 +14,14 @@ hashEncadCoal::hashEncadCoal(int numeroChaves)
     this->ultimo = NULL;
     this->ultimo->setColisao(NULL);
 
-    this->numItens = 0;
 }
 
 hashEncadCoal::~hashEncadCoal()
 {
-    NoHash *p = this->inicio;
+    noHashCoal *p = this->inicio;
     while(p != NULL)
     {
-       NoHash *q = p->getProx();
+       noHashCoal *q = p->getProx();
        delete p;
        p = q;
     }
@@ -66,7 +66,7 @@ void hashEncadCoal::insereItem(int chave)
     {
         int indice = funcaoHash(chave);
         noHashCoal *crash = NULL;
-        noHashCoal *aux = getPosicao(indice, crash); /// procura por proxima posicao dada pelo indice, se possivel
+        noHashCoal *aux = getPosicao(indice, crash); // procura por proxima posicao dada pelo indice, se possivel
         if(crash == NULL) // caso nao houver colisao
         {
             p->setIndice(indice); //insere o indice
@@ -89,7 +89,7 @@ void hashEncadCoal::insereItem(int chave)
                 if(aux->getIndice() != this->numeroChaves-1) //verifica se ultima posicao da tabela esta vazia
                 {
                     p->setProx(NULL);
-                    p->getIndice(this->numeroChaves-1);
+                    p->getIndice();
                     aux->setProx(p);
                     this->ultimo = p;
                 }
@@ -133,7 +133,7 @@ void hashEncadCoal::insereItem(int chave)
 void hashEncadCoal::removeItem(int chave)
 {
     int indice = funcaoHash(chave);
-    for(noHashCoal *p = this->inicial; p != NULL; p = p->getProx())
+    for(noHashCoal *p = this->inicio; p != NULL; p = p->getProx())
     {
         noHashCoal *q = p->getColisao();
         while(q != NULL)

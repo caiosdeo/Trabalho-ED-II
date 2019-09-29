@@ -1,7 +1,6 @@
 #ifndef NOHASHCOAL_H
 #define NOHASHCOAL_H
 
-
 class noHashCoal
 {
     public:
@@ -11,11 +10,11 @@ class noHashCoal
         int getInfo(){return this->chave;};
         int getIndice(){return this->indice;};
         noHashCoal* getProx(){return this->next;};
-        noHashCoal* getPrev(){return this->prev};
-        noHashCoal* getColisao() {return this->proxColisao;};
+        noHashCoal* getPrev(){return this->prev;};
+        noHashCoal* getColisao() {return this->colisao;};
 
-        void setProx(HashPoint *p){this->next = p;};
-        void setPrev(HashPoint *p){this->prev = p;};
+        void setProx(noHashCoal *p){this->next = p;};
+        void setPrev(noHashCoal *p){this->prev = p;};
         void setInfo(int chave){this->chave = chave;};
         void setIndice(int indice){this->indice = indice;};
         void setColisao(noHashCoal *p){this->colisao = p;};

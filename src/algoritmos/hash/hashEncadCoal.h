@@ -1,6 +1,7 @@
 #ifndef HASHENCADCOAL_H
 #define HASHENCADCOAL_H
-#include "NoHash.h"
+#include <stdio.h>
+#include "noHashCoal.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ class hashEncadCoal
         int funcaoHash(int chave);
         void insereItem(int chave);
         void removeItem(int chave);
-        noHashCoal* getPosicao(int chave);
+        noHashCoal* getPosicao(int chave, noHashCoal *crash);
 };
 
 
