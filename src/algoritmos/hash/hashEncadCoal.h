@@ -18,7 +18,7 @@ class hashEncadCoal
         int funcaoHash(int chave);
         void insereItem(int chave);
         void removeItem(int chave);
-        noHashCoal* getPosicao(int chave);
+        noHashCoal* getPosicao(int chave, noHashCoal *crash);
 };
 
 
