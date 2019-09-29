@@ -188,18 +188,16 @@ void fluxoHashEncadCoal(fstream &entrada, fstream &dataset, fstream &saida, int 
         int *chaves = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
 
         // * Chamada dos algoritmos
-        // TODO: usar somente quando tiver EncadCoal
-        //hashEncadCoal hash = HashEncadCoal(n/10);
+        hashEncadCoal hash = hashEncadCoal(n);
 
-        // TODO: usar somente quando tiver EncadCoal
-        //for(int j = 0; j < n; j++)
-            //hash.insereItem(chaves[j]);
+        for(int j = 0; j < n; j++)
+            hash.insereItem(chaves[j]);
 
-        // Métrica de desempenho
+        // TODO: Métrica de desempenho
         // unsigned long long int numColisoes = hash.contabilizarColisoes();
 
         // Imprimindo resultados no arquivo de saída
-        //imprimirSaidaHash(saida, versao, n, numColisoes);
+        // imprimirSaidaHash(saida, versao, n, numColisoes);
 
     }
 
