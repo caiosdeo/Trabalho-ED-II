@@ -167,9 +167,10 @@ void selecionar(int selecao){
 
                                 switch (versao){
 
-                                case 0: // TODO: pegar a melhor versão do cenário 2 versao = 0 quicksort comum
-                                    cout << "Executando quicksort" << endl;
-                                    fluxoQuickSortInteiro(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
+                                case 0: // * versao = 0 quicksort mediana k = 5
+
+                                    cout << "Executando quicksort mediana k = 5" << endl;
+                                    fluxoQuickSortMediana(entrada, dataset, saida, 5, versao); // Executando fluxo para conjunto de inteiros
 
                                     break;
 
