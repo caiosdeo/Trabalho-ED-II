@@ -11,6 +11,12 @@ void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, f
 
 }
 
+void imprimirSaidaHash(fstream &saida, int versao, int n, float numColisoes){
+
+    saida << versao << "," << n << "," << numColisoes << endl;
+
+}
+
 int* leituraDadosVetor(fstream &dataset, int n){
 
     // Conjunto de IDs
