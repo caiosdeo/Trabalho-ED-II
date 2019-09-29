@@ -3,5 +3,5 @@
 #include "hash/duploHash.h"
 #include "hash/hashEncadSeparado.h"
 #include "hash/hashEncadCoal.h"
-#include "hashSondagemLinear.h"
-#include "hashSondQuadratica.h"
+#include "hash/hashSondagemLinear.h"
+#include "hash/hashSondQuadratica.h"

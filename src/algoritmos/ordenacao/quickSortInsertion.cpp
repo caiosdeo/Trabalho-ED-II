@@ -5,7 +5,7 @@
 using namespace std;
 
 
-void insertionQuickSort(int *a, int inicio, int fim, int m, int *numComparacoes, int *numTrocas)
+void insertionQuickSort(int *a, int inicio, int fim, int m, unsigned long long int *numComparacoes, unsigned long long int *numTrocas)
 {
 
 		if(fim - inicio < m)

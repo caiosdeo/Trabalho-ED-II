@@ -25,10 +25,10 @@ void fluxoHashSondLin(fstream &entrada, fstream &dataset, fstream &saida, int ve
 
         conjuntos[i] = conjuntos[i]->leituraDados(dataset, n); // Colocando dados no conjunto
 
-        int chaves[n] = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
+        int *chaves = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
 
         // * Chamada dos algoritmos
-        HashSondLin hash = new HashSondLin(n);
+        HashSondLin hash = HashSondLin(n);
 
         for(int j = 0; j < n; j++)
             hash.insereNo(chaves[j], chaves[j]);
@@ -65,10 +65,10 @@ void fluxoHashSondQuad(fstream &entrada, fstream &dataset, fstream &saida, int v
 
         conjuntos[i] = conjuntos[i]->leituraDados(dataset, n); // Colocando dados no conjunto
 
-        int chaves[n] = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
+        int *chaves = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
 
         // * Chamada dos algoritmos
-        HashSondQuad hash = new HashSondQuad(n);
+        HashSondQuad hash = HashSondQuad(n);
 
         for(int j = 0; j < n; j++)
             hash.insereNo(chaves[j], chaves[j]);
@@ -105,10 +105,10 @@ void fluxoDuploHash(fstream &entrada, fstream &dataset, fstream &saida, int vers
 
         conjuntos[i] = conjuntos[i]->leituraDados(dataset, n); // Colocando dados no conjunto
 
-        int chaves[n] = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
+        int *chaves = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
 
         // * Chamada dos algoritmos
-        duploHash hash = new duploHash(n);
+        duploHash hash = duploHash(n);
 
         for(int j = 0; j < n; j++)
             hash.inserirHash(chaves[j]);
@@ -145,10 +145,10 @@ void fluxoHashEncadSeparado(fstream &entrada, fstream &dataset, fstream &saida, 
 
         conjuntos[i] = conjuntos[i]->leituraDados(dataset, n); // Colocando dados no conjunto
 
-        int chaves[n] = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
+        int *chaves = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
 
         // * Chamada dos algoritmos
-        HashEncadSeparado hash = new HashEncadSeparado(n/10);
+        HashEncadSeparado hash = HashEncadSeparado(n/10);
 
         for(int j = 0; j < n; j++)
             hash.insereItem(chaves[j]);
@@ -185,11 +185,11 @@ void fluxoHashEncadCoal(fstream &entrada, fstream &dataset, fstream &saida, int 
 
         conjuntos[i] = conjuntos[i]->leituraDados(dataset, n); // Colocando dados no conjunto
 
-        int chaves[n] = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
+        int *chaves = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
 
         // * Chamada dos algoritmos
         // TODO: usar somente quando tiver EncadCoal
-        //hashEncadCoal hash = new HashEncadCoal(n/10);
+        //hashEncadCoal hash = HashEncadCoal(n/10);
 
         // TODO: usar somente quando tiver EncadCoal
         //for(int j = 0; j < n; j++)
@@ -199,7 +199,7 @@ void fluxoHashEncadCoal(fstream &entrada, fstream &dataset, fstream &saida, int 
         // unsigned long long int numColisoes = hash.contabilizarColisoes();
 
         // Imprimindo resultados no arquivo de saída
-        imprimirSaidaHash(saida, versao, n, numColisoes);
+        //imprimirSaidaHash(saida, versao, n, numColisoes);
 
     }
 

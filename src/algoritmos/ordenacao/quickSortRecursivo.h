@@ -32,7 +32,7 @@ void swap(int *a, int i, int j);
  * @param numTrocas número de trocas
  * @return i+1 id do novo pivô
  */
-int particaoIds(int *a, int inicio, int fim, int *numComparacoes, int *numTrocas);
+int particaoIds(int *a, int inicio, int fim, unsigned long long int *numComparacoes, unsigned long long int *numTrocas);
 
 // quickSortRecursivo para ids
 /**
@@ -44,7 +44,7 @@ int particaoIds(int *a, int inicio, int fim, int *numComparacoes, int *numTrocas
  * @param numTrocas número de trocas
  * @return void
  */
-void quickSortRecursivoIds(int *a, int inicio, int fim, int *numComparacoes, int *numTrocas);
+void quickSortRecursivoIds(int *a, int inicio, int fim, unsigned long long int *numComparacoes, unsigned long long int *numTrocas);
 
 // Swap para estruturas
 /**
@@ -66,7 +66,7 @@ void swapEstruturas(Review* a, int i, int j);
  * @param numTrocas número de trocas
  * @return i+1 id do novo pivô
  */
-int particaoEstruturas(Review* a, int inicio, int fim, int *numComparacoes, int *numTrocas);
+int particaoEstruturas(Review* a, int inicio, int fim, unsigned long long int *numComparacoes, unsigned long long int *numTrocas);
 
 // quickSortRecursivo para estruturas
 /**
@@ -79,4 +79,4 @@ int particaoEstruturas(Review* a, int inicio, int fim, int *numComparacoes, int 
  * @return void
  */
 
-void quickSortRecursivoEstruturas(Review* a, int inicio, int fim, int *numComparacoes, int *numTrocas);
+void quickSortRecursivoEstruturas(Review* a, int inicio, int fim, unsigned long long int *numComparacoes, unsigned long long int *numTrocas);
