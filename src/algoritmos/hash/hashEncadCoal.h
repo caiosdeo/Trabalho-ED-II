@@ -1,6 +1,6 @@
 #ifndef HASHENCADCOAL_H
 #define HASHENCADCOAL_H
-#include "NoHash.h"
+#include "noHashCoal.h"
 
 using namespace std;
 
