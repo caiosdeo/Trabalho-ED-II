@@ -21,7 +21,7 @@ class HashSondLin{
         HashSondLin(int capacidade);
         ~HashSondLin();
         int hashCode(int chave);
-        void insereNo(int chave, int value);
+        void insereNo(int chave, int valor);
         int deleteNo(int chave);
         int get(int chave);
         int getTamanho();

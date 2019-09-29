@@ -27,7 +27,7 @@ void fluxoQuickSortInteiro(fstream &entrada, fstream &dataset, fstream &saida){
         conjuntos[i] = leituraDadosVetor(dataset, n); // Colocando dados no conjunto
 
         // Métricas de desempenho
-        int numComparacoes = 0, numCopias = 0;
+        unsigned long long int numComparacoes = 0, numCopias = 0;
 
         // Ponto de inicio de contagem para tempo de execução do algoritmo
         auto inicio = chrono::high_resolution_clock::now();
