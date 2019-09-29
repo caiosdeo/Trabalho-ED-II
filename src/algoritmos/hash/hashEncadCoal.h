@@ -9,7 +9,8 @@ class hashEncadCoal
 {
     private:
         int numeroChaves;
-        NoHash *inicio;
+        noHashCoal *inicio;
+        noHashCoal *ultimo;
 
     public:
         hashEncadCoal(int numeroChaves);
@@ -17,7 +18,7 @@ class hashEncadCoal
         int funcaoHash(int chave);
         void insereItem(int chave);
         void removeItem(int chave);
-        NoHash* getPosicao(int chave);
+        noHashCoal* getPosicao(int chave);
 };
 
 
