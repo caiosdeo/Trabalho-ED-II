@@ -1,3 +1,6 @@
+#ifndef NOHASH_H_INCLUDED
+#define NOHASH_H_INCLUDED
+
 #include <fstream>
 #include <stack>
 #include <list>
@@ -15,3 +18,4 @@ class NoHash{
         int getChave();
         int getValor();
 };
+#endif //NOHASH_H_INCLUDED

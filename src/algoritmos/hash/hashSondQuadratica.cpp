@@ -93,7 +93,7 @@ bool HashSondQuad::estaVazia()
     return tamanho == 0; 
 } 
 
-int HashSondQuad::getNumColisoes(){
+unsigned long long int HashSondQuad::getNumColisoes(){
 
     return this->numColisoes;
 

@@ -14,17 +14,29 @@ using namespace std;
 /////////////////////////////////////////
 
 /**
- * Impressão das médias das métricas em um arquivo de saída
+ * Impressão das métricas em um arquivo de saída
  *
  * @author caiosdeo
- * @param saida Arquivo de saída com as médias das métricas
+ * @param saida Arquivo de saída com as métricas
  * @param estrutura 0 para vetor de int; 1 para vetor de struct
  * @param n Tamanho do conjunto
- * @param numComparacoes Valor médio de comparações
- * @param numCopias Valor médio de cópias
- * @param tempoProcessamento valor médio de tempo de processamento
+ * @param numComparacoes Valor de comparações
+ * @param numCopias Valor de cópias
+ * @param tempoProcessamento valor de tempo de processamento
  */
 void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, float numCopias, float tempoProcessamento);
+
+/**
+ * Impressão das métricas em um arquivo de saída para as hash
+ *
+ * @author caiosdeo
+ * @param saida Arquivo de saída com as métricas
+ * @param versao 0 para vetor de int; 1 para vetor de struct
+ * @param n Tamanho do conjunto
+ * @param numColisoes numero de colisoa hash
+ */
+void imprimirSaidaHash(fstream &saida, int versao, int n, float numColisoes);
+
 
 /**
  * Atribuição de dados a cada conjunto, retornando-o em um vetor.

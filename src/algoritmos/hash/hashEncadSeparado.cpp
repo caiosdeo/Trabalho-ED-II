@@ -49,9 +49,9 @@ void HashEncadSeparado::imprimirHash(){
 
 }
 
-int HashEncadSeparado::contabilizarColisoes(){
+unsigned long long int HashEncadSeparado::contabilizarColisoes(){
 
-    int numColisoes = 0;
+    unsigned long long int numColisoes = 0;
 
     for(int i = 0; i < this->balde; i++)
         numColisoes += this->tabela[i].size();
