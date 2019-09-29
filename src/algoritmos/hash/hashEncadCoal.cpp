@@ -48,7 +48,7 @@ noHashCoal* hashEncadCoal::getPosicao(int ind, noHashCoal *crash)
     return p;
 }
 
-void hashEncadCoal::insereItem(int chave)
+void hashEncadCoal::insereItem(int chave, int *countColisoes)
 {
     noHashCoal *p = new noHashCoal();
     p->setInfo(chave);
@@ -83,6 +83,7 @@ void hashEncadCoal::insereItem(int chave)
         }
         else
         {
+            (*countColisoes)++;
             if(crash->getColisao() == NULL) // se nao aconteceu antes
             {
                 aux = this->ultimo;
