@@ -3,20 +3,20 @@
 
 BEGIN{
 
-	versao[25];
-	n[25];
+	versao[30];
+	n[30];
 
 	deltaComp;
 	deltaReg;
 	deltaTempo;
 	
-	avgComp[25];
-	avgReg[25];
-	avgTempo[25];
+	avgComp[30];
+	avgReg[30];
+	avgTempo[30];
 
-	total[25];
+	total[30];
 	
-	for(i = 0; i < 25; i++){
+	for(i = 0; i < 30; i++){
 
 		avgComp[i] = 0;
 		avgReg[i] = 0;
@@ -89,7 +89,7 @@ $1 ~ /^0$/ && $2 ~ /^100000$/{
 
 }
 
-$1 ~ /^1$/ && $2 ~ /^1000$/{
+$1 ~ /^0$/ && $2 ~ /^500000$/{
 	versao[5] = $1
 	n[5] = $2
 	total[5]++;
@@ -97,12 +97,12 @@ $1 ~ /^1$/ && $2 ~ /^1000$/{
 	avgComp[5] += deltaComp / total[5];
 	deltaReg = $4 - avgReg[5];
 	avgReg[5] += deltaReg / total[5];
-	deltaTempo = $5 - avgTempo[5];
+	deltaTempo = $5  - avgTempo[5];
 	avgTempo[5] += deltaTempo / total[5];
 
 }
 
-$1 ~ /^1$/ && $2 ~ /^5000$/{
+$1 ~ /^1$/ && $2 ~ /^1000$/{
 	versao[6] = $1
 	n[6] = $2
 	total[6]++;
@@ -112,9 +112,10 @@ $1 ~ /^1$/ && $2 ~ /^5000$/{
 	avgReg[6] += deltaReg / total[6];
 	deltaTempo = $5 - avgTempo[6];
 	avgTempo[6] += deltaTempo / total[6];
+
 }
 
-$1 ~ /^1$/ && $2 ~ /^10000$/{
+$1 ~ /^1$/ && $2 ~ /^5000$/{
 	versao[7] = $1
 	n[7] = $2
 	total[7]++;
@@ -126,7 +127,7 @@ $1 ~ /^1$/ && $2 ~ /^10000$/{
 	avgTempo[7] += deltaTempo / total[7];
 }
 
-$1 ~ /^1$/ && $2 ~ /^50000$/{
+$1 ~ /^1$/ && $2 ~ /^10000$/{
 	versao[8] = $1
 	n[8] = $2
 	total[8]++;
@@ -134,11 +135,11 @@ $1 ~ /^1$/ && $2 ~ /^50000$/{
 	avgComp[8] += deltaComp / total[8];
 	deltaReg = $4 - avgReg[8];
 	avgReg[8] += deltaReg / total[8];
-	deltaTempo = $5  - avgTempo[8];
+	deltaTempo = $5 - avgTempo[8];
 	avgTempo[8] += deltaTempo / total[8];
 }
 
-$1 ~ /^1$/ && $2 ~ /^100000$/{
+$1 ~ /^1$/ && $2 ~ /^50000$/{
 	versao[9] = $1
 	n[9] = $2
 	total[9]++;
@@ -148,10 +149,9 @@ $1 ~ /^1$/ && $2 ~ /^100000$/{
 	avgReg[9] += deltaReg / total[9];
 	deltaTempo = $5  - avgTempo[9];
 	avgTempo[9] += deltaTempo / total[9];
-
 }
 
-$1 ~ /^2$/ && $2 ~ /^1000$/{
+$1 ~ /^1$/ && $2 ~ /^100000$/{
 	versao[10] = $1
 	n[10] = $2
 	total[10]++;
@@ -159,12 +159,12 @@ $1 ~ /^2$/ && $2 ~ /^1000$/{
 	avgComp[10] += deltaComp / total[10];
 	deltaReg = $4 - avgReg[10];
 	avgReg[10] += deltaReg / total[10];
-	deltaTempo = $5 - avgTempo[10];
+	deltaTempo = $5  - avgTempo[10];
 	avgTempo[10] += deltaTempo / total[10];
 
 }
 
-$1 ~ /^2$/ && $2 ~ /^5000$/{
+$1 ~ /^1$/ && $2 ~ /^500000$/{
 	versao[11] = $1
 	n[11] = $2
 	total[11]++;
@@ -172,11 +172,12 @@ $1 ~ /^2$/ && $2 ~ /^5000$/{
 	avgComp[11] += deltaComp / total[11];
 	deltaReg = $4 - avgReg[11];
 	avgReg[11] += deltaReg / total[11];
-	deltaTempo = $5 - avgTempo[11];
+	deltaTempo = $5  - avgTempo[11];
 	avgTempo[11] += deltaTempo / total[11];
+
 }
 
-$1 ~ /^2$/ && $2 ~ /^10000$/{
+$1 ~ /^2$/ && $2 ~ /^1000$/{
 	versao[12] = $1
 	n[12] = $2
 	total[12]++;
@@ -186,9 +187,10 @@ $1 ~ /^2$/ && $2 ~ /^10000$/{
 	avgReg[12] += deltaReg / total[12];
 	deltaTempo = $5 - avgTempo[12];
 	avgTempo[12] += deltaTempo / total[12];
+
 }
 
-$1 ~ /^2$/ && $2 ~ /^50000$/{
+$1 ~ /^2$/ && $2 ~ /^5000$/{
 	versao[13] = $1
 	n[13] = $2
 	total[13]++;
@@ -196,11 +198,11 @@ $1 ~ /^2$/ && $2 ~ /^50000$/{
 	avgComp[13] += deltaComp / total[13];
 	deltaReg = $4 - avgReg[13];
 	avgReg[13] += deltaReg / total[13];
-	deltaTempo = $5  - avgTempo[13];
+	deltaTempo = $5 - avgTempo[13];
 	avgTempo[13] += deltaTempo / total[13];
 }
 
-$1 ~ /^2$/ && $2 ~ /^100000$/{
+$1 ~ /^2$/ && $2 ~ /^10000$/{
 	versao[14] = $1
 	n[14] = $2
 	total[14]++;
@@ -208,12 +210,11 @@ $1 ~ /^2$/ && $2 ~ /^100000$/{
 	avgComp[14] += deltaComp / total[14];
 	deltaReg = $4 - avgReg[14];
 	avgReg[14] += deltaReg / total[14];
-	deltaTempo = $5  - avgTempo[14];
+	deltaTempo = $5 - avgTempo[14];
 	avgTempo[14] += deltaTempo / total[14];
-
 }
 
-$1 ~ /^3$/ && $2 ~ /^1000$/{
+$1 ~ /^2$/ && $2 ~ /^50000$/{
 	versao[15] = $1
 	n[15] = $2
 	total[15]++;
@@ -221,12 +222,11 @@ $1 ~ /^3$/ && $2 ~ /^1000$/{
 	avgComp[15] += deltaComp / total[15];
 	deltaReg = $4 - avgReg[15];
 	avgReg[15] += deltaReg / total[15];
-	deltaTempo = $5 - avgTempo[15];
+	deltaTempo = $5  - avgTempo[15];
 	avgTempo[15] += deltaTempo / total[15];
-
 }
 
-$1 ~ /^3$/ && $2 ~ /^5000$/{
+$1 ~ /^2$/ && $2 ~ /^100000$/{
 	versao[16] = $1
 	n[16] = $2
 	total[16]++;
@@ -234,11 +234,12 @@ $1 ~ /^3$/ && $2 ~ /^5000$/{
 	avgComp[16] += deltaComp / total[16];
 	deltaReg = $4 - avgReg[16];
 	avgReg[16] += deltaReg / total[16];
-	deltaTempo = $5 - avgTempo[16];
+	deltaTempo = $5  - avgTempo[16];
 	avgTempo[16] += deltaTempo / total[16];
+
 }
 
-$1 ~ /^3$/ && $2 ~ /^10000$/{
+$1 ~ /^2$/ && $2 ~ /^500000$/{
 	versao[17] = $1
 	n[17] = $2
 	total[17]++;
@@ -246,11 +247,12 @@ $1 ~ /^3$/ && $2 ~ /^10000$/{
 	avgComp[17] += deltaComp / total[17];
 	deltaReg = $4 - avgReg[17];
 	avgReg[17] += deltaReg / total[17];
-	deltaTempo = $5 - avgTempo[17];
+	deltaTempo = $5  - avgTempo[17];
 	avgTempo[17] += deltaTempo / total[17];
+
 }
 
-$1 ~ /^3$/ && $2 ~ /^50000$/{
+$1 ~ /^3$/ && $2 ~ /^1000$/{
 	versao[18] = $1
 	n[18] = $2
 	total[18]++;
@@ -258,11 +260,12 @@ $1 ~ /^3$/ && $2 ~ /^50000$/{
 	avgComp[18] += deltaComp / total[18];
 	deltaReg = $4 - avgReg[18];
 	avgReg[18] += deltaReg / total[18];
-	deltaTempo = $5  - avgTempo[18];
+	deltaTempo = $5 - avgTempo[18];
 	avgTempo[18] += deltaTempo / total[18];
+
 }
 
-$1 ~ /^3$/ && $2 ~ /^100000$/{
+$1 ~ /^3$/ && $2 ~ /^5000$/{
 	versao[19] = $1
 	n[19] = $2
 	total[19]++;
@@ -270,12 +273,11 @@ $1 ~ /^3$/ && $2 ~ /^100000$/{
 	avgComp[19] += deltaComp / total[19];
 	deltaReg = $4 - avgReg[19];
 	avgReg[19] += deltaReg / total[19];
-	deltaTempo = $5  - avgTempo[19];
+	deltaTempo = $5 - avgTempo[19];
 	avgTempo[19] += deltaTempo / total[19];
-
 }
 
-$1 ~ /^4$/ && $2 ~ /^1000$/{
+$1 ~ /^3$/ && $2 ~ /^10000$/{
 	versao[20] = $1
 	n[20] = $2
 	total[20]++;
@@ -285,10 +287,9 @@ $1 ~ /^4$/ && $2 ~ /^1000$/{
 	avgReg[20] += deltaReg / total[20];
 	deltaTempo = $5 - avgTempo[20];
 	avgTempo[20] += deltaTempo / total[20];
-
 }
 
-$1 ~ /^4$/ && $2 ~ /^5000$/{
+$1 ~ /^3$/ && $2 ~ /^50000$/{
 	versao[21] = $1
 	n[21] = $2
 	total[21]++;
@@ -296,11 +297,11 @@ $1 ~ /^4$/ && $2 ~ /^5000$/{
 	avgComp[21] += deltaComp / total[21];
 	deltaReg = $4 - avgReg[21];
 	avgReg[21] += deltaReg / total[21];
-	deltaTempo = $5 - avgTempo[21];
+	deltaTempo = $5  - avgTempo[21];
 	avgTempo[21] += deltaTempo / total[21];
 }
 
-$1 ~ /^4$/ && $2 ~ /^10000$/{
+$1 ~ /^3$/ && $2 ~ /^100000$/{
 	versao[22] = $1
 	n[22] = $2
 	total[22]++;
@@ -308,11 +309,12 @@ $1 ~ /^4$/ && $2 ~ /^10000$/{
 	avgComp[22] += deltaComp / total[22];
 	deltaReg = $4 - avgReg[22];
 	avgReg[22] += deltaReg / total[22];
-	deltaTempo = $5 - avgTempo[22];
+	deltaTempo = $5  - avgTempo[22];
 	avgTempo[22] += deltaTempo / total[22];
+
 }
 
-$1 ~ /^4$/ && $2 ~ /^50000$/{
+$1 ~ /^3$/ && $2 ~ /^500000$/{
 	versao[23] = $1
 	n[23] = $2
 	total[23]++;
@@ -322,9 +324,10 @@ $1 ~ /^4$/ && $2 ~ /^50000$/{
 	avgReg[23] += deltaReg / total[23];
 	deltaTempo = $5  - avgTempo[23];
 	avgTempo[23] += deltaTempo / total[23];
+
 }
 
-$1 ~ /^4$/ && $2 ~ /^100000$/{
+$1 ~ /^4$/ && $2 ~ /^1000$/{
 	versao[24] = $1
 	n[24] = $2
 	total[24]++;
@@ -332,14 +335,76 @@ $1 ~ /^4$/ && $2 ~ /^100000$/{
 	avgComp[24] += deltaComp / total[24];
 	deltaReg = $4 - avgReg[24];
 	avgReg[24] += deltaReg / total[24];
-	deltaTempo = $5  - avgTempo[24];
+	deltaTempo = $5 - avgTempo[24];
 	avgTempo[24] += deltaTempo / total[24];
+
+}
+
+$1 ~ /^4$/ && $2 ~ /^5000$/{
+	versao[25] = $1
+	n[25] = $2
+	total[25]++;
+	deltaComp = $3 - avgComp[25];
+	avgComp[25] += deltaComp / total[25];
+	deltaReg = $4 - avgReg[25];
+	avgReg[25] += deltaReg / total[25];
+	deltaTempo = $5 - avgTempo[25];
+	avgTempo[25] += deltaTempo / total[25];
+}
+
+$1 ~ /^4$/ && $2 ~ /^10000$/{
+	versao[26] = $1
+	n[26] = $2
+	total[26]++;
+	deltaComp = $3 - avgComp[26];
+	avgComp[26] += deltaComp / total[26];
+	deltaReg = $4 - avgReg[26];
+	avgReg[26] += deltaReg / total[26];
+	deltaTempo = $5 - avgTempo[26];
+	avgTempo[26] += deltaTempo / total[26];
+}
+
+$1 ~ /^4$/ && $2 ~ /^50000$/{
+	versao[27] = $1
+	n[27] = $2
+	total[27]++;
+	deltaComp = $3 - avgComp[27];
+	avgComp[27] += deltaComp / total[27];
+	deltaReg = $4 - avgReg[27];
+	avgReg[27] += deltaReg / total[27];
+	deltaTempo = $5  - avgTempo[27];
+	avgTempo[27] += deltaTempo / total[27];
+}
+
+$1 ~ /^4$/ && $2 ~ /^100000$/{
+	versao[28] = $1
+	n[28] = $2
+	total[28]++;
+	deltaComp = $3 - avgComp[28];
+	avgComp[28] += deltaComp / total[28];
+	deltaReg = $4 - avgReg[28];
+	avgReg[28] += deltaReg / total[28];
+	deltaTempo = $5  - avgTempo[28];
+	avgTempo[28] += deltaTempo / total[28];
+
+}
+
+$1 ~ /^4$/ && $2 ~ /^500000$/{
+	versao[29] = $1
+	n[29] = $2
+	total[29]++;
+	deltaComp = $3 - avgComp[29];
+	avgComp[29] += deltaComp / total[29];
+	deltaReg = $4 - avgReg[29];
+	avgReg[29] += deltaReg / total[29];
+	deltaTempo = $5  - avgTempo[29];
+	avgTempo[29] += deltaTempo / total[29];
 
 }
 
 END{
 
-	for(i = 0; i < 25; i++){
+	for(i = 0; i < 30; i++){
 
 		printf("%d,%d,%.1f,%.1f,%.1f\n", versao[i], n[i], avgComp[i], avgReg[i], avgTempo[i]) >> "tratadosCenario2.csv";
 	}
