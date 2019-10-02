@@ -29,7 +29,7 @@ void fluxoCenario2(Review* conjunto, int n, fstream &saida){
 
         switch(versao){
 
-            case 0:
+            case 0: // QuickSort
 
                 cout << "Executando quicksort" << endl;
 
@@ -44,7 +44,7 @@ void fluxoCenario2(Review* conjunto, int n, fstream &saida){
 
                 break;
 
-            case 1:
+            case 1: // QuickSort Mediana k = 3
 
                 cout << "Executando quicksort mediana k = 3" << endl;
 
@@ -59,7 +59,7 @@ void fluxoCenario2(Review* conjunto, int n, fstream &saida){
 
                 break;
 
-            case 2:
+            case 2: // QuickSort Mediana k = 5
 
                 cout << "Executando quicksort mediana k = 5" << endl;
 
@@ -74,7 +74,7 @@ void fluxoCenario2(Review* conjunto, int n, fstream &saida){
 
                 break;
 
-            case 3:
+            case 3: // QuickSort Inserção m = 10
 
                 cout << "Executando quicksort insercao m = 10" << endl;
 
@@ -89,7 +89,7 @@ void fluxoCenario2(Review* conjunto, int n, fstream &saida){
 
                 break;
 
-            case 4:
+            case 4: // QuickSort Inserção m = 100
 
                 cout << "Executando quicksort insercao m = 100" << endl;
 

@@ -28,7 +28,7 @@ void fluxoCenario4(Review* conjunto, int n, fstream &saida){
 
         switch(versao){
 
-            case 0:{
+            case 0:{ // Hash sondagem linear
 
                 cout << "Executando hash sondagem linear" << endl;
                 
@@ -44,7 +44,7 @@ void fluxoCenario4(Review* conjunto, int n, fstream &saida){
                 break;
             }
             
-            case 1:{
+            case 1:{ // Hash sondagem quadratica
 
                 cout << "Executando hash sondagem quadratica" << endl;
                 
@@ -60,7 +60,9 @@ void fluxoCenario4(Review* conjunto, int n, fstream &saida){
                 break;
             }
 
-            case 2:{
+            case 2:{ // Duplo Hash
+
+                cout << "Executando duplo hash" << endl;
                 
                 // * Chamada dos algoritmos
                 duploHash dHash = duploHash(n);
@@ -74,7 +76,9 @@ void fluxoCenario4(Review* conjunto, int n, fstream &saida){
                 break;
             }
 
-            case 3:{
+            case 3:{ // Hash Encadeamento Separado
+
+                cout << "Executando hash encadeamento separado" << endl;
 
                 // * Chamada dos algoritmos
                 HashEncadSeparado hashEncadSep = HashEncadSeparado(n/10);
@@ -88,7 +92,9 @@ void fluxoCenario4(Review* conjunto, int n, fstream &saida){
                 break;
             }
             
-            case 4:{
+            case 4:{ // Hash Encadeamento Coalescido
+
+                cout << "Executando hash encadeamento coalescido" << endl;
 
                 // * Chamada dos algoritmos
                 hashEncadCoal hashEncadCoa = hashEncadCoal(n);

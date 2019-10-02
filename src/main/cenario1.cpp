@@ -48,7 +48,7 @@ void fluxoCenario1(Review* conjunto, int n, fstream &saida){
 
                 break;
 
-            case 1:{ // Quicksort vetor inteiro
+            case 1:{ // Quicksort vetor review
 
                 //Copiando o vetor original
                 Review aux[n]; 

@@ -31,7 +31,7 @@ void fluxoCenario3(Review* conjunto, int n, fstream &saida){
 
         switch(versao){
 
-            case 0:
+            case 0: // Quicksort mediana k = 5 // TODO: Verificar novamente o melhor do 2
 
                 cout << "Executando quicksort mediana k = 5" << endl;
 
@@ -46,7 +46,7 @@ void fluxoCenario3(Review* conjunto, int n, fstream &saida){
 
                 break;
 
-            case 1:
+            case 1: // Insertion Sort
 
                 cout << "Executando insertion sort" << endl;
 
@@ -61,7 +61,7 @@ void fluxoCenario3(Review* conjunto, int n, fstream &saida){
 
                 break;
 
-            case 2:
+            case 2: // Merge Sort
                 
                 cout << "Executando merge sort" << endl;
 
@@ -76,7 +76,7 @@ void fluxoCenario3(Review* conjunto, int n, fstream &saida){
 
                 break;
 
-            case 3:
+            case 3: // Heap Sort
 
                 cout << "Executando heap sort" << endl;
 
@@ -91,7 +91,7 @@ void fluxoCenario3(Review* conjunto, int n, fstream &saida){
 
                 break;
 
-            case 4:
+            case 4: // Gnome Sort
 
                 cout << "Executando gnome sort" << endl;
 
