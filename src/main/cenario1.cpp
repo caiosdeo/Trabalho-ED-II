@@ -46,6 +46,9 @@ void fluxoCenario1(Review* conjunto, int n, fstream &saida){
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 auto parada = chrono::high_resolution_clock::now();
 
+            default:
+                break;
+
         }
 
         //Tempo de processamento do algoritmo
