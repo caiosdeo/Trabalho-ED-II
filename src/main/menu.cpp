@@ -245,19 +245,3 @@ void selecionar(int selecao){
         int clear = system("clear");
     }
 }
-
-int mainMenu(){
-
-    int selecao = 1;
-
-    while (selecao != 0){
-
-        int clear = system("clear");
-        selecao = menu();
-
-        selecionar(selecao);
-
-    }
-
-    return 0;
-}

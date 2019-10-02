@@ -25,11 +25,5 @@ int menu();
 */
 void selecionar(int selecao);
 
-/**
- * Método para selecionar uma opção do menu
- * @author caiosdeo
- * @return 0
-*/
-int mainMenu();
 
 #endif //MENU_H_INCLUDED

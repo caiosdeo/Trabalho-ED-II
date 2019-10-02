@@ -7,19 +7,16 @@ using namespace std;
 
 int main(){
 
-    mainMenu();
+    int selecao = 1;
 
-    /*fstream entrada, saida, dataset;
+    while (selecao != 0){
 
-    entrada.open("../../entrada.txt", ios::in);         // Arquivo de entrada só como leitura
-    saida.open("../../saidaCenario4.csv", ios::out | ios::app); // Arquivo de saída como escrita
-    dataset.open("../../processados.txt", ios::in);  
+        int clear = system("clear");
+        selecao = menu();
 
-    fluxoHashSondLin(entrada, dataset, saida, 0);
+        selecionar(selecao);
 
-    entrada.close();
-    dataset.close();
-    saida.close();*/
+    }
 
     return 0;
 
