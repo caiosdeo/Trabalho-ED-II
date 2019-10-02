@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "classes/review.h"
 #include "tratamento.h"
 #include "cenario1.h"
 #include "cenario2.h"
@@ -43,39 +44,49 @@ void selecionar(int selecao){
             //Cenário 1
             case 1:{
 
-                //Loop para rodar para os dois tipos de estruturas em única execução
-                for (int versao = 0; versao < 2; versao++){
+                entrada.open("../../entrada.txt", ios::in);         // Arquivo de entrada só como leitura
+                saida.open("../../saidaCenario1.csv", ios::out | ios::app); // Arquivo de saída como escrita
+                dataset.open("../../processados.txt", ios::in);     // Arquivo de dados como leitura
 
-                    entrada.open("../../entrada.txt", ios::in);         // Arquivo de entrada só como leitura
-                    saida.open("../../saidaCenario1.csv", ios::out | ios::app); // Arquivo de saída como escrita
-                    dataset.open("../../processados.txt", ios::in);     // Arquivo de dados como leitura
+                // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
+                if (entrada.is_open())
+                    if (dataset.is_open())
+                        if (saida.is_open()){
+                            
+                            // Variaveis para leitura do arquivo de entrada
+                            int qtdConjuntos, n;
 
-                    // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
-                    if (entrada.is_open())
-                        if (dataset.is_open())
-                            if (saida.is_open()){
+                            // Lendo quantos conjuntos teremos
+                            entrada >> qtdConjuntos;
+
+                            while(entrada >> n){
+
+                                Review* conjunto = new Review[n];
+ 
+                                // Colocando dados no conjunto
+                                conjunto = conjunto->leituraDados(dataset, n);
                                 
-                                if (versao){//Como versao só possui dois valores, ele irá alternar nos processos
-                                    cout << "Executando quickSort para Reviews" << endl;
-                                    fluxoQuickSortReview(entrada, dataset, saida); // Executando fluxo para conjunto de reviews
-                                
-                                }else{
-                                    cout << "Executando quickSort para inteiros" << endl;
-                                    fluxoQuickSortInteiro(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
-                                }
+                                // Executando para as versoes, o conjunto
+                                fluxoCenario1(conjunto, n, saida); 
+
+                                // Desalocando o conjunto
+                                delete [] conjunto;
+
                             }
-                            else
-                                cout << "Não foi possível abrir o arquivo de saída" << endl;
+                        
+                        }
                         else
-                            cout << "Não foi possível abrir o arquivo de dados" << endl;
+                            cout << "Não foi possível abrir o arquivo de saída" << endl;
                     else
-                        cout << "Não foi possível abrir o arquivo de entrada" << endl;
+                        cout << "Não foi possível abrir o arquivo de dados" << endl;
+                else
+                    cout << "Não foi possível abrir o arquivo de entrada" << endl;
 
-                    // Salvando e fechando os arquivos usados
-                    entrada.close();
-                    saida.close();
-                    dataset.close();
-                }
+                // Salvando e fechando os arquivos usados
+                entrada.close();
+                saida.close();
+                dataset.close();
+            
 
                 break;
             }

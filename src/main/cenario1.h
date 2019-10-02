@@ -10,27 +10,13 @@
 using namespace std;
 
 /**
- * Execução específica para dados do tipo inteiro para o quicksort 
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
+ * Execução específica para cenário 1
+ * Tratando as métricas, de um conjunto específico para cada algoritmo e colocando em um arquivo de saída.
  *
  * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
- * @param saida Arquivo de saída com as médias das métricas
+ * @param conjunto conjunto de tamanho N
+ * @param saida Arquivo de saída com as métricas
  */
-void fluxoQuickSortInteiro(fstream &entrada, fstream &dataset, fstream &saida);
-
-/**
- * Execução específica para dados do tipo Review
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
- *
- * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
- * @param saida Arquivo de saída com as médias das métricas
- */
-void fluxoQuickSortReview(fstream &entrada, fstream &dataset, fstream &saida);
+void fluxoCenario1(Review* conjunto, fstream &saida);
 
 #endif //CENARIO1_H_INCLUDED
