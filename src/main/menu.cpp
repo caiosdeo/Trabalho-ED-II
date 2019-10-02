@@ -46,7 +46,7 @@ void selecionar(int selecao){
 
                 entrada.open("../../entrada1.txt", ios::in);         // Arquivo de entrada só como leitura
                 saida.open("../../saidaCenario1.csv", ios::out | ios::app); // Arquivo de saída como escrita
-                dataset.open("../../processados.txt", ios::in);     // Arquivo de dados como leitura
+                dataset.open("../../processadosFase1.txt", ios::in);     // Arquivo de dados como leitura
 
                 // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
                 if (entrada.is_open())
@@ -96,7 +96,7 @@ void selecionar(int selecao){
 
                 entrada.open("../../entrada24.txt", ios::in);         // Arquivo de entrada só como leitura
                 saida.open("../../saidaCenario2.csv", ios::out | ios::app); // Arquivo de saída como escrita
-                dataset.open("../../processados.txt", ios::in);     // Arquivo de dados como leitura
+                dataset.open("../../processadosFase1.txt", ios::in);     // Arquivo de dados como leitura
 
                 // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
                 if (entrada.is_open())
@@ -145,7 +145,7 @@ void selecionar(int selecao){
 
                 entrada.open("../../entrada24.txt", ios::in);         // Arquivo de entrada só como leitura
                 saida.open("../../saidaCenario3.csv", ios::out | ios::app); // Arquivo de saída como escrita
-                dataset.open("../../processados.txt", ios::in);     // Arquivo de dados como leitura
+                dataset.open("../../processadosFase1.txt", ios::in);     // Arquivo de dados como leitura
 
                 // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
                 if (entrada.is_open())
@@ -194,7 +194,7 @@ void selecionar(int selecao){
 
                 entrada.open("../../entrada24.txt", ios::in);         // Arquivo de entrada só como leitura
                 saida.open("../../saidaCenario4.csv", ios::out | ios::app); // Arquivo de saída como escrita
-                dataset.open("../../processados.txt", ios::in);     // Arquivo de dados como leitura
+                dataset.open("../../processadosFase1.txt", ios::in);     // Arquivo de dados como leitura
 
                 // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
                 if (entrada.is_open())
