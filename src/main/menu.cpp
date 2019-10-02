@@ -44,7 +44,7 @@ void selecionar(int selecao){
             //Cenário 1
             case 1:{
 
-                entrada.open("../../entrada.txt", ios::in);         // Arquivo de entrada só como leitura
+                entrada.open("../../entrada1.txt", ios::in);         // Arquivo de entrada só como leitura
                 saida.open("../../saidaCenario1.csv", ios::out | ios::app); // Arquivo de saída como escrita
                 dataset.open("../../processados.txt", ios::in);     // Arquivo de dados como leitura
 
@@ -94,7 +94,7 @@ void selecionar(int selecao){
             //Cenário 2
             case 2:{
 
-                entrada.open("../../entrada.txt", ios::in);         // Arquivo de entrada só como leitura
+                entrada.open("../../entrada24.txt", ios::in);         // Arquivo de entrada só como leitura
                 saida.open("../../saidaCenario2.csv", ios::out | ios::app); // Arquivo de saída como escrita
                 dataset.open("../../processados.txt", ios::in);     // Arquivo de dados como leitura
 
@@ -143,7 +143,7 @@ void selecionar(int selecao){
             //Cenário 3
             case 3:{
 
-                entrada.open("../../entrada.txt", ios::in);         // Arquivo de entrada só como leitura
+                entrada.open("../../entrada24.txt", ios::in);         // Arquivo de entrada só como leitura
                 saida.open("../../saidaCenario3.csv", ios::out | ios::app); // Arquivo de saída como escrita
                 dataset.open("../../processados.txt", ios::in);     // Arquivo de dados como leitura
 
@@ -192,7 +192,7 @@ void selecionar(int selecao){
             //Cenário 4
             case 4:{
 
-                entrada.open("../../entrada.txt", ios::in);         // Arquivo de entrada só como leitura
+                entrada.open("../../entrada24.txt", ios::in);         // Arquivo de entrada só como leitura
                 saida.open("../../saidaCenario4.csv", ios::out | ios::app); // Arquivo de saída como escrita
                 dataset.open("../../processados.txt", ios::in);     // Arquivo de dados como leitura
 
