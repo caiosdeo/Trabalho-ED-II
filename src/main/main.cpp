@@ -7,9 +7,9 @@ using namespace std;
 
 int main(){
 
-    //mainMenu();
+    mainMenu();
 
-    fstream entrada, saida, dataset;
+    /*fstream entrada, saida, dataset;
 
     entrada.open("../../entrada.txt", ios::in);         // Arquivo de entrada só como leitura
     saida.open("../../saidaCenario4.csv", ios::out | ios::app); // Arquivo de saída como escrita
@@ -19,7 +19,7 @@ int main(){
 
     entrada.close();
     dataset.close();
-    saida.close();
+    saida.close();*/
 
     return 0;
 

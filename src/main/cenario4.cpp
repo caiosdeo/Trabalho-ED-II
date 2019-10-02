@@ -8,202 +8,104 @@
 
 using namespace std;
 
-void fluxoHashSondLin(fstream &entrada, fstream &dataset, fstream &saida, int versao){
+void fluxoCenario4(Review* conjunto, int n, fstream &saida){
 
-    // Variaveis para leitura do arquivo de entrada
-    int qtdConjuntos, n;
+    // Vetor de IDs
+    int* chaves;
 
-    // Lendo quantos conjuntos teremos
-    entrada >> qtdConjuntos;
+    // Declaracao de Hashs
 
-    // Criação dos conjuntos 
-    Review** conjuntos = new Review*[qtdConjuntos];
+    // Visualizando o N
+    cout << "N: " << n << endl;
 
-    for(int i = 0; entrada >> n; i++){
+    //Loop para rodar para os dois tipos de estruturas em única execução
+    for (int versao = 0; versao < 5; versao++){
 
-        conjuntos[i] = new Review[n]; // Para cada conjunto criar um vetor do tamanho n
+        chaves = gerarConjuntoChaves(conjunto, n); // Gerando chaves a serem usadas nas hash
 
-        conjuntos[i] = conjuntos[i]->leituraDados(dataset, n); // Colocando dados no conjunto
-
-        int *chaves = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
-
-        // * Chamada dos algoritmos
-        HashSondLin hash = HashSondLin(n);
-
-        for(int j = 0; j < n; j++)
-            hash.insereNo(chaves[j], chaves[j]);
-
-        // Métrica de desempenho
-        unsigned long long int numColisoes = hash.getNumColisoes();
-
-        // Imprimindo resultados no arquivo de saída
-        imprimirSaidaHash(saida, versao, n, numColisoes);
-
-    }
-
-    // Desalocando os conjuntos
-    for (int i = 0; i < qtdConjuntos; i++)
-        delete [] conjuntos[i];
-    delete [] conjuntos;
-    
-}
-
-void fluxoHashSondQuad(fstream &entrada, fstream &dataset, fstream &saida, int versao){
-
-    // Variaveis para leitura do arquivo de entrada
-    int qtdConjuntos, n;
-
-    // Lendo quantos conjuntos teremos
-    entrada >> qtdConjuntos;
-
-    // Criação dos conjuntos 
-    Review** conjuntos = new Review*[qtdConjuntos];
-
-    for(int i = 0; entrada >> n; i++){
-
-        conjuntos[i] = new Review[n]; // Para cada conjunto criar um vetor do tamanho n
-
-        conjuntos[i] = conjuntos[i]->leituraDados(dataset, n); // Colocando dados no conjunto
-
-        int *chaves = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
-
-        // * Chamada dos algoritmos
-        HashSondQuad hash = HashSondQuad(n);
-
-        for(int j = 0; j < n; j++)
-            hash.insereNo(chaves[j], chaves[j]);
-
-        // Métrica de desempenho
-        unsigned long long int numColisoes = hash.getNumColisoes();
-
-        // Imprimindo resultados no arquivo de saída
-        imprimirSaidaHash(saida, versao, n, numColisoes);
-
-    }
-
-    // Desalocando os conjuntos
-    for (int i = 0; i < qtdConjuntos; i++)
-        delete [] conjuntos[i];
-    delete [] conjuntos;
-    
-}
-
-void fluxoDuploHash(fstream &entrada, fstream &dataset, fstream &saida, int versao){
-
-    // Variaveis para leitura do arquivo de entrada
-    int qtdConjuntos, n;
-
-    // Lendo quantos conjuntos teremos
-    entrada >> qtdConjuntos;
-
-    // Criação dos conjuntos 
-    Review** conjuntos = new Review*[qtdConjuntos];
-
-    for(int i = 0; entrada >> n; i++){
-
-        conjuntos[i] = new Review[n]; // Para cada conjunto criar um vetor do tamanho n
-
-        conjuntos[i] = conjuntos[i]->leituraDados(dataset, n); // Colocando dados no conjunto
-
-        int *chaves = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
-
-        // * Chamada dos algoritmos
-        duploHash hash = duploHash(n);
-
-        for(int j = 0; j < n; j++)
-            hash.inserirHash(chaves[j]);
-
-        // Métrica de desempenho
-        unsigned long long int numColisoes = hash.getNumColisoes();
-
-        // Imprimindo resultados no arquivo de saída
-        imprimirSaidaHash(saida, versao, n, numColisoes);
-
-    }
-
-    // Desalocando os conjuntos
-    for (int i = 0; i < qtdConjuntos; i++)
-        delete [] conjuntos[i];
-    delete [] conjuntos;
-    
-}
-
-void fluxoHashEncadSeparado(fstream &entrada, fstream &dataset, fstream &saida, int versao){
-
-    // Variaveis para leitura do arquivo de entrada
-    int qtdConjuntos, n;
-
-    // Lendo quantos conjuntos teremos
-    entrada >> qtdConjuntos;
-
-    // Criação dos conjuntos 
-    Review** conjuntos = new Review*[qtdConjuntos];
-
-    for(int i = 0; entrada >> n; i++){
-
-        conjuntos[i] = new Review[n]; // Para cada conjunto criar um vetor do tamanho n
-
-        conjuntos[i] = conjuntos[i]->leituraDados(dataset, n); // Colocando dados no conjunto
-
-        int *chaves = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
-
-        // * Chamada dos algoritmos
-        HashEncadSeparado hash = HashEncadSeparado(n/10);
-
-        for(int j = 0; j < n; j++)
-            hash.insereItem(chaves[j]);
-
-        // Métrica de desempenho
-        unsigned long long int numColisoes = hash.contabilizarColisoes();
-
-        // Imprimindo resultados no arquivo de saída
-        imprimirSaidaHash(saida, versao, n, numColisoes);
-
-    }
-
-    // Desalocando os conjuntos
-    for (int i = 0; i < qtdConjuntos; i++)
-        delete [] conjuntos[i];
-    delete [] conjuntos;
-    
-}
-
-void fluxoHashEncadCoal(fstream &entrada, fstream &dataset, fstream &saida, int versao){
-
-    // Variaveis para leitura do arquivo de entrada
-    int qtdConjuntos, n;
-
-    // Lendo quantos conjuntos teremos
-    entrada >> qtdConjuntos;
-
-    // Criação dos conjuntos 
-    Review** conjuntos = new Review*[qtdConjuntos];
-
-    for(int i = 0; entrada >> n; i++){
-
-        conjuntos[i] = new Review[n]; // Para cada conjunto criar um vetor do tamanho n
-
-        conjuntos[i] = conjuntos[i]->leituraDados(dataset, n); // Colocando dados no conjunto
-
-        int *chaves = gerarConjuntoChaves(conjuntos[i], n); // Gerando chaves a serem usadas nas hash
-
-        // Métrica de desempenho
+        // Métricas de desempenho
         unsigned long long int numColisoes = 0;
 
-        // * Chamada dos algoritmos
-        hashEncadCoal hash = hashEncadCoal(n);
+        switch(versao){
 
-        for(int j = 0; j < n; j++)
-            hash.insereItem(chaves[j], &numColisoes);
+            case 0:{
+
+                cout << "Executando hash sondagem linear" << endl;
+                
+                // * Chamada dos algoritmos
+                HashSondLin hashLin = HashSondLin(n);
+
+                for(int j = 0; j < n; j++)
+                    hashLin.insereNo(chaves[j], chaves[j]);
+
+                // Métrica de desempenho
+                numColisoes = hashLin.getNumColisoes();
+
+                break;
+            }
+            
+            case 1:{
+
+                cout << "Executando hash sondagem quadratica" << endl;
+                
+                // * Chamada dos algoritmos
+                HashSondQuad hashQuad = HashSondQuad(n);
+
+                for(int j = 0; j < n; j++)
+                    hashQuad.insereNo(chaves[j], chaves[j]);
+
+                // Métrica de desempenho
+                numColisoes = hashQuad.getNumColisoes();
+
+                break;
+            }
+
+            case 2:{
+                
+                // * Chamada dos algoritmos
+                duploHash dHash = duploHash(n);
+
+                for(int j = 0; j < n; j++)
+                    dHash.inserirHash(chaves[j]);
+
+                // Métrica de desempenho
+                numColisoes = dHash.getNumColisoes();
+                
+                break;
+            }
+
+            case 3:{
+
+                // * Chamada dos algoritmos
+                HashEncadSeparado hashEncadSep = HashEncadSeparado(n/10);
+
+                for(int j = 0; j < n; j++)
+                    hashEncadSep.insereItem(chaves[j]);
+
+                // Métrica de desempenho
+                numColisoes = hashEncadSep.contabilizarColisoes();
+
+                break;
+            }
+            
+            case 4:{
+
+                // * Chamada dos algoritmos
+                hashEncadCoal hashEncadCoa = hashEncadCoal(n);
+
+                for(int j = 0; j < n; j++)
+                    hashEncadCoa.insereItem(chaves[j], &numColisoes);                
+
+                break;
+            }
+            
+            default:
+                break;
+        }
 
         // Imprimindo resultados no arquivo de saída
         imprimirSaidaHash(saida, versao, n, numColisoes);
-
+    
     }
-
-    // Desalocando os conjuntos
-    for (int i = 0; i < qtdConjuntos; i++)
-        delete [] conjuntos[i];
-    delete [] conjuntos;
     
 }

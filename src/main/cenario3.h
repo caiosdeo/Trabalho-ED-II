@@ -9,55 +9,14 @@
 using namespace std;
 
 /**
- * Execução específica para dados do tipo inteiro para o insertion sort
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
+ * Execução específica para cenário 3
+ * Tratando as métricas, de um conjunto específico para cada algoritmo e colocando em um arquivo de saída.
  *
  * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
- * @param saida Arquivo de saída com as médias das métricas
- * @param versao int parametro para identificar a variação do algoritmos
+ * @param conjunto conjunto de tamanho N
+ * @param saida Arquivo de saída com as métricas
  */
-void fluxoInsertionSort(fstream &entrada, fstream &dataset, fstream &saida, int versao);
+void fluxoCenario3(Review* conjunto, int n, fstream &saida);
 
-/**
- * Execução específica para dados do tipo inteiro para o merge sort
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
- *
- * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
- * @param saida Arquivo de saída com as médias das métricas
- * @param versao int parametro para identificar a variação do algoritmos
- */
-void fluxoMergeSort(fstream &entrada, fstream &dataset, fstream &saida, int versao);
-
-/**
- * Execução específica para dados do tipo inteiro para o heap sort
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
- *
- * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
- * @param saida Arquivo de saída com as médias das métricas
- * @param versao int parametro para identificar a variação do algoritmos
- */
-void fluxoHeapSort(fstream &entrada, fstream &dataset, fstream &saida, int versao);
-
-/**
- * Execução específica para dados do tipo inteiro para o gnome sort
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
- *
- * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
- * @param saida Arquivo de saída com as médias das métricas
- * @param versao int parametro para identificar a variação do algoritmos
- */
-void fluxoGnomeSort(fstream &entrada, fstream &dataset, fstream &saida, int versao);
 
 #endif //CENARIO3_H_INCLUDED

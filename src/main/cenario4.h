@@ -5,72 +5,18 @@
 //Inclusão de outras interfaces/bibliotecas
 #include <fstream>
 #include <chrono>
+#include "../classes/review.h"
 
 using namespace std;
 
 /**
- * Execução específica para dados do tipo inteiro para hash sondagem linear
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
+ * Execução específica para cenário 4
+ * Tratando as métricas, de um conjunto específico para cada algoritmo e colocando em um arquivo de saída.
  *
  * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
- * @param saida Arquivo de saída com as médias das métricas
- * @param versao int parametro para identificar a variação do algoritmos
+ * @param conjunto conjunto de tamanho N
+ * @param saida Arquivo de saída com as métricas
  */
-void fluxoHashSondLin(fstream &entrada, fstream &dataset, fstream &saida, int versao);
-
-/**
- * Execução específica para dados do tipo inteiro para hash sondagem quadratica
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
- *
- * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
- * @param saida Arquivo de saída com as médias das métricas
- * @param versao int parametro para identificar a variação do algoritmos
- */
-void fluxoHashSondQuad(fstream &entrada, fstream &dataset, fstream &saida, int versao);
-
-/**
- * Execução específica para dados do tipo inteiro para duplo hash
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
- *
- * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
- * @param saida Arquivo de saída com as médias das métricas
- * @param versao int parametro para identificar a variação do algoritmos
- */
-void fluxoDuploHash(fstream &entrada, fstream &dataset, fstream &saida, int versao);
-
-/**
- * Execução específica para dados do tipo inteiro para hash encadeamento separado
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
- *
- * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
- * @param saida Arquivo de saída com as médias das métricas
- * @param versao int parametro para identificar a variação do algoritmos
- */
-void fluxoHashEncadSeparado(fstream &entrada, fstream &dataset, fstream &saida, int versao);
-
-/**
- * Execução específica para dados do tipo inteiro para hash encadeamento coalescido
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
- *
- * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
- * @param saida Arquivo de saída com as médias das métricas
- * @param versao int parametro para identificar a variação do algoritmos
- */
-void fluxoHashEncadCoal(fstream &entrada, fstream &dataset, fstream &saida, int versao);
+void fluxoCenario4(Review* conjunto, int n, fstream &saida);
 
 #endif //CENARIO4_H_INCLUDED

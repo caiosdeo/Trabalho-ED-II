@@ -6,6 +6,7 @@
 //Inclusão de outras interfaces/bibliotecas
 #include <fstream>
 #include <chrono>
+#include "../classes/review.h"
 
 using namespace std;
 

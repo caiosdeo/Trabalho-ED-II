@@ -1,192 +1,121 @@
 #include <iostream>
 #include <fstream>
 #include <chrono>
+#include "../classes/review.h"
 #include "tratamento.h"
 #include "../algoritmos/ordenacao.h"
 #include "cenario3.h"
 
 using namespace std;
 
-// ! FLUXO PARA DADOS EM VETOR DE INTEIRO INSERTION SORT
+void fluxoCenario3(Review* conjunto, int n, fstream &saida){
 
-void fluxoInsertionSort(fstream &entrada, fstream &dataset, fstream &saida, int versao){
+    // Vetor de IDs
+    int* ids;
 
-    // Variaveis para leitura do arquivo de entrada
-    int qtdConjuntos, n;
+    // Inicialização das variaveis de tempo
+    auto inicio = chrono::high_resolution_clock::now();
+    auto parada = chrono::high_resolution_clock::now();
+    auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
-    // Lendo quantos conjuntos teremos
-    entrada >> qtdConjuntos;
+    // Visualizando o N
+    cout << "N: " << n << endl;
 
-    // Criação dos conjuntos 
-    int** conjuntos = new int*[qtdConjuntos];
+    //Loop para rodar para os dois tipos de estruturas em única execução
+    for (int versao = 0; versao < 5; versao++){
 
-    for(int i = 0; entrada >> n; i++){
-
-        conjuntos[i] = new int[n]; // Para cada conjunto criar um vetor do tamanho n
-
-        conjuntos[i] = leituraDadosVetor(dataset, n); // Colocando dados no conjunto
+        ids = gerarVetorIds(conjunto, n);
 
         // Métricas de desempenho
         unsigned long long int numComparacoes = 0, numCopias = 0;
 
-        // Ponto de inicio de contagem para tempo de execução do algoritmo
-        auto inicio = chrono::high_resolution_clock::now();
+        switch(versao){
 
-        // * Chamada dos algoritmos
-        insertionSort(conjuntos[i], n, &numCopias, &numComparacoes);
+            case 0:
 
-        // Ponto de parada de contagem para o tempo de execução do algoritmo
-        auto parada = chrono::high_resolution_clock::now();
+                cout << "Executando quicksort mediana k = 5" << endl;
+
+                // Ponto de inicio de contagem para tempo de execução do algoritmo
+                inicio = chrono::high_resolution_clock::now();
+                
+                // * Chamada dos algoritmos
+                quickSortMediano(ids, 0, n-1, 5, &numComparacoes, &numCopias);
+
+                // Ponto de parada de contagem para o tempo de execução do algoritmo
+                parada = chrono::high_resolution_clock::now();
+
+                break;
+
+            case 1:
+
+                cout << "Executando insertion sort" << endl;
+
+                // Ponto de inicio de contagem para tempo de execução do algoritmo
+                inicio = chrono::high_resolution_clock::now();
+                
+                // * Chamada dos algoritmos
+                insertionSort(ids, n, &numComparacoes, &numCopias);
+
+                // Ponto de parada de contagem para o tempo de execução do algoritmo
+                parada = chrono::high_resolution_clock::now();
+
+                break;
+
+            case 2:
+                
+                cout << "Executando merge sort" << endl;
+
+                // Ponto de inicio de contagem para tempo de execução do algoritmo
+                inicio = chrono::high_resolution_clock::now();
+                
+                // * Chamada dos algoritmos
+                mergeSort(ids, 0, n-1, &numComparacoes, &numCopias);
+
+                // Ponto de parada de contagem para o tempo de execução do algoritmo
+                parada = chrono::high_resolution_clock::now();
+
+                break;
+
+            case 3:
+
+                cout << "Executando heap sort" << endl;
+
+                // Ponto de inicio de contagem para tempo de execução do algoritmo
+                inicio = chrono::high_resolution_clock::now();
+                
+                // * Chamada dos algoritmos
+                heapSort(ids, n, &numComparacoes, &numCopias);
+
+                // Ponto de parada de contagem para o tempo de execução do algoritmo
+                parada = chrono::high_resolution_clock::now();
+
+                break;
+
+            case 4:
+
+                cout << "Executando gnome sort" << endl;
+
+                // Ponto de inicio de contagem para tempo de execução do algoritmo
+                inicio = chrono::high_resolution_clock::now();
+                
+                // * Chamada dos algoritmos
+                gnomeSort(ids, n, &numComparacoes, &numCopias);
+
+                // Ponto de parada de contagem para o tempo de execução do algoritmo
+                parada = chrono::high_resolution_clock::now();
+
+                break;
+
+            default:
+                break;
+        }
 
         //Tempo de processamento do algoritmo
-        auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
+        tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
         // Imprimindo resultados no arquivo de saída
         imprimirSaida(saida, versao, n, numComparacoes, numCopias, tempoProcessamento);
-        
-    }
-
-    // Desalocando os conjuntos
-    for(int i = 0; i < qtdConjuntos; i++)
-        delete [] conjuntos[i];
-    delete [] conjuntos;
     
-}
-
-// ! FLUXO PARA DADOS EM VETOR DE INTEIRO MERGESORT
-
-void fluxoMergeSort(fstream &entrada, fstream &dataset, fstream &saida, int versao){
-
-    // Variaveis para leitura do arquivo de entrada
-    int qtdConjuntos, n;
-
-    // Lendo quantos conjuntos teremos
-    entrada >> qtdConjuntos;
-
-    // Criação dos conjuntos 
-    int** conjuntos = new int*[qtdConjuntos];
-
-    for(int i = 0; entrada >> n; i++){
-
-        conjuntos[i] = new int[n]; // Para cada conjunto criar um vetor do tamanho n
-
-        conjuntos[i] = leituraDadosVetor(dataset, n); // Colocando dados no conjunto
-
-        // Métricas de desempenho
-        unsigned long long int numComparacoes = 0, numCopias = 0;
-
-        // Ponto de inicio de contagem para tempo de execução do algoritmo
-        auto inicio = chrono::high_resolution_clock::now();
-
-        // * Chamada dos algoritmos
-        mergeSort(conjuntos[i], 0, n-1, &numComparacoes, &numCopias);
-
-        // Ponto de parada de contagem para o tempo de execução do algoritmo
-        auto parada = chrono::high_resolution_clock::now();
-
-        //Tempo de processamento do algoritmo
-        auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
-
-        // Imprimindo resultados no arquivo de saída
-        imprimirSaida(saida, versao, n, numComparacoes, numCopias, tempoProcessamento);
-        
     }
-
-    // Desalocando os conjuntos
-    for(int i = 0; i < qtdConjuntos; i++)
-        delete [] conjuntos[i];
-    delete [] conjuntos;
-    
-}
-
-// ! FLUXO PARA DADOS EM VETOR DE INTEIRO HEAPSORT
-
-void fluxoHeapSort(fstream &entrada, fstream &dataset, fstream &saida, int versao){
-
-    // Variaveis para leitura do arquivo de entrada
-    int qtdConjuntos, n;
-
-    // Lendo quantos conjuntos teremos
-    entrada >> qtdConjuntos;
-
-    // Criação dos conjuntos 
-    int** conjuntos = new int*[qtdConjuntos];
-
-    for(int i = 0; entrada >> n; i++){
-
-        conjuntos[i] = new int[n]; // Para cada conjunto criar um vetor do tamanho n
-
-        conjuntos[i] = leituraDadosVetor(dataset, n); // Colocando dados no conjunto
-
-        // Métricas de desempenho
-        unsigned long long int numComparacoes = 0, numCopias = 0;
-
-        // Ponto de inicio de contagem para tempo de execução do algoritmo
-        auto inicio = chrono::high_resolution_clock::now();
-
-        // * Chamada dos algoritmos
-        heapSort(conjuntos[i], n, &numCopias, &numComparacoes);
-
-        // Ponto de parada de contagem para o tempo de execução do algoritmo
-        auto parada = chrono::high_resolution_clock::now();
-
-        //Tempo de processamento do algoritmo
-        auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
-
-        // Imprimindo resultados no arquivo de saída
-        imprimirSaida(saida, versao, n, numComparacoes, numCopias, tempoProcessamento);
-        
-    }
-
-    // Desalocando os conjuntos
-    for(int i = 0; i < qtdConjuntos; i++)
-        delete [] conjuntos[i];
-    delete [] conjuntos;
-    
-}
-
-// ! FLUXO PARA DADOS EM VETOR DE INTEIRO PIGEONHOLESORT
-
-void fluxoGnomeSort(fstream &entrada, fstream &dataset, fstream &saida, int versao){
-
-    // Variaveis para leitura do arquivo de entrada
-    int qtdConjuntos, n;
-
-    // Lendo quantos conjuntos teremos
-    entrada >> qtdConjuntos;
-
-    // Criação dos conjuntos 
-    int** conjuntos = new int*[qtdConjuntos];
-
-    for(int i = 0; entrada >> n; i++){
-
-        conjuntos[i] = new int[n]; // Para cada conjunto criar um vetor do tamanho n
-
-        conjuntos[i] = leituraDadosVetor(dataset, n); // Colocando dados no conjunto
-
-        // Métricas de desempenho
-        unsigned long long int numComparacoes = 0, numCopias = 0;
-
-        // Ponto de inicio de contagem para tempo de execução do algoritmo
-        auto inicio = chrono::high_resolution_clock::now();
-
-        // * Chamada dos algoritmos
-        gnomeSort(conjuntos[i], n, &numComparacoes, &numCopias);
-
-        // Ponto de parada de contagem para o tempo de execução do algoritmo
-        auto parada = chrono::high_resolution_clock::now();
-
-        //Tempo de processamento do algoritmo
-        auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
-
-        // Imprimindo resultados no arquivo de saída
-        imprimirSaida(saida, versao, n, numComparacoes, numCopias, tempoProcessamento);
-        
-    }
-
-    // Desalocando os conjuntos
-    for(int i = 0; i < qtdConjuntos; i++)
-        delete [] conjuntos[i];
-    delete [] conjuntos;
     
 }

@@ -17,14 +17,14 @@ void imprimirSaidaHash(fstream &saida, int versao, int n, float numColisoes){
 
 }
 
-int* leituraDadosVetor(Review* conjunto, int n){
+int* gerarVetorIds(Review* conjunto, int n){
 
     //Vetor de inteiros            
-    int ids[n];
+    int* ids = new int[n];
     
     // Copiando os IDs do conjunto para o vetor de ID
     for (int j = 0; j < n; j++)
-        ids[j] = conjunto[j]->getId();
+        ids[j] = conjunto[j].getId();
     
     // Retornando o conjunto de reviews
     return ids;
