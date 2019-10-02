@@ -9,31 +9,13 @@
 using namespace std;
 
 /**
- * Execução específica para dados do tipo inteiro para o quicksort com mediana
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
+ * Execução específica para cenário 2
+ * Tratando as métricas, de um conjunto específico para cada algoritmo e colocando em um arquivo de saída.
  *
  * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
- * @param saida Arquivo de saída com as médias das métricas
- * @param k int elementos para mediana
- * @param versao int parametro para identificar a variação do algoritmos
+ * @param conjunto conjunto de tamanho N
+ * @param saida Arquivo de saída com as métricas
  */
-void fluxoQuickSortMediana(fstream &entrada, fstream &dataset, fstream &saida, int k, int versao);
-
-/**
- * Execução específica para dados do tipo inteiro para o quicksort com inserção
- * Leitura de quantos conjuntos de tamanho N serão trabalhados na execução do programa.
- * Atribuição de dados a cada conjunto, tratando as métricas e colocando em um arquivo de saída.
- *
- * @author caiosdeo
- * @param entrada Arquivo de entrada
- * @param dataset Arquivo com os dados
- * @param saida Arquivo de saída com as médias das métricas
- * @param m int tamanho partição para usar o insertionsort
- * @param versao int parametro para identificar a variação do algoritmos
- */
-void fluxoQuickSortInsercao(fstream &entrada, fstream &dataset, fstream &saida, int m, int versao);
+void fluxoCenario2(Review* conjunto, fstream &saida);
 
 #endif //CENARIO2_H_INCLUDED

@@ -106,45 +106,27 @@ void selecionar(int selecao){
                         if (dataset.is_open())
                             if (saida.is_open()){
 
-                                switch (versao){
-                                case 0: // * versao = 0 quicksort comum
+                                // Variaveis para leitura do arquivo de entrada
+                                int qtdConjuntos, n;
 
-                                    cout << "Executando quicksort" << endl;
-                                    fluxoQuickSortInteiro(entrada, dataset, saida); // Executando fluxo para conjunto de inteiros
+                                // Lendo quantos conjuntos teremos
+                                entrada >> qtdConjuntos;
 
-                                    break;
+                                while(entrada >> n){
 
-                                case 1: // * versao = 1 quicksort mediana k = 3
+                                    Review* conjunto = new Review[n];
+    
+                                    // Colocando dados no conjunto
+                                    conjunto = conjunto->leituraDados(dataset, n);
+                                    
+                                    // Executando para as versoes, o conjunto
+                                    fluxoCenario2(conjunto, n, saida); 
 
-                                    cout << "Executando quicksort mediana k = 3" << endl;
-                                    fluxoQuickSortMediana(entrada, dataset, saida, 3, versao); // Executando fluxo para conjunto de inteiros
+                                    // Desalocando o conjunto
+                                    delete [] conjunto;
 
-                                    break;
-
-                                case 2: // * versao = 2 quicksort mediana k = 5
-
-                                    cout << "Executando quicksort mediana k = 5" << endl;
-                                    fluxoQuickSortMediana(entrada, dataset, saida, 5, versao); // Executando fluxo para conjunto de inteiros
-
-                                    break;
-
-                                case 3: // * versao = 3 quicksort inserção m = 10
-
-                                    cout << "Executando quicksort insercao m = 10" << endl;
-                                    fluxoQuickSortInsercao(entrada, dataset, saida, 10, versao); // Executando fluxo para conjunto de inteiros
-
-                                    break;
-
-                                case 4: // * versao = 4 quicksort insercao m = 100
-
-                                    cout << "Executando quicksort insercao m = 100" << endl;
-                                    fluxoQuickSortInsercao(entrada, dataset, saida, 100, versao); // Executando fluxo para conjunto de inteiros
-
-                                    break;
-
-                                default:
-                                    break;
                                 }
+
                             }
                             else
                                 cout << "Não foi possível abrir o arquivo de saída" << endl;
