@@ -17,43 +17,15 @@ void imprimirSaidaHash(fstream &saida, int versao, int n, float numColisoes){
 
 }
 
-int* leituraDadosVetor(fstream &dataset, int n){
+int* leituraDadosVetor(Review* conjunto, int n){
 
-    // Conjunto de IDs
-    int* ids = new int[n];
+    //Vetor de inteiros            
+    int ids[n];
     
-    //Variaveis para ler o documento
-    string id, user, rating;
-
-    //Variavel auxiliar para controlar o tamanho do conjunto
-    int i = 0;
-
-    // Alterando a semente com o tempo
-    srand(time(NULL));
-
-    // Eliminando a primeira linha do arquivo
-    getline(dataset, user, ',');
-    getline(dataset, rating, ',');
-    getline(dataset, id, '\n');
-
-    // Extração de dados até o tamanho do conjunto e o fim do arquivo
-    while(dataset.good() && i < n){
-
-        // Pegando as informações de cada registro
-        getline(dataset, user, ',');
-        getline(dataset, rating, ',');
-        getline(dataset, id, '\n');
-
-        if(rand() % 11 == 0){ // Selecionando registros a partir do resto de uma divisão por 11
-
-            ids[i] = stoi(id); // Atribuindo o id do jogo
-
-            i++;
-
-        }
-        
-    }
-
+    // Copiando os IDs do conjunto para o vetor de ID
+    for (int j = 0; j < n; j++)
+        ids[j] = conjunto[j]->getId();
+    
     // Retornando o conjunto de reviews
     return ids;
 

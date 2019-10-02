@@ -39,13 +39,13 @@ void imprimirSaidaHash(fstream &saida, int versao, int n, float numColisoes);
 
 
 /**
- * Atribuição de dados a cada conjunto, retornando-o em um vetor.
+ * Geração de vetor de ids.
  *
  * @author caiosdeo
- * @param dataset Arquivo com os dados
+ * @param conjunto vetor de Reviews
  * @param n Tamanho do conjunto
- * @return r Vetor com dados
+ * @return ids Vetor de ids
  */
-int* leituraDadosVetor(fstream &dataset, int n);
+int* gerarVetorIds(Review* conjunto, int n);
 
 #endif //TRATAMENTO_H_INCLUDED
