@@ -2,7 +2,7 @@
 #define QUICKSORTMEDIANO_H
 #include "../../classes/review.h"
 
-void gerarVetor(int* v, int k, int* aux);
+void gerarVetor(int* v, int inicio, int k, int* aux);
 
 int medianadek(int *vetor, int k, unsigned long long int *trocas, unsigned long long int *comparacoes);
 

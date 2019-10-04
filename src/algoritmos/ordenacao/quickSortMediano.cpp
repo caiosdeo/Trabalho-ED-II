@@ -4,10 +4,10 @@
 
 using namespace std;
 
-void gerarVetor(int* v, int k, int* aux){
+void gerarVetor(int* v, int inicio, int k, int* aux){
     
-    for(int i = 0; i < k; i++ )
-        aux[i] = v[i];
+    for(int i = 0; i < k; i++, inicio++ )
+        aux[i] = v[inicio];
 
 }
 
@@ -37,9 +37,15 @@ void quickSortMediano(int *vetor, int inicio, int fim, int k, unsigned long long
 
             int aux[k];
 
-            gerarVetor(vetor, k, aux);
+            gerarVetor(vetor, inicio, k, aux);
 
             int mediana = medianadek(aux, k, trocas, comparacoes);
+
+            int copiaInicio = inicio;
+            while(aux[mediana] != vetor[copiaInicio])
+                copiaInicio++;
+
+            mediana = copiaInicio;
 
             (*trocas)++;
             swap(vetor, mediana, fim);
