@@ -6,15 +6,15 @@ using namespace std;
 class HashEncadSeparado{
 
     private:
-        int balde; //Número de baldes
-        list<int> *tabela;
+        unsigned balde; //Número de baldes
+        list<unsigned> *tabela;
 
     public:
-        HashEncadSeparado(int baldes);
+        HashEncadSeparado(unsigned baldes);
         ~HashEncadSeparado();
-        void insereItem(int chave);
-        void removeItem(int chave);
-        int funcaoHash(int chave);
+        void insereItem(unsigned chave);
+        void removeItem(unsigned chave);
+        unsigned funcaoHash(unsigned chave);
         void imprimirHash();
         unsigned long contabilizarColisoes();
 

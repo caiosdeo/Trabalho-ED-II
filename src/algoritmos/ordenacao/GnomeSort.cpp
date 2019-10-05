@@ -1,9 +1,9 @@
 #include "GnomeSort.h"
 #include "quickSortRecursivo.h"
 
-void gnomeSort(int *v, int n, unsigned long *numComparacoes, unsigned long *numTrocas){ 
+void gnomeSort(unsigned *v, unsigned n, unsigned long *numComparacoes, unsigned long *numTrocas){ 
 
-    int id = 0; 
+    unsigned id = 0; 
   
     while(id < n){ 
 

@@ -6,11 +6,11 @@ using namespace std;
 
 int main(){
 
-    int selecao = 1;
+    unsigned selecao = 1;
 
     while (selecao != 0){
 
-        int clear = system("clear");
+        unsigned clear = system("clear");
         selecao = menu();
 
         selecionar(selecao);

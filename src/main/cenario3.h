@@ -16,7 +16,7 @@ using namespace std;
  * @param conjunto conjunto de tamanho N
  * @param saida Arquivo de saída com as métricas
  */
-void fluxoCenario3(Review* conjunto, int n, fstream &saida);
+void fluxoCenario3(Review* conjunto, unsigned n, fstream &saida);
 
 
 #endif //CENARIO3_H_INCLUDED

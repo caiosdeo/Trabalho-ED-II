@@ -15,15 +15,15 @@ using namespace std;
  * Procedimento de impressão do menu do programa
  * @author caiosdeo 
  */
-int menu();
+unsigned menu();
 
 /**
  * Método para execução de uma opção do menu
  * @author caiosdeo
- * @param selecao int opção selecionada
+ * @param selecao unsigned opção selecionada
  * @param saida ofstream& endereço do arquivo de saída
 */
-void selecionar(int selecao);
+void selecionar(unsigned selecao);
 
 
 #endif //MENU_H_INCLUDED

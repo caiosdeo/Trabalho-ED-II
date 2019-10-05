@@ -8,10 +8,10 @@
 
 using namespace std;
 
-void fluxoCenario3(Review* conjunto, int n, fstream &saida){
+void fluxoCenario3(Review* conjunto, unsigned n, fstream &saida){
 
     // Vetor de IDs
-    int* ids;
+    unsigned* ids;
 
     // Inicialização das variaveis de tempo
     auto inicio = chrono::high_resolution_clock::now();
@@ -22,7 +22,7 @@ void fluxoCenario3(Review* conjunto, int n, fstream &saida){
     cout << "N: " << n << endl;
 
     //Loop para rodar para os dois tipos de estruturas em única execução
-    for (int versao = 0; versao < 5; versao++){
+    for (unsigned versao = 0; versao < 5; versao++){
 
         ids = gerarVetorIds(conjunto, n);
 

@@ -2,21 +2,21 @@
 class duploHash{
 
     private:
-        int* tabelaHash;
-        int tamanhoAtual;
-        int tamanhoTabela;
-        int primo;
+        unsigned* tabelaHash;
+        unsigned tamanhoAtual;
+        unsigned tamanhoTabela;
+        unsigned primo;
         unsigned long numColisoes;
 
     public:
-        duploHash(int tamanhoTabela);
+        duploHash(unsigned tamanhoTabela);
         ~duploHash();
         bool estaCheia();
-        int hash1(int chave);
-        int hash2(int chave);
-        bool ePrimo(int x);
-        int getPrimo();
-        void inserirHash(int chave);
+        unsigned hash1(unsigned chave);
+        unsigned hash2(unsigned chave);
+        bool ePrimo(unsigned x);
+        unsigned getPrimo();
+        void inserirHash(unsigned chave);
         void mostrarHash();
         unsigned long getNumColisoes();
 

@@ -1,15 +1,15 @@
 #include "noHash.h"
 
-NoHash::NoHash(int chave, int valor)
+NoHash::NoHash(unsigned chave, unsigned valor)
 { 
     this->valor = valor; 
     this->chave = chave; 
 }
 
-int NoHash::getChave(){
+unsigned NoHash::getChave(){
     return this->chave;
 } 
 
-int NoHash::getValor(){
+unsigned NoHash::getValor(){
     return this->valor;
 } 

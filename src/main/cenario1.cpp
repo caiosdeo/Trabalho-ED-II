@@ -7,10 +7,10 @@
 
 using namespace std;
 
-void fluxoCenario1(Review* conjunto, int n, fstream &saida){
+void fluxoCenario1(Review* conjunto, unsigned n, fstream &saida){
 
     // Vetor de IDs
-    int* ids;
+    unsigned* ids;
 
     // Inicialização das variaveis de tempo
     auto inicio = chrono::high_resolution_clock::now();
@@ -21,18 +21,18 @@ void fluxoCenario1(Review* conjunto, int n, fstream &saida){
     cout << "N: " << n << endl;
 
     //Loop para rodar para os dois tipos de estruturas em única execução
-    for (int versao = 0; versao < 2; versao++){
+    for (unsigned versao = 0; versao < 2; versao++){
 
         // Métricas de desempenho
         unsigned long numComparacoes = 0, numCopias = 0;
 
         switch(versao){
 
-            case 0: // Quicksort vetor inteiro
+            case 0: // Quicksort vetor unsignedeiro
 
                 ids = gerarVetorIds(conjunto, n);
 
-                cout << "Executando quicksort para vetor int" << endl;
+                cout << "Executando quicksort para vetor unsigned" << endl;
 
                 // Ponto de inicio de contagem para tempo de execução do algoritmo
                 inicio = chrono::high_resolution_clock::now();
@@ -52,7 +52,7 @@ void fluxoCenario1(Review* conjunto, int n, fstream &saida){
 
                 //Copiando o vetor original
                 Review aux[n]; 
-                for (int i = 0; i < n; i++)
+                for (unsigned i = 0; i < n; i++)
                     aux[i] = conjunto[i];
 
                 cout << "Executando quicksort para vetor Review" << endl;

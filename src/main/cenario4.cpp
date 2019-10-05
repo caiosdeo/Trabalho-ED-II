@@ -8,10 +8,10 @@
 
 using namespace std;
 
-void fluxoCenario4(Review* conjunto, int n, fstream &saida){
+void fluxoCenario4(Review* conjunto, unsigned n, fstream &saida){
 
     // Vetor de IDs
-    int* chaves;
+    unsigned* chaves;
 
     // Declaracao de Hashs
 
@@ -19,7 +19,7 @@ void fluxoCenario4(Review* conjunto, int n, fstream &saida){
     cout << "N: " << n << endl;
 
     //Loop para rodar para os dois tipos de estruturas em única execução
-    for (int versao = 0; versao < 5; versao++){
+    for (unsigned versao = 0; versao < 5; versao++){
 
         chaves = gerarConjuntoChaves(conjunto, n); // Gerando chaves a serem usadas nas hash
 
@@ -35,7 +35,7 @@ void fluxoCenario4(Review* conjunto, int n, fstream &saida){
                 // * Chamada dos algoritmos
                 HashSondLin hashLin = HashSondLin(n);
 
-                for(int j = 0; j < n; j++)
+                for(unsigned j = 0; j < n; j++)
                     hashLin.insereNo(chaves[j], chaves[j]);
 
                 // Métrica de desempenho
@@ -51,7 +51,7 @@ void fluxoCenario4(Review* conjunto, int n, fstream &saida){
                 // * Chamada dos algoritmos
                 HashSondQuad hashQuad = HashSondQuad(n);
 
-                for(int j = 0; j < n; j++)
+                for(unsigned j = 0; j < n; j++)
                     hashQuad.insereNo(chaves[j], chaves[j]);
 
                 // Métrica de desempenho
@@ -67,7 +67,7 @@ void fluxoCenario4(Review* conjunto, int n, fstream &saida){
                 // * Chamada dos algoritmos
                 duploHash dHash = duploHash(n);
 
-                for(int j = 0; j < n; j++)
+                for(unsigned j = 0; j < n; j++)
                     dHash.inserirHash(chaves[j]);
 
                 // Métrica de desempenho
@@ -83,7 +83,7 @@ void fluxoCenario4(Review* conjunto, int n, fstream &saida){
                 // * Chamada dos algoritmos
                 HashEncadSeparado hashEncadSep = HashEncadSeparado(n/10);
 
-                for(int j = 0; j < n; j++)
+                for(unsigned j = 0; j < n; j++)
                     hashEncadSep.insereItem(chaves[j]);
 
                 // Métrica de desempenho
@@ -99,7 +99,7 @@ void fluxoCenario4(Review* conjunto, int n, fstream &saida){
                 // * Chamada dos algoritmos
                 hashEncadCoal hashEncadCoa = hashEncadCoal(n);
 
-                for(int j = 0; j < n; j++)
+                for(unsigned j = 0; j < n; j++)
                     hashEncadCoa.insereItem(chaves[j], &numColisoes);                
 
                 break;

@@ -1,13 +1,13 @@
 #include "../../classes/review.h"
 
 /**
- * Valor correspondente de string em inteiro
+ * Valor correspondente de string em unsigned
  *
  * @author eliascassis
  * @param string str string
- * @return valorString correspondente inteiro da soma dos caracteres da string.
+ * @return valorString correspondente unsigned da soma dos caracteres da string.
  */
-int converterStringInteiro(string str);
+unsigned converterStringUnsigned(string str);
  
 /**
  * Função para gerar um conjunto de chaves para hashing 
@@ -16,6 +16,6 @@ int converterStringInteiro(string str);
  * @author eliascassis
  * @param review Conjunto de reviews
  * @param n Tamanho do conjunto de reviews
- * @return chaves Conjunto de inteiros com as chaves
+ * @return chaves Conjunto de unsigneds com as chaves
  */
-int* gerarConjuntoChaves(Review* review, int n);
+unsigned* gerarConjuntoChaves(Review* review, unsigned n);

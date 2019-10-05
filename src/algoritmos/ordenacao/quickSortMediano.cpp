@@ -4,44 +4,44 @@
 
 using namespace std;
 
-void gerarVetor(int* v, int inicio, int k, int* aux){
+void gerarVetor(unsigned* v, unsigned inicio, unsigned k, unsigned* aux){
     
-    for(int i = 0; i < k; i++, inicio++ )
+    for(unsigned i = 0; i < k; i++, inicio++ )
         aux[i] = v[inicio];
 
 }
 
-int medianadek(int* vetor, int k, unsigned long* trocas, unsigned long *comparacoes){
+unsigned medianadek(unsigned* vetor, unsigned k, unsigned long* trocas, unsigned long *comparacoes){
 
     quickSortRecursivoIds(vetor, 0, k-1, comparacoes, trocas);
 
-    int mediana = k/2;
+    unsigned mediana = k/2;
 
     return mediana;
 
 }
 
-void quickSortMediano(int *vetor, int inicio, int fim, int k, unsigned long *trocas, unsigned long *comparacoes) {
+void quickSortMediano(unsigned *vetor, unsigned inicio, unsigned fim, unsigned k, unsigned long *trocas, unsigned long *comparacoes) {
 
 
     if(inicio < fim){
 
         if (fim - inicio < k) {
 
-            int pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
+            unsigned pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
             
             quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
             quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);
 
         }else {
 
-            int aux[k];
+            unsigned aux[k];
 
             gerarVetor(vetor, inicio, k, aux);
 
-            int mediana = medianadek(aux, k, trocas, comparacoes);
+            unsigned mediana = medianadek(aux, k, trocas, comparacoes);
 
-            int copiaInicio = inicio;
+            unsigned copiaInicio = inicio;
             while(aux[mediana] != vetor[copiaInicio])
                 copiaInicio++;
 
@@ -50,7 +50,7 @@ void quickSortMediano(int *vetor, int inicio, int fim, int k, unsigned long *tro
             (*trocas)++;
             swap(vetor, mediana, fim);
 
-            int pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
+            unsigned pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
             
             quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
             quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);

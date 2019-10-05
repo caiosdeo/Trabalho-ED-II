@@ -9,10 +9,10 @@
 
 using namespace std;
 
-int menu()
+unsigned menu()
 {
 
-    int selecao;
+    unsigned selecao;
 
     cout << "MENU" << endl;
     cout << "----" << endl;
@@ -24,17 +24,17 @@ int menu()
 
     cin >> selecao;
 
-    int clear = system("clear");
+    unsigned clear = system("clear");
 
     return selecao;
 }
 
-void selecionar(int selecao){
+void selecionar(unsigned selecao){
 
     fstream entrada, dataset, saida;
 
     // ! serão 5 execuções para cada conjunto, sementes diferentes
-    for (int i = 0; i < 5; i++){
+    for (unsigned i = 0; i < 5; i++){
 
         if (selecao)
             cout << "Execução: " << i + 1 << endl;
@@ -54,7 +54,7 @@ void selecionar(int selecao){
                         if (saida.is_open()){
                             
                             // Variaveis para leitura do arquivo de entrada
-                            int qtdConjuntos, n;
+                            unsigned qtdConjuntos, n;
 
                             // Lendo quantos conjuntos teremos
                             entrada >> qtdConjuntos;
@@ -104,7 +104,7 @@ void selecionar(int selecao){
                         if (saida.is_open()){
 
                             // Variaveis para leitura do arquivo de entrada
-                            int qtdConjuntos, n;
+                            unsigned qtdConjuntos, n;
 
                             // Lendo quantos conjuntos teremos
                             entrada >> qtdConjuntos;
@@ -153,7 +153,7 @@ void selecionar(int selecao){
                         if (saida.is_open()){
 
                             // Variaveis para leitura do arquivo de entrada
-                            int qtdConjuntos, n;
+                            unsigned qtdConjuntos, n;
 
                             // Lendo quantos conjuntos teremos
                             entrada >> qtdConjuntos;
@@ -202,7 +202,7 @@ void selecionar(int selecao){
                         if (saida.is_open()){
 
                             // Variaveis para leitura do arquivo de entrada
-                            int qtdConjuntos, n;
+                            unsigned qtdConjuntos, n;
 
                             // Lendo quantos conjuntos teremos
                             entrada >> qtdConjuntos;
@@ -242,6 +242,6 @@ void selecionar(int selecao){
                 break;
         }
 
-        int clear = system("clear");
+        unsigned clear = system("clear");
     }
 }

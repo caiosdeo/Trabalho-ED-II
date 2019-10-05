@@ -10,12 +10,12 @@ using namespace std;
 class NoHash{ 
 
     private:
-        int valor; 
-        int chave; 
+        unsigned valor; 
+        unsigned chave; 
 
     public: 
-        NoHash(int chave, int valor); 
-        int getChave();
-        int getValor();
+        NoHash(unsigned chave, unsigned valor); 
+        unsigned getChave();
+        unsigned getValor();
 };
 #endif //NOHASH_H_INCLUDED

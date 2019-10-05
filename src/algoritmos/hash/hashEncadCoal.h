@@ -9,17 +9,17 @@ using namespace std;
 class hashEncadCoal
 {
     private:
-        int numeroChaves;
+        unsigned numeroChaves;
         noHashCoal *inicio;
         noHashCoal *ultimo;
 
     public:
-        hashEncadCoal(int numeroChaves);
+        hashEncadCoal(unsigned numeroChaves);
         ~hashEncadCoal();
-        int funcaoHash(int chave);
-        void insereItem(int chave, unsigned long *countColisoes);
-        void removeItem(int chave);
-        noHashCoal* getPosicao(int chave, noHashCoal *crash);
+        unsigned funcaoHash(unsigned chave);
+        void insereItem(unsigned chave, unsigned long *countColisoes);
+        void removeItem(unsigned chave);
+        noHashCoal* getPosicao(unsigned chave, noHashCoal *crash);
 };
 
 

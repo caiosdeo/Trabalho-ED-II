@@ -6,7 +6,7 @@
 
 using namespace std;
 
-HashSondQuad::HashSondQuad(int capacidade) 
+HashSondQuad::HashSondQuad(unsigned capacidade) 
 { 
     //Initial capacidade of hash array 
     this->capacidade = capacidade; 
@@ -15,7 +15,7 @@ HashSondQuad::HashSondQuad(int capacidade)
     this->numColisoes = 0;
           
     //Initialise all elements of array as NULL 
-    for(int i=0 ; i < capacidade ; i++) 
+    for(unsigned i=0 ; i < capacidade ; i++) 
         tabela[i] = NULL; 
       
     //aux node with valor and chave -1 
@@ -24,13 +24,13 @@ HashSondQuad::HashSondQuad(int capacidade)
 
 // This implements hash function to find index 
 // for a chave 
-int HashSondQuad::hashCode(int chave) 
+unsigned HashSondQuad::hashCode(unsigned chave) 
 { 
     return chave % capacidade; 
 } 
 
 
-void HashSondQuad::insereNo(int chave, int valor) 
+void HashSondQuad::insereNo(unsigned chave, unsigned valor) 
 { 
     if(estaCheia()){
         return;
@@ -38,9 +38,9 @@ void HashSondQuad::insereNo(int chave, int valor)
     NoHash* temp = new NoHash(chave, valor); 
     bool houveColisao = false;
     // Apply hash function to find index for given chave 
-    int hashIndex = hashCode(chave); 
+    unsigned hashIndex = hashCode(chave); 
     //find next free space  
-    for(int i = 1; tabela[hashIndex] != NULL && tabela[hashIndex]->getChave() != chave 
+    for(unsigned i = 1; tabela[hashIndex] != NULL && tabela[hashIndex]->getChave() != chave 
             && tabela[hashIndex]->getChave() != -1; i++) 
     { 
         houveColisao = true;
@@ -58,13 +58,13 @@ void HashSondQuad::insereNo(int chave, int valor)
 } 
 
 //Function to delete a chave valor pair 
-int HashSondQuad::deleteNo(int chave) 
+unsigned HashSondQuad::deleteNo(unsigned chave) 
 { 
     // Apply hash function to find index for given chave 
-    int hashIndex = hashCode(chave); 
+    unsigned hashIndex = hashCode(chave); 
           
     //finding the node with given chave 
-    for(int i  = 1; tabela[hashIndex] != NULL; i++) 
+    for(unsigned i  = 1; tabela[hashIndex] != NULL; i++) 
     { 
         //if node found 
         if(tabela[hashIndex]->getChave() == chave) 
@@ -80,7 +80,7 @@ int HashSondQuad::deleteNo(int chave)
     //If not found return null 
     return -1; 
 }
-int HashSondQuad::getTamanho() 
+unsigned HashSondQuad::getTamanho() 
 { 
     return tamanho; 
 }

@@ -3,10 +3,10 @@
 
 using namespace std;
 
-/// Funcao Insertion Sort para vetor de inteiros de tamanho size
-void insertionSort(int *vet, int size, unsigned long *numComp, unsigned long *numReg)
+/// Funcao Insertion Sort para vetor de unsignedeiros de tamanho size
+void insertionSort(unsigned *vet, unsigned size, unsigned long *numComp, unsigned long *numReg)
 {
-    int i, chave, j;
+    unsigned i, chave, j;
     for(i = 1; i < size; i++){
 
         chave = vet[i]; //copiando elemento i

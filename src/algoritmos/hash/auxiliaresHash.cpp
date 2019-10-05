@@ -1,22 +1,22 @@
 #include "auxiliaresHash.h"
 
-int converterStringInteiro(string str){
+unsigned  converterStringUnsigned(string str){
 
-    int valorString = 0;
+    unsigned valorString = 0;
 
-    for(int i = 0; i < str.size(); i++)
+    for(unsigned  i = 0; i < str.size(); i++)
         valorString += str[i];
 
     return valorString;
 
 }
 
-int* gerarConjuntoChaves(Review* review, int n){
+unsigned * gerarConjuntoChaves(Review* review, unsigned  n){
 
-    int* chaves = new int(n);
+    unsigned * chaves = new unsigned (n);
 
-    for(int i =0; i < n; i++)
-        chaves[i] = review[i].getId() + converterStringInteiro(review[i].getUser());
+    for(unsigned  i = 0; i < n; i++)
+        chaves[i] = review[i].getId() + converterStringUnsigned(review[i].getUser());
 
     return chaves;
 

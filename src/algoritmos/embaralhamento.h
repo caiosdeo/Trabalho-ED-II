@@ -5,11 +5,11 @@
  * Atribuição de dados a cada conjunto, retornando-o em um vetor.
  *
  * @author eliascassis
- * @param v vetor de inteiros
+ * @param v vetor unsigned
  * @param n tamanho do conjunto
  * @return void
  */
-void embaralharIds(int* v, int n);
+void embaralharIds(unsigned* v, unsigned n);
 // Embaralha um vetor de estruturas com base no campo id
 /**
  * Atribuição de dados a cada conjunto, retornando-o em um vetor.
@@ -19,4 +19,4 @@ void embaralharIds(int* v, int n);
  * @param n tamanho do conjunto
  * @return void
  */
-void embaralharEstruturas(Review* r, int n);
+void embaralharEstruturas(Review* r, unsigned n);

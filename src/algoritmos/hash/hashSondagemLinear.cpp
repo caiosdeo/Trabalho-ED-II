@@ -6,7 +6,7 @@
 
 using namespace std;
 
-HashSondLin::HashSondLin(int capacidade)
+HashSondLin::HashSondLin(unsigned capacidade)
 { 
     //Initial capacidade of hash array 
     this->capacidade = capacidade; 
@@ -15,7 +15,7 @@ HashSondLin::HashSondLin(int capacidade)
     this->numColisoes = 0;
           
     //Initialise all elements of array as NULL 
-    for(int i=0 ; i < capacidade ; i++) 
+    for(unsigned i=0 ; i < capacidade ; i++) 
         tabela[i] = NULL; 
       
     //aux node with valor and chave -1 
@@ -24,13 +24,13 @@ HashSondLin::HashSondLin(int capacidade)
 
 // This implements hash function to find index 
 // for a chave 
-int HashSondLin::hashCode(int chave) 
+unsigned HashSondLin::hashCode(unsigned chave) 
 { 
     return chave % capacidade; 
 } 
 
 
-void HashSondLin::insereNo(int chave, int valor) 
+void HashSondLin::insereNo(unsigned chave, unsigned valor) 
 { 
     if(estaCheia()){
         return;
@@ -38,7 +38,7 @@ void HashSondLin::insereNo(int chave, int valor)
     NoHash* temp = new NoHash(chave, valor); 
     bool houveColisao = false;
     // Apply hash function to find index for given chave 
-    int hashIndex = hashCode(chave); 
+    unsigned hashIndex = hashCode(chave); 
     //find next free space  
     while(tabela[hashIndex] != NULL && tabela[hashIndex]->getChave() != chave 
             && tabela[hashIndex]->getChave() != -1) 
@@ -58,10 +58,10 @@ void HashSondLin::insereNo(int chave, int valor)
 } 
 
 //Function to delete a chave valor pair 
-int HashSondLin::deleteNo(int chave) 
+unsigned HashSondLin::deleteNo(unsigned chave) 
 { 
     // Apply hash function to find index for given chave 
-    int hashIndex = hashCode(chave); 
+    unsigned hashIndex = hashCode(chave); 
           
     //finding the node with given chave 
     while(tabela[hashIndex] != NULL) 
@@ -87,11 +87,11 @@ int HashSondLin::deleteNo(int chave)
 } 
 
 //Function to search the valor for a given chave 
-int HashSondLin::get(int chave) 
+unsigned HashSondLin::get(unsigned chave) 
 { 
     //finding the node with given chave    
-    for(int i = 0; i < capacidade; i++){
-        int index = hashCode(chave);
+    for(unsigned i = 0; i < capacidade; i++){
+        unsigned index = hashCode(chave);
         if(tabela[index]->getChave() == chave) 
             return tabela[index]->getValor(); 
     }
@@ -101,7 +101,7 @@ int HashSondLin::get(int chave)
     } 
 
 //Return current tamanho  
-int HashSondLin::getTamanho() 
+unsigned HashSondLin::getTamanho() 
 { 
     return tamanho; 
 } 

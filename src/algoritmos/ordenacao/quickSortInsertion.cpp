@@ -5,7 +5,7 @@
 using namespace std;
 
 
-void insertionQuickSort(int *a, int inicio, int fim, int m, unsigned long *numComparacoes, unsigned long *numTrocas)
+void insertionQuickSort(unsigned *a, unsigned inicio, unsigned fim, unsigned m, unsigned long *numComparacoes, unsigned long *numTrocas)
 {
 
 		if(fim - inicio < m)
@@ -14,7 +14,7 @@ void insertionQuickSort(int *a, int inicio, int fim, int m, unsigned long *numCo
 		}
 		else
 		{
-			int pivo = particaoIds(a, inicio, fim, numComparacoes, numTrocas);
+			unsigned pivo = particaoIds(a, inicio, fim, numComparacoes, numTrocas);
         	quickSortRecursivoIds(a, inicio, pivo-1, numComparacoes, numTrocas);
         	quickSortRecursivoIds(a, pivo+1, fim, numComparacoes, numTrocas);
 		}

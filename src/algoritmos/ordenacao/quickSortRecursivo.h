@@ -9,42 +9,42 @@
  * @param n Tamanho do conjunto
  * @return vetorIds Vetor com os ids do jogo.
  */
-int* fazerVetorIds(Review* review, int n);
+unsigned* fazerVetorIds(Review* review, unsigned n);
 
 // Swap function
 /**
  * @author eliascassis
- * @param a Vetor de inteiros
+ * @param a Vetor de unsigned
  * @param i posição i
  * @param j posição j
  * @return void
  */
-void swap(int *a, int i, int j);
+void swap(unsigned *a, unsigned i, unsigned j);
 
 // Quick Sort
 // Partição para ids
 /**
  * @author eliascassis
- * @param a Vetor de inteiros
+ * @param a Vetor unsigned
  * @param inicio início da partição
  * @param fim fim da partição
  * @param numComparacoes número de comparações
  * @param numTrocas número de trocas
  * @return i+1 id do novo pivô
  */
-int particaoIds(int *a, int inicio, int fim, unsigned long *numComparacoes, unsigned long *numTrocas);
+unsigned particaoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned long *numComparacoes, unsigned long *numTrocas);
 
 // quickSortRecursivo para ids
 /**
  * @author eliascassis
- * @param a Vetor de inteiros
+ * @param a Vetor unsigned
  * @param inicio início da partição
  * @param fim fim da partição
  * @param numComparacoes número de comparações
  * @param numTrocas número de trocas
  * @return void
  */
-void quickSortRecursivoIds(int *a, int inicio, int fim, unsigned long *numComparacoes, unsigned long *numTrocas);
+void quickSortRecursivoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned long *numComparacoes, unsigned long *numTrocas);
 
 // Swap para estruturas
 /**
@@ -54,7 +54,7 @@ void quickSortRecursivoIds(int *a, int inicio, int fim, unsigned long *numCompar
  * @param j posição j
  * @return void
  */
-void swapEstruturas(Review* a, int i, int j);
+void swapEstruturas(Review* a, unsigned i, unsigned j);
 
 // particao para estruturas
 /**
@@ -66,7 +66,7 @@ void swapEstruturas(Review* a, int i, int j);
  * @param numTrocas número de trocas
  * @return i+1 id do novo pivô
  */
-int particaoEstruturas(Review* a, int inicio, int fim, unsigned long *numComparacoes, unsigned long *numTrocas);
+unsigned particaoEstruturas(Review* a, unsigned inicio, unsigned fim, unsigned long *numComparacoes, unsigned long *numTrocas);
 
 // quickSortRecursivo para estruturas
 /**
@@ -79,4 +79,4 @@ int particaoEstruturas(Review* a, int inicio, int fim, unsigned long *numCompara
  * @return void
  */
 
-void quickSortRecursivoEstruturas(Review* a, int inicio, int fim, unsigned long *numComparacoes, unsigned long *numTrocas);
+void quickSortRecursivoEstruturas(Review* a, unsigned inicio, unsigned fim, unsigned long *numComparacoes, unsigned long *numTrocas);

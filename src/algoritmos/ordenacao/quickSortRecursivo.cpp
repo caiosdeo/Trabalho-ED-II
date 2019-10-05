@@ -3,9 +3,9 @@
 #include <iostream>
 
 // Swap function
-void swap(int *a, int i, int j){
+void swap(unsigned *a, unsigned i, unsigned j){
 
-    int aux;
+    unsigned aux;
 
     aux = a[i];
     a[i] = a[j];
@@ -17,12 +17,12 @@ void swap(int *a, int i, int j){
 // Quick Sort
 
 // Partição para ids
-int particaoIds(int *a, int inicio, int fim, unsigned long *numComparacoes, unsigned long *numTrocas){
+unsigned particaoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned long *numComparacoes, unsigned long *numTrocas){
 
-    int pivo = a[fim];
-    int i = inicio - 1;
+    unsigned pivo = a[fim];
+    unsigned i = inicio - 1;
 
-    for(int j = inicio; j < fim; j++){
+    for(unsigned j = inicio; j < fim; j++){
 
         (*numComparacoes)++;
         if(a[j] <= pivo){
@@ -42,11 +42,11 @@ int particaoIds(int *a, int inicio, int fim, unsigned long *numComparacoes, unsi
 }
 
 // quickSortRecursivo para ids
-void quickSortRecursivoIds(int *a, int inicio, int fim, unsigned long *numComparacoes, unsigned long *numTrocas){
+void quickSortRecursivoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned long *numComparacoes, unsigned long *numTrocas){
 
     if(inicio < fim){
 
-        int pivo = particaoIds(a, inicio, fim, numComparacoes, numTrocas);
+        unsigned pivo = particaoIds(a, inicio, fim, numComparacoes, numTrocas);
         quickSortRecursivoIds(a, inicio, pivo-1, numComparacoes, numTrocas);
         quickSortRecursivoIds(a, pivo+1, fim, numComparacoes, numTrocas);
 
@@ -55,7 +55,7 @@ void quickSortRecursivoIds(int *a, int inicio, int fim, unsigned long *numCompar
 }
 
 // Swap para estruturas
-void swapEstruturas(Review* a, int i, int j){
+void swapEstruturas(Review* a, unsigned i, unsigned j){
 
     Review aux;
 
@@ -66,12 +66,12 @@ void swapEstruturas(Review* a, int i, int j){
 }
 
 // particao para estruturas
-int particaoEstruturas(Review* a, int inicio, int fim, unsigned long *numComparacoes, unsigned long *numTrocas){
+unsigned particaoEstruturas(Review* a, unsigned inicio, unsigned fim, unsigned long *numComparacoes, unsigned long *numTrocas){
 
-    int pivo = a[fim].getId();
-    int i = inicio - 1;
+    unsigned pivo = a[fim].getId();
+    unsigned i = inicio - 1;
 
-    for(int j = inicio; j < fim; j++){
+    for(unsigned j = inicio; j < fim; j++){
 
         (*numComparacoes)++;
         if(a[j].getId() <= pivo){
@@ -91,11 +91,11 @@ int particaoEstruturas(Review* a, int inicio, int fim, unsigned long *numCompara
 }
 
 // quickSortRecursivo para estruturas
-void quickSortRecursivoEstruturas(Review* a, int inicio, int fim, unsigned long *numComparacoes, unsigned long *numTrocas){
+void quickSortRecursivoEstruturas(Review* a, unsigned inicio, unsigned fim, unsigned long *numComparacoes, unsigned long *numTrocas){
 
     if(inicio < fim){
 
-        int pivo = particaoEstruturas(a, inicio, fim, numComparacoes, numTrocas);
+        unsigned pivo = particaoEstruturas(a, inicio, fim, numComparacoes, numTrocas);
         quickSortRecursivoEstruturas(a, inicio, pivo-1, numComparacoes, numTrocas);
         quickSortRecursivoEstruturas(a, pivo+1, fim, numComparacoes, numTrocas);
 

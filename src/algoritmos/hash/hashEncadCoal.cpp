@@ -4,7 +4,7 @@
 
 using namespace std;
 
-hashEncadCoal::hashEncadCoal(int numeroChaves)
+hashEncadCoal::hashEncadCoal(unsigned numeroChaves)
 {
     this->numeroChaves = numeroChaves;
 
@@ -27,12 +27,12 @@ hashEncadCoal::~hashEncadCoal()
     }
 }
 
-int hashEncadCoal::funcaoHash(int chave)
+unsigned hashEncadCoal::funcaoHash(unsigned chave)
 {
     return (chave % this->numeroChaves);
 }
 
-noHashCoal* hashEncadCoal::getPosicao(int ind, noHashCoal *crash)
+noHashCoal* hashEncadCoal::getPosicao(unsigned ind, noHashCoal *crash)
 {
     noHashCoal *p = this->inicio, *r = p->getProx();
     for( ; r != NULL; p = r, r = r->getProx())
@@ -48,7 +48,7 @@ noHashCoal* hashEncadCoal::getPosicao(int ind, noHashCoal *crash)
     return p;
 }
 
-void hashEncadCoal::insereItem(int chave, unsigned long *countColisoes)
+void hashEncadCoal::insereItem(unsigned chave, unsigned long *countColisoes)
 {
     noHashCoal *p = new noHashCoal();
     p->setInfo(chave);
@@ -64,7 +64,7 @@ void hashEncadCoal::insereItem(int chave, unsigned long *countColisoes)
     }
     else
     {
-        int indice = funcaoHash(chave);
+        unsigned indice = funcaoHash(chave);
         noHashCoal *crash = NULL;
         noHashCoal *aux = getPosicao(indice, crash); // procura por proxima posicao dada pelo indice, se possivel
         if(crash == NULL) // caso nao houver colisao
@@ -97,7 +97,7 @@ void hashEncadCoal::insereItem(int chave, unsigned long *countColisoes)
                 else
                 {
                     noHashCoal *q = aux->getPrev();
-                    for(int i = this->numeroChaves-1; i > 0; i++, aux = q, q = q->getPrev()) //procura proxima posicao livre a partir do final
+                    for(unsigned i = this->numeroChaves-1; i > 0; i++, aux = q, q = q->getPrev()) //procura proxima posicao livre a partir do final
                     {
                         if(q->getIndice() < i && i < aux->getIndice())
                         {
@@ -115,7 +115,7 @@ void hashEncadCoal::insereItem(int chave, unsigned long *countColisoes)
                     aux = aux->getColisao();
                 crash = aux;
                 q = aux->getPrev();
-                for(int i = this->numeroChaves; i > 0; i++, aux = q, q = q->getPrev()) // busca posicao livre a partir da ultima colisao
+                for(unsigned i = this->numeroChaves; i > 0; i++, aux = q, q = q->getPrev()) // busca posicao livre a partir da ultima colisao
                 {
                     if(q->getIndice() < i && i < aux->getIndice())
                     {
@@ -131,9 +131,9 @@ void hashEncadCoal::insereItem(int chave, unsigned long *countColisoes)
 }
 
 
-void hashEncadCoal::removeItem(int chave)
+void hashEncadCoal::removeItem(unsigned chave)
 {
-    int indice = funcaoHash(chave);
+    unsigned indice = funcaoHash(chave);
     for(noHashCoal *p = this->inicio; p != NULL; p = p->getProx())
     {
         noHashCoal *q = p->getColisao();

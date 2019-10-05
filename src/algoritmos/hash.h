@@ -1,4 +1,4 @@
-//Incluindo todos os sorts aqui
+//Incluindo todos os hashs aqui
 #include "hash/auxiliaresHash.h"
 #include "hash/duploHash.h"
 #include "hash/hashEncadSeparado.h"

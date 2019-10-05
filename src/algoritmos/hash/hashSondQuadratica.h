@@ -8,17 +8,17 @@ using namespace std;
 class HashSondQuad{ 
     private:
         NoHash **tabela; 
-        int capacidade;
-        int tamanho; 
+        unsigned capacidade;
+        unsigned tamanho; 
         NoHash *aux; 
         unsigned long numColisoes;
   
     public: 
-        HashSondQuad(int capacidade);
-        int hashCode(int chave);
-        void insereNo(int chave, int valor);
-        int deleteNo(int chave);
-        int getTamanho();
+        HashSondQuad(unsigned capacidade);
+        unsigned hashCode(unsigned chave);
+        void insereNo(unsigned chave, unsigned valor);
+        unsigned deleteNo(unsigned chave);
+        unsigned getTamanho();
         bool estaVazia();
         bool estaCheia();
         void display();

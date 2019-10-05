@@ -19,24 +19,24 @@ using namespace std;
  *
  * @author caiosdeo
  * @param saida Arquivo de saída com as métricas
- * @param estrutura 0 para vetor de int; 1 para vetor de struct
+ * @param estrutura 0 para vetor de unsigned; 1 para vetor de struct
  * @param n Tamanho do conjunto
  * @param numComparacoes Valor de comparações
  * @param numCopias Valor de cópias
  * @param tempoProcessamento valor de tempo de processamento
  */
-void imprimirSaida(fstream &saida, int estrutura, int n, float numComparacoes, float numCopias, float tempoProcessamento);
+void imprimirSaida(fstream &saida, unsigned estrutura, unsigned n, float numComparacoes, float numCopias, float tempoProcessamento);
 
 /**
  * Impressão das métricas em um arquivo de saída para as hash
  *
  * @author caiosdeo
  * @param saida Arquivo de saída com as métricas
- * @param versao 0 para vetor de int; 1 para vetor de struct
+ * @param versao 0 para vetor de unsigned; 1 para vetor de struct
  * @param n Tamanho do conjunto
  * @param numColisoes numero de colisoa hash
  */
-void imprimirSaidaHash(fstream &saida, int versao, int n, float numColisoes);
+void imprimirSaidaHash(fstream &saida, unsigned versao, unsigned n, float numColisoes);
 
 
 /**
@@ -47,6 +47,6 @@ void imprimirSaidaHash(fstream &saida, int versao, int n, float numColisoes);
  * @param n Tamanho do conjunto
  * @return ids Vetor de ids
  */
-int* gerarVetorIds(Review* conjunto, int n);
+unsigned* gerarVetorIds(Review* conjunto, unsigned n);
 
 #endif //TRATAMENTO_H_INCLUDED

@@ -4,14 +4,14 @@
 using namespace std;
 
 /// Funcao auxiliar merge
-void merge(int *vet, int esq, int med, int dir, unsigned long *numComp, unsigned long *numReg){
+void merge(unsigned *vet, unsigned esq, unsigned med, unsigned dir, unsigned long *numComp, unsigned long *numReg){
 
-    int i, j, k;
-    int tamE = med - esq + 1;
-    int tamD = dir - med;
+    unsigned i, j, k;
+    unsigned tamE = med - esq + 1;
+    unsigned tamD = dir - med;
 
     //Vetores temporários
-    int E[tamE], D[tamD];
+    unsigned E[tamE], D[tamD];
 
     //Copiando dados para os vetores temporários
     for(i = 0; i < tamE; i++)
@@ -24,7 +24,7 @@ void merge(int *vet, int esq, int med, int dir, unsigned long *numComp, unsigned
         D[j] = vet[med+1+j];
         (*numReg)++;
     }
-    // Intercalando os vetores temporários
+    // unsignedercalando os vetores temporários
     for(i = 0, j = 0, k = esq; i < tamE && j < tamD; k++){
 
         (*numComp)++;
@@ -62,13 +62,13 @@ void merge(int *vet, int esq, int med, int dir, unsigned long *numComp, unsigned
 }
 
 
-///Funcao merge sort para vetor de inteiros de tamanho esq a dir
-void mergeSort(int *vet, int esq, int dir, unsigned long *numComp, unsigned long *numReg){
+///Funcao merge sort para vetor de unsignedeiros de tamanho esq a dir
+void mergeSort(unsigned *vet, unsigned esq, unsigned dir, unsigned long *numComp, unsigned long *numReg){
 
     if(esq < dir){
 
         // media entre esq e dir
-        int med = (esq + dir)/2;
+        unsigned med = (esq + dir)/2;
 
         mergeSort(vet, esq, med, numComp, numReg);
         mergeSort(vet, med+1, dir, numComp, numReg);

@@ -12,21 +12,21 @@ class HashSondLin{
     private:
         //hash element array 
         NoHash **tabela; 
-        int capacidade; 
+        unsigned capacidade; 
         //current tamanho 
-        int tamanho; 
+        unsigned tamanho; 
         //auxiliar node 
         NoHash *aux; 
         unsigned long numColisoes;
   
     public: 
-        HashSondLin(int capacidade);
+        HashSondLin(unsigned capacidade);
         //~HashSondLin();
-        int hashCode(int chave);
-        void insereNo(int chave, int valor);
-        int deleteNo(int chave);
-        int get(int chave);
-        int getTamanho();
+        unsigned hashCode(unsigned chave);
+        void insereNo(unsigned chave, unsigned valor);
+        unsigned deleteNo(unsigned chave);
+        unsigned get(unsigned chave);
+        unsigned getTamanho();
         bool estaVazia();
         bool estaCheia();
         void display();
