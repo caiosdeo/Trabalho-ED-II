@@ -17,7 +17,7 @@ void imprimirSaidaHash(fstream &saida, unsigned versao, unsigned n, float numCol
 
 }
 
-void embaralharIds(unsigned *v, unsigned n){
+/*void embaralharIds(unsigned *v, unsigned n){
 
     for(unsigned i = 0; i < n/2; i+=2)
         swap(v, i, n-i);
@@ -35,7 +35,7 @@ void embaralharEstruturas(Review *r, unsigned n){
     for(unsigned i = 0; i < n - 1; i+=2)
         swapEstruturas(r, i, i+1);
 
-}
+}*/
 
 unsigned* gerarVetorIds(Review* conjunto, unsigned n){
 
@@ -43,10 +43,14 @@ unsigned* gerarVetorIds(Review* conjunto, unsigned n){
     unsigned* ids = (unsigned*)calloc(n, sizeof(unsigned));
     
     // Copiando os IDs do conjunto para o vetor de ID
-    for (unsigned j = 0; j < n; j++)
-        ids[j] = conjunto[j].getId();
+    for (unsigned k = 0, i = 0, j = n - 1; i < n/2; j--, i++){
 
-    //embaralharIds(ids, n);
+            ids[k] = conjunto[j].getId();
+            k++;
+            ids[k] = conjunto[i].getId();
+            k++;
+
+    }
     
     // Retornando o conjunto de reviews
     return ids;

@@ -37,11 +37,11 @@ Review* Review::leituraDados(fstream &dataset, int n){
         getline(dataset, rating, ',');
         getline(dataset, id, '\n');
 
-        if(rand() % 11 == 0){ // Selecionando registros a partir do resto de uma divisão por 11
+        if(rand() % 3 == 0){ // Selecionando registros a partir do resto de uma divisão por 11
 
             r[i].user = user; //Atribuindo um nome de usuário 
             r[i].rating = stof(rating); // Atribuindo o rating do review
-            r[i].id = stoi(id); // Atribuindo o id do jogo do review
+            r[i].id = stoul(id); // Atribuindo o id do jogo do review
 
             i++;
 
