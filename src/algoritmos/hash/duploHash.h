@@ -6,7 +6,7 @@ class duploHash{
         int tamanhoAtual;
         int tamanhoTabela;
         int primo;
-        unsigned long long int numColisoes;
+        unsigned long numColisoes;
 
     public:
         duploHash(int tamanhoTabela);
@@ -18,6 +18,6 @@ class duploHash{
         int getPrimo();
         void inserirHash(int chave);
         void mostrarHash();
-        unsigned long long int getNumColisoes();
+        unsigned long getNumColisoes();
 
 };

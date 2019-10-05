@@ -24,7 +24,7 @@ void fluxoCenario4(Review* conjunto, int n, fstream &saida){
         chaves = gerarConjuntoChaves(conjunto, n); // Gerando chaves a serem usadas nas hash
 
         // Métricas de desempenho
-        unsigned long long int numColisoes = 0;
+        unsigned long numColisoes = 0;
 
         switch(versao){
 

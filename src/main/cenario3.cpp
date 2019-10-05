@@ -27,7 +27,7 @@ void fluxoCenario3(Review* conjunto, int n, fstream &saida){
         ids = gerarVetorIds(conjunto, n);
 
         // Métricas de desempenho
-        unsigned long long int numComparacoes = 0, numCopias = 0;
+        unsigned long numComparacoes = 0, numCopias = 0;
 
         switch(versao){
 

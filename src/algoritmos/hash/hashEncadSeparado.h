@@ -16,6 +16,6 @@ class HashEncadSeparado{
         void removeItem(int chave);
         int funcaoHash(int chave);
         void imprimirHash();
-        unsigned long long int contabilizarColisoes();
+        unsigned long contabilizarColisoes();
 
 };

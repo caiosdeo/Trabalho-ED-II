@@ -108,6 +108,6 @@ int duploHash::getPrimo(){
 
 }
 
-unsigned long long int duploHash::getNumColisoes(){
+unsigned long duploHash::getNumColisoes(){
     return this->numColisoes;
 }

@@ -24,7 +24,7 @@ void fluxoCenario1(Review* conjunto, int n, fstream &saida){
     for (int versao = 0; versao < 2; versao++){
 
         // Métricas de desempenho
-        unsigned long long int numComparacoes = 0, numCopias = 0;
+        unsigned long numComparacoes = 0, numCopias = 0;
 
         switch(versao){
 

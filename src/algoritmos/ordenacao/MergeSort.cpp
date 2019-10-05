@@ -4,7 +4,7 @@
 using namespace std;
 
 /// Funcao auxiliar merge
-void merge(int *vet, int esq, int med, int dir, unsigned long long int *numComp, unsigned long long int *numReg){
+void merge(int *vet, int esq, int med, int dir, unsigned long *numComp, unsigned long *numReg){
 
     int i, j, k;
     int tamE = med - esq + 1;
@@ -63,7 +63,7 @@ void merge(int *vet, int esq, int med, int dir, unsigned long long int *numComp,
 
 
 ///Funcao merge sort para vetor de inteiros de tamanho esq a dir
-void mergeSort(int *vet, int esq, int dir, unsigned long long int *numComp, unsigned long long int *numReg){
+void mergeSort(int *vet, int esq, int dir, unsigned long *numComp, unsigned long *numReg){
 
     if(esq < dir){
 
