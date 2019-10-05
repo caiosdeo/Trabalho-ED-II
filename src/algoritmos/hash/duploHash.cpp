@@ -9,7 +9,6 @@ duploHash::duploHash(unsigned tamanhoTabela){
     this->tamanhoTabela = tamanhoTabela;
     this->tamanhoAtual = 0;
     this->numColisoes = 0;
-    this->primo = this->getPrimo();
 
     for(unsigned i = 0; i < tamanhoTabela; i++)
         tabelaHash[i] = -1;
@@ -31,19 +30,9 @@ unsigned duploHash::hash1(unsigned chave){
 
 }
 
-unsigned duploHash::hash2(unsigned chave){
+unsigned duploHash::hash2(unsigned chave, unsigned resto){
 
-    return this->primo - chave % this->primo;
-
-}
-
-bool duploHash::ePrimo(unsigned num){
-
-    for(unsigned i = 2; i < num/2; i++)
-        if(num % i == 0)
-            return false;
-
-    return true;
+    return resto - chave % resto;
 
 }
 
@@ -58,12 +47,12 @@ void duploHash::inserirHash(unsigned chave){
     if(this->tabelaHash[indice] != -1){ 
 
         this->numColisoes++;
-        unsigned indice2 = hash2(chave); 
-        unsigned i = 1; 
+        unsigned indice2 = hash2(chave, indice); 
+        unsigned i = 0; 
 
-        while(1){ 
+        while(true){ 
 
-            unsigned novoIndice = (indice + i * indice2) % this->tamanhoTabela; 
+            unsigned novoIndice = (indice2 + i) % this->tamanhoTabela;
 
             if (tabelaHash[novoIndice] == -1){ 
                 tabelaHash[novoIndice] = chave; 
@@ -94,17 +83,6 @@ void duploHash::mostrarHash(){
                 cout << i << endl; 
 
         } 
-
-}
-
-unsigned duploHash::getPrimo(){
-
-    unsigned t = this->tamanhoTabela-1;
-
-    while(!this->ePrimo(t))
-        t--;
-
-    return t;
 
 }
 

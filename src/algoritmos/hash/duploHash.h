@@ -13,9 +13,7 @@ class duploHash{
         ~duploHash();
         bool estaCheia();
         unsigned hash1(unsigned chave);
-        unsigned hash2(unsigned chave);
-        bool ePrimo(unsigned x);
-        unsigned getPrimo();
+        unsigned hash2(unsigned chave, unsigned resto);
         void inserirHash(unsigned chave);
         void mostrarHash();
         unsigned long getNumColisoes();

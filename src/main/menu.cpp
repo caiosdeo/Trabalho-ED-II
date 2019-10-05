@@ -235,10 +235,6 @@ void selecionar(unsigned selecao){
                                 // Colocando dados no conjunto
                                 conjunto = conjunto->leituraDados(dataset, n);
                                 unsigned *v = gerarConjuntoChaves(conjunto, n);
-
-                                for(int i = 0; i < n; i++)
-                                    cout << v[i] << " ";
-                                cout << endl;
                                 
                                 // Desalocando o conjunto
                                 free(conjunto);
