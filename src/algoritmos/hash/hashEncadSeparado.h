@@ -11,7 +11,6 @@ class HashEncadSeparado{
 
     public:
         HashEncadSeparado(unsigned baldes);
-        ~HashEncadSeparado();
         void insereItem(unsigned chave);
         void removeItem(unsigned chave);
         unsigned funcaoHash(unsigned chave);

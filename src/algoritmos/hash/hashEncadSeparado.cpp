@@ -9,11 +9,6 @@ HashEncadSeparado::HashEncadSeparado(unsigned baldes){
 
 }
 
-HashEncadSeparado::~HashEncadSeparado(){
-
-    //delete this->tabela;
-}
-
 unsigned HashEncadSeparado::funcaoHash(unsigned chave) { 
     return (chave % this->balde); 
 }
