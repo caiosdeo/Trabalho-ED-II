@@ -227,7 +227,7 @@ void selecionar(unsigned selecao){
 
                             while(entrada >> n){
 
-                                if(n != 500000)
+                                if(n != 1000)
                                     continue;
 
                                 Review* conjunto = (Review*)calloc(n, sizeof(Review));

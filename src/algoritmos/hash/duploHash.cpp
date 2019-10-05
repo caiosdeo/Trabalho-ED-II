@@ -16,6 +16,7 @@ duploHash::duploHash(unsigned tamanhoTabela){
 }
 
 duploHash::~duploHash(){
+    free(this->tabelaHash);
 }
 
 bool duploHash::estaCheia(){
