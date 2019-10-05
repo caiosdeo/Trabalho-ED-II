@@ -6,10 +6,17 @@
 
 using namespace std;
 
-void fluxoCenario2(Review* conjunto, unsigned n, fstream &saida){
+void copiaVetor(unsigned* v, unsigned* ids, unsigned n){
+
+    for(int i = 0; i < n; i++)
+        v[i] = ids[i];
+
+}
+
+void fluxoCenario2(unsigned* ids, unsigned n, fstream &saida){
 
     // Vetor de IDs
-    unsigned* ids;
+    unsigned* v = new unsigned[n];
 
     // Inicialização das variaveis de tempo
     auto inicio = chrono::high_resolution_clock::now();
@@ -22,8 +29,6 @@ void fluxoCenario2(Review* conjunto, unsigned n, fstream &saida){
     //Loop para rodar para os dois tipos de estruturas em única execução
     for (unsigned versao = 0; versao < 5; versao++){
 
-        ids = gerarVetorIds(conjunto, n);
-
         // Métricas de desempenho
         unsigned long numComparacoes = 0, numCopias = 0;
 
@@ -31,13 +36,15 @@ void fluxoCenario2(Review* conjunto, unsigned n, fstream &saida){
 
             case 0: // QuickSort
 
+                copiaVetor(v, ids, n);
+
                 cout << "Executando quicksort" << endl;
 
                 // Ponto de inicio de contagem para tempo de execução do algoritmo
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                quickSortRecursivoIds(ids, 0, n-1, &numComparacoes, &numCopias);
+                quickSortRecursivoIds(v, 0, n-1, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
@@ -46,13 +53,15 @@ void fluxoCenario2(Review* conjunto, unsigned n, fstream &saida){
 
             case 1: // QuickSort Mediana k = 3
 
+                copiaVetor(v, ids, n);
+
                 cout << "Executando quicksort mediana k = 3" << endl;
 
                 // Ponto de inicio de contagem para tempo de execução do algoritmo
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                quickSortMediano(ids, 0, n-1, 3, &numComparacoes, &numCopias);
+                quickSortMediano(v, 0, n-1, 3, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
@@ -61,13 +70,15 @@ void fluxoCenario2(Review* conjunto, unsigned n, fstream &saida){
 
             case 2: // QuickSort Mediana k = 5
 
+                copiaVetor(v, ids, n);
+
                 cout << "Executando quicksort mediana k = 5" << endl;
 
                 // Ponto de inicio de contagem para tempo de execução do algoritmo
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                quickSortMediano(ids, 0, n-1, 5, &numComparacoes, &numCopias);
+                quickSortMediano(v, 0, n-1, 5, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
@@ -76,13 +87,15 @@ void fluxoCenario2(Review* conjunto, unsigned n, fstream &saida){
 
             case 3: // QuickSort Inserção m = 10
 
+                copiaVetor(v, ids, n);
+
                 cout << "Executando quicksort insercao m = 10" << endl;
 
                 // Ponto de inicio de contagem para tempo de execução do algoritmo
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                insertionQuickSort(ids, 0, n-1, 10, &numComparacoes, &numCopias);
+                insertionQuickSort(v, 0, n-1, 10, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
@@ -91,13 +104,15 @@ void fluxoCenario2(Review* conjunto, unsigned n, fstream &saida){
 
             case 4: // QuickSort Inserção m = 100
 
+                copiaVetor(v, ids, n);
+
                 cout << "Executando quicksort insercao m = 100" << endl;
 
                 // Ponto de inicio de contagem para tempo de execução do algoritmo
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                insertionQuickSort(ids, 0, n-1, 100, &numComparacoes, &numCopias);
+                insertionQuickSort(v, 0, n-1, 100, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
@@ -116,6 +131,9 @@ void fluxoCenario2(Review* conjunto, unsigned n, fstream &saida){
         imprimirSaida(saida, versao, n, numComparacoes, numCopias, tempoProcessamento);
     
     }
+
+    delete[] v;
+    delete[] ids;
     
 }
 
