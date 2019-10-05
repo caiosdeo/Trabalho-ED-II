@@ -61,6 +61,9 @@ void selecionar(unsigned selecao){
 
                             while(entrada >> n){
 
+                                if(n != 50000)
+                                    continue;
+
                                 Review* conjunto = new Review[n];
  
                                 // Colocando dados no conjunto
@@ -110,6 +113,9 @@ void selecionar(unsigned selecao){
                             entrada >> qtdConjuntos;
 
                             while(entrada >> n){
+
+                                if(n != 500000)
+                                    continue;
 
                                 Review* conjunto = new Review[n];
 
