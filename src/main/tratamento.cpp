@@ -53,3 +53,9 @@ unsigned* gerarVetorIds(Review* conjunto, unsigned n){
 
 }
 
+void copiaVetor(unsigned* v, unsigned* ids, unsigned n){
+
+    for(int i = 0; i < n; i++)
+        v[i] = ids[i];
+
+}

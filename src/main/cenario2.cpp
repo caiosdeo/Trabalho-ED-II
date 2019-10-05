@@ -6,13 +6,6 @@
 
 using namespace std;
 
-void copiaVetor(unsigned* v, unsigned* ids, unsigned n){
-
-    for(int i = 0; i < n; i++)
-        v[i] = ids[i];
-
-}
-
 void fluxoCenario2(unsigned* ids, unsigned n, fstream &saida){
 
     // Vetor de IDs

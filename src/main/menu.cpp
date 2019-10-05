@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "../classes/review.h"
+#include "../algoritmos/hash/auxiliaresHash.h"
 #include "tratamento.h"
 #include "cenario1.h"
 #include "cenario2.h"
@@ -167,16 +168,20 @@ void selecionar(unsigned selecao){
 
                             while(entrada >> n){
 
+                                if(n != 500000)
+                                    continue;
+
                                 Review* conjunto = new Review[n];
 
                                 // Colocando dados no conjunto
                                 conjunto = conjunto->leituraDados(dataset, n);
+                                unsigned *v = gerarVetorIds(conjunto, n);
                                 
-                                // Executando para as versoes, o conjunto
-                                fluxoCenario3(conjunto, n, saida); 
-
                                 // Desalocando o conjunto
                                 delete [] conjunto;
+
+                                // Executando para as versoes, o conjunto
+                                fluxoCenario3(v, n, saida);
 
                             }
                             
@@ -216,16 +221,24 @@ void selecionar(unsigned selecao){
 
                             while(entrada >> n){
 
+                                if(n != 500000)
+                                    continue;
+
                                 Review* conjunto = new Review[n];
 
                                 // Colocando dados no conjunto
                                 conjunto = conjunto->leituraDados(dataset, n);
-                                
-                                // Executando para as versoes, o conjunto
-                                fluxoCenario4(conjunto, n, saida); 
+                                unsigned *v = gerarConjuntoChaves(conjunto, n);
 
+                                for(int i = 0; i < n; i++)
+                                    cout << v[i] << " ";
+                                cout << endl;
+                                
                                 // Desalocando o conjunto
                                 delete [] conjunto;
+
+                                // Executando para as versoes, o conjunto
+                                fluxoCenario4(v, n, saida);
 
                             }
 

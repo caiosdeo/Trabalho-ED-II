@@ -70,4 +70,15 @@ void embaralharIds(unsigned *v, unsigned n);
  */
 void embaralharEstruturas(Review *r, unsigned n);
 
+/**
+ * Embaralhamento de vetor de ids.
+ *
+ * @author eliascassis
+ * @param conjunto vetor unsigned
+ * * @param conjunto vetor unsigned
+ * @param n Tamanho do conjunto
+ * @return void
+ */
+void copiaVetor(unsigned* v, unsigned* ids, unsigned n);
+
 #endif //TRATAMENTO_H_INCLUDED

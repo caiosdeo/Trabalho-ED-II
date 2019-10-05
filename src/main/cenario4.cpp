@@ -8,10 +8,10 @@
 
 using namespace std;
 
-void fluxoCenario4(Review* conjunto, unsigned n, fstream &saida){
+void fluxoCenario4(unsigned* ids, unsigned n, fstream &saida){
 
-    // Vetor de IDs
-    unsigned* chaves;
+    // Vetor de chaves
+    unsigned* chaves = new unsigned[n];
 
     // Declaracao de Hashs
 
@@ -21,14 +21,14 @@ void fluxoCenario4(Review* conjunto, unsigned n, fstream &saida){
     //Loop para rodar para os dois tipos de estruturas em única execução
     for (unsigned versao = 0; versao < 5; versao++){
 
-        chaves = gerarConjuntoChaves(conjunto, n); // Gerando chaves a serem usadas nas hash
-
         // Métricas de desempenho
         unsigned long numColisoes = 0;
 
         switch(versao){
 
             case 0:{ // Hash sondagem linear
+
+                copiaVetor(chaves, ids, n);
 
                 cout << "Executando hash sondagem linear" << endl;
                 
@@ -46,6 +46,8 @@ void fluxoCenario4(Review* conjunto, unsigned n, fstream &saida){
             
             case 1:{ // Hash sondagem quadratica
 
+                copiaVetor(chaves, ids, n);
+
                 cout << "Executando hash sondagem quadratica" << endl;
                 
                 // * Chamada dos algoritmos
@@ -61,6 +63,8 @@ void fluxoCenario4(Review* conjunto, unsigned n, fstream &saida){
             }
 
             case 2:{ // Duplo Hash
+
+                copiaVetor(chaves, ids, n);
 
                 cout << "Executando duplo hash" << endl;
                 
@@ -78,6 +82,8 @@ void fluxoCenario4(Review* conjunto, unsigned n, fstream &saida){
 
             case 3:{ // Hash Encadeamento Separado
 
+                copiaVetor(chaves, ids, n);
+
                 cout << "Executando hash encadeamento separado" << endl;
 
                 // * Chamada dos algoritmos
@@ -93,6 +99,8 @@ void fluxoCenario4(Review* conjunto, unsigned n, fstream &saida){
             }
             
             case 4:{ // Hash Encadeamento Coalescido
+
+                copiaVetor(chaves, ids, n);
 
                 cout << "Executando hash encadeamento coalescido" << endl;
 
@@ -113,5 +121,8 @@ void fluxoCenario4(Review* conjunto, unsigned n, fstream &saida){
         imprimirSaidaHash(saida, versao, n, numColisoes);
     
     }
+
+    delete [] chaves;
+    delete [] ids;
     
 }
