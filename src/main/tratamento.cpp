@@ -40,7 +40,7 @@ void embaralharEstruturas(Review *r, unsigned n){
 unsigned* gerarVetorIds(Review* conjunto, unsigned n){
 
     //Vetor unsigned           
-    unsigned* ids = new unsigned[n];
+    unsigned* ids = (unsigned*)calloc(n, sizeof(unsigned));
     
     // Copiando os IDs do conjunto para o vetor de ID
     for (unsigned j = 0; j < n; j++)

@@ -46,7 +46,7 @@ void fluxoCenario1(Review* conjunto, unsigned n, fstream &saida){
                 //Tempo de processamento do algoritmo
                 tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
-                delete [] ids;
+                free(ids);
 
                 break;
 

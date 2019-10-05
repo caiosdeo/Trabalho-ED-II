@@ -65,7 +65,7 @@ void selecionar(unsigned selecao){
                                 if(n != 100000)
                                     continue;
 
-                                Review* conjunto = new Review[n];
+                                Review* conjunto = (Review*)calloc(n, sizeof(Review));
  
                                 // Colocando dados no conjunto
                                 conjunto = conjunto->leituraDados(dataset, n);
@@ -74,7 +74,7 @@ void selecionar(unsigned selecao){
                                 fluxoCenario1(conjunto, n, saida); 
 
                                 // Desalocando o conjunto
-                                delete [] conjunto;
+                                free(conjunto);
 
                             }
                         
@@ -118,20 +118,20 @@ void selecionar(unsigned selecao){
                                 if(n != 500000)
                                     continue;
 
-                                Review* conjunto = new Review[n];
+                                Review* conjunto = (Review*)calloc(n, sizeof(Review));
 
                                 // Colocando dados no conjunto
                                 conjunto = conjunto->leituraDados(dataset, n);
                                 unsigned *v = gerarVetorIds(conjunto, n);
                                 
                                 // Desalocando o conjunto
-                                delete [] conjunto;
+                                free(conjunto);
 
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario2(v, n, saida); 
 
                                 // Desalocando os ids
-                                delete [] v;
+                                free(v);
 
                             }
 
@@ -174,20 +174,20 @@ void selecionar(unsigned selecao){
                                 if(n != 500000)
                                     continue;
 
-                                Review* conjunto = new Review[n];
+                                Review* conjunto = (Review*)calloc(n, sizeof(Review));
 
                                 // Colocando dados no conjunto
                                 conjunto = conjunto->leituraDados(dataset, n);
                                 unsigned *v = gerarVetorIds(conjunto, n);
                                 
                                 // Desalocando o conjunto
-                                delete [] conjunto;
+                                free(conjunto);
 
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario3(v, n, saida);
 
                                 // Desalocando os ids
-                                delete [] v;
+                                free(v);
 
                             }
                             
@@ -230,7 +230,7 @@ void selecionar(unsigned selecao){
                                 if(n != 500000)
                                     continue;
 
-                                Review* conjunto = new Review[n];
+                                Review* conjunto = (Review*)calloc(n, sizeof(Review));
 
                                 // Colocando dados no conjunto
                                 conjunto = conjunto->leituraDados(dataset, n);
@@ -241,13 +241,13 @@ void selecionar(unsigned selecao){
                                 cout << endl;
                                 
                                 // Desalocando o conjunto
-                                delete [] conjunto;
+                                free(conjunto);
 
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario4(v, n, saida);
 
                                 // Desalocando as chaves geradas
-                                delete [] v;
+                                free(v);
 
                             }
 

@@ -9,7 +9,7 @@ using namespace std;
 void fluxoCenario2(unsigned* ids, unsigned n, fstream &saida){
 
     // Vetor de IDs
-    unsigned* v = new unsigned[n];
+    unsigned* v = (unsigned*)calloc(n, sizeof(unsigned));
 
     // Inicialização das variaveis de tempo
     auto inicio = chrono::high_resolution_clock::now();

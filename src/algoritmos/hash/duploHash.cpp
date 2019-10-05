@@ -5,7 +5,7 @@ using namespace std;
 
 duploHash::duploHash(unsigned tamanhoTabela){
 
-    this->tabelaHash = new unsigned(tamanhoTabela);
+    this->tabelaHash = (unsigned*)calloc(tamanhoTabela, sizeof(unsigned));;
     this->tamanhoTabela = tamanhoTabela;
     this->tamanhoAtual = 0;
     this->numColisoes = 0;
