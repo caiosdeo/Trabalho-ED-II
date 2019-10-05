@@ -49,4 +49,25 @@ void imprimirSaidaHash(fstream &saida, unsigned versao, unsigned n, float numCol
  */
 unsigned* gerarVetorIds(Review* conjunto, unsigned n);
 
+
+/**
+ * Embaralhamento de vetor de ids.
+ *
+ * @author eliascassis
+ * @param conjunto vetor de ids
+ * @param n Tamanho do conjunto
+ * @return v Vetor de ids embaralhado
+ */
+void embaralharIds(unsigned *v, unsigned n);
+
+/**
+ * Embaralhamento de vetor de ids.
+ *
+ * @author eliascassis
+ * @param conjunto vetor de Reviews
+ * @param n Tamanho do conjunto
+ * @return v Vetor de reviews embaralhado
+ */
+void embaralharEstruturas(Review *r, unsigned n);
+
 #endif //TRATAMENTO_H_INCLUDED
