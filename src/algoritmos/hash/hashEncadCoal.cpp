@@ -9,10 +9,7 @@ hashEncadCoal::hashEncadCoal(unsigned numeroChaves)
     this->numeroChaves = numeroChaves;
 
     this->inicio = NULL;
-    this->inicio->setColisao(NULL);
-
     this->ultimo = NULL;
-    this->ultimo->setColisao(NULL);
 
 }
 
