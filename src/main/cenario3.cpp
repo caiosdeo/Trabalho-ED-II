@@ -127,6 +127,5 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
     }
 
     delete [] v;
-    delete [] ids;
     
 }

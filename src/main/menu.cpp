@@ -62,7 +62,7 @@ void selecionar(unsigned selecao){
 
                             while(entrada >> n){
 
-                                if(n != 50000)
+                                if(n != 100000)
                                     continue;
 
                                 Review* conjunto = new Review[n];
@@ -130,6 +130,9 @@ void selecionar(unsigned selecao){
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario2(v, n, saida); 
 
+                                // Desalocando os ids
+                                delete [] v;
+
                             }
 
                         }
@@ -182,6 +185,9 @@ void selecionar(unsigned selecao){
 
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario3(v, n, saida);
+
+                                // Desalocando os ids
+                                delete [] v;
 
                             }
                             
@@ -239,6 +245,9 @@ void selecionar(unsigned selecao){
 
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario4(v, n, saida);
+
+                                // Desalocando as chaves geradas
+                                delete [] v;
 
                             }
 

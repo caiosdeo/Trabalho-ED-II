@@ -108,7 +108,5 @@ void fluxoCenario4(unsigned* chaves, unsigned n, fstream &saida){
         imprimirSaidaHash(saida, versao, n, numColisoes);
     
     }
-
-    delete [] chaves;
     
 }
