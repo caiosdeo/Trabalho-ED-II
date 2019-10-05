@@ -8,10 +8,7 @@
 
 using namespace std;
 
-void fluxoCenario4(unsigned* ids, unsigned n, fstream &saida){
-
-    // Vetor de chaves
-    unsigned* chaves = new unsigned[n];
+void fluxoCenario4(unsigned* chaves, unsigned n, fstream &saida){
 
     // Declaracao de Hashs
 
@@ -27,8 +24,6 @@ void fluxoCenario4(unsigned* ids, unsigned n, fstream &saida){
         switch(versao){
 
             case 0:{ // Hash sondagem linear
-
-                copiaVetor(chaves, ids, n);
 
                 cout << "Executando hash sondagem linear" << endl;
                 
@@ -46,8 +41,6 @@ void fluxoCenario4(unsigned* ids, unsigned n, fstream &saida){
             
             case 1:{ // Hash sondagem quadratica
 
-                copiaVetor(chaves, ids, n);
-
                 cout << "Executando hash sondagem quadratica" << endl;
                 
                 // * Chamada dos algoritmos
@@ -63,8 +56,6 @@ void fluxoCenario4(unsigned* ids, unsigned n, fstream &saida){
             }
 
             case 2:{ // Duplo Hash
-
-                copiaVetor(chaves, ids, n);
 
                 cout << "Executando duplo hash" << endl;
                 
@@ -82,8 +73,6 @@ void fluxoCenario4(unsigned* ids, unsigned n, fstream &saida){
 
             case 3:{ // Hash Encadeamento Separado
 
-                copiaVetor(chaves, ids, n);
-
                 cout << "Executando hash encadeamento separado" << endl;
 
                 // * Chamada dos algoritmos
@@ -99,8 +88,6 @@ void fluxoCenario4(unsigned* ids, unsigned n, fstream &saida){
             }
             
             case 4:{ // Hash Encadeamento Coalescido
-
-                copiaVetor(chaves, ids, n);
 
                 cout << "Executando hash encadeamento coalescido" << endl;
 
@@ -123,6 +110,5 @@ void fluxoCenario4(unsigned* ids, unsigned n, fstream &saida){
     }
 
     delete [] chaves;
-    delete [] ids;
     
 }
