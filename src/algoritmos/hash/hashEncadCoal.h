@@ -9,9 +9,9 @@ using namespace std;
 class hashEncadCoal
 {
     private:
-        unsigned numeroChaves;
-        noHashCoal *inicio;
-        noHashCoal *ultimo;
+        unsigned numeroChaves; //unsignedeiro para numero total de Chaves
+        noHashCoal *inicio; //ponteiro para primeiro noHashCoal
+        noHashCoal *ultimo; //ponteiro para ultimo noHashCoal
 
     public:
         hashEncadCoal(unsigned numeroChaves);

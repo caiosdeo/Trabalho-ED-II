@@ -6,13 +6,14 @@ class noHashCoal
     public:
         noHashCoal(){};
         ~noHashCoal(){};
-
+        //funcoes para retorno de informacoes da classe
         unsigned getInfo(){return this->chave;};
         unsigned getIndice(){return this->indice;};
         noHashCoal* getProx(){return this->next;};
         noHashCoal* getPrev(){return this->prev;};
         noHashCoal* getColisao() {return this->colisao;};
 
+        //funcoes para alterarcao de informacoes da classe
         void setProx(noHashCoal *p){this->next = p;};
         void setPrev(noHashCoal *p){this->prev = p;};
         void setInfo(unsigned chave){this->chave = chave;};
