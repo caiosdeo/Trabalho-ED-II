@@ -118,7 +118,7 @@ void hashEncadCoal::insereItem(unsigned chave, unsigned long *countColisoes)
                     aux = aux->getColisao();
                 crash = aux;
                 ant = aux->getPrev();
-                for(unsigned i = this->numeroChaves; i > 0; i++, aux = prox, prox = prox->getPrev()) // busca posicao livre a partir da ultima colisao
+                for(unsigned i = this->numeroChaves; i > 0; i--, aux = prox, prox = prox->getPrev()) // busca posicao livre a partir da ultima colisao
                 {
                     if(ant->getIndice() < i && i < aux->getIndice())//se indice i esta entre o auxiliar e seu anterior
                     {
@@ -129,7 +129,7 @@ void hashEncadCoal::insereItem(unsigned chave, unsigned long *countColisoes)
                     }
                 }
             }
-            crash->setColisao(novoNo); //insere novo No como colidido
+            crash->setColisao(novoNo); //insere novo No como colidiu
         }
     }
 }
