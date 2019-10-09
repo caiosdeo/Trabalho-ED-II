@@ -20,8 +20,8 @@ class noHashCoal
         void setColisao(noHashCoal *p){this->colisao = p;};
 
     private:
-        unsigned chave; //unsignedeiro contendo a informacao
-        unsigned indice; //unsignedeiro que armazena o indice
+        unsigned chave; //unsigned contendo a informacao
+        unsigned indice; //unsigned que armazena o indice
         noHashCoal *next; //ponteiro para proxima posicao
         noHashCoal *prev; //ponteiro para posicao anterior
         noHashCoal *colisao; //posicao do elemento que colidiu

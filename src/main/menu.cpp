@@ -66,6 +66,7 @@ void selecionar(unsigned selecao){
                                     continue;
 
                                 Review* conjunto = (Review*)calloc(n, sizeof(Review));
+                                embaralharEstruturas(conjunto, n);
  
                                 // Colocando dados no conjunto
                                 conjunto = conjunto->leituraDados(dataset, n);

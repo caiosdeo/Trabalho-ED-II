@@ -15,7 +15,10 @@ void insertionQuickSort(unsigned *a, unsigned inicio, unsigned fim, unsigned m, 
 		else
 		{
 			unsigned pivo = particaoIds(a, inicio, fim, numComparacoes, numTrocas);
-        	quickSortRecursivoIds(a, inicio, pivo-1, numComparacoes, numTrocas);
-        	quickSortRecursivoIds(a, pivo+1, fim, numComparacoes, numTrocas);
+			if(pivo != 0)
+        		quickSortRecursivoIds(a, inicio, pivo-1, numComparacoes, numTrocas);
+			if(pivo != fim)
+        		quickSortRecursivoIds(a, pivo+1, fim, numComparacoes, numTrocas);
+				
 		}
 }

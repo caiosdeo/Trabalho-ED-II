@@ -71,11 +71,11 @@ void embaralharIds(unsigned *v, unsigned n);
 void embaralharEstruturas(Review *r, unsigned n);
 
 /**
- * Embaralhamento de vetor de ids.
+ * Embaralhamento de vetor de estruturas.
  *
  * @author eliascassis
- * @param conjunto vetor unsigned
- * * @param conjunto vetor unsigned
+ * @param conjunto vetor estruturas
+ * * @param conjunto vetor estruturas
  * @param n Tamanho do conjunto
  * @return void
  */
