@@ -17,7 +17,7 @@ class hashEncadCoal
         hashEncadCoal(unsigned numeroChaves);
         ~hashEncadCoal();
         unsigned funcaoHash(unsigned chave);
-        void insereItem(unsigned chave, unsigned long *countColisoes);
+        void insereItem(unsigned chave, unsigned *countColisoes);
         void removeItem(unsigned chave);
         noHashCoal* getPosicao(unsigned chave, noHashCoal *crash);
 };

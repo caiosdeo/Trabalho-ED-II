@@ -19,7 +19,7 @@ void fluxoCenario4(unsigned* chaves, unsigned n, fstream &saida){
     for (unsigned versao = 0; versao < 5; versao++){
 
         // Métricas de desempenho
-        unsigned long numColisoes = 0;
+        unsigned numColisoes = 0;
 
         switch(versao){
 

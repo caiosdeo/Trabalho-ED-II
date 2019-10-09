@@ -45,7 +45,7 @@ noHashCoal* hashEncadCoal::getPosicao(unsigned ind, noHashCoal *crash)
     return p;
 }
 
-void hashEncadCoal::insereItem(unsigned chave, unsigned long *countColisoes)
+void hashEncadCoal::insereItem(unsigned chave, unsigned *countColisoes)
 {
     noHashCoal *p = new noHashCoal();
     p->setInfo(chave);

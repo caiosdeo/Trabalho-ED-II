@@ -6,7 +6,7 @@ class duploHash{
         unsigned tamanhoAtual;
         unsigned tamanhoTabela;
         unsigned primo;
-        unsigned long numColisoes;
+        unsigned numColisoes;
 
     public:
         duploHash(unsigned tamanhoTabela);
@@ -16,6 +16,6 @@ class duploHash{
         unsigned hash2(unsigned chave, unsigned resto);
         void inserirHash(unsigned chave);
         void mostrarHash();
-        unsigned long getNumColisoes();
+        unsigned getNumColisoes();
 
 };

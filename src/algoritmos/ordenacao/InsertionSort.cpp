@@ -4,7 +4,7 @@
 using namespace std;
 
 /// Funcao Insertion Sort para vetor de unsignedeiros de tamanho size
-void insertionSort(unsigned *vet, unsigned size, unsigned long *numComp, unsigned long *numReg)
+void insertionSort(unsigned *vet, unsigned size, unsigned *numComp, unsigned *numReg)
 {
     unsigned i, chave, j;
     for(i = 1; i < size; i++){

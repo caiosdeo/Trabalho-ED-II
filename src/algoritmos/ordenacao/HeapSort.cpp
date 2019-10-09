@@ -1,7 +1,7 @@
 #include "HeapSort.h"
 #include "quickSortRecursivo.h"
 
-void heapify(unsigned *id, unsigned tam, unsigned indice, unsigned long *trocas, unsigned long *comparacoes) {
+void heapify(unsigned *id, unsigned tam, unsigned indice, unsigned *trocas, unsigned *comparacoes) {
     
     unsigned maior = indice;
     unsigned esq = 2*indice + 1;
@@ -26,7 +26,7 @@ void heapify(unsigned *id, unsigned tam, unsigned indice, unsigned long *trocas,
 
 }
 
-void heapSort(unsigned *id, unsigned tam, unsigned long *trocas, unsigned long *comparacoes) {
+void heapSort(unsigned *id, unsigned tam, unsigned *trocas, unsigned *comparacoes) {
     // Build heap (rearrange array)
     for (unsigned i = tam / 2; i >= 1; i--)
         heapify(id, tam, i, trocas, comparacoes);

@@ -4,8 +4,8 @@
 
 void gerarVetor(unsigned* v, unsigned inicio, unsigned k, unsigned* aux);
 
-unsigned medianadek(unsigned *vetor, unsigned k, unsigned long *trocas, unsigned long *comparacoes);
+unsigned medianadek(unsigned *vetor, unsigned k, unsigned *trocas, unsigned *comparacoes);
 
-void quickSortMediano(unsigned *vetor, unsigned inicio, unsigned fim, unsigned k, unsigned long *trocas, unsigned long *comparacoes);
+void quickSortMediano(unsigned *vetor, unsigned inicio, unsigned fim, unsigned k, unsigned *trocas, unsigned *comparacoes);
 
 #endif // QUICKSORTMEDIANO_H

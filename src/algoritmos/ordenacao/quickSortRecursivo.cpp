@@ -17,7 +17,7 @@ void swap(unsigned *a, unsigned i, unsigned j){
 // Quick Sort
 
 // Partição para ids
-unsigned particaoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned long *numComparacoes, unsigned long *numTrocas){
+unsigned particaoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned *numComparacoes, unsigned *numTrocas){
 
     unsigned pivo = a[fim];
     unsigned i = inicio - 1;
@@ -42,13 +42,15 @@ unsigned particaoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned long *
 }
 
 // quickSortRecursivo para ids
-void quickSortRecursivoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned long *numComparacoes, unsigned long *numTrocas){
+void quickSortRecursivoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned *numComparacoes, unsigned *numTrocas){
 
     if(inicio < fim){
 
         unsigned pivo = particaoIds(a, inicio, fim, numComparacoes, numTrocas);
-        quickSortRecursivoIds(a, inicio, pivo-1, numComparacoes, numTrocas);
-        quickSortRecursivoIds(a, pivo+1, fim, numComparacoes, numTrocas);
+        if(pivo != 0)
+            quickSortRecursivoIds(a, inicio, pivo-1, numComparacoes, numTrocas);
+        if(pivo != fim)
+            quickSortRecursivoIds(a, pivo+1, fim, numComparacoes, numTrocas);
 
     }
 
@@ -66,7 +68,7 @@ void swapEstruturas(Review* a, unsigned i, unsigned j){
 }
 
 // particao para estruturas
-unsigned particaoEstruturas(Review* a, unsigned inicio, unsigned fim, unsigned long *numComparacoes, unsigned long *numTrocas){
+unsigned particaoEstruturas(Review* a, unsigned inicio, unsigned fim, unsigned *numComparacoes, unsigned *numTrocas){
 
     unsigned pivo = a[fim].getId();
     unsigned i = inicio - 1;
@@ -91,13 +93,15 @@ unsigned particaoEstruturas(Review* a, unsigned inicio, unsigned fim, unsigned l
 }
 
 // quickSortRecursivo para estruturas
-void quickSortRecursivoEstruturas(Review* a, unsigned inicio, unsigned fim, unsigned long *numComparacoes, unsigned long *numTrocas){
+void quickSortRecursivoEstruturas(Review* a, unsigned inicio, unsigned fim, unsigned *numComparacoes, unsigned *numTrocas){
 
     if(inicio < fim){
 
         unsigned pivo = particaoEstruturas(a, inicio, fim, numComparacoes, numTrocas);
-        quickSortRecursivoEstruturas(a, inicio, pivo-1, numComparacoes, numTrocas);
-        quickSortRecursivoEstruturas(a, pivo+1, fim, numComparacoes, numTrocas);
+        if(pivo != 0)
+            quickSortRecursivoEstruturas(a, inicio, pivo-1, numComparacoes, numTrocas);
+        if(pivo != fim)
+            quickSortRecursivoEstruturas(a, pivo+1, fim, numComparacoes, numTrocas);
 
     }
 

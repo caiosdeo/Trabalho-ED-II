@@ -11,7 +11,7 @@ class HashSondQuad{
         unsigned capacidade;
         unsigned tamanho; 
         NoHash *aux; 
-        unsigned long numColisoes;
+        unsigned numColisoes;
   
     public: 
         HashSondQuad(unsigned capacidade);
@@ -22,6 +22,6 @@ class HashSondQuad{
         bool estaVazia();
         bool estaCheia();
         void display();
-        unsigned long getNumColisoes();
+        unsigned getNumColisoes();
 
 }; 

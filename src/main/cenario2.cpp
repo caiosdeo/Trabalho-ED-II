@@ -23,7 +23,7 @@ void fluxoCenario2(unsigned* ids, unsigned n, fstream &saida){
     for (unsigned versao = 0; versao < 5; versao++){
 
         // Métricas de desempenho
-        unsigned long numComparacoes = 0, numCopias = 0;
+        unsigned numComparacoes = 0, numCopias = 0;
 
         switch(versao){
 

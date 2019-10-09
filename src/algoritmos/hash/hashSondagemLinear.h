@@ -17,7 +17,7 @@ class HashSondLin{
         unsigned tamanho; 
         //auxiliar node 
         NoHash *aux; 
-        unsigned long numColisoes;
+        unsigned numColisoes;
   
     public: 
         HashSondLin(unsigned capacidade);
@@ -30,6 +30,6 @@ class HashSondLin{
         bool estaVazia();
         bool estaCheia();
         void display();
-        unsigned long getNumColisoes();
+        unsigned getNumColisoes();
 
 }; 

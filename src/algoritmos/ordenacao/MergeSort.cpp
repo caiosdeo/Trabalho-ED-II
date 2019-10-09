@@ -4,7 +4,7 @@
 using namespace std;
 
 /// Funcao auxiliar merge
-void merge(unsigned *vet, unsigned esq, unsigned med, unsigned dir, unsigned long *numComp, unsigned long *numReg){
+void merge(unsigned *vet, unsigned esq, unsigned med, unsigned dir, unsigned *numComp, unsigned *numReg){
 
     unsigned i, j, k;
     unsigned tamE = med - esq + 1;
@@ -63,7 +63,7 @@ void merge(unsigned *vet, unsigned esq, unsigned med, unsigned dir, unsigned lon
 
 
 ///Funcao merge sort para vetor de unsignedeiros de tamanho esq a dir
-void mergeSort(unsigned *vet, unsigned esq, unsigned dir, unsigned long *numComp, unsigned long *numReg){
+void mergeSort(unsigned *vet, unsigned esq, unsigned dir, unsigned *numComp, unsigned *numReg){
 
     if(esq < dir){
 

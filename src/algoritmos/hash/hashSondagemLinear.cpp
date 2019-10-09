@@ -114,7 +114,7 @@ bool HashSondLin::estaVazia()
     return tamanho == 0; 
 } 
 
-unsigned long HashSondLin::getNumColisoes(){
+unsigned HashSondLin::getNumColisoes(){
 
     return this->numColisoes;
 

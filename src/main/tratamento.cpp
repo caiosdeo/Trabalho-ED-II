@@ -41,16 +41,6 @@ unsigned* gerarVetorIds(Review* conjunto, unsigned n){
 
     //Vetor unsigned           
     unsigned* ids = (unsigned*)calloc(n, sizeof(unsigned));
-    
-    // Copiando os IDs do conjunto para o vetor de ID
-    /*for (unsigned k = 0, i = 0, j = n - 1; i < n/2; j--, i++){
-
-            ids[k] = conjunto[j].getId();
-            k++;
-            ids[k] = conjunto[i].getId();
-            k++;
-
-    }*/
 
     for(int i = 0; i < n; i++)
         ids[i] = conjunto[i].getId();

@@ -87,6 +87,6 @@ void duploHash::mostrarHash(){
 
 }
 
-unsigned long duploHash::getNumColisoes(){
+unsigned duploHash::getNumColisoes(){
     return this->numColisoes;
 }
