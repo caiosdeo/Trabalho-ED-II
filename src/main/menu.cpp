@@ -64,18 +64,18 @@ void selecionar(unsigned selecao){
 
                                 if(n != 100000)
                                     continue;
-
-                                Review* conjunto = (Review*)calloc(n, sizeof(Review));
-                                embaralharEstruturas(conjunto, n);
  
                                 // Colocando dados no conjunto
-                                conjunto = conjunto->leituraDados(dataset, n);
+                                Review* conjunto = conjunto->leituraDados(dataset, n);
+                                embaralharEstruturas(conjunto, n);
                                 
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario1(conjunto, n, saida); 
 
                                 // Desalocando o conjunto
-                                free(conjunto);
+                                //for(int i = 0; i < n; i++)
+                                    //free(conjunto[i].getUser());
+                                //free(conjunto);
 
                             }
                         

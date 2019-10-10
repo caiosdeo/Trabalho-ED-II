@@ -9,14 +9,14 @@ using namespace std;
 class Review{
 
     private:
-        string user;
+        char* user;
         float rating;
         int id;
 
     public:
         Review* leituraDados(fstream &arquivo, int n);
         int getId();
-        string getUser();
+        char* getUser();
         float getRating();
 
 };

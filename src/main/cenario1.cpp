@@ -58,7 +58,7 @@ void fluxoCenario1(Review* conjunto, unsigned n, fstream &saida){
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                //quickSortRecursivoEstruturas(conjunto, 0, n-1, &numComparacoes, &numCopias);
+                quickSortRecursivoEstruturas(conjunto, 0, n-1, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();

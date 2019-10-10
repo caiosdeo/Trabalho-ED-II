@@ -17,6 +17,7 @@ Review* Review::leituraDados(fstream &dataset, int n){
     
     //Variaveis para ler o documento
     string id, user, rating;
+    unsigned tString;
 
     //Variavel auxiliar para controlar o tamanho do conjunto
     int i = 0;
@@ -39,7 +40,11 @@ Review* Review::leituraDados(fstream &dataset, int n){
 
         if(rand() % 3 == 0){ // Selecionando registros a partir do resto de uma divisão por 11
 
-            r[i].user = user; //Atribuindo um nome de usuário 
+            //Atribuindo um nome de usuário
+            tString = user.size();
+            r[i].user = (char*)malloc(sizeof(char) * tString);//(char*)calloc(tString, sizeof(char));
+            for(int j = 0; j < tString; j++)
+                r[i].user[j] = user[j];
             r[i].rating = stof(rating); // Atribuindo o rating do review
             r[i].id = stoul(id); // Atribuindo o id do jogo do review
 
@@ -60,7 +65,7 @@ int Review::getId(){
 
 }
 
-string Review::getUser(){
+char* Review::getUser(){
 
     return this->user;
 
