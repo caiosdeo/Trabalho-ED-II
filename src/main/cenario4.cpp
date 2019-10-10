@@ -12,9 +12,6 @@ void fluxoCenario4(unsigned* chaves, unsigned n, fstream &saida){
 
     // Declaracao de Hashs
 
-    // Visualizando o N
-    cout << "N: " << n << endl;
-
     //Loop para rodar para os dois tipos de estruturas em única execução
     for (unsigned versao = 0; versao < 5; versao++){
 

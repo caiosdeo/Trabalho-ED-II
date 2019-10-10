@@ -34,39 +34,53 @@ void selecionar(unsigned selecao){
 
     fstream entrada, dataset, saida;
 
-    // ! serão 5 execuções para cada conjunto, sementes diferentes
-    for (unsigned i = 0; i < 5; i++){
+    if(selecao == 1)
+        entrada.open("../../entrada1.txt", ios::in); // Arquivo de entrada cenário 1 só como leitura
+    else
+        entrada.open("../../entrada24.txt", ios::in); // Arquivo de entrada cenário 2-4 só como leitura
 
-        if (selecao)
-            cout << "Execução: " << i + 1 << endl;
+    dataset.open("../../processadosFase1.txt", ios::in); // Arquivo de dados como leitura
 
-        switch (selecao){
+    // Variaveis para leitura do arquivo de entrada
+    unsigned qtdConjuntos, n;
 
-            //Cenário 1
-            case 1:{
+    // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
+    if(entrada.is_open()){
+        if(dataset.is_open()){
 
-                entrada.open("../../entrada1.txt", ios::in);         // Arquivo de entrada só como leitura
-                saida.open("../../saidaCenario1.csv", ios::out | ios::app); // Arquivo de saída como escrita
-                dataset.open("../../processadosFase1.txt", ios::in);     // Arquivo de dados como leitura
+            // Lendo quantos conjuntos teremos
+            entrada >> qtdConjuntos;
 
-                // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
-                if (entrada.is_open())
-                    if (dataset.is_open())
-                        if (saida.is_open()){
-                            
-                            // Variaveis para leitura do arquivo de entrada
-                            unsigned qtdConjuntos, n;
+            // Lendo os N
+            while(entrada >> n){
 
-                            // Lendo quantos conjuntos teremos
-                            entrada >> qtdConjuntos;
+                // Colocando dados no conjunto
+                Review* conjunto = conjunto->leituraDados(dataset, n);
 
-                            while(entrada >> n){
+                // Imprimindo o valor de N
+                cout << "N: " << n << endl;
+
+                // Escolhendo o cenário
+                switch (selecao){
+
+                    //Cenário 1
+                    case 1:{
+
+                        //Abrindo arquivo de saida do cenário 
+                        saida.open("../../saidaCenario1.csv", ios::out | ios::app); // Arquivo de saída como escrita
+
+                        // Verificando se o arquivo de saida está aberto
+                        if(saida.is_open()){
+
+                            // ! serão 5 execuções para cada conjunto     
+                            for (unsigned i = 0; i < 5; i++){
+
+                                // Imprimindo a execução atual do Fluxo
+                                cout << "Execução: " << i + 1 << endl;
 
                                 if(n != 100000)
                                     continue;
- 
-                                // Colocando dados no conjunto
-                                Review* conjunto = conjunto->leituraDados(dataset, n);
+
                                 embaralharEstruturas(conjunto, n);
                                 
                                 // Executando para as versoes, o conjunto
@@ -81,48 +95,32 @@ void selecionar(unsigned selecao){
                         
                         }
                         else
-                            cout << "Não foi possível abrir o arquivo de saída" << endl;
-                    else
-                        cout << "Não foi possível abrir o arquivo de dados" << endl;
-                else
-                    cout << "Não foi possível abrir o arquivo de entrada" << endl;
+                            cout << "Não foi possível abrir o arquivo de saída" << endl;                    
 
-                // Salvando e fechando os arquivos usados
-                entrada.close();
-                saida.close();
-                dataset.close();
-            
+                        // Salvando e fechando os arquivos usados
+                        saida.close();                    
 
-                break;
-            }
+                        break;
+                    }
 
-            //Cenário 2
-            case 2:{
+                    //Cenário 2
+                    case 2:{
 
-                entrada.open("../../entrada24.txt", ios::in);         // Arquivo de entrada só como leitura
-                saida.open("../../saidaCenario2.csv", ios::out | ios::app); // Arquivo de saída como escrita
-                dataset.open("../../processadosFase1.txt", ios::in);     // Arquivo de dados como leitura
+                        //Abrindo arquivo de saida do cenário 
+                        saida.open("../../saidaCenario2.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
-                // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
-                if (entrada.is_open())
-                    if (dataset.is_open())
+                        // Verificando se o arquivo de saida está aberto
                         if (saida.is_open()){
 
-                            // Variaveis para leitura do arquivo de entrada
-                            unsigned qtdConjuntos, n;
+                            // ! serão 5 execuções para cada conjunto, sementes diferentes      
+                            for (unsigned i = 0; i < 5; i++){
 
-                            // Lendo quantos conjuntos teremos
-                            entrada >> qtdConjuntos;
-
-                            while(entrada >> n){
+                                // Imprimindo a execução atual do Fluxo
+                                cout << "Execução: " << i + 1 << endl;
 
                                 if(n != 500000)
                                     continue;
 
-                                Review* conjunto = (Review*)calloc(n, sizeof(Review));
-
-                                // Colocando dados no conjunto
-                                conjunto = conjunto->leituraDados(dataset, n);
                                 unsigned *v = gerarVetorIds(conjunto, n);
                                 
                                 // Desalocando o conjunto
@@ -139,46 +137,31 @@ void selecionar(unsigned selecao){
                         }
                         else
                             cout << "Não foi possível abrir o arquivo de saída" << endl;
-                    else
-                        cout << "Não foi possível abrir o arquivo de dados" << endl;
-                else
-                    cout << "Não foi possível abrir o arquivo de entrada" << endl;
 
-                // Salvando e fechando os arquivos usados
-                entrada.close();
-                saida.close();
-                dataset.close();
+                        // Salvando e fechando os arquivos usados
+                        saida.close();
 
-                break;
-            }
+                        break;
+                    }
 
-            //Cenário 3
-            case 3:{
+                    //Cenário 3
+                    case 3:{
 
-                entrada.open("../../entrada24.txt", ios::in);         // Arquivo de entrada só como leitura
-                saida.open("../../saidaCenario3.csv", ios::out | ios::app); // Arquivo de saída como escrita
-                dataset.open("../../processadosFase1.txt", ios::in);     // Arquivo de dados como leitura
+                        //Abrindo arquivo de saida do cenário 
+                        saida.open("../../saidaCenario3.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
-                // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
-                if (entrada.is_open())
-                    if (dataset.is_open())
+                        // Verificando se o arquivo de saida está aberto
                         if (saida.is_open()){
 
-                            // Variaveis para leitura do arquivo de entrada
-                            unsigned qtdConjuntos, n;
+                            // ! serão 5 execuções para cada conjunto, sementes diferentes      
+                            for (unsigned i = 0; i < 5; i++){
 
-                            // Lendo quantos conjuntos teremos
-                            entrada >> qtdConjuntos;
-
-                            while(entrada >> n){
+                                // Imprimindo a execução atual do Fluxo
+                                cout << "Execução: " << i + 1 << endl;
 
                                 if(n != 500000)
                                     continue;
 
-                                Review* conjunto = (Review*)calloc(n, sizeof(Review));
-
-                                // Colocando dados no conjunto
-                                conjunto = conjunto->leituraDados(dataset, n);
                                 unsigned *v = gerarVetorIds(conjunto, n);
                                 
                                 // Desalocando o conjunto
@@ -195,46 +178,31 @@ void selecionar(unsigned selecao){
                         }
                         else
                             cout << "Não foi possível abrir o arquivo de saída" << endl;
-                    else
-                        cout << "Não foi possível abrir o arquivo de dados" << endl;
-                else
-                    cout << "Não foi possível abrir o arquivo de entrada" << endl;
 
-                // Salvando e fechando os arquivos usados
-                entrada.close();
-                saida.close();
-                dataset.close();
+                        // Salvando e fechando os arquivos usados
+                        saida.close();
 
-                break;
-            }
+                        break;
+                    }
 
-            //Cenário 4
-            case 4:{
+                    //Cenário 4
+                    case 4:{
 
-                entrada.open("../../entrada24.txt", ios::in);         // Arquivo de entrada só como leitura
-                saida.open("../../saidaCenario4.csv", ios::out | ios::app); // Arquivo de saída como escrita
-                dataset.open("../../processadosFase1.txt", ios::in);     // Arquivo de dados como leitura
+                        //Abrindo arquivo de saida do cenário 
+                        saida.open("../../saidaCenario4.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
-                // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
-                if (entrada.is_open())
-                    if (dataset.is_open())
+                        // Verificando se o arquivo de saida está aberto
                         if (saida.is_open()){
 
-                            // Variaveis para leitura do arquivo de entrada
-                            unsigned qtdConjuntos, n;
+                            // ! serão 5 execuções para cada conjunto, sementes diferentes      
+                            for (unsigned i = 0; i < 5; i++){
 
-                            // Lendo quantos conjuntos teremos
-                            entrada >> qtdConjuntos;
-
-                            while(entrada >> n){
+                                // Imprimindo a execução atual do Fluxo
+                                cout << "Execução: " << i + 1 << endl;
 
                                 if(n != 1000)
                                     continue;
 
-                                Review* conjunto = (Review*)calloc(n, sizeof(Review));
-
-                                // Colocando dados no conjunto
-                                conjunto = conjunto->leituraDados(dataset, n);
                                 unsigned *v = gerarConjuntoChaves(conjunto, n);
                                 
                                 // Desalocando o conjunto
@@ -251,23 +219,31 @@ void selecionar(unsigned selecao){
                         }
                         else
                             cout << "Não foi possível abrir o arquivo de saída" << endl;
-                    else
-                        cout << "Não foi possível abrir o arquivo de dados" << endl;
-                else
-                    cout << "Não foi possível abrir o arquivo de entrada" << endl;
 
-                // Salvando e fechando os arquivos usados
-                entrada.close();
-                saida.close();
-                dataset.close();
+                        // Salvando e fechando os arquivos usados
+                        saida.close();
 
-                break;
+                        break;
+                    }
+
+                    default:
+                        break;
+                }
+
+                unsigned clear = system("clear");
+
+                free(conjunto);
+                
             }
 
-            default:
-                break;
         }
-
-        unsigned clear = system("clear");
+        else
+            cout << "Não foi possível abrir o arquivo de dados" << endl;
     }
+    else
+        cout << "Não foi possível abrir o arquivo de entrada" << endl;
+
+    entrada.close();
+    dataset.close();
+
 }

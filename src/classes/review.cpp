@@ -13,7 +13,7 @@
 Review* Review::leituraDados(fstream &dataset, int n){
 
     // Conjunto de Reviews
-    Review* r = (Review*)calloc(n, sizeof(Review));;
+    Review* r = (Review*)calloc(n, sizeof(Review));
     
     //Variaveis para ler o documento
     string id, user, rating;

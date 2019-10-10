@@ -18,9 +18,6 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
     auto parada = chrono::high_resolution_clock::now();
     auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
-    // Visualizando o N
-    cout << "N: " << n << endl;
-
     //Loop para rodar para os dois tipos de estruturas em única execução
     for (unsigned versao = 0; versao < 5; versao++){
 
