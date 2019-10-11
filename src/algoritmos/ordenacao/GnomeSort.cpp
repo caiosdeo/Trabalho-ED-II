@@ -1,7 +1,7 @@
 #include "GnomeSort.h"
 #include "quickSortRecursivo.h"
 
-void gnomeSort(unsigned *v, unsigned n, unsigned *numComparacoes, unsigned *numTrocas){ 
+void gnomeSort(unsigned *v, unsigned n, unsigned long long *numComparacoes, unsigned long long *numTrocas){ 
 
     unsigned id = 0; 
   

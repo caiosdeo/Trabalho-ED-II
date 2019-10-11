@@ -11,7 +11,7 @@ void gerarVetor(unsigned* v, unsigned inicio, unsigned k, unsigned* aux){
 
 }
 
-unsigned medianadek(unsigned* vetor, unsigned k, unsigned* trocas, unsigned *comparacoes){
+unsigned medianadek(unsigned* vetor, unsigned k, unsigned long long* trocas, unsigned long long *comparacoes){
 
     quickSortRecursivoIds(vetor, 0, k-1, comparacoes, trocas);
 
@@ -21,7 +21,7 @@ unsigned medianadek(unsigned* vetor, unsigned k, unsigned* trocas, unsigned *com
 
 }
 
-void quickSortMediano(unsigned *vetor, unsigned inicio, unsigned fim, unsigned k, unsigned *trocas, unsigned *comparacoes) {
+void quickSortMediano(unsigned *vetor, unsigned inicio, unsigned fim, unsigned k, unsigned long long *trocas, unsigned long long *comparacoes) {
 
 
     if(inicio < fim){
