@@ -27,7 +27,7 @@ void fluxoCenario1(Review* conjunto, unsigned n, fstream &saida){
 
             case 0: // Quicksort vetor unsigned
 
-                //ids = gerarVetorIds(conjunto, n);
+                ids = gerarVetorIds(conjunto, n);
 
                 cout << "Executando quicksort para vetor unsigned" << endl;
 
@@ -35,7 +35,7 @@ void fluxoCenario1(Review* conjunto, unsigned n, fstream &saida){
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                //quickSortRecursivoIds(ids, 0, n-1, &numComparacoes, &numCopias);
+                quickSortRecursivoIds(ids, 0, n-1, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
@@ -43,7 +43,7 @@ void fluxoCenario1(Review* conjunto, unsigned n, fstream &saida){
                 //Tempo de processamento do algoritmo
                 tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
-                //free(ids);
+                free(ids);
 
                 break;
 
