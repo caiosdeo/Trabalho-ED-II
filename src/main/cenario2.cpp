@@ -17,13 +17,12 @@ void fluxoCenario2(unsigned* ids, unsigned n, fstream &saida){
     for (unsigned versao = 0; versao < 5; versao++){
 
         // Métricas de desempenho
-        unsigned long long numComparacoes = 0, numCopias = 0;
+        unsigned long long numComparacoes = (unsigned long long)malloc(1*sizeof(unsigned long long));
+        unsigned long long numCopias = (unsigned long long)malloc(1*sizeof(unsigned long long));
 
         switch(versao){
 
             case 0: // QuickSort
-
-                //copiaVetor(v, ids, n);
 
                 cout << "Executando quicksort" << endl;
 
@@ -40,7 +39,7 @@ void fluxoCenario2(unsigned* ids, unsigned n, fstream &saida){
 
             case 1: // QuickSort Mediana k = 3
 
-                //copiaVetor(v, ids, n);
+                
                 embaralharIds(ids, n);
 
                 cout << "Executando quicksort mediana k = 3" << endl;
@@ -58,7 +57,6 @@ void fluxoCenario2(unsigned* ids, unsigned n, fstream &saida){
 
             case 2: // QuickSort Mediana k = 5
 
-                //copiaVetor(v, ids, n);
                 embaralharIds(ids, n);
 
                 cout << "Executando quicksort mediana k = 5" << endl;
@@ -76,7 +74,7 @@ void fluxoCenario2(unsigned* ids, unsigned n, fstream &saida){
 
             case 3: // QuickSort Inserção m = 10
 
-                //copiaVetor(v, ids, n);
+                
                 embaralharIds(ids, n);
 
                 cout << "Executando quicksort insercao m = 10" << endl;
@@ -94,7 +92,7 @@ void fluxoCenario2(unsigned* ids, unsigned n, fstream &saida){
 
             case 4: // QuickSort Inserção m = 100
 
-                //copiaVetor(v, ids, n);
+                
                 embaralharIds(ids, n);
 
                 cout << "Executando quicksort insercao m = 100" << endl;

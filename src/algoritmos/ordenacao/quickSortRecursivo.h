@@ -19,7 +19,7 @@ unsigned* fazerVetorIds(Review* review, unsigned n);
  * @param j posição j
  * @return void
  */
-void swap(unsigned *a, unsigned i, unsigned j);
+void swap(unsigned *i, unsigned *j);
 
 // Quick Sort
 // Partição para ids

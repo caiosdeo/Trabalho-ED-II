@@ -49,7 +49,7 @@ void quickSortMediano(unsigned *vetor, unsigned inicio, unsigned fim, unsigned k
             mediana = copiaInicio;
 
             (*trocas)++;
-            swap(vetor, mediana, fim);
+            swap(&vetor[mediana], &vetor[fim]);
 
             unsigned pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
             

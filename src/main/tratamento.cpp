@@ -20,10 +20,10 @@ void imprimirSaidaHash(fstream &saida, unsigned versao, unsigned n, float numCol
 void embaralharIds(unsigned *v, unsigned n){
 
     for(unsigned i = 0; i < n/2; i+=2)
-        swap(v, i, n-i);
+        swap(&v[i], &v[n-i]);
 
     for(unsigned i = 0; i < n - 1; i+=2)
-        swap(v, i, i+1);
+        swap(&v[i], &v[i+1]);
 
 }
 

@@ -19,7 +19,7 @@ void heapify(unsigned *id, unsigned tam, unsigned indice, unsigned long long *tr
 
     if (maior != indice) {
 
-        swap(id, indice, maior);
+        swap(&id[indice], &id[maior]);
         (*trocas)++;
         heapify(id, tam, maior, trocas, comparacoes);
     }
@@ -35,7 +35,7 @@ void heapSort(unsigned *id, unsigned tam, unsigned long long *trocas, unsigned l
     for (unsigned i = tam/2; i >= 2; i--){
 
         // Move current root to end
-        swap(id, 1, i);
+        swap(&id[1], &id[i]);
         (*trocas)++;
 
         // call max heapify on the reduced heap

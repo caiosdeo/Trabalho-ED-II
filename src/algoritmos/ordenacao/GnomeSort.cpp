@@ -17,7 +17,7 @@ void gnomeSort(unsigned *v, unsigned n, unsigned long long *numComparacoes, unsi
         else{ 
 
             (*numTrocas)++;
-            swap(v, id, id - 1); 
+            swap(&v[id], &v[id - 1]); 
             id--;
              
         } 

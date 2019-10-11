@@ -3,14 +3,13 @@
 #include <iostream>
 
 // Swap function
-void swap(unsigned *a, unsigned i, unsigned j){
+void swap(unsigned *i, unsigned *j){
 
     unsigned aux;
 
-    aux = a[i];
-    a[i] = a[j];
-    a[j] = aux;
-
+    aux = *i;
+    *i = *j;
+    *j = aux;
 
 }
 
@@ -28,14 +27,14 @@ unsigned particaoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned long l
         if(a[j] <= pivo){
 
             i++;
-            swap(a, i, j);
+            swap(&a[i], &a[j]);
             (*numTrocas)++;
 
         }
 
     }
 
-    swap(a, i+1, fim);
+    swap(&a[i+1], &a[fim]);
     (*numTrocas)++;
     return i+1;
 

@@ -78,18 +78,10 @@ void selecionar(unsigned selecao){
                                 // Imprimindo a execução atual do Fluxo
                                 cout << "Execução: " << i + 1 << endl;
 
-                                if(n != 100000)
-                                    continue;
-
                                 embaralharEstruturas(conjunto, n);
                                 
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario1(conjunto, n, saida); 
-
-                                // Desalocando o conjunto
-                                //for(int i = 0; i < n; i++)
-                                    //free(conjunto[i].getUser());
-                                //free(conjunto);
 
                             }
                         
@@ -112,6 +104,8 @@ void selecionar(unsigned selecao){
                         // Verificando se o arquivo de saida está aberto
                         if (saida.is_open()){
 
+                            unsigned *v = gerarVetorIds(conjunto, n);
+
                             // ! serão 5 execuções para cada conjunto, sementes diferentes      
                             for (unsigned i = 0; i < 5; i++){
 
@@ -121,18 +115,13 @@ void selecionar(unsigned selecao){
                                 if(n != 500000)
                                     continue;
 
-                                unsigned *v = gerarVetorIds(conjunto, n);
-                                
-                                // Desalocando o conjunto
-                                free(conjunto);
-
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario2(v, n, saida); 
 
-                                // Desalocando os ids
-                                free(v);
-
                             }
+
+                            // Desalocando os ids
+                            free(v);
 
                         }
                         else
@@ -153,6 +142,8 @@ void selecionar(unsigned selecao){
                         // Verificando se o arquivo de saida está aberto
                         if (saida.is_open()){
 
+                            unsigned *v = gerarVetorIds(conjunto, n);
+
                             // ! serão 5 execuções para cada conjunto, sementes diferentes      
                             for (unsigned i = 0; i < 5; i++){
 
@@ -162,18 +153,13 @@ void selecionar(unsigned selecao){
                                 if(n != 500000)
                                     continue;
 
-                                unsigned *v = gerarVetorIds(conjunto, n);
-                                
-                                // Desalocando o conjunto
-                                free(conjunto);
-
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario3(v, n, saida);
 
-                                // Desalocando os ids
-                                free(v);
-
                             }
+
+                            // Desalocando os ids
+                            free(v);
                             
                         }
                         else
@@ -194,6 +180,8 @@ void selecionar(unsigned selecao){
                         // Verificando se o arquivo de saida está aberto
                         if (saida.is_open()){
 
+                            unsigned *v = gerarConjuntoChaves(conjunto, n);
+
                             // ! serão 5 execuções para cada conjunto, sementes diferentes      
                             for (unsigned i = 0; i < 5; i++){
 
@@ -203,18 +191,13 @@ void selecionar(unsigned selecao){
                                 if(n != 1000)
                                     continue;
 
-                                unsigned *v = gerarConjuntoChaves(conjunto, n);
-                                
-                                // Desalocando o conjunto
-                                free(conjunto);
-
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario4(v, n, saida);
 
-                                // Desalocando as chaves geradas
-                                free(v);
-
                             }
+
+                            // Desalocando as chaves geradas
+                                free(v);
 
                         }
                         else

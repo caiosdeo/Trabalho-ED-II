@@ -25,15 +25,13 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
 
             case 0: // Quicksort mediana k = 5 // TODO: Verificar novamente o melhor do 2
 
-                //copiaVetor(v, ids, n);
-
                 cout << "Executando quicksort mediana k = 5" << endl;
 
                 // Ponto de inicio de contagem para tempo de execução do algoritmo
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                quickSortMediano(ids, 0, n-1, 5, &numComparacoes, &numCopias);
+                //quickSortMediano(ids, 0, n-1, 5, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
@@ -42,7 +40,7 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
 
             case 1: // Insertion Sort
 
-                //copiaVetor(v, ids, n);
+                
                 embaralharIds(ids, n);
 
                 cout << "Executando insertion sort" << endl;
@@ -51,7 +49,7 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                insertionSort(ids, n, &numComparacoes, &numCopias);
+                //insertionSort(ids, n, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
@@ -60,7 +58,7 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
 
             case 2: // Merge Sort
                 
-                //copiaVetor(v, ids, n);
+                
                 embaralharIds(ids, n);
 
                 cout << "Executando merge sort" << endl;
@@ -69,7 +67,7 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                mergeSort(ids, 0, n-1, &numComparacoes, &numCopias);
+                //mergeSort(ids, 0, n-1, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
@@ -78,8 +76,8 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
 
             case 3: // Heap Sort
 
-                //copiaVetor(v, ids, n);
-                embaralharIds(ids, n);
+                
+                //embaralharIds(ids, n);
 
                 cout << "Executando heap sort" << endl;
 
@@ -87,7 +85,7 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                heapSort(ids, n, &numComparacoes, &numCopias);
+                //heapSort(ids, n, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
@@ -96,7 +94,7 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
 
             case 4: // Gnome Sort
 
-                //copiaVetor(v, ids, n);
+                
                 embaralharIds(ids, n);
 
                 cout << "Executando gnome sort" << endl;
