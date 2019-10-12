@@ -36,20 +36,16 @@ void HashSondLin::insereNo(unsigned chave, unsigned valor)
         return;
     }
     NoHash* temp = new NoHash(chave, valor); 
-    bool houveColisao = false;
     // Apply hash function to find index for given chave 
     unsigned hashIndex = hashCode(chave); 
     //find next free space  
     while(tabela[hashIndex] != NULL && tabela[hashIndex]->getChave() != chave 
             && tabela[hashIndex]->getChave() != -1) 
     { 
-        houveColisao = true;
+        this->numColisoes++;
         hashIndex++; 
         hashIndex %= capacidade; 
     } 
-
-    if(houveColisao)
-        this->numColisoes++;
           
     //if new node to be inserted increase the current tamanho 
     if(tabela[hashIndex] == NULL || tabela[hashIndex]->getChave() == -1) 

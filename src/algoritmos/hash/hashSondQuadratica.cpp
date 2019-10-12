@@ -35,20 +35,17 @@ void HashSondQuad::insereNo(unsigned chave, unsigned valor)
     if(estaCheia()){
         return;
     }
+    
     NoHash* temp = new NoHash(chave, valor); 
-    bool houveColisao = false;
     // Apply hash function to find index for given chave 
     unsigned hashIndex = hashCode(chave); 
     //find next free space  
     for(unsigned i = 1; tabela[hashIndex] != NULL && tabela[hashIndex]->getChave() != chave 
             && tabela[hashIndex]->getChave() != -1 && i < this->capacidade; i++) 
     { 
-        houveColisao = true;
+        this->numColisoes++;
         hashIndex = (chave + (i*i)) % capacidade; 
     } 
-
-    if(houveColisao)
-        this->numColisoes++;
           
     //if new node to be inserted increase the current tamanho 
     if(tabela[hashIndex] == NULL || tabela[hashIndex]->getChave() == -1) 
