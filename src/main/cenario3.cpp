@@ -31,7 +31,7 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                //quickSortMediano(ids, 0, n-1, 5, &numComparacoes, &numCopias);
+                quickSortMediano(ids, 0, n-1, 5, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
@@ -49,7 +49,7 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                //insertionSort(ids, n, &numComparacoes, &numCopias);
+                insertionSort(ids, n, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
@@ -67,7 +67,7 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                //mergeSort(ids, 0, n-1, &numComparacoes, &numCopias);
+                mergeSort(ids, 0, n-1, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
@@ -77,7 +77,7 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
             case 3: // Heap Sort
 
                 
-                //embaralharIds(ids, n);
+                embaralharIds(ids, n);
 
                 cout << "Executando heap sort" << endl;
 
@@ -85,7 +85,7 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                //heapSort(ids, n, &numComparacoes, &numCopias);
+                heapSort(ids, n, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();

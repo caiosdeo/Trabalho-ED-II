@@ -27,12 +27,12 @@ void quickSortMediano(unsigned *vetor, unsigned inicio, unsigned fim, unsigned k
     if(inicio < fim){
 
         if (fim - inicio < k) {
-
+            // ! Aqui não é pra chamar o quickSort comum?
             unsigned pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
-            if(pivo != 0)
-                quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
-            if(pivo != fim)
-                quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);
+            if(pivo == 0 || pivo == fim)
+                return;
+            quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
+            quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);
 
         }else {
 
@@ -52,15 +52,16 @@ void quickSortMediano(unsigned *vetor, unsigned inicio, unsigned fim, unsigned k
             swap(&vetor[mediana], &vetor[fim]);
 
             unsigned pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
-            
-            if(pivo != 0)
-                quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
-            if(pivo != fim)
-                quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);
+            if(pivo == 0 || pivo == fim)
+                return;
+            quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
+            quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);
         
         }
 
 
     }
+
+    return;
 
 }

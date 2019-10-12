@@ -17,8 +17,7 @@ void fluxoCenario2(unsigned* ids, unsigned n, fstream &saida){
     for (unsigned versao = 0; versao < 5; versao++){
 
         // Métricas de desempenho
-        unsigned long long numComparacoes = (unsigned long long)malloc(1*sizeof(unsigned long long));
-        unsigned long long numCopias = (unsigned long long)malloc(1*sizeof(unsigned long long));
+        unsigned long long numComparacoes = 0, numCopias = 0;
 
         switch(versao){
 

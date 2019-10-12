@@ -46,12 +46,14 @@ void quickSortRecursivoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned 
     if(inicio < fim){
 
         unsigned pivo = particaoIds(a, inicio, fim, numComparacoes, numTrocas);
-        if(pivo != 0)
-            quickSortRecursivoIds(a, inicio, pivo-1, numComparacoes, numTrocas);
-        if(pivo != fim)
-            quickSortRecursivoIds(a, pivo+1, fim, numComparacoes, numTrocas);
+        if(pivo == 0 || pivo == fim)
+            return;
+        quickSortRecursivoIds(a, inicio, pivo-1, numComparacoes, numTrocas);
+        quickSortRecursivoIds(a, pivo+1, fim, numComparacoes, numTrocas);
 
     }
+
+    return;
 
 }
 
