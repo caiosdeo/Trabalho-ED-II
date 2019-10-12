@@ -54,9 +54,6 @@ void selecionar(unsigned selecao){
             // Lendo os N
             while(entrada >> n){
 
-                // Colocando dados no conjunto
-                Review* conjunto = conjunto->leituraDados(dataset, n);
-
                 // Imprimindo o valor de N
                 cout << "N: " << n << endl;
 
@@ -75,6 +72,9 @@ void selecionar(unsigned selecao){
                             // ! serão 5 execuções para cada conjunto     
                             for (unsigned i = 0; i < 5; i++){
 
+                                // Colocando dados no conjunto
+                                Review* conjunto = conjunto->leituraDados(dataset, n);
+
                                 // Imprimindo a execução atual do Fluxo
                                 cout << "Execução: " << i + 1 << endl;
 
@@ -90,7 +90,7 @@ void selecionar(unsigned selecao){
                             cout << "Não foi possível abrir o arquivo de saída" << endl;                    
 
                         // Salvando e fechando os arquivos usados
-                        saida.close();                    
+                        //saida.close();                    
 
                         break;
                     }
@@ -104,10 +104,13 @@ void selecionar(unsigned selecao){
                         // Verificando se o arquivo de saida está aberto
                         if (saida.is_open()){
 
-                            unsigned *v = gerarVetorIds(conjunto, n);
-
                             // ! serão 5 execuções para cada conjunto, sementes diferentes      
                             for (unsigned i = 0; i < 5; i++){
+
+                                // Colocando dados no conjunto
+                                Review* conjunto = conjunto->leituraDados(dataset, n);
+                                //Gerando vetor de ids embaralhado
+                                unsigned *v = gerarVetorIds(conjunto, n);
 
                                 // Imprimindo a execução atual do Fluxo
                                 cout << "Execução: " << i + 1 << endl;
@@ -116,19 +119,21 @@ void selecionar(unsigned selecao){
                                     continue;
 
                                 // Executando para as versoes, o conjunto
-                                fluxoCenario2(v, n, saida); 
+                                fluxoCenario2(v, n, saida);
+
+                                //Desalocando conjunto
+                                free(conjunto); 
+                                // Desalocando os ids
+                                free(v);
 
                             }
-
-                            // Desalocando os ids
-                            free(v);
 
                         }
                         else
                             cout << "Não foi possível abrir o arquivo de saída" << endl;
 
                         // Salvando e fechando os arquivos usados
-                        saida.close();
+                        //saida.close();
 
                         break;
                     }
@@ -142,6 +147,9 @@ void selecionar(unsigned selecao){
                         // Verificando se o arquivo de saida está aberto
                         if (saida.is_open()){
 
+                            // Colocando dados no conjunto
+                            Review* conjunto = conjunto->leituraDados(dataset, n);
+                            //Gerando vetor de ids embaralhado
                             unsigned *v = gerarVetorIds(conjunto, n);
 
                             // ! serão 5 execuções para cada conjunto, sementes diferentes      
@@ -156,17 +164,19 @@ void selecionar(unsigned selecao){
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario3(v, n, saida);
 
-                            }
+                                //Desalocando conjunto
+                                free(conjunto); 
+                                // Desalocando os ids
+                                free(v);
 
-                            // Desalocando os ids
-                            free(v);
+                            }
                             
                         }
                         else
                             cout << "Não foi possível abrir o arquivo de saída" << endl;
 
                         // Salvando e fechando os arquivos usados
-                        saida.close();
+                        //saida.close();
 
                         break;
                     }
@@ -180,10 +190,13 @@ void selecionar(unsigned selecao){
                         // Verificando se o arquivo de saida está aberto
                         if (saida.is_open()){
 
-                            unsigned *v = gerarConjuntoChaves(conjunto, n);
-
                             // ! serão 5 execuções para cada conjunto, sementes diferentes      
                             for (unsigned i = 0; i < 5; i++){
+
+                                // Colocando dados no conjunto
+                                Review* conjunto = conjunto->leituraDados(dataset, n);
+                                //Gerando vetor de ids embaralhado
+                                unsigned *v = gerarVetorIds(conjunto, n);
 
                                 // Imprimindo a execução atual do Fluxo
                                 cout << "Execução: " << i + 1 << endl;
@@ -194,17 +207,19 @@ void selecionar(unsigned selecao){
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario4(v, n, saida);
 
-                            }
-
-                            // Desalocando as chaves geradas
+                                //Desalocando conjunto
+                                free(conjunto); 
+                                // Desalocando os ids
                                 free(v);
+
+                            }
 
                         }
                         else
                             cout << "Não foi possível abrir o arquivo de saída" << endl;
 
                         // Salvando e fechando os arquivos usados
-                        saida.close();
+                        //saida.close();
 
                         break;
                     }
@@ -214,8 +229,6 @@ void selecionar(unsigned selecao){
                 }
 
                 unsigned clear = system("clear");
-
-                //free(conjunto);
                 
             }
 
@@ -226,7 +239,7 @@ void selecionar(unsigned selecao){
     else
         cout << "Não foi possível abrir o arquivo de entrada" << endl;
 
-    entrada.close();
-    dataset.close();
+    //entrada.close();
+    //dataset.close();
 
 }

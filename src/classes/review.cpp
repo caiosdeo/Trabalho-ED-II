@@ -23,7 +23,7 @@ Review* Review::leituraDados(fstream &dataset, int n){
     int i = 0;
 
     // Alterando a semente com o tempo
-    srand(time(NULL));
+    srand(time(0));
 
     // Eliminando a primeira linha do arquivo
     getline(dataset, user, ',');
@@ -38,7 +38,7 @@ Review* Review::leituraDados(fstream &dataset, int n){
         getline(dataset, rating, ',');
         getline(dataset, id, '\n');
 
-        if(rand() % 3 == 0){ // Selecionando registros a partir do resto de uma divisão por 11
+        if(rand() % 3 == 0){ // Selecionando registros a partir do resto de uma divisão por 3
 
             //Atribuindo um nome de usuário
             tString = user.size();
