@@ -151,21 +151,18 @@ void selecionar(unsigned selecao){
                         // Verificando se o arquivo de saida está aberto
                         if (saida.is_open()){
 
-                            // Colocando dados no conjunto
-                            Review* conjunto = conjunto->leituraDados(dataset, n);
-                            //Gerando vetor de ids embaralhado
-                            unsigned *v = gerarVetorIds(conjunto, n);
-
                             // ! serão 5 execuções para cada conjunto, sementes diferentes      
                             for (unsigned i = 0; i < 5; i++){
+
+                                // Colocando dados no conjunto
+                                Review* conjunto = conjunto->leituraDados(dataset, n);
+                                //Gerando vetor de ids embaralhado
+                                unsigned *v = gerarVetorIds(conjunto, n);
 
                                 // Imprimindo o valor de N
                                 cout << "N: " << n << endl;
                                 // Imprimindo a execução atual do Fluxo
                                 cout << "Execução: " << i + 1 << endl;
-
-                                if(n != 500000)
-                                    continue;
 
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario3(v, n, saida);
