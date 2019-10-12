@@ -24,7 +24,7 @@ unsigned HashEncadSeparado::contabilizarColisoes(){
     unsigned numColisoes = 0;
 
     for(unsigned i = 0; i < this->balde; i++)
-        numColisoes += this->tabela[i].size();
+        numColisoes += this->tabela[i].size() - 1;
 
     return numColisoes;
 
