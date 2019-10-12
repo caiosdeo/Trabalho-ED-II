@@ -19,31 +19,6 @@ void HashEncadSeparado::insereItem(unsigned chave){
     tabela[indice].push_back(chave);
 }
 
-void HashEncadSeparado::removeItem(unsigned chave){
-
-    unsigned indice = funcaoHash(chave);
-
-    list<unsigned>::iterator i;
-    for(i = tabela[indice].begin(); i != tabela[indice].end(); i++)
-        if(*i == chave)
-            break;
-
-    if(i != tabela[indice].end())
-        tabela[indice].erase(i);
-
-}
-
-void HashEncadSeparado::imprimirHash(){
-    
-    for (unsigned i = 0; i < balde; i++) { 
-        cout << i; 
-        for (auto x : tabela[i]) 
-            cout << " --> " << x; 
-        cout << endl; 
-  } 
-
-}
-
 unsigned HashEncadSeparado::contabilizarColisoes(){
 
     unsigned numColisoes = 0;

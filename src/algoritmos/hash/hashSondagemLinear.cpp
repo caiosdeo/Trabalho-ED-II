@@ -53,35 +53,6 @@ void HashSondLin::insereNo(unsigned chave, unsigned valor)
     tabela[hashIndex] = temp; 
 } 
 
-//Function to delete a chave valor pair 
-unsigned HashSondLin::deleteNo(unsigned chave) 
-{ 
-    // Apply hash function to find index for given chave 
-    unsigned hashIndex = hashCode(chave); 
-          
-    //finding the node with given chave 
-    while(tabela[hashIndex] != NULL) 
-    { 
-        //if node found 
-        if(tabela[hashIndex]->getChave() == chave) 
-        { 
-            NoHash *temp = tabela[hashIndex]; 
-                  
-            //Insert aux node here for further use 
-            tabela[hashIndex] = aux; 
-                  
-            // Reduce tamanho 
-            tamanho--; 
-            return temp->getValor(); 
-        } 
-        hashIndex++; 
-        hashIndex %= capacidade; 
-  
-        } 
-    //If not found return null 
-    return -1; 
-} 
-
 //Function to search the valor for a given chave 
 unsigned HashSondLin::get(unsigned chave) 
 { 

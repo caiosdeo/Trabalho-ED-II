@@ -74,20 +74,6 @@ void duploHash::inserirHash(unsigned chave){
 
 } 
 
-void duploHash::mostrarHash(){ 
-
-        for (unsigned i = 0; i < this->tamanhoTabela; i++){ 
-
-            if (tabelaHash[i] != -1) 
-                cout << i << " --> " << tabelaHash[i] << endl; 
-
-            else
-                cout << i << endl; 
-
-        } 
-
-}
-
 unsigned duploHash::getNumColisoes(){
     return this->numColisoes;
 }

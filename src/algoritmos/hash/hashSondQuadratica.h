@@ -17,7 +17,6 @@ class HashSondQuad{
         HashSondQuad(unsigned capacidade);
         unsigned hashCode(unsigned chave);
         void insereNo(unsigned chave, unsigned valor);
-        unsigned deleteNo(unsigned chave);
         unsigned getTamanho();
         bool estaVazia();
         bool estaCheia();

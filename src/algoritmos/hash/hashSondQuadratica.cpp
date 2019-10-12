@@ -54,29 +54,6 @@ void HashSondQuad::insereNo(unsigned chave, unsigned valor)
     tabela[hashIndex] = temp; 
 } 
 
-//Function to delete a chave valor pair 
-unsigned HashSondQuad::deleteNo(unsigned chave) 
-{ 
-    // Apply hash function to find index for given chave 
-    unsigned hashIndex = hashCode(chave); 
-          
-    //finding the node with given chave 
-    for(unsigned i  = 1; tabela[hashIndex] != NULL; i++) 
-    { 
-        //if node found 
-        if(tabela[hashIndex]->getChave() == chave) 
-        { 
-            NoHash *temp = tabela[hashIndex];     
-            //Insert aux node here for further use 
-            tabela[hashIndex] = aux; 
-            tamanho--; 
-            return temp->getValor(); 
-        } 
-        hashIndex = (chave + (i*i)) % capacidade; 
-    } 
-    //If not found return null 
-    return -1; 
-}
 unsigned HashSondQuad::getTamanho() 
 { 
     return this->tamanho; 

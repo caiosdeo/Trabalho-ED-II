@@ -15,7 +15,6 @@ class duploHash{
         unsigned hash1(unsigned chave);
         unsigned hash2(unsigned chave, unsigned resto);
         void inserirHash(unsigned chave);
-        void mostrarHash();
         unsigned getNumColisoes();
 
 };

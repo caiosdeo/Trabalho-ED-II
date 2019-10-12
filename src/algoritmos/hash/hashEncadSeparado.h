@@ -12,9 +12,7 @@ class HashEncadSeparado{
     public:
         HashEncadSeparado(unsigned baldes);
         void insereItem(unsigned chave);
-        void removeItem(unsigned chave);
         unsigned funcaoHash(unsigned chave);
-        void imprimirHash();
         unsigned contabilizarColisoes();
 
 };

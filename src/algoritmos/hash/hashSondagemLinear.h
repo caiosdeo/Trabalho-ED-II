@@ -24,7 +24,6 @@ class HashSondLin{
         //~HashSondLin();
         unsigned hashCode(unsigned chave);
         void insereNo(unsigned chave, unsigned valor);
-        unsigned deleteNo(unsigned chave);
         unsigned get(unsigned chave);
         unsigned getTamanho();
         bool estaVazia();
