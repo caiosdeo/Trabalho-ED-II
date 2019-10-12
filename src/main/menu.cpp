@@ -209,9 +209,6 @@ void selecionar(unsigned selecao){
                                 // Imprimindo a execução atual do Fluxo
                                 cout << "Execução: " << i + 1 << endl;
 
-                                if(n != 1000)
-                                    continue;
-
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario4(v, n, saida);
 
