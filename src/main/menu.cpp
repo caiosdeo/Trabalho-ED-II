@@ -54,9 +54,6 @@ void selecionar(unsigned selecao){
             // Lendo os N
             while(entrada >> n){
 
-                // Imprimindo o valor de N
-                cout << "N: " << n << endl;
-
                 // Escolhendo o cenário
                 switch (selecao){
 
@@ -75,6 +72,8 @@ void selecionar(unsigned selecao){
                                 // Colocando dados no conjunto
                                 Review* conjunto = conjunto->leituraDados(dataset, n);
 
+                                // Imprimindo o valor de N
+                                cout << "N: " << n << endl;
                                 // Imprimindo a execução atual do Fluxo
                                 cout << "Execução: " << i + 1 << endl;
 
@@ -82,6 +81,9 @@ void selecionar(unsigned selecao){
                                 
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario1(conjunto, n, saida); 
+
+                                //Limpa a tela
+                                unsigned clear = system("clear");
 
                             }
                         
@@ -112,11 +114,10 @@ void selecionar(unsigned selecao){
                                 //Gerando vetor de ids embaralhado
                                 unsigned *v = gerarVetorIds(conjunto, n);
 
+                                // Imprimindo o valor de N
+                                cout << "N: " << n << endl;
                                 // Imprimindo a execução atual do Fluxo
                                 cout << "Execução: " << i + 1 << endl;
-
-                                if(n != 500000)
-                                    continue;
 
                                 // Executando para as versoes, o conjunto
                                 fluxoCenario2(v, n, saida);
@@ -125,6 +126,9 @@ void selecionar(unsigned selecao){
                                 free(conjunto); 
                                 // Desalocando os ids
                                 free(v);
+
+                                //Limpa a tela
+                                unsigned clear = system("clear");
 
                             }
 
@@ -155,6 +159,8 @@ void selecionar(unsigned selecao){
                             // ! serão 5 execuções para cada conjunto, sementes diferentes      
                             for (unsigned i = 0; i < 5; i++){
 
+                                // Imprimindo o valor de N
+                                cout << "N: " << n << endl;
                                 // Imprimindo a execução atual do Fluxo
                                 cout << "Execução: " << i + 1 << endl;
 
@@ -168,6 +174,9 @@ void selecionar(unsigned selecao){
                                 free(conjunto); 
                                 // Desalocando os ids
                                 free(v);
+
+                                //Limpa a tela
+                                unsigned clear = system("clear");
 
                             }
                             
@@ -198,6 +207,8 @@ void selecionar(unsigned selecao){
                                 //Gerando vetor de ids embaralhado
                                 unsigned *v = gerarVetorIds(conjunto, n);
 
+                                // Imprimindo o valor de N
+                                cout << "N: " << n << endl;
                                 // Imprimindo a execução atual do Fluxo
                                 cout << "Execução: " << i + 1 << endl;
 
@@ -211,6 +222,9 @@ void selecionar(unsigned selecao){
                                 free(conjunto); 
                                 // Desalocando os ids
                                 free(v);
+
+                                //Limpa a tela
+                                unsigned clear = system("clear");
 
                             }
 
@@ -227,8 +241,6 @@ void selecionar(unsigned selecao){
                     default:
                         break;
                 }
-
-                unsigned clear = system("clear");
                 
             }
 
