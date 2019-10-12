@@ -73,7 +73,7 @@ void fluxoCenario4(unsigned* chaves, unsigned n, fstream &saida){
                 cout << "Executando hash encadeamento separado" << endl;
 
                 // * Chamada dos algoritmos
-                HashEncadSeparado hashEncadSep = HashEncadSeparado(n/10);
+                HashEncadSeparado hashEncadSep = HashEncadSeparado(n/100);
 
                 for(int j = 0; j < n; j++)
                     hashEncadSep.insereItem(chaves[j]);
