@@ -31,7 +31,7 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                quickSortMediano(ids, 0, n-1, 5, &numComparacoes, &numCopias);
+                insertionQuickSort(ids, 0, n-1, 100, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();

@@ -18,4 +18,4 @@ unsigned converterStringUnsigned(char* str);
  * @param n Tamanho do conjunto
  * @return users Vetor com nomes de usuários
  */
-char** leituraNomeUsuarios(fstream &dataset, int n);
+char** leituraNomeUsuarios(fstream &dataset, unsigned n);

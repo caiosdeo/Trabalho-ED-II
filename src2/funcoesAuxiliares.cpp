@@ -13,7 +13,7 @@ unsigned converterStringUnsigned(char* str){
 
 }
 
-char** leituraNomeUsuarios(fstream &dataset, int n){
+char** leituraNomeUsuarios(fstream &dataset, unsigned n){
 
     // Conjunto de Nomes
     char** users = (char**)calloc(n, sizeof(char*));
