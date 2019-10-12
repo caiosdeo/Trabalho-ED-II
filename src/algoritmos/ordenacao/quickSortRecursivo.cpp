@@ -18,7 +18,8 @@ void swap(unsigned *i, unsigned *j){
 // Partição para ids
 unsigned particaoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned long long *numComparacoes, unsigned long long *numTrocas){
 
-    unsigned pivo = a[fim];
+    srand(time(0));
+    unsigned pivo = a[rand()%(fim - inicio) + inicio];
     unsigned i = inicio - 1;
 
     for(unsigned j = inicio; j < fim; j++){
@@ -46,8 +47,6 @@ void quickSortRecursivoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned 
     if(inicio < fim){
 
         unsigned pivo = particaoIds(a, inicio, fim, numComparacoes, numTrocas);
-        if(pivo == 0 || pivo == fim)
-            return;
         quickSortRecursivoIds(a, inicio, pivo-1, numComparacoes, numTrocas);
         quickSortRecursivoIds(a, pivo+1, fim, numComparacoes, numTrocas);
 

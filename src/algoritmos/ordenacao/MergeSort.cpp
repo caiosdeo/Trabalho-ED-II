@@ -62,7 +62,7 @@ void merge(unsigned *vet, unsigned esq, unsigned med, unsigned dir, unsigned lon
 }
 
 
-///Funcao merge sort para vetor de unsignedeiros de tamanho esq a dir
+///Funcao merge sort para vetor de unsigned de tamanho esq a dir
 void mergeSort(unsigned *vet, unsigned esq, unsigned dir, unsigned long long *numComp, unsigned long long *numReg){
 
     if(esq < dir){

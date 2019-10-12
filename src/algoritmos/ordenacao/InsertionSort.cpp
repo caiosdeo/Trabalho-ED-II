@@ -3,7 +3,7 @@
 
 using namespace std;
 
-/// Funcao Insertion Sort para vetor de unsignedeiros de tamanho size
+/// Funcao Insertion Sort para vetor de unsigned de tamanho size
 void insertionSort(unsigned *vet, unsigned size, unsigned long long *numComp, unsigned long long *numReg)
 {
     unsigned i, chave, j;
@@ -20,7 +20,7 @@ void insertionSort(unsigned *vet, unsigned size, unsigned long long *numComp, un
 
             vet[j+1] = vet[j];
             j--;
-            (*numComp)++;
+            (*numComp)+=2;
             (*numReg)++;
 
         }

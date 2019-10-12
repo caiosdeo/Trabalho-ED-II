@@ -4,10 +4,14 @@
 
 using namespace std;
 
-void gerarVetor(unsigned* v, unsigned inicio, unsigned k, unsigned* aux){
+unsigned* gerarVetor(unsigned* v, unsigned inicio, unsigned k){
     
+    unsigned *aux = (unsigned*)malloc(k*sizeof(unsigned));
+
     for(unsigned i = 0; i < k; i++, inicio++ )
         aux[i] = v[inicio];
+
+    return aux;
 
 }
 
@@ -27,18 +31,11 @@ void quickSortMediano(unsigned *vetor, unsigned inicio, unsigned fim, unsigned k
     if(inicio < fim){
 
         if (fim - inicio < k) {
-            // ! Aqui não é pra chamar o quickSort comum?
-            unsigned pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
-            if(pivo == 0 || pivo == fim)
-                return;
-            quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
-            quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);
+            quickSortRecursivoIds(vetor, inicio, fim, comparacoes, trocas);
 
         }else {
 
-            unsigned aux[k];
-
-            gerarVetor(vetor, inicio, k, aux);
+            unsigned *aux = gerarVetor(vetor, inicio, k);
 
             unsigned mediana = medianadek(aux, k, trocas, comparacoes);
 
@@ -46,14 +43,14 @@ void quickSortMediano(unsigned *vetor, unsigned inicio, unsigned fim, unsigned k
             while(aux[mediana] != vetor[copiaInicio])
                 copiaInicio++;
 
+            delete[] aux;
+
             mediana = copiaInicio;
 
             (*trocas)++;
             swap(&vetor[mediana], &vetor[fim]);
 
             unsigned pivo = particaoIds(vetor, inicio, fim, comparacoes, trocas);
-            if(pivo == 0 || pivo == fim)
-                return;
             quickSortMediano(vetor, inicio, pivo - 1, k, trocas, comparacoes);
             quickSortMediano(vetor, pivo + 1, fim, k, trocas, comparacoes);
         
