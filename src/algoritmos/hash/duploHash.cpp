@@ -33,7 +33,8 @@ unsigned duploHash::hash1(unsigned chave){
 
 unsigned duploHash::hash2(unsigned chave, unsigned resto){
 
-    return resto - chave % resto;
+    unsigned id = resto - chave % (resto+1);
+    return id >= 0 ? id : -id;
 
 }
 

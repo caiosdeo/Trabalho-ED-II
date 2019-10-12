@@ -41,7 +41,7 @@ void HashSondQuad::insereNo(unsigned chave, unsigned valor)
     unsigned hashIndex = hashCode(chave); 
     //find next free space  
     for(unsigned i = 1; tabela[hashIndex] != NULL && tabela[hashIndex]->getChave() != chave 
-            && tabela[hashIndex]->getChave() != -1; i++) 
+            && tabela[hashIndex]->getChave() != -1 && i < this->capacidade; i++) 
     { 
         houveColisao = true;
         hashIndex = (chave + (i*i)) % capacidade; 
@@ -52,7 +52,7 @@ void HashSondQuad::insereNo(unsigned chave, unsigned valor)
           
     //if new node to be inserted increase the current tamanho 
     if(tabela[hashIndex] == NULL || tabela[hashIndex]->getChave() == -1) 
-        tamanho++; 
+        this->tamanho++; 
 
     tabela[hashIndex] = temp; 
 } 
@@ -82,15 +82,15 @@ unsigned HashSondQuad::deleteNo(unsigned chave)
 }
 unsigned HashSondQuad::getTamanho() 
 { 
-    return tamanho; 
+    return this->tamanho; 
 }
 bool HashSondQuad::estaCheia()
 {
-    return tamanho == capacidade;
+    return this->tamanho == capacidade;
 } 
 bool HashSondQuad::estaVazia() 
 { 
-    return tamanho == 0; 
+    return this->tamanho == 0; 
 } 
 
 unsigned HashSondQuad::getNumColisoes(){
