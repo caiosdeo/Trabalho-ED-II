@@ -61,7 +61,7 @@ unsigned* gerarVetorIds(Review* conjunto, unsigned n);
 void embaralharIds(unsigned *v, unsigned n);
 
 /**
- * Embaralhamento de vetor de ids.
+ * Embaralhamento de vetor de reviews.
  *
  * @author eliascassis
  * @param conjunto vetor de Reviews
@@ -69,16 +69,5 @@ void embaralharIds(unsigned *v, unsigned n);
  * @return v Vetor de reviews embaralhado
  */
 void embaralharEstruturas(Review *r, unsigned n);
-
-/**
- * Embaralhamento de vetor de estruturas.
- *
- * @author eliascassis
- * @param conjunto vetor estruturas
- * * @param conjunto vetor estruturas
- * @param n Tamanho do conjunto
- * @return void
- */
-void copiaVetor(unsigned* v, unsigned* ids, unsigned n);
 
 #endif //TRATAMENTO_H_INCLUDED

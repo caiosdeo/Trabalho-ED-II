@@ -6,7 +6,7 @@ using namespace std;
 /// Funcao Insertion Sort para vetor de unsigned de tamanho size
 void insertionSort(unsigned *vet, unsigned size, unsigned long long *numComp, unsigned long long *numReg)
 {
-    unsigned chave, j;
+    int chave, j;
     for(unsigned i = 1; i < size; i++){
 
         chave = vet[i]; //copiando elemento i
