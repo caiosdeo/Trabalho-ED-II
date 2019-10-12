@@ -13,7 +13,7 @@ void fluxoCenario4(unsigned* chaves, unsigned n, fstream &saida){
     // Declaracao de Hashs
 
     //Loop para rodar para os dois tipos de estruturas em única execução
-    for (unsigned versao = 0; versao < 5; versao++){
+    for (int versao = 0; versao < 5; versao++){
 
         // Métricas de desempenho
         unsigned numColisoes = 0;
@@ -27,7 +27,7 @@ void fluxoCenario4(unsigned* chaves, unsigned n, fstream &saida){
                 // * Chamada dos algoritmos
                 HashSondLin hashLin = HashSondLin(n);
 
-                for(unsigned j = 0; j < n; j++)
+                for(int j = 0; j < n; j++)
                     hashLin.insereNo(chaves[j], chaves[j]);
 
                 // Métrica de desempenho
@@ -43,7 +43,7 @@ void fluxoCenario4(unsigned* chaves, unsigned n, fstream &saida){
                 // * Chamada dos algoritmos
                 HashSondQuad hashQuad = HashSondQuad(n);
 
-                for(unsigned j = 0; j < n; j++)
+                for(int j = 0; j < n; j++)
                     hashQuad.insereNo(chaves[j], chaves[j]);
 
                 // Métrica de desempenho
@@ -59,7 +59,7 @@ void fluxoCenario4(unsigned* chaves, unsigned n, fstream &saida){
                 // * Chamada dos algoritmos
                 duploHash dHash = duploHash(n);
 
-                for(unsigned j = 0; j < n; j++)
+                for(int j = 0; j < n; j++)
                     dHash.inserirHash(chaves[j]);
 
                 // Métrica de desempenho
@@ -75,7 +75,7 @@ void fluxoCenario4(unsigned* chaves, unsigned n, fstream &saida){
                 // * Chamada dos algoritmos
                 HashEncadSeparado hashEncadSep = HashEncadSeparado(n/10);
 
-                for(unsigned j = 0; j < n; j++)
+                for(int j = 0; j < n; j++)
                     hashEncadSep.insereItem(chaves[j]);
 
                 // Métrica de desempenho

@@ -67,7 +67,7 @@ void selecionar(unsigned selecao){
                         if(saida.is_open()){
 
                             // ! serão 5 execuções para cada conjunto     
-                            for (unsigned i = 0; i < 5; i++){
+                            for (int i = 0; i < 5; i++){
 
                                 // Colocando dados no conjunto
                                 Review* conjunto = conjunto->leituraDados(dataset, n);
@@ -107,7 +107,7 @@ void selecionar(unsigned selecao){
                         if (saida.is_open()){
 
                             // ! serão 5 execuções para cada conjunto, sementes diferentes      
-                            for (unsigned i = 0; i < 5; i++){
+                            for (int i = 0; i < 5; i++){
 
                                 // Colocando dados no conjunto
                                 Review* conjunto = conjunto->leituraDados(dataset, n);
@@ -152,7 +152,7 @@ void selecionar(unsigned selecao){
                         if (saida.is_open()){
 
                             // ! serão 5 execuções para cada conjunto, sementes diferentes      
-                            for (unsigned i = 0; i < 5; i++){
+                            for (int i = 0; i < 5; i++){
 
                                 // Colocando dados no conjunto
                                 Review* conjunto = conjunto->leituraDados(dataset, n);
@@ -197,7 +197,7 @@ void selecionar(unsigned selecao){
                         if (saida.is_open()){
 
                             // ! serão 5 execuções para cada conjunto, sementes diferentes      
-                            for (unsigned i = 0; i < 5; i++){
+                            for (int i = 0; i < 5; i++){
 
                                 // Colocando dados no conjunto
                                 Review* conjunto = conjunto->leituraDados(dataset, n);

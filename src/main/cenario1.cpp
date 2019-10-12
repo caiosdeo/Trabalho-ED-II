@@ -18,7 +18,7 @@ void fluxoCenario1(Review* conjunto, unsigned n, fstream &saida){
     auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
     //Loop para rodar para os dois tipos de estruturas em única execução
-    for (unsigned versao = 0; versao < 2; versao++){
+    for (int versao = 0; versao < 2; versao++){
 
         // Métricas de desempenho
         unsigned long long numComparacoes = 0, numCopias = 0;
