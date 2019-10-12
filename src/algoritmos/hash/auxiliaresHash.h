@@ -7,7 +7,7 @@
  * @param string str string
  * @return valorString correspondente unsigned da soma dos caracteres da string.
  */
-unsigned converterStringUnsigned(string str);
+unsigned converterStringUnsigned(char* str);
  
 /**
  * Função para gerar um conjunto de chaves para hashing 
