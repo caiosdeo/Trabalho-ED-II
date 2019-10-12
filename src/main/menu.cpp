@@ -215,7 +215,7 @@ void selecionar(unsigned selecao){
 
                 unsigned clear = system("clear");
 
-                free(conjunto);
+                //free(conjunto);
                 
             }
 
