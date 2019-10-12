@@ -1,7 +1,6 @@
 #ifndef HASHENCADCOAL_H
 #define HASHENCADCOAL_H
 #include <stdio.h>
-#include "noHashCoal.h"
 
 using namespace std;
 
@@ -10,16 +9,17 @@ class hashEncadCoal
 {
     private:
         unsigned numeroChaves;
-        noHashCoal *inicio;
-        noHashCoal *ultimo;
+        unsigned* tabela;
+        unsigned* colisoes;
+
 
     public:
         hashEncadCoal(unsigned numeroChaves);
         ~hashEncadCoal();
+        unsigned getIndiceColisao(unsigned indice);
         unsigned funcaoHash(unsigned chave);
         void insereItem(unsigned chave, unsigned *countColisoes);
-        void removeItem(unsigned chave);
-        noHashCoal* getPosicao(unsigned chave, noHashCoal *crash);
+        
 };
 
 

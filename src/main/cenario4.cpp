@@ -91,7 +91,7 @@ void fluxoCenario4(unsigned* chaves, unsigned n, fstream &saida){
                 // * Chamada dos algoritmos
                 hashEncadCoal hashEncadCoa = hashEncadCoal(n);
 
-                for(unsigned j = 0; j < n; j++)
+                for(int j = 0; j < n; j++)
                     hashEncadCoa.insereItem(chaves[j], &numColisoes);                
 
                 break;
