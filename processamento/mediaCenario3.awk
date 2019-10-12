@@ -1,5 +1,4 @@
 #Script para extrair os dados brutos da saída do programa
-#Cenários de 2, 3 e 4
 
 BEGIN{
 
@@ -406,6 +405,6 @@ END{
 
 	for(i = 0; i < 30; i++){
 
-		printf("%d,%d,%.1f,%.1f,%.1f\n", versao[i], n[i], avgComp[i], avgReg[i], avgTempo[i]) >> "tratadosCenario2.csv";
+		printf("%d,%d,%.1f,%.1f,%.1f\n", versao[i], n[i], avgComp[i], avgReg[i], avgTempo[i]) >> "tratadosCenario3.csv";
 	}
 }

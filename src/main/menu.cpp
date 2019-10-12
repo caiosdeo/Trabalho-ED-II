@@ -60,6 +60,10 @@ void selecionar(unsigned selecao){
                     //Cenário 1
                     case 1:{
 
+                        //Limpando o arquivo
+                        saida.open("../../saidaCenario1.csv", ios::out);
+                        saida.close();
+
                         //Abrindo arquivo de saida do cenário 
                         saida.open("../../saidaCenario1.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
@@ -99,6 +103,10 @@ void selecionar(unsigned selecao){
 
                     //Cenário 2
                     case 2:{
+
+                        //Limpando o arquivo
+                        saida.open("../../saidaCenario2.csv", ios::out);
+                        saida.close();
 
                         //Abrindo arquivo de saida do cenário 
                         saida.open("../../saidaCenario2.csv", ios::out | ios::app); // Arquivo de saída como escrita
@@ -145,6 +153,10 @@ void selecionar(unsigned selecao){
                     //Cenário 3
                     case 3:{
 
+                        //Limpando o arquivo
+                        saida.open("../../saidaCenario3.csv", ios::out);
+                        saida.close();
+
                         //Abrindo arquivo de saida do cenário 
                         saida.open("../../saidaCenario3.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
@@ -189,6 +201,10 @@ void selecionar(unsigned selecao){
 
                     //Cenário 4
                     case 4:{
+
+                        //Limpando o arquivo
+                        saida.open("../../saidaCenario4.csv", ios::out);
+                        saida.close();
 
                         //Abrindo arquivo de saida do cenário 
                         saida.open("../../saidaCenario4.csv", ios::out | ios::app); // Arquivo de saída como escrita
