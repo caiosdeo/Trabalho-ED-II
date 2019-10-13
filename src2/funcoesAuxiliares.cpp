@@ -1,7 +1,7 @@
 #include "funcoesAuxiliares.h"
 
 // Converte uma string em um inteiro sem sinal
-unsigned converterStringUnsigned(char* str){
+unsigned converterStringUnsigned(string str){
 
     unsigned valorString = 0;
 
@@ -40,7 +40,7 @@ char** leituraNomeUsuarios(fstream &dataset, unsigned n){
 
             //Atribuindo um nome de usuário
             tString = user.size();
-            users[i] = (char*)malloc(sizeof(char) * tString);//(char*)calloc(tString, sizeof(char));
+            users[i] = (char*)malloc(sizeof(char) * tString);
             for(int j = 0; j < tString; j++)
                 users[i][j] = user[j];
             i++;
@@ -51,5 +51,84 @@ char** leituraNomeUsuarios(fstream &dataset, unsigned n){
 
     // Retornando o conjunto de nomes
     return users;
+
+}
+
+unsigned maiorValorString(char** users, unsigned n){
+
+    unsigned maior = converterStringUnsigned(users[0]);
+    unsigned aux;
+
+    for(int i = 1; i < n; i++){
+
+        aux = converterStringUnsigned(users[i]);
+        if(aux > maior)
+            maior = aux;
+
+    }
+
+    return maior;
+
+}
+
+// Função Heap Sort
+void swap(string *i, string *j){
+
+    string aux;
+
+    aux = *i;
+    *i = *j;
+    *j = aux;
+
+}
+
+void swapFreq(list<string> *i, list<string> *j){
+
+    list<string> aux;
+
+    aux = *i;
+    *i = *j;
+    *j = aux;
+
+}
+
+void heapify(list<string> *freq, string* users, unsigned tam, unsigned indice){
+    
+    unsigned menor = indice;
+    unsigned esq = 2*indice + 1;
+    unsigned dir = 2*indice + 2;
+
+    if (esq < tam && freq[esq].size() < freq[menor].size()) {
+        menor = esq;
+    }
+
+    if (dir < tam && freq[dir].size() < freq[menor].size()) {
+        menor = dir;
+    }
+
+    if (menor != indice) {
+
+        swap(&users[indice], &users[menor]);
+        swapFreq(&freq[indice], &freq[menor]);
+        heapify(freq, users, tam, menor);
+    }
+
+}
+
+void heapSort(list<string> *freq, string* users, unsigned tam){
+    // Constrói a heap de máximo
+    for (unsigned i = tam / 2; i >= 1; i--)
+        heapify(freq, users, tam, i);
+
+    // Extrai, um por um, os elementos da heap
+    for (unsigned i = tam/2; i >= 2; i--){
+
+        // Move o atual para o fim
+        swap(&users[1], &users[i]);
+        swapFreq(&freq[1], &freq[i]);
+
+        // Chama o max Heapfy para a heap reduzida
+        heapify(freq, users, tam - 1, 1);
+    }
 
 }
