@@ -9,14 +9,14 @@ class InfoJogo{
 
     private:
         string categoria;
-        unsigned id;
+        int id;
         unsigned idJogo;
 
     public:
-        unsigned getId();
+        int getId();
         string getCategoria();
         unsigned getIdJogo();
-        void setId(unsigned id);
+        void setId(int id);
         void setIdJogo(unsigned idJogo);
         void setCategoria(string categoria);
 

@@ -1,3 +1,6 @@
+#ifndef HASHINFOJOGO_H_INCLUDED
+#define HASHINFOJOGO_H_INCLUDED
+
 // Definição e funções da classe HashInfoJogo
 #include "InfoJogo.h"
 
@@ -12,7 +15,6 @@ class HashInfoJogo{
 
     public:
         HashInfoJogo(unsigned tamanhoTabela);
-        ~HashInfoJogo();
         bool estaCheia();
         unsigned hash1(unsigned chave);
         unsigned hash2(unsigned chave, unsigned resto);
@@ -20,3 +22,4 @@ class HashInfoJogo{
         unsigned getNumColisoes();
 
 };
+#endif //HASHINFOJOGO_H_INCLUDED

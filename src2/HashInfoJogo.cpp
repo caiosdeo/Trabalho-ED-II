@@ -16,10 +16,6 @@ HashInfoJogo::HashInfoJogo(unsigned tamanhoTabela){
 
 }
 
-HashInfoJogo::~HashInfoJogo(){
-    free(this->tabelaHash);
-}
-
 bool HashInfoJogo::estaCheia(){
 
     return this->tamanhoAtual == this->tamanhoTabela;

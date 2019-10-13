@@ -19,28 +19,13 @@ int main(){
     if(dataset.is_open()){
 
         // Lendo os N
+        cout << "Qual o N?" << endl;
         cin >> n;
 
-        //Limpando o arquivo
-        saida.open("../../saidaFase2.csv", ios::out);
-        saida.close();
+        // Colocando dados no conjunto
+        HashInfoJogo tabelaInfoJogo = HashInfoJogo(n);
+        leituraInfoJogos(dataset, n, &tabelaInfoJogo);                    
 
-        //Abrindo arquivo de saida 
-        saida.open("../../saidaFase2.csv", ios::out | ios::app); // Arquivo de saída como escrita
-
-        // Verificando se o arquivo de saida está aberto
-        if(saida.is_open()){
-
-            // Colocando dados no conjunto
-            HashInfoJogo tabelaInfoJogo = HashInfoJogo(n);
-            leituraInfoJogos(dataset, n, &tabelaInfoJogo);
-        
-        }
-        else
-            cout << "Não foi possível abrir o arquivo de saída" << endl;                    
-
-        // Salvando e fechando os arquivos usados
-        //saida.close();                    
 
     }
     else

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 
-unsigned InfoJogo::getId(){
+int InfoJogo::getId(){
 
     return this->id;
 
@@ -22,7 +22,7 @@ unsigned InfoJogo::getIdJogo(){
 
 }
 
-void InfoJogo::setId(unsigned id){
+void InfoJogo::setId(int id){
 
     this->id = id;
 }
