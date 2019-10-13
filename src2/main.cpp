@@ -9,15 +9,14 @@ int main(void){
 
     fstream dataset;
 
-    unsigned n = 11;
+    unsigned n = 500000;
     dataset.open("../../processadosFase2_1.txt", ios::in);
     char** users = leituraNomeUsuarios(dataset, n);
     unsigned t = maiorValorString(users, n);
     HashEncadUsuarios tUsers = HashEncadUsuarios(t);
-    cout << "Awui" << endl;
     for(int i = 0; i < n; i++)
         tUsers.insereItem(users[i]);
-    tUsers.exibirFrequencias(3);
+    tUsers.exibirFrequencias(11);
 
     return 0;
 

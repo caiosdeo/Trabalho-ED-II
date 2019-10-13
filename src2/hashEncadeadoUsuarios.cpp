@@ -44,8 +44,8 @@ string* HashEncadUsuarios::gerarVetorFrequencia(){
 
     string* freqUser = (string*)malloc(tamFreq*sizeof(string));
 
-    for(int i = 0, j = 0; i < n; i++)
-        freqUser[j] = tabela[i].front();
+    for(int i = 0; i < tamFreq; i++)
+        freqUser[i] = tabFreq[i].front();
 
     heapSort(tabFreq, freqUser, tamFreq);
 
