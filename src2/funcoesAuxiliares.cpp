@@ -1,6 +1,9 @@
 #include "funcoesAuxiliares.h"
 #include "InfoJogo.h"
+#include "HashInfoJogo.h"
 #include<string>
+#include <sstream>
+#include <vector>
 
 // Converte uma string em um inteiro sem sinal
 unsigned converterStringUnsigned(string str){
@@ -56,7 +59,7 @@ char** leituraNomeUsuarios(fstream &dataset, unsigned n){
 
 }
 
-void leituraInfoJogos(fstream &dataset, int n, HashInfoJogo* tabelaAvaliacao){
+void leituraInfoJogos(fstream &dataset, int n, HashInfoJogo* tabelaInfoJogo){
 
     // Conjunto de Avaliacoes
     InfoJogo info;
@@ -90,14 +93,45 @@ void leituraInfoJogos(fstream &dataset, int n, HashInfoJogo* tabelaAvaliacao){
             info.setId(stoi(id));
             info.setIdJogo(stoul(idJogo));
 
-            tabelaAvaliacao->inserirHash(info);
+            tabelaInfoJogo->inserirHash(info);
 
             i++;
 
         }
     }
 }
+
+vector<string> separar(const string &s, char delimitador) {
+    
+    vector<string> resultado;
+    stringstream ss(s);
+    string item;
+
+    while (getline (ss, item, delimitador)) {
+        resultado.push_back (item);
+    }
+
+    return resultado;
+
+}
+
+vector<string> pegarCategorias(HashInfoJogo* tabelaInfoJogo, int n){
+
+    //Variaveis para ler o documento
+    vector<string> categorias, aux;
+
+    InfoJogo* tabelaHash = tabelaInfoJogo->getTabelaHash();
+
+    // Armazenando todas as string em um vetor
+    for(int i = 0; i < n; i++){
         
+        aux = separar(tabelaHash[i].getCategoria(), '|');
+        categorias.insert(categorias.end(), aux.begin(), aux.end());    
+    
+    }
+    return categorias;
+}
+
 unsigned maiorValorString(char** users, unsigned n){
 
     unsigned maior = converterStringUnsigned(users[0]);

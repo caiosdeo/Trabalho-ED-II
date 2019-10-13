@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include "InfoJogo.h"
 #include "HashInfoJogo.h"
 #include "funcoesAuxiliares.h"
@@ -26,6 +27,10 @@ int main(){
         HashInfoJogo tabelaInfoJogo = HashInfoJogo(n);
         leituraInfoJogos(dataset, n, &tabelaInfoJogo);                    
 
+        vector<string> categorias = pegarCategorias(&tabelaInfoJogo, n);
+
+        for(int i = 0; i < categorias.size(); i++)
+            cout << categorias[i] << endl;
 
     }
     else

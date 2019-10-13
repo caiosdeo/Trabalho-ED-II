@@ -79,3 +79,7 @@ void HashInfoJogo::inserirHash(InfoJogo info){
 unsigned HashInfoJogo::getNumColisoes(){
     return this->numColisoes;
 }
+
+InfoJogo* HashInfoJogo::getTabelaHash(){
+    return this->tabelaHash;
+}

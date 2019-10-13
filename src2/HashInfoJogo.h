@@ -20,6 +20,7 @@ class HashInfoJogo{
         unsigned hash2(unsigned chave, unsigned resto);
         void inserirHash(InfoJogo chave);
         unsigned getNumColisoes();
+        InfoJogo* getTabelaHash();
 
 };
 #endif //HASHINFOJOGO_H_INCLUDED

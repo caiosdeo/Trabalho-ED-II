@@ -2,6 +2,7 @@
 #include<fstream>
 #include<string>
 #include<list>
+#include <vector>
 #include "HashInfoJogo.h"
 
 using namespace std;
@@ -31,9 +32,27 @@ char** leituraNomeUsuarios(fstream &dataset, unsigned n);
  * @author caiosdeo
  * @param dataset Arquivo com os dados
  * @param n Tamanho do conjunto
- * @return r Vetor com dados
+ * @param tabelaInfoJogo tabela hash de info jogo
  */
-void leituraInfoJogos(fstream &dataset, int n, HashInfoJogo* tabelaAvaliacao);
+void leituraInfoJogos(fstream &dataset, int n, HashInfoJogo* tabelaInfoJogo);
+
+/**
+ * Separar substrings de um string delimitadas por um caracter
+ *
+ * @author caiosdeo
+ * @param s string
+ * @param delimitador separador das substrings
+ */
+vector<string> separar(const string &s, char delimitador);
+
+/**
+ * Armazena todas categorias em um vetor.
+ *
+ * @author caiosdeo
+ * @param tabelaInfoJogo tabela hash de info jogo
+ * @param n Tamanho do conjunto
+ */
+vector<string> pegarCategorias(HashInfoJogo* tabelaInfoJogo, int n);
 
 /**
  * Valor correspondente de string em unsigned
