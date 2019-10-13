@@ -195,18 +195,18 @@ void heapify(list<string> *freq, string* users, unsigned tam, unsigned indice){
 
 void heapSort(list<string> *freq, string* users, unsigned tam){
     // Constrói a heap de máximo
-    for (unsigned i = tam / 2; i >= 1; i--)
+    for (int i = tam / 2 -1; i >= 0; i--)
         heapify(freq, users, tam, i);
 
     // Extrai, um por um, os elementos da heap
-    for (unsigned i = tam/2; i >= 2; i--){
+    for (int i = tam-1; i >= 0; i--){
 
         // Move o atual para o fim
-        swap(&users[1], &users[i]);
-        swapFreq(&freq[1], &freq[i]);
+        swap(&users[0], &users[i]);
+        swapFreq(&freq[0], &freq[i]);
 
         // Chama o max Heapfy para a heap reduzida
-        heapify(freq, users, tam - 1, 1);
+        heapify(freq, users, i, 0); 
     }
 
 }

@@ -19,7 +19,7 @@ class HashEncadUsuarios{
         void exibirFrequencias(unsigned n); // exibe n frequências
     
     private:
-        string* gerarVetorFrequencia(); 
+        pair<string*, list<string>*> gerarVetorFrequencia(); 
 
 };
 

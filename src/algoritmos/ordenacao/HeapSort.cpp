@@ -28,18 +28,18 @@ void heapify(unsigned *id, unsigned tam, unsigned indice, unsigned long long *tr
 
 void heapSort(unsigned *id, unsigned tam, unsigned long long *trocas, unsigned long long *comparacoes) {
     // Build heap (rearrange array)
-    for (unsigned i = tam / 2; i >= 1; i--)
+    for (int i = tam / 2-1; i >= 0; i--)
         heapify(id, tam, i, trocas, comparacoes);
 
     // One by one extract an element from heap
-    for (unsigned i = tam/2; i >= 2; i--){
+    for (int i = tam-1; i >= 0; i--){
 
         // Move current root to end
-        swap(&id[1], &id[i]);
+        swap(&id[0], &id[i]);
         (*trocas)++;
 
         // call max heapify on the reduced heap
-        heapify(id, tam - 1, 1, trocas, comparacoes);
+        heapify(id, i, 0, trocas, comparacoes);
     }
 
 }
