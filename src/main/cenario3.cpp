@@ -23,9 +23,9 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
 
         switch(versao){
 
-            case 0: // Quicksort mediana k = 5 // TODO: Verificar novamente o melhor do 2
+            case 0: // insertionQuickSort m = 100
 
-                cout << "Executando quicksort mediana k = 5" << endl;
+                cout << "Executando insertionQuickSort m = 100" << endl;
 
                 // Ponto de inicio de contagem para tempo de execução do algoritmo
                 inicio = chrono::high_resolution_clock::now();
