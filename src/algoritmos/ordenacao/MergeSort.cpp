@@ -24,7 +24,7 @@ void merge(unsigned *vet, unsigned esq, unsigned med, unsigned dir, unsigned lon
         D[j] = vet[med+1+j];
         (*numReg)++;
     }
-    // unsignedercalando os vetores temporários
+    // intercalando os vetores temporários
     for(i = 0, j = 0, k = esq; i < tamE && j < tamD; k++){
 
         (*numComp)++;
