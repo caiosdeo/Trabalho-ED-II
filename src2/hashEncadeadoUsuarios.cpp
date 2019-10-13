@@ -1,12 +1,10 @@
-#include <iostream>
-#include <list>
 #include "hashEncadeadoUsuarios.h"
 #include "funcoesAuxiliares.h"
 
 HashEncadUsuarios::HashEncadUsuarios(unsigned n){
 
     this->n = n;
-    this->tabela = (new list<string>[this->n]);
+    this->tabela = new list<string>[this->n];
 
 }
 

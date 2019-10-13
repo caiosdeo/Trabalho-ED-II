@@ -1,3 +1,5 @@
+#ifndef ENCADUSUARIOS_H_INCLUDED
+#define ENCADUSUARIOS_H_INCLUDED
 #include <iostream>
 #include <list>
 
@@ -20,3 +22,5 @@ class HashEncadUsuarios{
         string* gerarVetorFrequencia(); 
 
 };
+
+#endif //ENCADUSUARIOS_H_INCLUDED
