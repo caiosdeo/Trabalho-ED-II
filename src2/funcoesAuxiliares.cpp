@@ -1,5 +1,4 @@
 #include "funcoesAuxiliares.h"
-#include<string>
 
 // Converte uma string em um inteiro sem sinal
 unsigned converterStringUnsigned(char* str){
@@ -29,7 +28,7 @@ char** leituraNomeUsuarios(fstream &dataset, unsigned n){
     srand(time(0));
 
     // Eliminando a primeira linha do arquivo
-    getline(dataset, user, ',');
+    getline(dataset, user,'\n');
 
     // Extração de dados até o tamanho do conjunto e o fim do arquivo
     while(dataset.good() && i < n){

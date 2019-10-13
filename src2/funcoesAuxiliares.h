@@ -1,5 +1,6 @@
 #include<iostream>
 #include<fstream>
+#include<string>
 
 /**
  * Valor correspondente de string em unsigned
