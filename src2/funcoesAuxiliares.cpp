@@ -1,4 +1,6 @@
 #include "funcoesAuxiliares.h"
+#include "HashInfoJogo.h"
+#include "InfoJogo.h"
 #include<string>
 
 // Converte uma string em um inteiro sem sinal
@@ -52,5 +54,49 @@ char** leituraNomeUsuarios(fstream &dataset, unsigned n){
 
     // Retornando o conjunto de nomes
     return users;
+
+}
+
+void leituraInfoJogos(fstream &dataset, int n, HashInfoJogo* tabelaAvaliacao){
+
+    // Conjunto de Avaliacoes
+    InfoJogo info;
+
+    //Variaveis para ler o documento
+    string id, categoria, idJogo;
+    unsigned tString;
+
+    //Variavel auxiliar para controlar o tamanho do conjunto
+    int i = 0;
+
+    // Alterando a semente com o tempo
+    srand(time(0));
+
+    // Eliminando a primeira linha do arquivo
+    getline(dataset, id, ',');
+    getline(dataset, categoria, ',');
+    getline(dataset, idJogo, '\n');
+
+    // Extração de dados até o tamanho do conjunto e o fim do arquivo
+    while(dataset.good() && i < n){
+
+        // Pegando as informações de cada registro
+        getline(dataset, categoria, ',');
+        getline(dataset, idJogo, ',');
+        getline(dataset, id, '\n');
+
+        if(rand() % 3 == 0){ // Selecionando registros a partir do resto de uma divisão por 3
+
+            info.setCategoria(categoria);
+            info.setId(stoul(id));
+            info.setIdJogo(stoul(idJogo));
+
+            tabelaAvaliacao->inserirHash(info);
+
+            i++;
+
+        }
+        
+    }
 
 }

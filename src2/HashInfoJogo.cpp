@@ -11,8 +11,8 @@ HashInfoJogo::HashInfoJogo(unsigned tamanhoTabela){
     this->tamanhoAtual = 0;
     this->numColisoes = 0;
 
-    for(unsigned i = 0; i < tamanhoTabela; i++)
-        tabelaHash[i] = nullptr;
+    for(int i = 0; i < tamanhoTabela; i++)
+        tabelaHash[i].setId(-1);
 
 }
 
@@ -46,13 +46,13 @@ void HashInfoJogo::inserirHash(InfoJogo info){
         return; 
 
     // Somatório dos campos para a chave
-    chave = info.getIdJogo();
+    unsigned chave = info.getIdJogo();
     chave += info.getId();
     chave += converterStringUnsigned(info.getCategoria());
 
     unsigned indice = hash1(chave); 
 
-    if(this->tabelaHash[indice] != nullptr){ 
+    if(this->tabelaHash[indice].getId() > 0){ 
 
         this->numColisoes++;
         unsigned indice2 = hash2(chave, indice); 
@@ -62,7 +62,7 @@ void HashInfoJogo::inserirHash(InfoJogo info){
 
             unsigned novoIndice = (indice2 + i) % this->tamanhoTabela;
 
-            if (tabelaHash[novoIndice] == nullptr){ 
+            if (tabelaHash[novoIndice].getId() < 0){ 
                 tabelaHash[novoIndice] = info; 
                 break; 
             } 

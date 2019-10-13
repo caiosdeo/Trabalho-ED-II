@@ -8,18 +8,17 @@ using namespace std;
 class InfoJogo{
 
     private:
-        char* categoria;
+        string categoria;
         unsigned id;
         unsigned idJogo;
 
     public:
         unsigned getId();
-        char* getCategoria();
+        string getCategoria();
         unsigned getIdJogo();
         void setId(unsigned id);
         void setIdJogo(unsigned idJogo);
-        void setCategoria(char* categoria);
-        HashInfoJogo* leituraDados(fstream &dataset, int n);
+        void setCategoria(string categoria);
 
 };
 

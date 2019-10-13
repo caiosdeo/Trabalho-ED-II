@@ -2,6 +2,7 @@
 #include <fstream>
 #include "InfoJogo.h"
 #include "HashInfoJogo.h"
+#include "funcoesAuxiliares.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ int main(){
     if(dataset.is_open()){
 
         // Lendo os N
-        cout >> n;
+        cin >> n;
 
         //Limpando o arquivo
         saida.open("../../saidaFase2.csv", ios::out);
@@ -31,9 +32,8 @@ int main(){
         if(saida.is_open()){
 
             // Colocando dados no conjunto
-            HashInfoJogo* conjunto = conjunto->leituraDados(dataset, n);
-
-            embaralharEstruturas(conjunto, n);
+            HashInfoJogo tabelaInfoJogo = HashInfoJogo(n);
+            leituraInfoJogos(dataset, n, &tabelaInfoJogo);
         
         }
         else

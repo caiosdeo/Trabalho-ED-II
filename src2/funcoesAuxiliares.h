@@ -19,3 +19,13 @@ unsigned converterStringUnsigned(char* str);
  * @return users Vetor com nomes de usuários
  */
 char** leituraNomeUsuarios(fstream &dataset, unsigned n);
+
+/**
+ * Atribuição de dados a cada conjunto, retornando-o em um vetor.
+ *
+ * @author caiosdeo
+ * @param dataset Arquivo com os dados
+ * @param n Tamanho do conjunto
+ * @return r Vetor com dados
+ */
+void leituraInfoJogos(fstream &dataset, int n, HashInfoJogo* tabelaAvaliacao);
