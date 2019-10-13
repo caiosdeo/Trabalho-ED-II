@@ -1,5 +1,7 @@
 #include "hashEncadeadoUsuarios.h"
 #include "funcoesAuxiliares.h"
+#include<tuple>
+
 
 HashEncadUsuarios::HashEncadUsuarios(unsigned n){
 
@@ -24,7 +26,7 @@ unsigned HashEncadUsuarios::getFrequencia(string chave){
 
 }
 
-string* HashEncadUsuarios::gerarVetorFrequencia(){
+pair<string*, list<string>*> HashEncadUsuarios::gerarVetorFrequencia(){
 
     unsigned tamFreq = 0;
 
@@ -49,15 +51,17 @@ string* HashEncadUsuarios::gerarVetorFrequencia(){
 
     heapSort(tabFreq, freqUser, tamFreq);
 
-    return freqUser;
+    return make_pair(freqUser, tabFreq);
 
 }
 
 void HashEncadUsuarios::exibirFrequencias(unsigned n){
 
-    string* freq = this->gerarVetorFrequencia();
+    string* freq;
+    list<string>* freqSize;
+    tie(freq, freqSize) = this->gerarVetorFrequencia();
     for(int i = 0; i < n; i++)
-        cout << i + 1 << " - " << freq[i] << endl;
+        cout << i + 1 << " - " << freq[i] <<  " - " << freqSize[i].size() << endl;
     cout << endl;
 
 }
