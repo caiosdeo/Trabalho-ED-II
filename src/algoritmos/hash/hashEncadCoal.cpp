@@ -25,6 +25,7 @@ hashEncadCoal::~hashEncadCoal(){
 
 }
 
+//funcao hash
 unsigned hashEncadCoal::funcaoHash(unsigned chave)
 {
     return (chave % this->numeroChaves);
