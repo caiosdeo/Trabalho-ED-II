@@ -63,14 +63,3 @@ void HashEncadUsuarios::exibirFrequencias(unsigned n){
     cout << endl;
 
 }
-
-/*unsigned HashEncadUsuarios::contabilizarColisoes(){
-
-    unsigned numColisoes = 0;
-
-    for(unsigned i = 0; i < this->n; i++)
-        numColisoes += this->tabela[i].size() - 1;
-
-    return numColisoes;
-
-}*/
