@@ -49,18 +49,21 @@ void executar(int selecao){
         // * Usuários frequentes
         case 1:{
 
-            // TODO: Colocar o arquivo correto
             // Verificando se o arquivo está aberto
-            dataset.open("../gamesInfoEspecial.csv", ios::in); // Arquivo de dados como leitura
+            dataset.open("../processadosFase2_1.txt", ios::in); // Arquivo de dados como leitura
 
             if(dataset.is_open()){
 
                 // TODO: Colocar o processamento aqui
 
+
+                cin.get();
+                cout << endl << "Aperte ENTER para voltar ao menu" << endl;
+                cin.get();
+
             }
             else
                 cout << "Não foi possível abrir o arquivo de dados" << endl;
-
             
             break;
         }
@@ -68,9 +71,8 @@ void executar(int selecao){
         // * Categorias Frequentes
         case 2:{
 
-            // TODO: Colocar nome padronizado
             // Verificando se o arquivo está aberto
-            dataset.open("../gamesInfoEspecial.csv", ios::in); // Arquivo de dados como leitura
+            dataset.open("../processadosFase2_2.csv", ios::in); // Arquivo de dados como leitura
 
             if(dataset.is_open()){
 
@@ -87,7 +89,6 @@ void executar(int selecao){
                 for(int i = 0; i < categorias.size(); i++)
                     cout << categorias[i] << endl;
 
-                // TODO: Esperar o ENTER para voltar ao menu
                 cin.get();
                 cout << endl << "Aperte ENTER para voltar ao menu" << endl;
                 cin.get();
