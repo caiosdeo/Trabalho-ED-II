@@ -15,13 +15,13 @@ unsigned menu()
 
     unsigned selecao;
 
-    cout << "MENU" << endl;
+    cout << "Fase 1" << endl;
     cout << "----" << endl;
     cout << "[1] Cenário 1" << endl;
     cout << "[2] Cenário 2" << endl;
     cout << "[3] Cenário 3" << endl;
     cout << "[4] Cenário 4" << endl;
-    cout << "[0] Encerrar" << endl;
+    cout << "[0] Voltar" << endl;
 
     cin >> selecao;
 
@@ -35,11 +35,11 @@ void selecionar(unsigned selecao){
     fstream entrada, dataset, saida;
 
     if(selecao == 1)
-        entrada.open("../../entrada1.txt", ios::in); // Arquivo de entrada cenário 1 só como leitura
+        entrada.open("../entrada1.txt", ios::in); // Arquivo de entrada cenário 1 só como leitura
     else
-        entrada.open("../../entrada24.txt", ios::in); // Arquivo de entrada cenário 2-4 só como leitura
+        entrada.open("../entrada24.txt", ios::in); // Arquivo de entrada cenário 2-4 só como leitura
 
-    dataset.open("../../processadosFase1.txt", ios::in); // Arquivo de dados como leitura
+    dataset.open("../processadosFase1.txt", ios::in); // Arquivo de dados como leitura
 
     // Variaveis para leitura do arquivo de entrada
     unsigned qtdConjuntos, n;
@@ -61,11 +61,11 @@ void selecionar(unsigned selecao){
                     case 1:{
 
                         //Limpando o arquivo
-                        saida.open("../../saidaCenario1.csv", ios::out);
+                        saida.open("../saidaCenario1.csv", ios::out);
                         saida.close();
 
                         //Abrindo arquivo de saida do cenário 
-                        saida.open("../../saidaCenario1.csv", ios::out | ios::app); // Arquivo de saída como escrita
+                        saida.open("../saidaCenario1.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
                         // Verificando se o arquivo de saida está aberto
                         if(saida.is_open()){
@@ -105,7 +105,7 @@ void selecionar(unsigned selecao){
                     case 2:{
 
                         //Limpando o arquivo
-                        saida.open("../../saidaCenario2.csv", ios::out);
+                        saida.open("../saidaCenario2.csv", ios::out);
                         saida.close();
 
                         //Abrindo arquivo de saida do cenário 
@@ -154,11 +154,11 @@ void selecionar(unsigned selecao){
                     case 3:{
 
                         //Limpando o arquivo
-                        saida.open("../../saidaCenario3.csv", ios::out);
+                        saida.open("../saidaCenario3.csv", ios::out);
                         saida.close();
 
                         //Abrindo arquivo de saida do cenário 
-                        saida.open("../../saidaCenario3.csv", ios::out | ios::app); // Arquivo de saída como escrita
+                        saida.open("../saidaCenario3.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
                         // Verificando se o arquivo de saida está aberto
                         if (saida.is_open()){
@@ -203,11 +203,11 @@ void selecionar(unsigned selecao){
                     case 4:{
 
                         //Limpando o arquivo
-                        saida.open("../../saidaCenario4.csv", ios::out);
+                        saida.open("../saidaCenario4.csv", ios::out);
                         saida.close();
 
                         //Abrindo arquivo de saida do cenário 
-                        saida.open("../../saidaCenario4.csv", ios::out | ios::app); // Arquivo de saída como escrita
+                        saida.open("../saidaCenario4.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
                         // Verificando se o arquivo de saida está aberto
                         if (saida.is_open()){
