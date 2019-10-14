@@ -132,6 +132,23 @@ vector<string> pegarCategorias(HashInfoJogo* tabelaInfoJogo, int n){
     return categorias;
 }
 
+unsigned maiorValorStringVector(vector<string> categorias, unsigned n){
+
+    unsigned maior = converterStringUnsigned(categorias[0]);
+    unsigned aux;
+
+    for(int i = 1; i < n; i++){
+
+        aux = converterStringUnsigned(categorias[i]);
+        if(aux > maior)
+            maior = aux;
+
+    }
+
+    return maior;
+
+}
+
 unsigned maiorValorString(char** objeto, unsigned n){
 
     unsigned maior = converterStringUnsigned(objeto[0]);

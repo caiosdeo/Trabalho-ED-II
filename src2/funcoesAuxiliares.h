@@ -64,6 +64,16 @@ vector<string> pegarCategorias(HashInfoJogo* tabelaInfoJogo, int n);
  */
  unsigned maiorValorString(char** users, unsigned n);
 
+ /**
+ * Valor correspondente de string em unsigned
+ *
+ * @author eliascassis
+ * @param categorias vector<string> de categorias
+ * @param n unsigned tamanho do conjunto de strings
+ * @return maior correspondente unsigned da soma dos caracteres da string.
+ */
+ unsigned maiorValorStringVector(vector<string> categorias, unsigned n);
+
 /**
  * Valor correspondente de string em unsigned
  *

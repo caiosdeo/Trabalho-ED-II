@@ -3,6 +3,8 @@
 #include <vector>
 #include "InfoJogo.h"
 #include "HashInfoJogo.h"
+#include "hashEncadCategorias.h"
+#include "hashEncadeadoUsuarios.h"
 #include "funcoesAuxiliares.h"
 
 using namespace std;
@@ -55,10 +57,13 @@ void executar(int selecao){
             if(dataset.is_open()){
 
                 // TODO: Colocar o processamento aqui
-
+                char** users = leituraNomeUsuarios(dataset, n);
+                unsigned t = maiorValorString(users, n);
+                HashEncadUsuarios tabelaUsuarios = HashEncadUsuarios(t);
+                tabelaUsuarios.exibirFrequencias(x);
 
                 cin.get();
-                cout << endl << "Aperte ENTER para voltar ao menu" << endl;
+                cout << endl << "Pressione ENTER para voltar ao menu" << endl;
                 cin.get();
 
             }
@@ -86,11 +91,12 @@ void executar(int selecao){
                 vector<string> categorias = pegarCategorias(&tabelaInfoJogo, n);
 
                 // ! Imprime todas categorias. Ajustar para sua execução
-                for(int i = 0; i < categorias.size(); i++)
-                    cout << categorias[i] << endl;
+                unsigned t = maiorValorStringVector(categorias, n);
+                HashEncadCategorias tabelaCategorias = HashEncadCategorias(t);
+                tabelaCategorias.exibirFrequencias(x);
 
                 cin.get();
-                cout << endl << "Aperte ENTER para voltar ao menu" << endl;
+                cout << endl << "Pressione ENTER para voltar ao menu" << endl;
                 cin.get();
 
             }
