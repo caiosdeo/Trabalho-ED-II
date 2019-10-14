@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 
+// Este arquivo contém os gets e sets relativos à estrutura HashInfoJogo
+
 int InfoJogo::getId(){
 
     return this->id;

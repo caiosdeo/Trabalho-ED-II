@@ -61,6 +61,7 @@ void duploHash::inserirHash(unsigned chave){
                 break; 
             } 
 
+            this->numColisoes++;
             i++; 
 
         } 

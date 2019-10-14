@@ -7,18 +7,20 @@ using namespace std;
 //Definição da Classe InfoJogo
 class InfoJogo{
 
+    // Atributos da classe infoJogo
     private:
         string categoria;
         int id;
         unsigned idJogo;
 
+    // Gets e sets dos atributos
     public:
         int getId();
-        string getCategoria();
+        string getCategoria(); 
         unsigned getIdJogo();
         void setId(int id);
         void setIdJogo(unsigned idJogo);
-        void setCategoria(string categoria);
+        void setCategoria(string categoria); 
 
 };
 
