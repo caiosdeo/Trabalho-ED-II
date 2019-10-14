@@ -60,7 +60,7 @@ void executar(int selecao){
                 char** users = leituraNomeUsuarios(dataset, n);
                 unsigned t = maiorValorString(users, n);
                 HashEncadUsuarios tabelaUsuarios = HashEncadUsuarios(t);
-                for(int i = 0; i < t; i++)
+                for(int i = 0; i < n; i++)
                     tabelaUsuarios.insereItem(users[i]);
                 tabelaUsuarios.exibirFrequencias(x);
 
@@ -95,7 +95,7 @@ void executar(int selecao){
                 // ! Imprime todas categorias. Ajustar para sua execução
                 unsigned t = maiorValorStringVector(categorias, n);
                 HashEncadCategorias tabelaCategorias = HashEncadCategorias(t);
-                for(int i = 0; i < t; i++)
+                for(int i = 0; i < n; i++)
                     tabelaCategorias.insereItem(categorias[i]);
                 tabelaCategorias.exibirFrequencias(x);
 
