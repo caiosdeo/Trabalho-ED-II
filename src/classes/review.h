@@ -8,13 +8,15 @@ using namespace std;
 //Definição da Classe Review
 class Review{
 
+    // Atributos da Review
     private:
         char* user;
         float rating;
         int id;
 
     public:
-        Review* leituraDados(fstream &arquivo, int n);
+        Review* leituraDados(fstream &arquivo, int n); // Lê os dados da review
+        // Gets e sets
         int getId();
         char* getUser();
         float getRating();

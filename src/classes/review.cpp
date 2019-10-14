@@ -59,6 +59,7 @@ Review* Review::leituraDados(fstream &dataset, int n){
 
 }
 
+// Gets e sets
 int Review::getId(){
 
     return this->id;
