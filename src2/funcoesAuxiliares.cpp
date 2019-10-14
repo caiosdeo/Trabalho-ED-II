@@ -132,14 +132,14 @@ vector<string> pegarCategorias(HashInfoJogo* tabelaInfoJogo, int n){
     return categorias;
 }
 
-unsigned maiorValorString(char** users, unsigned n){
+unsigned maiorValorString(char** objeto, unsigned n){
 
-    unsigned maior = converterStringUnsigned(users[0]);
+    unsigned maior = converterStringUnsigned(objeto[0]);
     unsigned aux;
 
     for(int i = 1; i < n; i++){
 
-        aux = converterStringUnsigned(users[i]);
+        aux = converterStringUnsigned(objeto[i]);
         if(aux > maior)
             maior = aux;
 
@@ -170,7 +170,7 @@ void swapFreq(list<string> *i, list<string> *j){
 
 }
 
-void heapify(list<string> *freq, string* users, unsigned tam, unsigned indice){
+void heapify(list<string> *freq, string* objeto, unsigned tam, unsigned indice){
     
     unsigned menor = indice;
     unsigned esq = 2*indice + 1;
@@ -186,27 +186,27 @@ void heapify(list<string> *freq, string* users, unsigned tam, unsigned indice){
 
     if (menor != indice) {
 
-        swap(&users[indice], &users[menor]);
+        swap(&objeto[indice], &objeto[menor]);
         swapFreq(&freq[indice], &freq[menor]);
-        heapify(freq, users, tam, menor);
+        heapify(freq, objeto, tam, menor);
     }
 
 }
 
-void heapSort(list<string> *freq, string* users, unsigned tam){
+void heapSort(list<string> *freq, string* objeto, unsigned tam){
     // Constrói a heap de máximo
     for (int i = tam / 2 -1; i >= 0; i--)
-        heapify(freq, users, tam, i);
+        heapify(freq, objeto, tam, i);
 
     // Extrai, um por um, os elementos da heap
     for (int i = tam-1; i >= 0; i--){
 
         // Move o atual para o fim
-        swap(&users[0], &users[i]);
+        swap(&objeto[0], &objeto[i]);
         swapFreq(&freq[0], &freq[i]);
 
         // Chama o max Heapfy para a heap reduzida
-        heapify(freq, users, i, 0); 
+        heapify(freq, objeto, i, 0); 
     }
 
 }

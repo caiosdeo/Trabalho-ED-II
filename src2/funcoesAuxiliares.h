@@ -64,5 +64,13 @@ vector<string> pegarCategorias(HashInfoJogo* tabelaInfoJogo, int n);
  */
  unsigned maiorValorString(char** users, unsigned n);
 
-// TODO: documentar aqui melhor depois!!!
-void heapSort(list<string>  *freq, string* users, unsigned tam);
+/**
+ * Valor correspondente de string em unsigned
+ *
+ * @author eliascassis
+ * @param freq lista de string com as ocorrências
+ * @param objeto vetor de strings dos objetos 
+ * @param tam tamanho do conjunto de objetos
+ * @return maior correspondente unsigned da soma dos caracteres da string.
+ */
+void heapSort(list<string>  *freq, string* objeto, unsigned tam);
