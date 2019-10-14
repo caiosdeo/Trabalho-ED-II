@@ -1,32 +1,32 @@
-#include "hashEncadeadoUsuarios.h"
+#include "hashEncadCategorias.h"
 #include "funcoesAuxiliares.h"
 #include<tuple>
 
 
-HashEncadUsuarios::HashEncadUsuarios(unsigned n){
+HashEncadCategorias::HashEncadCategorias(unsigned n){
 
     this->n = n;
     this->tabela = new list<string>[this->n];
 
 }
 
-unsigned HashEncadUsuarios::funcaoHash(string chave){ 
+unsigned HashEncadCategorias::funcaoHash(string chave){ 
     return (converterStringUnsigned(chave) % this->n); 
 }
 
-void HashEncadUsuarios::insereItem(string chave){
+void HashEncadCategorias::insereItem(string chave){
 
     unsigned indice = funcaoHash(chave);
     tabela[indice].push_back(chave);
 }
 
-unsigned HashEncadUsuarios::getFrequencia(string chave){
+unsigned HashEncadCategorias::getFrequencia(string chave){
 
     return this->tabela[this->funcaoHash(chave)].size();
 
 }
 
-pair<string*, list<string>*> HashEncadUsuarios::gerarVetorFrequencia(){
+pair<string*, list<string>*> HashEncadCategorias::gerarVetorFrequencia(){
 
     unsigned tamFreq = 0;
 
@@ -55,12 +55,12 @@ pair<string*, list<string>*> HashEncadUsuarios::gerarVetorFrequencia(){
 
 }
 
-void HashEncadUsuarios::exibirFrequencias(unsigned n){
+void HashEncadCategorias::exibirFrequencias(unsigned n){
 
     string* freq;
     list<string>* freqSize;
     tie(freq, freqSize) = this->gerarVetorFrequencia();
-    cout << "Frequência dos usuários:" << endl;
+    cout << "Frequência das categorias:" << endl;
     for(int i = 0; i < n; i++)
         cout << i + 1 << " - " << freq[i] <<  " - " << freqSize[i].size() << endl;
     cout << endl;
