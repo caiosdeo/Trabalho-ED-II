@@ -5,8 +5,8 @@
 /**
  * @author AndreCasarim
  * @param a vetor de inteiros sem sinal
- * @param inicio início da partição
- * @param fim fim da partição
+ * @param esq início da partição
+ * @param dir fim da partição
  * @param numComparacoes número de comparações
  * @param numTrocas número de trocas
  * @return void
