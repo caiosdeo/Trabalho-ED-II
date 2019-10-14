@@ -22,9 +22,9 @@ unsigned medianadek(unsigned* vetor, unsigned k, unsigned long long* trocas, uns
 
     quickSortRecursivoIds(vetor, 0, k-1, comparacoes, trocas); // ordena os k elementos
 
-    unsigned mediana = vetor[k/2]; // Pega a mediana
+    unsigned mediana = k/2; // Pega a posição da mediana no vetor
 
-    return mediana; // Retorna a mediana
+    return mediana; // Retorna a posição da mediana
 
 }
 

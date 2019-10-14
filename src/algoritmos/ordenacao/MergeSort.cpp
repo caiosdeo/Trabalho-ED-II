@@ -3,7 +3,7 @@
 
 using namespace std;
 
-/// Funcao auxiliar merge
+/// Função auxiliar merge
 void merge(unsigned *vet, unsigned esq, unsigned med, unsigned dir, unsigned long long *numComp, unsigned long long *numReg){
 
     unsigned i, j, k;
@@ -62,7 +62,7 @@ void merge(unsigned *vet, unsigned esq, unsigned med, unsigned dir, unsigned lon
 }
 
 
-///Funcao merge sort para vetor de unsigned de tamanho esq a dir
+///Função merge sort para vetor de unsigned
 void mergeSort(unsigned *vet, unsigned esq, unsigned dir, unsigned long long *numComp, unsigned long long *numReg){
 
     if(esq < dir){
@@ -70,10 +70,11 @@ void mergeSort(unsigned *vet, unsigned esq, unsigned dir, unsigned long long *nu
         // media entre esq e dir
         unsigned med = (esq + dir)/2;
 
-        mergeSort(vet, esq, med, numComp, numReg);
-        mergeSort(vet, med+1, dir, numComp, numReg);
+        mergeSort(vet, esq, med, numComp, numReg); // Chamada recursiva para a primeira metade
+        mergeSort(vet, med+1, dir, numComp, numReg); // Chamada recursiva para a segunda metade
 
-        merge(vet, esq, med, dir, numComp, numReg);
+        merge(vet, esq, med, dir, numComp, numReg); // Concatenação das metades
+
     }
 
 }
