@@ -26,7 +26,7 @@ unsigned HashEncadCategorias::getFrequencia(string chave){
 
 }
 
-pair<string*, list<string>*> HashEncadCategorias::gerarVetorFrequencia(){
+list<string>* HashEncadCategorias::gerarVetorFrequencia(){
 
     unsigned tamFreq = 0;
 
@@ -44,25 +44,19 @@ pair<string*, list<string>*> HashEncadCategorias::gerarVetorFrequencia(){
 
         }
 
-    string* freqUser = (string*)malloc(tamFreq*sizeof(string));
+    heapSort(tabFreq, tamFreq);
 
-    for(int i = 0; i < tamFreq; i++)
-        freqUser[i] = tabFreq[i].front();
-
-    heapSort(tabFreq, freqUser, tamFreq);
-
-    return make_pair(freqUser, tabFreq);
+    return tabFreq;
 
 }
 
 void HashEncadCategorias::exibirFrequencias(unsigned n){
 
-    string* freq;
-    list<string>* freqSize;
-    tie(freq, freqSize) = this->gerarVetorFrequencia();
+    list<string>* freq;
+    freq = this->gerarVetorFrequencia();
     cout << "Frequência das categorias:" << endl;
     for(int i = 0; i < n; i++)
-        cout << i + 1 << " - " << freq[i] <<  " - " << freqSize[i].size() << endl;
+        cout << i + 1 << " - " << freq[i].front() <<  " - " << freq[i].size() << endl;
     cout << endl;
 
 }

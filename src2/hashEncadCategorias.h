@@ -19,7 +19,7 @@ class HashEncadCategorias{
         void exibirFrequencias(unsigned n); // exibe n frequências
     
     private:
-        pair<string*, list<string>*> gerarVetorFrequencia(); 
+        list<string>* gerarVetorFrequencia(); 
 
 };
 
