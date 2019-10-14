@@ -57,16 +57,12 @@ void executar(int selecao){
             if(dataset.is_open()){
 
                 char** users = leituraNomeUsuarios(dataset, n); // Retorna vetor de usuários do arquivo
-                unsigned t = maiorValorString(users, n); // Retorna o maior valor de string associado aos nomes de usuários
+                int t = maiorValorString(users, n); // Retorna o maior valor de string associado aos nomes de usuários
                 HashEncadUsuarios tabelaUsuarios = HashEncadUsuarios(t); // Aloca tabela hash de usuários
                 // Insere usuários na tabela hash
                 for(int i = 0; i < n; i++)
                     tabelaUsuarios.insereItem(users[i]);
                 tabelaUsuarios.exibirFrequencias(x); // Exibe as X maiores frequências de usuário
-
-                cin.get();
-                cout << endl << "Pressione ENTER para voltar ao menu" << endl;
-                cin.get();
 
             }
             else
@@ -90,16 +86,12 @@ void executar(int selecao){
                 // Pegando as categorias
                 vector<string> categorias = pegarCategorias(&tabelaInfoJogo, n);
 
-                unsigned t = maiorValorStringVector(categorias, n); // Retorna o maior valor de string associado aos nomes de usuários
+                int t = maiorValorStringVector(categorias, n); // Retorna o maior valor de string associado aos nomes de usuários
                 HashEncadCategorias tabelaCategorias = HashEncadCategorias(t); // Aloca tabela hash de categorias
                 // Insere categorias na tabela hash
-                for(int i = 0; i < n; i++)
+                for(int i = 0; i < categorias.size(); i++)
                     tabelaCategorias.insereItem(categorias[i]);
                 tabelaCategorias.exibirFrequencias(x); // Exibe as X maiores frequências de categoria
-
-                cin.get();
-                cout << endl << "Pressione ENTER para voltar ao menu" << endl;
-                cin.get();
 
             }
             else
@@ -110,6 +102,13 @@ void executar(int selecao){
     
         default:
             break;
+    }
+
+    if(selecao){
+
+        cin.get();
+        cout << endl << "Pressione ENTER para voltar ao menu" << endl;
+        cin.get();
     }
 
 }

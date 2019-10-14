@@ -7,11 +7,11 @@
 #include <vector>
 
 // Converte uma string em um inteiro sem sinal
-unsigned converterStringUnsigned(string str){
+int converterStringUnsigned(string str){
 
-    unsigned valorString = 0;
+    int valorString = 0;
 
-    for(unsigned  i = 0; str[i] != '\0'; i++)
+    for(int  i = 0; str[i] != '\0'; i++)
         valorString += str[i];
 
     return valorString;
@@ -137,12 +137,12 @@ vector<string> pegarCategorias(HashInfoJogo* tabelaInfoJogo, int n){
     return categorias;
 }
 
-unsigned maiorValorStringVector(vector<string> categorias, unsigned n){
+int maiorValorStringVector(vector<string> categorias, unsigned n){
 
-    unsigned maior = converterStringUnsigned(categorias[0]);
-    unsigned aux;
+    int maior = converterStringUnsigned(categorias[0]);
+    int aux;
 
-    for(int i = 1; i < n; i++){
+    for(int i = 1; i < categorias.size(); i++){
 
         aux = converterStringUnsigned(categorias[i]);
         if(aux > maior)
@@ -155,10 +155,10 @@ unsigned maiorValorStringVector(vector<string> categorias, unsigned n){
 }
 
 // Retorna
-unsigned maiorValorString(char** objeto, unsigned n){
+int maiorValorString(char** objeto, unsigned n){
 
-    unsigned maior = converterStringUnsigned(objeto[0]);
-    unsigned aux;
+    int maior = converterStringUnsigned(objeto[0]);
+    int aux;
 
     for(int i = 1; i < n; i++){
 

@@ -14,7 +14,7 @@ using namespace std;
  * @param string str string
  * @return valorString correspondente unsigned da soma dos caracteres da string.
  */
-unsigned converterStringUnsigned(string str);
+int converterStringUnsigned(string str);
 
 /**
  * Atribuição de dados a cada conjunto, retornando-o em um vetor.
@@ -62,7 +62,7 @@ vector<string> pegarCategorias(HashInfoJogo* tabelaInfoJogo, int n);
  * @param n unsigned tamanho do conjunto de strings
  * @return maior correspondente unsigned da soma dos caracteres da string.
  */
- unsigned maiorValorString(char** users, unsigned n);
+ int maiorValorString(char** users, unsigned n);
 
  /**
  * Valor correspondente de string em unsigned
@@ -72,7 +72,7 @@ vector<string> pegarCategorias(HashInfoJogo* tabelaInfoJogo, int n);
  * @param n unsigned tamanho do conjunto de strings
  * @return maior correspondente unsigned da soma dos caracteres da string.
  */
- unsigned maiorValorStringVector(vector<string> categorias, unsigned n);
+ int maiorValorStringVector(vector<string> categorias, unsigned n);
 
 /**
  * Valor correspondente de string em unsigned
