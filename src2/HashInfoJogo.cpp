@@ -51,7 +51,7 @@ void HashInfoJogo::inserirHash(InfoJogo info){
     // Somatório dos campos para a chave
     unsigned chave = info.getIdJogo();
     chave += info.getId();
-    chave += converterStringUnsigned(info.getCategoria());
+    chave += converterStringInteiro(info.getCategoria());
 
     // Cálculo de índice utilizando hash 1
     unsigned indice = hash1(chave); 

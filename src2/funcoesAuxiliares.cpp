@@ -2,9 +2,9 @@
 #include "InfoJogo.h"
 #include "HashInfoJogo.h"
 #include<string>
-#include <cstring>
-#include <sstream>
-#include <vector>
+#include<cstring>
+#include<sstream>
+#include<vector>
 
 // Converte uma string em um inteiro sem sinal
 int converterStringUnsigned(string str){
@@ -146,13 +146,13 @@ vector<string> pegarCategorias(HashInfoJogo* tabelaInfoJogo, int n){
 // Retorna o maior inteiro relacionado ao vetor de strings
 int maiorValorStringVector(vector<string> categorias, unsigned n){
 
-    int maior = converterStringUnsigned(categorias[0]); // Converte primeira posição para inteiro
+    int maior = converterStringInteiro(categorias[0]); // Converte primeira posição para inteiro
     int aux;
 
     // Laço de comparações
     for(int i = 1; i < categorias.size(); i++){
 
-        aux = converterStringUnsigned(categorias[i]); // Converte string i para inteiro
+        aux = converterStringInteiro(categorias[i]); // Converte string i para inteiro
         // Compara se string i é maior que o atual maior
         if(aux > maior)
             maior = aux; // Atualiza maior
@@ -173,7 +173,7 @@ int maiorValorString(char** objeto, unsigned n){
     // Laço de comparações
     for(int i = 1; i < n; i++){
 
-        aux = converterStringUnsigned(objeto[i]); // Converte string i para inteiro
+        aux = converterStringInteiro(objeto[i]); // Converte string i para inteiro
         // Compara se string i é maior que o atual maior
         if(aux > maior) 
             maior = aux; // Atualiza maior

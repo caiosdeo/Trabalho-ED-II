@@ -13,7 +13,7 @@ HashEncadCategorias::HashEncadCategorias(unsigned n){
 
 // Função de hash
 unsigned HashEncadCategorias::funcaoHash(string chave){ 
-    return (converterStringUnsigned(chave) % this->n); 
+    return (converterStringInteiro(chave) % this->n); 
 }
 
 // Função que insere item na tabela

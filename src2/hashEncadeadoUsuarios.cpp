@@ -13,7 +13,7 @@ HashEncadUsuarios::HashEncadUsuarios(unsigned n){
 
 // Função de hash
 unsigned HashEncadUsuarios::funcaoHash(string chave){ 
-    return (converterStringUnsigned(chave) % this->n); 
+    return (converterStringInteiro(chave) % this->n); 
 }
 
 // Função que insere item na tabela
