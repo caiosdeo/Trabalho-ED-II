@@ -192,7 +192,7 @@ void swapFreq(list<string> *i, list<string> *j){
 
 }
 
-void heapify(list<string> *freq, string* objeto, unsigned tam, unsigned indice){
+void heapify(list<string> *freq, unsigned tam, unsigned indice){
     
     unsigned menor = indice;
     unsigned esq = 2*indice + 1;
@@ -208,27 +208,25 @@ void heapify(list<string> *freq, string* objeto, unsigned tam, unsigned indice){
 
     if (menor != indice) {
 
-        swap(&objeto[indice], &objeto[menor]);
         swapFreq(&freq[indice], &freq[menor]);
-        heapify(freq, objeto, tam, menor);
+        heapify(freq, tam, menor);
     }
 
 }
 
-void heapSort(list<string> *freq, string* objeto, unsigned tam){
+void heapSort(list<string> *freq, unsigned tam){
     // Constrói a heap de máximo
     for (int i = tam / 2 -1; i >= 0; i--)
-        heapify(freq, objeto, tam, i);
+        heapify(freq, tam, i);
 
     // Extrai, um por um, os elementos da heap
     for (int i = tam-1; i >= 0; i--){
 
         // Move o atual para o fim
-        swap(&objeto[0], &objeto[i]);
         swapFreq(&freq[0], &freq[i]);
 
         // Chama o max Heapfy para a heap reduzida
-        heapify(freq, objeto, i, 0); 
+        heapify(freq, i, 0); 
     }
 
 }
