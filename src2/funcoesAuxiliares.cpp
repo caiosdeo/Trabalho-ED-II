@@ -149,6 +149,7 @@ unsigned maiorValorStringVector(vector<string> categorias, unsigned n){
 
 }
 
+// Retorna
 unsigned maiorValorString(char** objeto, unsigned n){
 
     unsigned maior = converterStringUnsigned(objeto[0]);
@@ -167,6 +168,7 @@ unsigned maiorValorString(char** objeto, unsigned n){
 }
 
 // Função Heap Sort
+// Função de swap para vetor de strings
 void swap(string *i, string *j){
 
     string aux;
@@ -177,6 +179,7 @@ void swap(string *i, string *j){
 
 }
 
+// Função de swap para listas de string
 void swapFreq(list<string> *i, list<string> *j){
 
     list<string> aux;
@@ -189,28 +192,31 @@ void swapFreq(list<string> *i, list<string> *j){
 
 void heapify(list<string> *freq, unsigned tam, unsigned indice){
     
-    unsigned menor = indice;
-    unsigned esq = 2*indice + 1;
-    unsigned dir = 2*indice + 2;
+    unsigned menor = indice; // Pai
+    unsigned esq = 2*indice + 1; // Filho da esquerda
+    unsigned dir = 2*indice + 2; // Filho da direita
 
+    // Atualiza menor valor se necessário
     if (esq < tam && freq[esq].size() < freq[menor].size()) {
         menor = esq;
     }
 
+    // Atualiza menor valor se necessário
     if (dir < tam && freq[dir].size() < freq[menor].size()) {
         menor = dir;
     }
 
+    // Checa se o menor não é o pai 
     if (menor != indice) {
-
+        // Troca pai com o menor filho
         swapFreq(&freq[indice], &freq[menor]);
-        heapify(freq, tam, menor);
+        heapify(freq, tam, menor); // Chama heapify
     }
 
 }
 
 void heapSort(list<string> *freq, unsigned tam){
-    // Constrói a heap de máximo
+    // Constrói a heap de mínimo
     for (int i = tam / 2 -1; i >= 0; i--)
         heapify(freq, tam, i);
 
@@ -220,7 +226,7 @@ void heapSort(list<string> *freq, unsigned tam){
         // Move o atual para o fim
         swapFreq(&freq[0], &freq[i]);
 
-        // Chama o max Heapfy para a heap reduzida
+        // Chama o min Heapfy para a heap reduzida
         heapify(freq, i, 0); 
     }
 
