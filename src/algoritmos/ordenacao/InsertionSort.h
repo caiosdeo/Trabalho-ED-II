@@ -2,6 +2,8 @@
 #define INSERTIONSORT_H
 
 /**
+ * Função de ordenação Insertion
+ * 
  * @author PaulaRRP
  * @param a vetor de inteiros sem sinal
  * @param size tamanho do vetor

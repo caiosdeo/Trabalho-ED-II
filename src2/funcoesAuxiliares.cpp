@@ -185,7 +185,7 @@ int maiorValorString(char** objeto, unsigned n){
 
 }
 
-// Função Heap Sort
+// Funções para Heap Sort
 // Função de swap para vetor de strings
 void swap(string *i, string *j){
 
@@ -208,6 +208,7 @@ void swapFreq(list<string> *i, list<string> *j){
 
 }
 
+// Constrói uma heap de mínimo
 void heapify(list<string> *freq, unsigned tam, unsigned indice){
     
     unsigned menor = indice; // Pai
@@ -224,7 +225,7 @@ void heapify(list<string> *freq, unsigned tam, unsigned indice){
         menor = dir;
     }
 
-    // Checa se o menor não é o pai 
+    // Confere se o menor não é o pai 
     if (menor != indice) {
         // Troca pai com o menor filho
         swapFreq(&freq[indice], &freq[menor]);
@@ -233,6 +234,7 @@ void heapify(list<string> *freq, unsigned tam, unsigned indice){
 
 }
 
+// Heap Sort
 void heapSort(list<string> *freq, unsigned tam){
     // Constrói a heap de mínimo
     for (int i = tam / 2 -1; i >= 0; i--)

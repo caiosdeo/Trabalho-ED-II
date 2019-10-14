@@ -1,8 +1,9 @@
 #ifndef GNOMESORT_H
 #define GNOMESORT_H
 
-// Função de ordenação gnome sort
 /**
+ * Função de ordenação gnome sort
+ * 
  * @author eliascassis
  * @param arr vetor de inteiros sem sinal
  * @param n tamanho do vetor

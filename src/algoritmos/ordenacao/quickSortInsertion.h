@@ -1,6 +1,8 @@
 #include <fstream>
 
 /**
+ * Algoritmo de ordenação insertion sort
+ * 
  * @author PaulaRRP
  * @param a vetor de inteiros sem sinal
  * @param inicio início da partição
