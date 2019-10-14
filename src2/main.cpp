@@ -56,13 +56,13 @@ void executar(int selecao){
 
             if(dataset.is_open()){
 
-                // TODO: Colocar o processamento aqui
-                char** users = leituraNomeUsuarios(dataset, n);
-                unsigned t = maiorValorString(users, n);
-                HashEncadUsuarios tabelaUsuarios = HashEncadUsuarios(t);
+                char** users = leituraNomeUsuarios(dataset, n); // Retorna vetor de usuários do arquivo
+                unsigned t = maiorValorString(users, n); // Retorna o maior valor de string associado aos nomes de usuários
+                HashEncadUsuarios tabelaUsuarios = HashEncadUsuarios(t); // Aloca tabela hash de usuários
+                // Insere usuários na tabela hash
                 for(int i = 0; i < n; i++)
                     tabelaUsuarios.insereItem(users[i]);
-                tabelaUsuarios.exibirFrequencias(x);
+                tabelaUsuarios.exibirFrequencias(x); // Exibe as X maiores frequências de usuário
 
                 cin.get();
                 cout << endl << "Pressione ENTER para voltar ao menu" << endl;
@@ -83,8 +83,6 @@ void executar(int selecao){
 
             if(dataset.is_open()){
 
-                // TODO: Colocar o processamento aqui
-
                 // Colocando dados no conjunto
                 HashInfoJogo tabelaInfoJogo = HashInfoJogo(n);
                 leituraInfoJogos(dataset, n, &tabelaInfoJogo);                    
@@ -92,12 +90,12 @@ void executar(int selecao){
                 // Pegando as categorias
                 vector<string> categorias = pegarCategorias(&tabelaInfoJogo, n);
 
-                // ! Imprime todas categorias. Ajustar para sua execução
-                unsigned t = maiorValorStringVector(categorias, n);
-                HashEncadCategorias tabelaCategorias = HashEncadCategorias(t);
+                unsigned t = maiorValorStringVector(categorias, n); // Retorna o maior valor de string associado aos nomes de usuários
+                HashEncadCategorias tabelaCategorias = HashEncadCategorias(t); // Aloca tabela hash de categorias
+                // Insere categorias na tabela hash
                 for(int i = 0; i < n; i++)
                     tabelaCategorias.insereItem(categorias[i]);
-                tabelaCategorias.exibirFrequencias(x);
+                tabelaCategorias.exibirFrequencias(x); // Exibe as X maiores frequências de categoria
 
                 cin.get();
                 cout << endl << "Pressione ENTER para voltar ao menu" << endl;
