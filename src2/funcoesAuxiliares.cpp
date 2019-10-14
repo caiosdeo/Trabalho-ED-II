@@ -10,7 +10,7 @@
 int converterStringUnsigned(string str){
 
     int valorString = 0;
-
+    // Somatório do valor ascii dos caracteres da string
     for(int  i = 0; str[i] != '\0'; i++)
         valorString += str[i];
 
@@ -27,7 +27,7 @@ char** leituraNomeUsuarios(fstream &dataset, unsigned n){
     string user;
     unsigned tString;
 
-    //Variavel auxiliar para controlar o tamanho do conjunto
+    //Variável auxiliar para controlar o tamanho do conjunto
     int i = 0;
 
     // Alterando a semente com o tempo
@@ -60,6 +60,7 @@ char** leituraNomeUsuarios(fstream &dataset, unsigned n){
 
 }
 
+// Confere se determinada string é um número
 bool eNumero(const string& s){
     return( strspn( s.c_str(), "0123456789" ) == s.size() );
 }
@@ -106,12 +107,14 @@ void leituraInfoJogos(fstream &dataset, int n, HashInfoJogo* tabelaInfoJogo){
     }
 }
 
+// Separa categorias do vetor de categorias
 vector<string> separar(const string &s, char delimitador) {
     
     vector<string> resultado;
     stringstream ss(s);
     string item;
 
+    // Separa todas as strings em um vetor de strings
     while (getline (ss, item, delimitador)) {
         resultado.push_back (item);
     }
@@ -120,6 +123,7 @@ vector<string> separar(const string &s, char delimitador) {
 
 }
 
+// Retorna o vetor de categorias
 vector<string> pegarCategorias(HashInfoJogo* tabelaInfoJogo, int n){
 
     //Variaveis para ler o documento
@@ -134,40 +138,49 @@ vector<string> pegarCategorias(HashInfoJogo* tabelaInfoJogo, int n){
         categorias.insert(categorias.end(), aux.begin(), aux.end());    
     
     }
+
     return categorias;
+
 }
 
+// Retorna o maior inteiro relacionado ao vetor de strings
 int maiorValorStringVector(vector<string> categorias, unsigned n){
 
-    int maior = converterStringUnsigned(categorias[0]);
+    int maior = converterStringUnsigned(categorias[0]); // Converte primeira posição para inteiro
     int aux;
 
+    // Laço de comparações
     for(int i = 1; i < categorias.size(); i++){
 
-        aux = converterStringUnsigned(categorias[i]);
+        aux = converterStringUnsigned(categorias[i]); // Converte string i para inteiro
+        // Compara se string i é maior que o atual maior
         if(aux > maior)
-            maior = aux;
+            maior = aux; // Atualiza maior
 
     }
 
+    // Retorna maior valor de string
     return maior;
 
 }
 
-// Retorna
+// Retorna o maior inteiro relacionado ao vetor de strings
 int maiorValorString(char** objeto, unsigned n){
 
-    int maior = converterStringUnsigned(objeto[0]);
+    int maior = converterStringInteiro(objeto[0]); // Converte primeira posição para inteiro
     int aux;
 
+    // Laço de comparações
     for(int i = 1; i < n; i++){
 
-        aux = converterStringUnsigned(objeto[i]);
-        if(aux > maior)
-            maior = aux;
+        aux = converterStringUnsigned(objeto[i]); // Converte string i para inteiro
+        // Compara se string i é maior que o atual maior
+        if(aux > maior) 
+            maior = aux; // Atualiza maior
 
     }
 
+    // Retorna maior valor de string
     return maior;
 
 }
