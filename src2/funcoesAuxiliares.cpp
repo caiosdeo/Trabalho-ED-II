@@ -2,6 +2,7 @@
 #include "InfoJogo.h"
 #include "HashInfoJogo.h"
 #include<string>
+#include <cstring>
 #include <sstream>
 #include <vector>
 
@@ -59,6 +60,10 @@ char** leituraNomeUsuarios(fstream &dataset, unsigned n){
 
 }
 
+bool eNumero(const string& s){
+    return( strspn( s.c_str(), "0123456789" ) == s.size() );
+}
+
 void leituraInfoJogos(fstream &dataset, int n, HashInfoJogo* tabelaInfoJogo){
 
     // Conjunto de Avaliacoes
@@ -87,7 +92,7 @@ void leituraInfoJogos(fstream &dataset, int n, HashInfoJogo* tabelaInfoJogo){
         getline(dataset, categoria, ',');
         getline(dataset, idJogo, '\n');
 
-        if(rand() % 3 == 0){ // Selecionando registros a partir do resto de uma divisão por 3
+        if(rand() % 3 == 0 && eNumero(idJogo) && eNumero(id)){ // Selecionando registros a partir do resto de uma divisão por 3
 
             info.setCategoria(categoria);
             info.setId(stoi(id));
