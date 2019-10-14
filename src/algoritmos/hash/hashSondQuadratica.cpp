@@ -6,30 +6,47 @@
 
 using namespace std;
 
+/**
+ * Construtor
+ *
+ * @author caiosdeo
+ * @param capacidade quantidade de chaves que a tabela irá suportar
+ */
 HashSondQuad::HashSondQuad(unsigned capacidade) 
 { 
-    //Initial capacidade of hash array 
+    //Capacidade inicial 
     this->capacidade = capacidade; 
     tamanho = 0; 
     tabela = new NoHash*[capacidade]; 
     this->numColisoes = 0;
           
-    //Initialise all elements of array as NULL 
+    // Inicializando a todos com NULL 
     for(unsigned i=0 ; i < capacidade ; i++) 
         tabela[i] = NULL; 
       
-    //aux node with valor and chave -1 
+    // Nó aux valor e chave -1 
     NoHash* aux = new NoHash(-1, -1); 
 } 
 
-// This implements hash function to find index 
-// for a chave 
+/**
+ * Função para retornar o indice da chave na tabela hash
+ *
+ * @author caiosdeo
+ * @param chave chave para inserção na tabela
+ * @return indice posição na tabela hash
+ */
 unsigned HashSondQuad::hashCode(unsigned chave) 
 { 
     return chave % capacidade; 
 } 
 
-
+/**
+ * Função de inserção de uma chave na tabela hash
+ *
+ * @author caiosdeo
+ * @param chave chave para que deseja inserir na tabela
+ * @param valor valor do nó
+ */
 void HashSondQuad::insereNo(unsigned chave, unsigned valor) 
 { 
     if(estaCheia()){
@@ -37,17 +54,18 @@ void HashSondQuad::insereNo(unsigned chave, unsigned valor)
     }
     
     NoHash* temp = new NoHash(chave, valor); 
-    // Apply hash function to find index for given chave 
-    unsigned hashIndex = hashCode(chave); 
-    //find next free space  
-    for(unsigned i = 1; tabela[hashIndex] != NULL && tabela[hashIndex]->getChave() != chave 
-            && tabela[hashIndex]->getChave() != -1 && i < this->capacidade; i++) 
+
+    // Aplicando função hash para retornar indice da chave 
+    unsigned hashIndex = hashCode(chave);
+
+    // Procurando o próximo espaço vazio  
+    for(unsigned i = 1; tabela[hashIndex] != NULL && tabela[hashIndex]->getChave() != chave && tabela[hashIndex]->getChave() != -1 && i < this->capacidade; i++) 
     { 
         this->numColisoes++;
         hashIndex = (chave + (i*i)) % capacidade; 
     } 
           
-    //if new node to be inserted increase the current tamanho 
+    // Se o novo vai ser inserido, aumenta o tamanho
     if(tabela[hashIndex] == NULL || tabela[hashIndex]->getChave() == -1) 
         this->tamanho++; 
 
@@ -58,15 +76,23 @@ unsigned HashSondQuad::getTamanho()
 { 
     return this->tamanho; 
 }
+
+/**
+ * Função para saber se a tabela está vazia
+ *
+ * @author prrp
+ */
 bool HashSondQuad::estaCheia()
 {
     return this->tamanho == capacidade;
 } 
-bool HashSondQuad::estaVazia() 
-{ 
-    return this->tamanho == 0; 
-} 
-
+ 
+/**
+ * Funçao que retorna o número de todas as colisões ocorridas
+ *
+ * @author eliascassis
+ * @return numColisoes numero de colisões ocorridas
+ */
 unsigned HashSondQuad::getNumColisoes(){
 
     return this->numColisoes;

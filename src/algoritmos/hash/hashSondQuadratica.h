@@ -18,9 +18,7 @@ class HashSondQuad{
         unsigned hashCode(unsigned chave);
         void insereNo(unsigned chave, unsigned valor);
         unsigned getTamanho();
-        bool estaVazia();
         bool estaCheia();
-        void display();
         unsigned getNumColisoes();
 
 }; 
