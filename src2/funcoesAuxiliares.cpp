@@ -6,8 +6,8 @@
 #include<sstream>
 #include<vector>
 
-// Converte uma string em um inteiro sem sinal
-int converterStringUnsigned(string str){
+// Converte uma string em um inteiro 
+int converterStringInteiro(string str){
 
     int valorString = 0;
     // Somatório do valor ascii dos caracteres da string
