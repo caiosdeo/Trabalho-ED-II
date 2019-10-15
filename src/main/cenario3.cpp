@@ -23,15 +23,15 @@ void fluxoCenario3(unsigned* ids, unsigned n, fstream &saida){
 
         switch(versao){
 
-            case 0: // insertionQuickSort m = 100
+            case 0: // insertionQuickSort m = 10
 
-                cout << "Executando insertionQuickSort m = 100" << endl;
+                cout << "Executando insertionQuickSort m = 10" << endl;
 
                 // Ponto de inicio de contagem para tempo de execução do algoritmo
                 inicio = chrono::high_resolution_clock::now();
                 
                 // * Chamada dos algoritmos
-                insertionQuickSort(ids, 0, n-1, 100, &numComparacoes, &numCopias);
+                insertionQuickSort(ids, 0, n-1, 10, &numComparacoes, &numCopias);
 
                 // Ponto de parada de contagem para o tempo de execução do algoritmo
                 parada = chrono::high_resolution_clock::now();
