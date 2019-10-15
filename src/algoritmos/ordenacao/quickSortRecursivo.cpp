@@ -20,7 +20,7 @@ unsigned particaoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned long l
 
     // Pega um pivô aleatório
     srand(time(0));
-    unsigned pivo = a[rand()%(fim - inicio) + inicio];
+    unsigned pivo = rand()%(fim - inicio) + inicio;
     // Coloca pivo no fim da partição
     swap(&a[pivo], &a[fim]);
     (*numTrocas)++; // Incrementa o número de trocas
@@ -32,7 +32,7 @@ unsigned particaoIds(unsigned *a, unsigned inicio, unsigned fim, unsigned long l
 
         // Troca a posição do elemento caso seja menor ou igual ao pivô
         (*numComparacoes)++;
-        if(a[j] <= pivo){
+        if(a[j] <= a[pivo]){
 
             i++;
             swap(&a[i], &a[j]);
@@ -83,7 +83,7 @@ unsigned particaoEstruturas(Review* a, unsigned inicio, unsigned fim, unsigned l
 
     // Pega um pivô aleatório
     srand(time(0));
-    unsigned pivo = a[rand()%(fim - inicio) + inicio].getId();
+    unsigned pivo = rand()%(fim - inicio) + inicio;
     // Coloca pivo no fim da partição
     swapEstruturas(a, pivo, fim);
     (*numTrocas)++; // Incrementa o número de trocas
@@ -95,7 +95,7 @@ unsigned particaoEstruturas(Review* a, unsigned inicio, unsigned fim, unsigned l
 
         // Troca a posição do elemento caso seja menor ou igual ao pivô
         (*numComparacoes)++;
-        if(a[j].getId() <= pivo){
+        if(a[j].getId() <= a[pivo].getId()){
 
             i++;
             swapEstruturas(a, i, j);
