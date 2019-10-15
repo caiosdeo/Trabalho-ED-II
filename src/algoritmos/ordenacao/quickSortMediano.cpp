@@ -52,7 +52,7 @@ void quickSortMediano(unsigned *vetor, unsigned inicio, unsigned fim, unsigned k
             while(aux[mediana] != vetor[copiaInicio])
                 copiaInicio++;
 
-            delete[] aux; // Desaloca vetor auxiliar
+            //delete[] aux; // Desaloca vetor auxiliar
 
             mediana = copiaInicio;
 
