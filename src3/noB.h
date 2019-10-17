@@ -17,6 +17,13 @@ class NoB{
     
         // Uma função que procura uma chave k em uma subárvore     
         NoB *buscarChave(int k, unsigned *numAcessos, unsigned *numComparacoes);   // retorna nullptr se a chave não for encontrada
+
+        // Insere uma chave em um  nó não-cheio
+        void inserirNaoCheio(int k); 
+
+        // Divide o filho y do nó. i é o índice de y no vetor de filhos do nó
+        // y deve estar cheio quando essa função for chamada
+        void dividirFilho(int i, NoB *y); 
   
     // Tornando os atributos do nó acessíveis para as funções da classe ArvoreB
     friend class ArvoreB;
