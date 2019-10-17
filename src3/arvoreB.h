@@ -1,34 +1,18 @@
 #ifndef ARVOREB_H_INCLUDED
 #define ARVOREB_H_INCLUDED
 #include "noB.h"
+class ArvoreB{ 
 
-
-class BTree{ 
     NoB *raiz; // Ponteiro para a raiz
     int d;  // ordem
-public: 
+
+    public: 
     // Construtor (Inicializando a árvore como vazia)
-    BTree(int d){ 
-
-        raiz = nullptr;  
-        this->d = d; 
-    
-    } 
-  
-    // Função para atravessar a árvore
-    void atravessarArvore(){ 
-
-        if(this->raiz != nullptr) 
-            this->raiz->atravessarSubarvore(); 
-
-    } 
-  
+    ArvoreB(int d);
+    // Função para percorrer a árvore
+    void percorrerArvore();
     // Função para procurar a chave k na árvore
-    NoB* search(int k){  
-
-        return (raiz == nullptr)? nullptr : this->raiz->search(k); 
-
-    } 
+    NoB* buscarChave(int k);
 
 }; 
 
