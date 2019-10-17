@@ -36,14 +36,17 @@ void NoB::percorrerSubarvore() {
 } 
 
 // Function to search key k in subtree rooted with this node 
-NoB *NoB::buscarChave(int k){ 
+NoB *NoB::buscarChave(int k, unsigned *numAcessos, unsigned *numComparacoes){ 
 
+    // Incrementa o número de acessos
+    (*numAcessos)++;
     // Encontra a primeira chave maior ou igual a k
     int i = 0; 
-    while (i < this->n && k > this->chaves[i]) 
+    while(i < this->n && k > this->chaves[i]) 
         i++; 
-  
+    (*numComparacoes)+= i; // Incrementa número de comparações
     // Se a chave encontrada for igual a k, returna esse nó
+    (*numComparacoes)++;
     if (this->chaves[i] == k) 
         return this; 
   
@@ -52,6 +55,6 @@ NoB *NoB::buscarChave(int k){
         return nullptr; 
 
     // Vai para o filho apropriado
-    return this->filhos[i]->buscarChave(k); 
+    return this->filhos[i]->buscarChave(k, numAcessos, numComparacoes); 
     
 } 

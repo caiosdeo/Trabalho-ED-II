@@ -12,7 +12,7 @@ class ArvoreB{
     // Função para percorrer a árvore
     void percorrerArvore();
     // Função para procurar a chave k na árvore
-    NoB* buscarChave(int k);
+    NoB* buscarChave(int k, unsigned *numAcessos, unsigned *numComparacoes);
 
 }; 
 

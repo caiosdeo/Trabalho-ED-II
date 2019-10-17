@@ -8,14 +8,15 @@ class NoB{
     NoB **filhos; // Um vetor de ponteiros para filhos
     int n;     // Número atual de chaves
     bool folha; // Verdadeiro se nó é uma folha e falso caso contrário
-public: 
-    NoB(int d, bool folha);   // Construtor 
-  
-    // Uma função que "caminha" por todos os nós de uma subárvore
-    void percorrerSubarvore(); 
-  
-    // Uma função que procura uma chave k em uma subárvore     
-    NoB *buscarChave(int k);   // retorna nullptr se a chave não for encontrada
+    
+    public: 
+        NoB(int d, bool folha);   // Construtor 
+    
+        // Uma função que "caminha" por todos os nós de uma subárvore
+        void percorrerSubarvore(); 
+    
+        // Uma função que procura uma chave k em uma subárvore     
+        NoB *buscarChave(int k, unsigned *numAcessos, unsigned *numComparacoes);   // retorna nullptr se a chave não for encontrada
   
     // Tornando os atributos do nó acessíveis para as funções da classe ArvoreB
     friend class ArvoreB;

@@ -17,8 +17,8 @@ void ArvoreB::percorrerArvore(){
 } 
   
 // Função para procurar a chave k na árvore
-NoB* ArvoreB::buscarChave(int k){  
+NoB* ArvoreB::buscarChave(int k, unsigned *numAcessos, unsigned *numComparacoes){  
 
-    return (raiz == nullptr)? nullptr : this->raiz->buscarChave(k); 
+    return (raiz == nullptr)? nullptr : this->raiz->buscarChave(k, numAcessos, numComparacoes); 
 
 } 
