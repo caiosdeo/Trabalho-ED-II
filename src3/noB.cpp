@@ -86,15 +86,13 @@ void NoB::inserirNaoCheio(int k){
         // Encontra o filho que irá receber a nova chave
         while (i >= 0 && this->chaves[i] > k) 
             i--; 
-  
-        // See if the found child is full 
+
         // Confere se o filho encontrado está cheio
         if(this->filhos[i+1]->n == 2*this->d-1){
 
             // Se o filho está cheeio
             this->dividirFilho(i+1, this->filhos[i+1]); 
-  
-            // After split, the middle key of C[i] goes up and 
+   
             // Após dividir,  a chave do meio de filhos[i] sobe e
             // C[i] is splitted into two.  See which of the two 
             // filhos[i] é divido em dois. Confere qual dos dois irá receber a nova chave.
@@ -110,7 +108,7 @@ void NoB::inserirNaoCheio(int k){
 } 
  
 // Uma função para duvudur o filho y do nó.
-// Essa função só deve ser cjamada quando o filho estiver cheio
+// Essa função só deve ser chamada quando o filho estiver cheio
 void NoB::dividirFilho(int i, NoB *y){ 
     // Cria um novo nó para armazenar (d-1) chaves de y
     NoB *z = new NoB(y->d, y->folha); 
