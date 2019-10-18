@@ -14,7 +14,9 @@ class ArvoreB{
     // Função para procurar a chave k na árvore B
     NoB* buscarChave(int k, unsigned *numAcessos, unsigned *numComparacoes);
     // Função para inserir uma chave na árvore B
-    void inserirChave(int k);
+    void inserirChave(int k, unsigned *numAcessos, unsigned *numComparacoes);
+    // Remove a chave k da árvore B 
+    void removerChave(int k); 
 
 }; 
 

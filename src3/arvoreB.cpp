@@ -1,4 +1,6 @@
 #include "arvoreB.h"
+#include <iostream>
+using namespace std;
 
 // Construtor (Inicializando a árvore como vazia)
 ArvoreB::ArvoreB(int d){ 
@@ -24,7 +26,7 @@ NoB* ArvoreB::buscarChave(int k, unsigned *numAcessos, unsigned *numComparacoes)
 } 
 
 // Função principal para inserir uma nova chave na árvore B
-void ArvoreB::inserirChave(int k){ 
+void ArvoreB::inserirChave(int k, unsigned *numAcessos, unsigned *numComparacoes){ 
 
     // If a árvore estiver vazia
     if(this->raiz == nullptr){ 
@@ -46,23 +48,54 @@ void ArvoreB::inserirChave(int k){
 
             // Divide a antiga raiz e move uma chave para a nova raiz
             s->dividirFilho(0, this->raiz); 
-  
-            // New root has two children now.  Decide which of the 
-            // two children is going to have new key 
+ 
             // Nova raiz tem dois filhos agora
             // Escolhendo qual dos dois filhos terá uma nova chave
             int i = 0; 
             if (s->chaves[0] < k) 
                 i++; 
-            s->filhos[i]->inserirNaoCheio(k); 
+            s->filhos[i]->inserirNaoCheio(k, numAcessos, numComparacoes); 
   
             // Muda a raiz
             this->raiz = s; 
 
         } 
         else  // Se a raiz não estiver cheia, chama inserir não cheio para a raiz
-            this->raiz->inserirNaoCheio(k); 
-            
+            this->raiz->inserirNaoCheio(k, numAcessos, numComparacoes); 
+
     }
 
 }
+
+// Função para remover uma chave da árvore
+void ArvoreB::removerChave(int k){ 
+
+    if(!this->raiz){ 
+
+        cout << "A árvore B esa vazia!\n"; 
+        return; 
+
+    } 
+  
+    // Chama a função de remover para a raiz 
+    this->raiz->removerChave(k); 
+
+    // Se a raiz tiver 0 chaves, o primeiro filho se torna a nova raiz se a raiz tiver um filho
+    // Caso contrário, seta raiz para nullprt
+    if(this->raiz->n == 0){ 
+
+        NoB *tmp = this->raiz; 
+        if(this->raiz->folha) 
+            this->raiz = nullptr; 
+
+        else
+            this->raiz = this->raiz->filhos[0]; 
+  
+        // Deleta a raiz antiga
+        delete tmp; 
+
+    } 
+
+    return; 
+
+} 
