@@ -19,14 +19,14 @@ void ArvoreB::percorrerArvore(){
 } 
   
 // Função para procurar a chave k na árvore
-NoB* ArvoreB::buscarChave(int k, unsigned *numAcessos, unsigned *numComparacoes){  
+NoB* ArvoreB::buscarChave(int k, unsigned *numTrocas, unsigned *numComparacoes){  
 
-    return (raiz == nullptr) ? nullptr : this->raiz->buscarChave(k, numAcessos, numComparacoes); 
+    return (raiz == nullptr) ? nullptr : this->raiz->buscarChave(k, numTrocas, numComparacoes); 
 
 } 
 
 // Função principal para inserir uma nova chave na árvore B
-void ArvoreB::inserirChave(int k, unsigned *numAcessos, unsigned *numComparacoes){ 
+void ArvoreB::inserirChave(int k, unsigned *numTrocas, unsigned *numComparacoes){ 
 
     // If a árvore estiver vazia
     if(this->raiz == nullptr){ 
@@ -34,6 +34,7 @@ void ArvoreB::inserirChave(int k, unsigned *numAcessos, unsigned *numComparacoes
         // Aloca memória para a raiz
         this->raiz = new NoB(this->d, true); 
         this->raiz->chaves[0] = k;  // Insere a chave
+        (*numTrocas)++;
         this->raiz->n = 1;  // Atualiza o número de chaves na raiz.
     } 
     else { // Se a árvore não estiver vazia
@@ -47,28 +48,31 @@ void ArvoreB::inserirChave(int k, unsigned *numAcessos, unsigned *numComparacoes
             s->filhos[0] = this->raiz; 
 
             // Divide a antiga raiz e move uma chave para a nova raiz
-            s->dividirFilho(0, this->raiz); 
+            s->dividirFilho(0, this->raiz, numTrocas, numComparacoes); 
  
             // Nova raiz tem dois filhos agora
             // Escolhendo qual dos dois filhos terá uma nova chave
             int i = 0; 
-            if (s->chaves[0] < k) 
+
+            (*numComparacoes) += i;
+            if(s->chaves[0] < k) 
                 i++; 
-            s->filhos[i]->inserirNaoCheio(k, numAcessos, numComparacoes); 
-  
+
+            s->filhos[i]->inserirNaoCheio(k, numTrocas, numComparacoes); 
+
             // Muda a raiz
             this->raiz = s; 
 
         } 
         else  // Se a raiz não estiver cheia, chama inserir não cheio para a raiz
-            this->raiz->inserirNaoCheio(k, numAcessos, numComparacoes); 
+            this->raiz->inserirNaoCheio(k, numTrocas, numComparacoes); 
 
     }
 
 }
 
 // Função para remover uma chave da árvore
-void ArvoreB::removerChave(int k){ 
+void ArvoreB::removerChave(int k, unsigned *numTrocas, unsigned *numComparacoes){ 
 
     if(!this->raiz){ 
 
@@ -78,7 +82,7 @@ void ArvoreB::removerChave(int k){
     } 
   
     // Chama a função de remover para a raiz 
-    this->raiz->removerChave(k); 
+    this->raiz->removerChave(k, numTrocas, numComparacoes); 
 
     // Se a raiz tiver 0 chaves, o primeiro filho se torna a nova raiz se a raiz tiver um filho
     // Caso contrário, seta raiz para nullprt

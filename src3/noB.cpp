@@ -35,10 +35,10 @@ void NoB::percorrerSubarvore(){
 } 
 
 // Function to search key k in subtree rooted with this node 
-NoB *NoB::buscarChave(int k, unsigned *numAcessos, unsigned *numComparacoes){ 
+NoB *NoB::buscarChave(int k, unsigned *numTrocas, unsigned *numComparacoes){ 
 
     // Incrementa o número de acessos
-    (*numAcessos)++;
+    (*numTrocas)++;
     // Encontra a primeira chave maior ou igual a k
     int i = 0; 
     while(i < this->n && k > this->chaves[i]) 
@@ -54,13 +54,13 @@ NoB *NoB::buscarChave(int k, unsigned *numAcessos, unsigned *numComparacoes){
         return nullptr; 
 
     // Vai para o filho apropriado
-    return this->filhos[i]->buscarChave(k, numAcessos, numComparacoes); 
+    return this->filhos[i]->buscarChave(k, numTrocas, numComparacoes); 
     
 } 
  
 // Função para inserir uma nova chave no nó.
 // Essa função deve ser chamada quando o nó não está cheio
-void NoB::inserirNaoCheio(int k, unsigned *numAcessos, unsigned *numComparacoes){ 
+void NoB::inserirNaoCheio(int k, unsigned *numTrocas, unsigned *numComparacoes){ 
 
     // Inicializa com o índice do elemento mais à direita
     int i = this->n-1; 
@@ -72,36 +72,44 @@ void NoB::inserirNaoCheio(int k, unsigned *numAcessos, unsigned *numComparacoes)
         // b) Move todas as chaves maiores que k uma posição à frente
         while(i >= 0 && this->chaves[i] > k){ 
 
-            this->chaves[i+1] = this->chaves[i]; 
+            this->chaves[i+1] = this->chaves[i];
+            (*numTrocas)++;
+            (*numComparacoes)++; 
             i--; 
 
         } 
   
         // Insere a nova chave na posição encontrada 
         this->chaves[i+1] = k; 
+        (*numTrocas)++;
         this->n++;
 
     } 
     else{ // Se o nó não é folha
         // Encontra o filho que irá receber a nova chave
-        while (i >= 0 && this->chaves[i] > k) 
-            i--; 
+        while(i >= 0 && this->chaves[i] > k){
+
+            (*numComparacoes)++; 
+            i--;
+
+        } 
 
         // Confere se o filho encontrado está cheio
         if(this->filhos[i+1]->n == 2*this->d-1){
 
             // Se o filho está cheeio
-            this->dividirFilho(i+1, this->filhos[i+1]); 
+            this->dividirFilho(i+1, this->filhos[i+1], numTrocas, numComparacoes); 
    
             // Após dividir,  a chave do meio de filhos[i] sobe e
             // C[i] is splitted into two.  See which of the two 
             // filhos[i] é divido em dois. Confere qual dos dois irá receber a nova chave.
-            if (this->chaves[i+1] < k) 
+            (*numComparacoes)++;
+            if(this->chaves[i+1] < k) 
                 i++; 
 
         }
 
-        this->filhos[i+1]->inserirNaoCheio(k, numAcessos, numComparacoes); 
+        this->filhos[i+1]->inserirNaoCheio(k, numTrocas, numComparacoes); 
 
     } 
 
@@ -109,38 +117,58 @@ void NoB::inserirNaoCheio(int k, unsigned *numAcessos, unsigned *numComparacoes)
  
 // Uma função para duvidir o filho y do nó.
 // Essa função só deve ser chamada quando o filho estiver cheio
-void NoB::dividirFilho(int i, NoB *y){ 
+void NoB::dividirFilho(int i, NoB *y, unsigned *numTrocas, unsigned *numComparacoes){ 
     // Cria um novo nó para armazenar (d-1) chaves de y
     NoB *z = new NoB(y->d, y->folha); 
     z->n = this->d - 1; 
   
     // Copia as últimas (d-1) chaves de y para z
-    for(int j = 0; j < this->d-1; j++) 
-        z->chaves[j] = y->chaves[j+this->d]; 
+    for(int j = 0; j < this->d-1; j++){
+
+        z->chaves[j] = y->chaves[j+this->d];
+        (*numTrocas)++;
+
+    } 
    
     // Copia o último d filho de y para z
     if(y->folha == false){ 
-        for(int j = 0; j < this->d; j++) 
-            z->filhos[j] = y->filhos[j+this->d]; 
+
+        for(int j = 0; j < this->d; j++){
+
+            z->filhos[j] = y->filhos[j+this->d];
+            (*numTrocas)++;
+            
+        }
+
     } 
   
     // Reduz o número de chaves em y 
     y->n = this->d - 1; 
  
     // Como o nó irá receber um novo filho, cria-se um espaço para o novo filho
-    for(int j = this->n; j >= i+1; j--) 
-        this->filhos[j+1] = this->filhos[j]; 
+    for(int j = this->n; j >= i+1; j--){
+
+        this->filhos[j+1] = this->filhos[j];
+        (*numTrocas)++;
+
+    }
   
     // Agrega o novo filho ao nó
     this->filhos[i+1] = z; 
+    (*numTrocas)++;
   
     // Uma chave de y irá mover para o nó. 
     // Encontrando a localização da nova chave e movendo todas as chaves maiores um espaço à frente
-    for(int j = this->n-1; j >= i; j--) 
-        this->chaves[j+1] = this->chaves[j]; 
+    for(int j = this->n-1; j >= i; j--){
+
+        this->chaves[j+1] = this->chaves[j];
+        (*numTrocas)++; 
+
+    }
   
     // Copia a chave do meio de y para o nó
     this->chaves[i] = y->chaves[this->d-1]; 
+    (*numTrocas)++; 
   
     // Incrementa o contador de chaves no nó
     this->n++;
@@ -148,9 +176,10 @@ void NoB::dividirFilho(int i, NoB *y){
 }
 
 // Retorna o índice da primeira chave maior ou igual a k
-int NoB::encontrarChave(int k){ 
+int NoB::encontrarChave(int k, unsigned *numTrocas, unsigned *numComparacoes){ 
+
     int id = 0; 
-    while (id < this->n && this->chaves[id] < k) 
+    while(id < this->n && this->chaves[id] < k) 
         ++id; 
 
     return id; 
@@ -158,21 +187,21 @@ int NoB::encontrarChave(int k){
 } 
   
 // Função para remover chave k do nó
-void NoB::removerChave(int k){ 
+void NoB::removerChave(int k, unsigned *numTrocas, unsigned *numComparacoes){ 
 
-    int id = this->encontrarChave(k); 
+    int id = this->encontrarChave(k, numTrocas, numComparacoes); 
   
     // Confere se a chave a ser removida está presente no nó 
-    if (id < this->n && this->chaves[id] == k){ 
+    (*numComparacoes)++;
+    if(id < this->n && this->chaves[id] == k){ 
   
-        // If the node is a leaf node - removeFromLeaf is called
         // Se o nó é uma folha - chama removerDeFolha 
         // Caso contrário, chama removerDeNaoFolha
         if(this->folha) 
-            this->removerDeFolha(id); 
+            this->removerDeFolha(id, numTrocas, numComparacoes); 
 
         else
-            this->removerDeNaoFolha(id); 
+            this->removerDeNaoFolha(id, numTrocas, numComparacoes); 
 
     } 
     else{ 
@@ -191,15 +220,15 @@ void NoB::removerChave(int k){
 
         // Se o filho em que a chave deveria estar possui menos que d - 1 filhos, preenchemos esse filho
         if(this->filhos[id]->n < this->d) 
-            this->preencher(id); 
+            this->preencher(id, numTrocas, numComparacoes); 
   
         // Se o último filho foi intercalado, ele deve ter sido intercalado com o filho anterior
         // Se foi, chamamos a função recursivamente no filho anterior
         // Se não foi, chamamos a função para o filho que deveria ter sido intercalado
         if (bandeira && id > this->n) 
-            this->filhos[id-1]->removerChave(k); 
+            this->filhos[id-1]->removerChave(k, numTrocas, numComparacoes); 
         else
-            this->filhos[id]->removerChave(k); 
+            this->filhos[id]->removerChave(k, numTrocas, numComparacoes); 
 
     } 
 
@@ -208,10 +237,11 @@ void NoB::removerChave(int k){
 } 
   
 // Remove chave id de uma folha
-void NoB::removerDeFolha(int id){ 
+void NoB::removerDeFolha(int id, unsigned *numTrocas, unsigned *numComparacoes){ 
 
     // Move todas as chaves uma posição após id 
-    for(int i= id + 1; i < this->n; ++i) 
+    (*numTrocas) += this->n - id;
+    for(int i = id + 1; i < this->n; ++i) 
         this->chaves[i-1] = this->chaves[i]; 
   
     // Decrementa o número de chaves
@@ -222,18 +252,20 @@ void NoB::removerDeFolha(int id){
 } 
   
 // Remove chave id de nó não-folha
-void NoB::removerDeNaoFolha(int id){ 
+void NoB::removerDeNaoFolha(int id, unsigned *numTrocas, unsigned *numComparacoes){ 
   
-    int k = this->chaves[id]; 
+    int k = this->chaves[id];
+    (*numTrocas)++; 
 
     // Se o filho predecessor tem pelo menos d chaves
     // Encontramos o predecessor na subárvore enraizada por filho[id]
     // Substituímos k pelo predecessor e deletamos o predecessor recursivamente em filho[id]
     if(this->filhos[id]->n >= this->d){ 
 
-        int predecessor = this->getPredecessor(id); 
+        int predecessor = this->getPredecessor(id, numTrocas, numComparacoes); 
         this->chaves[id] = predecessor; 
-        this->filhos[id]->removerChave(predecessor); 
+        (*numTrocas)++; 
+        this->filhos[id]->removerChave(predecessor, numTrocas, numComparacoes); 
 
     } 
 
@@ -243,9 +275,11 @@ void NoB::removerDeNaoFolha(int id){
     // Deletamos recursivamente o sucessor em filhos[id+1]
     else if (this->filhos[id+1]->n >= this->d){ 
 
-        int sucessor = getSucessor(id); 
+        int sucessor = getSucessor(id, numTrocas, numComparacoes); 
         this->chaves[id] = sucessor; 
-        this->filhos[id+1]->removerChave(sucessor); 
+        (*numTrocas)++; 
+        this->filhos[id+1]->removerChave(sucessor, numTrocas, numComparacoes); 
+
     } 
 
     // Se ambos os filhos presentes na posição id e id + 1 tiverem d chaves
@@ -254,8 +288,8 @@ void NoB::removerDeNaoFolha(int id){
     // Deletamos o filho id + 1 e recursivamente deletamos k do filho id
     else{ 
 
-        intercalar(id); 
-        this->filhos[id]->removerChave(k); 
+        intercalar(id, numTrocas, numComparacoes); 
+        this->filhos[id]->removerChave(k, numTrocas, numComparacoes); 
 
     } 
 
@@ -264,13 +298,17 @@ void NoB::removerDeNaoFolha(int id){
 } 
 
 // Uma função para pegar o predecessor de chaves[id]
-int NoB::getPredecessor(int id){
+int NoB::getPredecessor(int id, unsigned *numTrocas, unsigned *numComparacoes){
 
     // Continua movendo para o nó mais à direita até chegar em uma folha
     NoB *cur = this->filhos[id]; 
 
-    while(!cur->folha) 
+    while(!cur->folha){
+
         cur = cur->filhos[cur->n]; 
+        (*numTrocas)++;
+
+    }
   
     // Retorna a última chave da folha
     return cur->chaves[cur->n-1]; 
@@ -278,12 +316,17 @@ int NoB::getPredecessor(int id){
 } 
 
 // Uma função para pegar o predecessor de chaves[id] 
-int NoB::getSucessor(int id){ 
+int NoB::getSucessor(int id, unsigned *numTrocas, unsigned *numComparacoes){ 
 
-    // Continua movendo atpe o nó mais à esquerda de filhos[id+1] até chegar em uma folha
+    // Continua movendo até o nó mais à esquerda de filhos[id+1] até chegar em uma folha
     NoB *cur = this->filhos[id+1]; 
-    while(!cur->folha) 
-        cur = cur->filhos[0]; 
+
+    while(!cur->folha){
+
+        cur = cur->filhos[0];
+        (*numTrocas)++;
+        
+    } 
   
     // Retorna a primeira chave da folha
     return cur->chaves[0]; 
@@ -291,17 +334,17 @@ int NoB::getSucessor(int id){
 } 
 
 // Uma função para preencher o filho[id] que tem menos de d-1 chaves
-void NoB::preencher(int id){ 
+void NoB::preencher(int id, unsigned *numTrocas, unsigned *numComparacoes){ 
    
     // Se o filho antecessor filhos[id-1] tiver mais de d-1 chaves
     // Pegar uma chave emprestada desse filho
     if(id != 0 && this->filhos[id-1]->n >= this->d) 
-        this->pegarEmprestadoAnterior(id);
+        this->pegarEmprestadoAnterior(id, numTrocas, numComparacoes);
   
     // Se o filho sucessor filhos[id+1] tiver mais de d-1 chaves
     // Pegar uma chave emprestada desse filho
     else if(id != this->n && this->filhos[id+1]->n >= this->d) 
-        this->pegarEmprestadoProximo(id); 
+        this->pegarEmprestadoProximo(id, numTrocas, numComparacoes); 
   
     // Intercala filhos[id] com seu irmão
     // Se filhos[id] é o último filho, intercala com seu irmão antecessor
@@ -309,9 +352,9 @@ void NoB::preencher(int id){
     else{ 
 
         if(id != this->n) 
-            this->intercalar(id); 
+            this->intercalar(id, numTrocas, numComparacoes); 
         else
-            this->intercalar(id-1);
+            this->intercalar(id-1, numTrocas, numComparacoes);
 
     } 
 
@@ -320,7 +363,7 @@ void NoB::preencher(int id){
 } 
   
 // Uma função para pegar emprestado a chave do filhos[id-1] e inserir no filhos[id]
-void NoB::pegarEmprestadoAnterior(int id){ 
+void NoB::pegarEmprestadoAnterior(int id, unsigned *numTrocas, unsigned *numComparacoes){ 
   
     NoB *filho = this->filhos[id]; 
     NoB *irmao = this->filhos[id-1]; 
@@ -330,26 +373,31 @@ void NoB::pegarEmprestadoAnterior(int id){
     // O irmão perde uma chave e o filho ganha uma chave
     // Move todas as chaves de filhos[id] um passo à frente
     for (int i = filho->n-1; i >= 0; --i) 
-        filho->chaves[i+1] = filho->chaves[i]; 
+        filho->chaves[i+1] = filho->chaves[i];
+    (*numTrocas) += filho->n - 1; 
 
     // Se filhos[id] não pe uma folha, move todos os filhos um passo à frente
     if(!filho->folha){
 
         for(int i = filho->n; i >= 0; --i) 
-            filho->filhos[i+1] = filho->filhos[i]; 
+            filho->filhos[i+1] = filho->filhos[i];
+        (*numTrocas) += filho->n; 
 
     } 
 
     // Setando a primeira chave do filho igual à chaves[id-1] do nó nó atual
     filho->chaves[0] = this->chaves[id-1]; 
+    (*numTrocas)++; 
 
     // Movendo o último filho do irmão como primeiro filho de filhos[id] do nó atual
     if(!filho->folha) 
-        filho->filhos[0] = irmao->filhos[irmao->n]; 
+        filho->filhos[0] = irmao->filhos[irmao->n];
+    (*numTrocas)++;  
 
     // Movendo a chave do irmão para o pai
     // Isso reduz o número de chaves no irmão
-    this->chaves[id-1] = irmao->chaves[irmao->n-1]; 
+    this->chaves[id-1] = irmao->chaves[irmao->n-1];
+    (*numTrocas)++;  
   
     filho->n++; 
     irmao->n--; 
@@ -359,30 +407,36 @@ void NoB::pegarEmprestadoAnterior(int id){
 } 
   
 // Uma função para pegar emprestado a chave do filhos[id+1] e inserir no filhos[id] 
-void NoB::pegarEmprestadoProximo(int id){ 
+void NoB::pegarEmprestadoProximo(int id, unsigned *numTrocas, unsigned *numComparacoes){ 
   
     NoB *filho = this->filhos[id]; 
     NoB *irmao = this->filhos[id+1]; 
 
     // chaves[id] é inserida como última chave em filhos[id]
     filho->chaves[(filho->n)] = this->chaves[id]; 
+    (*numTrocas)++; 
  
     // Primeiro filho do irmão é inserido como último filho em filhos[id]
     if(!(filho->folha)) 
         filho->filhos[(filho->n)+1] = irmao->filhos[0]; 
+    (*numTrocas)++; 
 
     // A primeira chave do irmão é inserida em chaves[id]
     this->chaves[id] = irmao->chaves[0]; 
+    (*numTrocas)++; 
 
     // Movendo todas as chaves do irmão uma posição para trás 
     for(int i = 1; i < irmao->n; ++i) 
         irmao->chaves[i-1] = irmao->chaves[i]; 
+    (*numTrocas) += irmao->n;
+
   
     // Movendo tods os filhos do irmão uma posição para trás 
     if(!irmao->folha){ 
 
         for(int i = 1; i <= irmao->n; ++i) 
             irmao->filhos[i-1] = irmao->filhos[i]; 
+        (*numTrocas) += irmao->n;
 
     } 
  
@@ -396,34 +450,39 @@ void NoB::pegarEmprestadoProximo(int id){
   
 // Função para intercalar filhos[id] com filhos[id+1] 
 // filhos[id+1] é desalocado depois da intercalação
-void NoB::intercalar(int id){ 
+void NoB::intercalar(int id, unsigned *numTrocas, unsigned *numComparacoes){ 
 
     NoB *filho = this->filhos[id]; 
     NoB *irmao = this->filhos[id+1]; 
 
     // Puxando a chave do nó atual e inserindo  na posição (d-1) de filhos[id]
     filho->chaves[this->d-1] = chaves[id]; 
+    (*numTrocas)++; 
 
     // Copiando as chaves de filhos[id+1] para filhos[id] no final
     for(int i = 0; i < irmao->n; ++i) 
         filho->chaves[i+this->d] = irmao->chaves[i]; 
+    (*numTrocas) += irmao->n;
   
     // Copiando os ponteiros de filho de filhos[id+1] para filhos[id] 
     if(!filho->folha){ 
 
         for(int i = 0; i <= irmao->n; ++i) 
             filho->filhos[i+this->d] = irmao->filhos[i];
+        (*numTrocas) += irmao->n + 1;
 
     } 
 
     // Movendo todas as chaves depois de id no nó atual uma posição atrás
     // antes de preencher a lacuna criada pela movimentação de chaves[id] para filhos[id]
     for(int i = id+1; i < this->n; ++i) 
-        this->chaves[i-1] = this->chaves[i]; 
+        this->chaves[i-1] = this->chaves[i];
+    (*numTrocas) += this->n - id; 
 
     // Movendo os ponteiros de filhos depois de id+1 do nó atual uma posição atrás
     for(int i = id + 2;  i <= this->n; ++i) 
         this->filhos[i-1] = this->filhos[i]; 
+    (*numTrocas) += this->n - id - 1; 
   
     // Atualizando o contador de filhos dos nós
     filho->n += irmao->n+1; 
