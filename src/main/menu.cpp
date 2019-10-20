@@ -35,11 +35,11 @@ void selecionar(unsigned selecao){
     fstream entrada, dataset, saida;
 
     if(selecao == 1)
-        entrada.open("../../database/entrada1.txt", ios::in); // Arquivo de entrada cenário 1 só como leitura
+        entrada.open("database/entrada1.txt", ios::in); // Arquivo de entrada cenário 1 só como leitura
     else
-        entrada.open("../../database/entrada24.txt", ios::in); // Arquivo de entrada cenário 2-4 só como leitura
+        entrada.open("database/entrada24.txt", ios::in); // Arquivo de entrada cenário 2-4 só como leitura
 
-    dataset.open("../../database/processadosFase1.txt", ios::in); // Arquivo de dados como leitura
+    dataset.open("database/processadosFase1.txt", ios::in); // Arquivo de dados como leitura
 
     // Variaveis para leitura do arquivo de entrada
     unsigned qtdConjuntos, n;
