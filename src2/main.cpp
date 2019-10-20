@@ -52,7 +52,7 @@ void executar(int selecao){
         case 1:{
 
             // Verificando se o arquivo está aberto
-            dataset.open("../processadosFase2_1.txt", ios::in); // Arquivo de dados como leitura
+            dataset.open("../database/processadosFase2_1.txt", ios::in); // Arquivo de dados como leitura
 
             if(dataset.is_open()){
 
@@ -75,7 +75,7 @@ void executar(int selecao){
         case 2:{
 
             // Verificando se o arquivo está aberto
-            dataset.open("../processadosFase2_2.csv", ios::in); // Arquivo de dados como leitura
+            dataset.open("../database/processadosFase2_2.csv", ios::in); // Arquivo de dados como leitura
 
             if(dataset.is_open()){
 
