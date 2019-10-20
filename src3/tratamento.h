@@ -59,4 +59,13 @@ void embaralharEstruturas(Review *r, unsigned n);
  */
 void swapEstruturas(Review* a, unsigned i, unsigned j);
 
+/**
+ * Valor correspondente de string em unsigned
+ *
+ * @author eliascassis
+ * @param string str string
+ * @return valorString correspondente inteiro da soma dos caracteres da string.
+ */
+int converterStringInteiro(string str);
+
 #endif //TRATAMENTO_H_INCLUDED

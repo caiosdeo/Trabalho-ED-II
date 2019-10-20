@@ -46,3 +46,15 @@ void swapEstruturas(Review* a, unsigned i, unsigned j){
     a[j] = aux;
 
 }
+
+// Converte uma string em um inteiro 
+int converterStringInteiro(string str){
+
+    int valorString = 0;
+    // Somatório do valor ascii dos caracteres da string
+    for(int  i = 0; str[i] != '\0'; i++)
+        valorString += str[i];
+
+    return valorString;
+
+}
