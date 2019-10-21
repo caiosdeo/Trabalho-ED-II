@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
-#define RUB 1 //define para cor vermelha/rubro
-#define PRET 0 // define para cor preta/negro
+#define RUB 1 //define cor vermelha/rubro
+#define PRET 0 //define cor preta/negro
 
 using namespace std;
 
