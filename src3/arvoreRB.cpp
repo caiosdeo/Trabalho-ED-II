@@ -1,30 +1,42 @@
 #include "arvoreRB.h"
 #include "nodoRB.h"
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string>
 #define RUB 1
 #define PRET 0
+
+using namespace std;
 
 arvoreRB::arvoreRB()
 {
     this->raiz = NULL;
 }
 
-arvoreRB::~arvoreRB()
+nodoRB* arvoreRB::libera(nodoRB *aux)
 {
-
+    if(aux != NULL)
+    {
+        aux->setEsq(libera(aux->getEsq()));
+        aux->setDir(libera(aux->getDir()));
+        delete aux;
+        aux = NULL;
+    }
+    return NULL;
 }
 
-arvoreRB::insereChave(int chave, string user)
+arvoreRB::~arvoreRB()
+{
+    this->raiz = libera(this->raiz);
+}
+
+void arvoreRB::insereChave(int chave, string user)
 {
     nodoRB *novo = new nodoRB(chave, user); //aloca novo nodo
 
-    //se árvore vazia
+    //se Ã¡rvore vazia
     if(this->raiz == NULL)
         this->raiz = novo;
-    //se não estiver vazia
+    //se nÃ£o estiver vazia
     else
     {
         nodoRB *aux = this->raiz;
@@ -52,5 +64,5 @@ arvoreRB::insereChave(int chave, string user)
             }
         }
     }
-    //funções para verificar e fazer tanto balanceamento quanto recolorização
+    //funÃ§Ãµes para verificar e fazer tanto balanceamento quanto recolorizaÃ§Ã£o
 }

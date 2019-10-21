@@ -2,8 +2,6 @@
 #define ARVORERB_H
 #include "nodoRB.h"
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string>
 
 
@@ -14,9 +12,12 @@ class arvoreRB
         ~arvoreRB();
         void insereChave(int chave, string user);
         void removeChave(int chave);
+        void imprime();
 
     private:
         nodoRB *raiz;
+        nodoRB* libera(nodoRB *aux);
+        void auxImprime(nodoRB *aux);
 };
 
 #endif // ARVORERB_H
