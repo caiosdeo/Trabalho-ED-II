@@ -35,7 +35,10 @@ void arvoreRB::insereChave(int chave, string user)
 
     //se árvore vazia
     if(this->raiz == NULL)
-        this->raiz = novo;
+        {
+            novo->setCor(PRET);
+            this->raiz = novo;
+        }
     //se não estiver vazia
     else
     {
@@ -65,4 +68,32 @@ void arvoreRB::insereChave(int chave, string user)
         }
     }
     //funções para verificar e fazer tanto balanceamento quanto recolorização
+    if(novo != this->raiz && novo->getCor() != PRET)
+    {
+
+    }
+    else
+    {
+        if(novo == RUB)
+            //trocar cor
+    }
+
+}
+//Função de rotação à esquerda
+nodoRB* arvoreRB::rotacaoEsq(nodoRB *aux)
+{
+    nodoRB *pai = aux->getPai();
+    aux->setPai(pai->getPai());
+    pai->setPai(aux);
+    aux->setDir(pai);
+    return aux;
+}
+//Função de rotação à direita
+nodoRB* rotacaoDir(nodoRB *aux)
+{
+    nodoRB *pai = aux->getPai();
+    aux->setPai(pai->getPai());
+    pai->setPai(aux);
+    aux->setEsq(pai);
+    return aux;
 }

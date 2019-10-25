@@ -17,7 +17,8 @@ class arvoreRB
     private:
         nodoRB *raiz;
         nodoRB* libera(nodoRB *aux);
-        void auxImprime(nodoRB *aux);
+        nodoRB* rotacaoEsq(nodoRB *aux);
+        nodoRB* rotacaoDir(nodoRB *aux);
 };
 
 #endif // ARVORERB_H
