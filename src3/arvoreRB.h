@@ -12,7 +12,12 @@ class arvoreRB
         ~arvoreRB();
         void insereChave(int chave, string user);
         void removeChave(int chave);
+        void rotEsquerda(nodoRB *no);
+        void rotDireita(nodoRB *no);
         void imprime();
+        void fixDoubleBlack(nodoRB *no);
+        nodoRB* busca(int chave, nodoRB *no);
+        nodoRB* substituto(nodoRB *no);
 
     private:
         nodoRB *raiz;
