@@ -12,26 +12,29 @@ class nodoRB
     public:
         nodoRB(int chave, string user); //construtor
 
-        int getChave(); //função que retorna variável chave
-        string getUser(); //função que retorna variável User
-        bool getCor(); //função que retorna variável Cor
-        nodoRB* getEsq(); //função que retorna ponteiro do filho a esquerda
-        nodoRB* getDir(); //função que retorna ponteiro do filho a direita
-        nodoRB* getPai(); //função que retorna ponteiro do pai
+        int getChave(); //funï¿½ï¿½o que retorna variï¿½vel chave
+        string getUser(); //funï¿½ï¿½o que retorna variï¿½vel User
+        bool getCor(); //funï¿½ï¿½o que retorna variï¿½vel Cor
+        nodoRB* getEsq(); //funï¿½ï¿½o que retorna ponteiro do filho a esquerda
+        nodoRB* getDir(); //funï¿½ï¿½o que retorna ponteiro do filho a direita
+        nodoRB* getPai(); //funï¿½ï¿½o que retorna ponteiro do pai
+        nodoRB* getIrmao();
 
-        void setCor(bool cor); //função para colocar cor
-        void setEsq(nodoRB *esq); //função para colocar filho a esquerda
-        void setDir(nodoRB *dir); //função para colocar filho a direita
-        void setPai(nodoRB *pai); //função para colocar pai
+        void setChave(int chave);//funÃ§Ã£o para colocar chave
+        void setUser(string user);//funÃ§Ã£o para colocar user
+        void setCor(bool cor); //funï¿½ï¿½o para colocar cor
+        void setEsq(nodoRB *esq); //funï¿½ï¿½o para colocar filho a esquerda
+        void setDir(nodoRB *dir); //funï¿½ï¿½o para colocar filho a direita
+        void setPai(nodoRB *pai); //funï¿½ï¿½o para colocar pai
 
     private:
-        int chave; //{variavel para chave, será usada para comparações e armazenar Id
-        string user; //vairiável para User                                           } Variáveis de informação
+        int chave; //{variavel para chave, serï¿½ usada para comparaï¿½ï¿½es e armazenar Id
+        string user; //vairiï¿½vel para User                                           } Variï¿½veis de informaï¿½ï¿½o
 
-        bool cor; //variável que define a cor do nodo
+        bool cor; //variï¿½vel que define a cor do nodo
         nodoRB *esq, *dir, *pai; //ponteiros para os dois filhos, esquerda e direita, e pai
 
-    // Tornando os atributos do nodo acessíveis para as funções da classe arvoreRB
+    // Tornando os atributos do nodo acessï¿½veis para as funï¿½ï¿½es da classe arvoreRB
     friend class arvoreRB;
 };
 

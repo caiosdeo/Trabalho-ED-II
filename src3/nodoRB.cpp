@@ -21,7 +21,7 @@ nodoRB::nodoRB(int chave, string user)
     this->pai = NULL;
 }
 //funcao que retorna variavel Id
-int nodoRB::getId()
+int nodoRB::getChave()
 {
     return this->chave;
 }
@@ -49,6 +49,25 @@ nodoRB* nodoRB::getDir()
 nodoRB* nodoRB::getPai()
 {
     return this->pai;
+}
+//funcao que rotorna ponteiro pro irmao
+nodoRB* nodoRB::getIrmao()
+{
+    if (pai == NULL){
+        return NULL; 
+    }else if (this == pai->getEsq()) {
+        return pai->getDir(); 
+    }else{
+        return pai->getEsq(); 
+    }
+}
+//função para colocar chave 
+void nodoRB::setChave(int chave){
+    this->chave = chave;
+}
+//funcao para colocar user
+void nodoRB::setUser(string user){
+    this->user = user;
 }
 //funcao para colocar cor
 void nodoRB::setCor(bool cor)
