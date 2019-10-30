@@ -301,17 +301,17 @@ void NoB::removerDeNaoFolha(int id, unsigned *numTrocas, unsigned *numComparacoe
 int NoB::getPredecessor(int id, unsigned *numTrocas, unsigned *numComparacoes){
 
     // Continua movendo para o nó mais à direita até chegar em uma folha
-    NoB *cur = this->filhos[id]; 
+    NoB *atual = this->filhos[id]; 
 
-    while(!cur->folha){
+    while(!atual->folha){
 
-        cur = cur->filhos[cur->n]; 
+        atual = atual->filhos[atual->n]; 
         (*numTrocas)++;
 
     }
   
     // Retorna a última chave da folha
-    return cur->chaves[cur->n-1]; 
+    return atual->chaves[atual->n-1]; 
 
 } 
 
@@ -319,17 +319,17 @@ int NoB::getPredecessor(int id, unsigned *numTrocas, unsigned *numComparacoes){
 int NoB::getSucessor(int id, unsigned *numTrocas, unsigned *numComparacoes){ 
 
     // Continua movendo até o nó mais à esquerda de filhos[id+1] até chegar em uma folha
-    NoB *cur = this->filhos[id+1]; 
+    NoB *atual = this->filhos[id+1]; 
 
-    while(!cur->folha){
+    while(!atual->folha){
 
-        cur = cur->filhos[0];
+        atual = atual->filhos[0];
         (*numTrocas)++;
         
     } 
   
     // Retorna a primeira chave da folha
-    return cur->chaves[0]; 
+    return atual->chaves[0]; 
 
 } 
 
