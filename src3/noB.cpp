@@ -8,7 +8,6 @@ NoB::NoB(int d, bool folha){
     this->d = d; 
     this->folha = folha; 
     this->n = 0;
- 
     this->chaves = new int[2*d-1]; // Aloca memória para o número máximo de chaves
     this->filhos = new NoB *[2*d]; // Aloca memória para o número máximo de filhos 
 
