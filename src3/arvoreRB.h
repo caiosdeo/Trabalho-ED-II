@@ -2,28 +2,25 @@
 #define ARVORERB_H
 #include "nodoRB.h"
 #include <iostream>
-#include <string>
 
 
-class arvoreRB
+class arvoreRB //classe
 {
     public:
-        arvoreRB();
-        ~arvoreRB();
-        void insereChave(int chave, string user);
-        void removeChave(int chave);
-        void imprime();
-        int getAltura();
-        bool recolorir(nodoRB *x);
+        arvoreRB(); // Construtor (Inicializando a árvore RB como vazia)
+        ~arvoreRB(); //destrutor
+        void insereChave(int chave, unsigned *numComp, unsigned *numCopReg); //função de inserção da informação de campo Id
+        void removeChave(int chave, unsigned *numComp, unsigned *numCopReg); //funções de remoção de chave (Id)
+        bool recolorir(nodoRB *x); // função para verificar casos de recolorição
 
     private:
-        nodoRB *raiz;
-        nodoRB* libera(nodoRB *aux);
-        void rotacaoEsq(nodoRB *pai, nodoRB *avo);
-        void rotacaoDir(nodoRB *pai, nodoRB *avo);
-        void balancearInsercao(nodoRB *x);
-        void auxBalancear(nodoRB *x, nodoRB *auxPai);
-        void auxRecolorir(nodoRB *x);
+        nodoRB *raiz; //ponteiro para raiz
+        nodoRB* libera(nodoRB *aux); //função que deleta nó X
+        void rotacaoEsq(nodoRB *pai, nodoRB *avo); //função de rotação à esquerda
+        void rotacaoDir(nodoRB *pai, nodoRB *avo); //função de rotação à direita
+        void balancearInsercao(nodoRB *x); //função de balanceamento para inserção
+        void auxBalancear(nodoRB *x, nodoRB *auxPai); //função auxiliar de balanceamento para inserção
+        void auxRecolorir(nodoRB *x); //função auxiliar para recolorir
 
 };
 

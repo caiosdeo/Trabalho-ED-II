@@ -2,33 +2,26 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string>
-#define RUB 1 //define cor vermelha/rubro
+#define VER 1 //define cor vermelha/rubro
 #define PRET 0 //define cor preta/negro
 
 using namespace std;
 
 //Construtor
-nodoRB::nodoRB(int chave, string user)
+nodoRB::nodoRB(int chave)
 {
-    //inicializamdo variaveis chave(id), user e cor
+    //inicializamdo variaveis chave(id) e cor
     this->chave = chave;
-    this->user = user;
-    this->cor = RUB;
+    this->cor = VER;
     //inicializando vairaveis esq, dir e pai como vazio
     this->esq = NULL;
     this->dir = NULL;
     this->pai = NULL;
 }
 //funcao que retorna variavel Id
-int nodoRB::getChave()
+int nodoRB::getId()
 {
     return this->chave;
-}
-//funcao que retorna variavel User
-string nodoRB::getUser()
-{
-    return this->user;
 }
 //funcao que retorna variavel Cor
 bool nodoRB::getCor()
@@ -49,25 +42,6 @@ nodoRB* nodoRB::getDir()
 nodoRB* nodoRB::getPai()
 {
     return this->pai;
-}
-//funcao que rotorna ponteiro pro irmao
-nodoRB* nodoRB::getIrmao()
-{
-    if (pai == NULL){
-        return NULL; 
-    }else if (this == pai->getEsq()) {
-        return pai->getDir(); 
-    }else{
-        return pai->getEsq(); 
-    }
-}
-//função para colocar chave 
-void nodoRB::setChave(int chave){
-    this->chave = chave;
-}
-//funcao para colocar user
-void nodoRB::setUser(string user){
-    this->user = user;
 }
 //funcao para colocar cor
 void nodoRB::setCor(bool cor)
