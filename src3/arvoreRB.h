@@ -9,8 +9,8 @@ class arvoreRB //classe
     public:
         arvoreRB(); // Construtor (Inicializando a árvore RB como vazia)
         ~arvoreRB(); //destrutor
-        void insereChave(int chave, unsigned *numComp, unsigned *numCopReg); //função de inserção da informação de campo Id
-        void removeChave(int chave, unsigned *numComp, unsigned *numCopReg); //funções de remoção de chave (Id)
+        void insereChave(int chave, unsigned *numTrocas, unsigned *numComp); //função de inserção da informação de campo Id
+        void removeChave(int chave, unsigned *numTrocas, unsigned *numComp); //funções de remoção de chave (Id)
         bool recolorir(nodoRB *x); // função para verificar casos de recolorição
 
     private:

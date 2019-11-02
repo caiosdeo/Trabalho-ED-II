@@ -28,22 +28,24 @@ arvoreRB::~arvoreRB()
 {
     this->raiz = libera(this->raiz);
 }
-//função de inserção da informação de campo Id
-void arvoreRB::insereChave(int chave, unsigned *numComp, unsigned *numCopReg)
+// função de inserção da informação de campo Id
+void arvoreRB::insereChave(int chave, unsigned *numTrocas, unsigned *numComp)
 {
-    nodoRB *novo = new nodoRB(chave); //aloca novo nó
+    nodoRB *novo = new nodoRB(chave); // aloca novo nó
+    (*numTrocas)++; // incrementa número de acessos 
     //se árvore vazia
     if(this->raiz == NULL)
         {
-            novo->setCor(PRET); //propridade: raiz sempre preta
-            this->raiz = novo; //raiz recebe novo nó
+            novo->setCor(PRET); // propriedade: raiz sempre preta
+            this->raiz = novo; // raiz recebe novo nó
         }
-    //se árvore não estiver vazia
+    // se árvore não estiver vazia
     else
     {
-        nodoRB *aux = this->raiz; //nó auxiliar para busca de posição
-        while(aux != NULL) //enquanto aux for diferente de NULL
+        nodoRB *aux = this->raiz;// nó auxiliar para busca de posição
+        while(aux != NULL) // enquanto aux for diferente de NULL
         {
+            (*numComp)++; // incrementa número de comparações
             // se chave for menor que valor da chave de aux
             if(chave < aux->getChave())
             {
@@ -130,7 +132,7 @@ void arvoreRB::auxRecolorir(nodoRB *x)
             // se tio diferente de NULL
             if(auxTio != NULL)
                 auxTio->setCor(PRET); // seta cor do tio como preto
-            auxRecolorir(auxAvo); // chama função recolorir passando avo como referência
+            auxRecolorir(auxAvo); // chama função recolorir auxiliar passando avo como referência
         }
     }
 }
