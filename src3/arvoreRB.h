@@ -15,7 +15,7 @@ class arvoreRB //classe
 
     private:
         nodoRB *raiz; //ponteiro para raiz
-        nodoRB* libera(nodoRB *aux); //função que deleta nó X
+        nodoRB* libera(nodoRB *aux); //função que deleta nó recursivamente
         void rotacaoEsq(nodoRB *pai, nodoRB *avo); //função de rotação à esquerda
         void rotacaoDir(nodoRB *pai, nodoRB *avo); //função de rotação à direita
         void balancearInsercao(nodoRB *x); //função de balanceamento para inserção

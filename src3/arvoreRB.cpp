@@ -10,17 +10,18 @@ arvoreRB::arvoreRB()
 {
     this->raiz = NULL;
 }
-// 
+// função que deleta nós recursivamente
 nodoRB* arvoreRB::libera(nodoRB *aux)
 {
+    // se auxiliar não for NULL
     if(aux != NULL)
     {
-        aux->setEsq(libera(aux->getEsq()));
-        aux->setDir(libera(aux->getDir()));
-        delete aux;
+        aux->setEsq(libera(aux->getEsq())); // chama função libera passando filho a esquerda
+        aux->setDir(libera(aux->getDir())); // chama função libera passando filho a direita
+        delete aux; // deleta auxiliar
         aux = NULL;
     }
-    return NULL;
+    return NULL; // retorna NULL
 }
 
 // Destrutor (utiliza função libera como auxiliar)
