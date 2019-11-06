@@ -1,267 +1,218 @@
 #include "arvoreRB.h"
 #include "nodoRB.h"
 #include <iostream>
-#include <stdlib.h>
-#include <string>
-#define RUB 1
-#define PRET 0
+#define VER 1 // define para cor vermelha
+#define PRET 0 // define para cor preta
 
 using namespace std;
-
+// Construtor (Inicializando a árvore RB como vazia)
 arvoreRB::arvoreRB()
 {
     this->raiz = NULL;
 }
-
+// função que deleta nós recursivamente
 nodoRB* arvoreRB::libera(nodoRB *aux)
 {
+    // se auxiliar não for NULL
     if(aux != NULL)
     {
-        aux->setEsq(libera(aux->getEsq()));
-        aux->setDir(libera(aux->getDir()));
-        delete aux;
+        aux->setEsq(libera(aux->getEsq())); // chama função libera passando filho a esquerda
+        aux->setDir(libera(aux->getDir())); // chama função libera passando filho a direita
+        delete aux; // deleta auxiliar
         aux = NULL;
     }
-    return NULL;
+    return NULL; // retorna NULL
 }
 
+// Destrutor (utiliza função libera como auxiliar)
 arvoreRB::~arvoreRB()
 {
     this->raiz = libera(this->raiz);
 }
-
-void arvoreRB::insereChave(int chave, string user)
+// função de inserção da informação de campo Id
+void arvoreRB::insereChave(int chave, unsigned *numTrocas, unsigned *numComp)
 {
-    nodoRB *novo = new nodoRB(chave, user); //aloca novo nodo
-
+    nodoRB *novo = new nodoRB(chave); // aloca novo nó
+    (*numTrocas)++; // incrementa número de acessos 
     //se árvore vazia
     if(this->raiz == NULL)
-        this->raiz = novo;
-    //se não estiver vazia
+        {
+            novo->setCor(PRET); // propriedade: raiz sempre preta
+            this->raiz = novo; // raiz recebe novo nó
+        }
+    // se árvore não estiver vazia
     else
     {
-        nodoRB *aux = this->raiz;
-        while(aux != NULL)
+        nodoRB *aux = this->raiz;// nó auxiliar para busca de posição
+        while(aux != NULL) // enquanto aux for diferente de NULL
         {
+            (*numComp)++; // incrementa número de comparações
+            // se chave for menor que valor da chave de aux
             if(chave < aux->getChave())
             {
+                // se filho a esquerda for NULL
                 if(aux->getEsq() == NULL)
                 {
-                    aux->setEsq(novo);
-                    novo->setPai(aux);
-                    break;
+                    aux->setEsq(novo); // seta novo como filho a esquerda
+                    novo->setPai(aux); // seta auxiliar como pai
+                    break; // para while
                 }
-                aux = aux->getEsq();
+                aux = aux->getEsq(); // atualiza auxiliar
             }
-            else
+            else // se não for menor
             {
+                // se filho a direita for NULL
                 if(aux->getDir() == NULL)
                 {
-                    aux->setDir(novo);
-                    novo->setPai(aux);
-                    break;
+                    aux->setDir(novo); // seta novo como filho a direita
+                    novo->setPai(aux); // seta auxiliar como pai
+                    break; // para while
                 }
-                aux = aux->getDir();
+                aux = aux->getDir(); // atualiza auxiliar
             }
         }
     }
     //funções para verificar e fazer tanto balanceamento quanto recolorização
+    balancearInsercao(novo);
 }
-
-
-void arvoreRB::removeChave(int chave, unsigned *numTrocas, unsigned *numComparacoes){
-    //Busca o nó a ser removido
-    nodoRB *v = busca(chave, this->raiz, numTrocas, numComparacoes);
-    // acha o nó que que substitui o nó deletado em uma BST 
-    nodoRB *u = substituto(v); 
-    // Verdadeiro quando u e v são pretos
-    bool uvPreto = ((u == NULL || u->getCor() == PRET) && (v->getCor() == PRET)); 
-    nodoRB *pai = v->getPai(); 
-  
-    if (u == NULL) { 
-      // u é NULL então v é folha
-      if (v == raiz) { 
-        // v é raiz, torna a raiz nula
-        raiz = NULL; 
-      } else { 
-        if (uvPreto) { 
-          // u e v são pretos, se v é folha, conserta a dupla preta em v
-          fixDoubleBlack(v, numTrocas, numComparacoes); 
-        }else { 
-          // u ou v são vermelhos
-          if (v->getIrmao() != NULL) 
-            // sibling is not null, make it red" 
-            v->getIrmao()->setCor = RUB; 
-        } 
-        // deleta v da arvore
-        if (v == v->getPai()->getEsq()) { 
-          pai->setEsq(NULL); 
-        } else { 
-          pai->setDir(NULL); 
-        } 
-      } 
-      free(v); 
-      return; 
-    } else if (v->getEsq() == NULL || v->getDir() == NULL) { 
-      // v tem um filho
-      if (v == raiz) { 
-        // v é raiz, passa o valor de u pra v, e exclui u 
-        v->setChave(u->getChave()); 
-        v->setUser(u->getUser());
-        v->setEsq(NULL);
-        v->setDir(NULL); 
-        free(u); 
-      } else { 
-        // separa v da arvore e move u pra cima 
-        if (v == v->getPai()->getEsq()) { 
-          pai->setEsq(u); 
-        } else { 
-          pai->setDir(u); 
-        } 
-        free(v); 
-        u->setPai(pai); 
-        if (uvPreto) { 
-          // u e v são pretos, conserta a dupla preta em u
-          fixDoubleBlack(u, numTrocas, numComparacoes); 
-        } else { 
-          // u ou v são vermelhos, u passa a ser preto
-          u->setCor(PRET); 
-        } 
-      } 
-      return; 
-    } 
-  
-    // v tem dois filhos, troca os valores com o sucessor e chama a função recursivamente
-    int auxChave;
-    string auxUser; 
-    auxChave = u->getChave();
-    auxUser = u->getUser();
-    u->setChave(v->getChave()); 
-    u->setUser(v->getUser()); 
-    v->setChave(auxChave); 
-    v->setUser(auxUser); 
-    removeChave(u->getChave(), numTrocas, numComparacoes); 
+// função para chamada das funções de verificação dos casos de recolorir e balancear
+void arvoreRB::balancearInsercao(nodoRB *x)
+{
+    // caso x não é raiz
+    if(x != this->raiz)
+    {
+        nodoRB *auxPai = x->getPai(); // nó auxiliar para pai
+        // se pai diferente de NULL e sua cor diferente de preto
+        if(auxPai != NULL && auxPai->getCor() != PRET)
+        {
+            // se nenhum dos casos de recolorir ocorrer
+            if(!recolorir(x))
+            {
+                auxBalancear(x, auxPai); // função auxiliar de balanceamento
+            }
+        }
+    }
 }
-
-
-//Rotação a esquerda
-void arvoreRB::rotEsquerda(nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes) { 
-    // novo pai vai ser o filho da direita do nó
-    nodoRB *noPai = no->getDir(); 
-  
-    // atualiza a raiz se o nó atual for raiz 
-    (*numComparacoes)++;
-    if (no == raiz) 
-      raiz = noPai; 
-  
-    if (noPai->getPai() != NULL) { 
-      if (noPai == noPai->getPai()->getEsq()) { 
-        noPai->getPai()->setEsq(noPai); 
-      } else { 
-        noPai->getPai()->setDir(noPai); 
-      } 
-    } 
-    noPai->setPai(noPai->getPai()); 
-    noPai->getPai()->setPai(noPai); 
-  
-    // conecta o no com o novo elemento esquerdo do pai
-    no->setDir(noPai->getEsq()); 
-    // conecta o novo elemento esquerdo do pai com o nó
-    // se ele não for nulo
-    if (noPai->getEsq() != NULL) 
-      noPai->getEsq()->setPai(no); 
-  
-    // liga o novo pai ao nó
-    noPai->setEsq(no); 
-  } 
-
-//rotação a direita
-void arvoreRB::rotDireita(nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes) {
-    // novo pai vai ser o filho esquerdo do nó
-    nodoRB *noPai = no->getEsq(); 
-  
-    // atualiza a raiz se o no atual é raiz
-    if (no == raiz) 
-      raiz = noPai; 
-  
-    if (noPai->getPai() != NULL) { 
-      if (noPai == noPai->getPai()->getEsq()) { 
-        noPai->getPai()->setEsq(noPai); 
-      } else { 
-        noPai->getPai()->setDir(noPai); 
-      } 
-    } 
-    noPai->setPai(noPai->getPai()); 
-    noPai->getPai()->setPai(noPai);
-  
-    // connecta o nó com o novo elemento direito do pai
-    no->setEsq(noPai->getDir()); 
-    // conecta o novo elemento direito do pai com o nó
-    // se ele não for nulo
-    if (noPai->getDir() != NULL) 
-      noPai->getDir()->setPai(no); 
-  
-    // coneca novo pai com x
-    noPai->setDir(no); 
+// função de verificação para caso recolorir
+bool arvoreRB::recolorir(nodoRB *x)
+{
+    nodoRB *auxPai = x->getPai(); // nó para pai
+    if(this->raiz->getCor() == VER) this->raiz->setCor(PRET);
+    nodoRB *avo = auxPai->getPai(), *tio; // nós para avo e tio
+    // caso pai não seja nó a esquerda do avo
+    if(avo->getEsq() != auxPai)
+        tio = avo->getEsq(); // tio é o nó a esquerda
+    // se não
+    else
+        tio = avo->getDir(); // tio é o nó a direita
+    if(tio != NULL && tio->getCor() != PRET) // se tio não for NULL (NULL considerado cor preta) e nem preto
+    {
+        auxRecolorir(x); // função de recolorir auxiliar
+        return true;
+    }
+    return false;
 }
-
-void arvoreRB::fixDoubleBlack(nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes){
-    if (no == raiz) 
-      // Reached root 
-      return; 
-  
-    nodoRB *irmao = no->getIrmao();
-    nodoRB *pai = no->getPai(); 
-    if (irmao == NULL) { 
-      // Sem irmão, dupla preta empurrada pra cima
-      fixDoubleBlack(pai,numTrocas, numComparacoes); 
-    }else if (irmao->getCor() == RUB){ // Irmao vermelho 
-        pai->setCor(RUB); 
-        irmao->setCor(PRET); 
-        //se o irmão for o da esquerda
-        if (irmao == irmao->getPai()->getEsq()) {  
-            rotDireita(pai, numTrocas, numComparacoes); 
-        }else { 
-            rotEsquerda(pai, numTrocas, numComparacoes); 
-        } 
-        fixDoubleBlack(no, numTrocas, numComparacoes); 
-    }else if ((irmao->getEsq() != NULL && irmao->getEsq()->getCor() == RUB) || 
-              (irmao->getDir() != NULL && irmao->getDir()->getCor() == RUB)) { // Irmão preto 
-        // pelo menos um filho vermelho
-        if (irmao->getEsq() != NULL && irmao->getEsq()->getCor() == RUB) { 
-            if (irmao == irmao->getPai()->getEsq()) { 
-                // left left 
-                irmao->getEsq()->setCor(irmao->getCor()); 
-                irmao->setCor(pai->getCor()); 
-                rotDireita(pai, numTrocas, numComparacoes); 
-            }else { 
-                // right left 
-                irmao->getEsq()->setCor(pai->getCor()); 
-                rotDireita(irmao, numTrocas, numComparacoes); 
-                rotEsquerda(pai, numTrocas, numComparacoes); 
-            } 
-        }else { 
-            if (irmao == irmao->getPai()->getEsq()) { 
-            // left right 
-            irmao->getDir()->setCor(pai->getCor()); 
-            rotEsquerda(irmao, numTrocas, numComparacoes); 
-            rotDireita(pai, numTrocas, numComparacoes); 
-            } else { 
-            // right right 
-            irmao->getDir()->setCor(irmao->getCor()); 
-            irmao->setCor(pai->getCor()); 
-            rotEsquerda(pai, numTrocas, numComparacoes); 
-            } 
-        } 
-        pai->setCor(PRET); 
-    }else { 
-        // 2 filhos pretos
-        irmao->setCor(RUB); 
-        if (pai->getCor() == PRET) 
-            fixDoubleBlack(pai, numTrocas, numComparacoes); 
+// função de recolorir auxiliar
+void arvoreRB::auxRecolorir(nodoRB *x)
+{
+    nodoRB *auxPai = x->getPai(), *auxAvo, *auxTio; //nós auxiliares para pai, avo e tio
+    // caso pai não seja NULL
+    if(auxPai != NULL)
+    {
+        auxPai->setCor(PRET); // seta cor do pai como preta
+        auxAvo = auxPai->getPai();
+        // se avo não é NULL
+        if(auxAvo != NULL)
+        {
+            auxAvo->setCor(VER); // seta cor do avo como vermelha
+            // se filho a esquerda do avo não for pai
+            if(auxAvo->getEsq() != auxPai)
+                auxTio = auxAvo->getEsq(); // tio a esquerda
+            else
+                auxTio = auxAvo->getDir(); // tio a direita
+            // se tio diferente de NULL
+            if(auxTio != NULL)
+                auxTio->setCor(PRET); // seta cor do tio como preto
+            auxRecolorir(auxAvo); // chama função recolorir auxiliar passando avo como referência
+        }
+    }
+}
+// função balancear auxliar
+void arvoreRB::auxBalancear(nodoRB *x, nodoRB *auxPai)
+{
+    nodoRB *auxAvo = auxPai->getPai(); // nó para avo
+    // caso Direita-Direita
+    if(auxAvo->getDir() == auxPai && auxPai->getDir() == x)
+    {
+        rotacaoEsq(auxPai, auxAvo);
+        auxPai->setCor(PRET);
+        auxAvo->setCor(VER);
+    }
+    // caso Esquerda-Esquerda
+    if(auxAvo->getEsq() == auxPai && auxPai->getEsq() == x)
+    {
+        rotacaoDir(auxPai, auxAvo);
+        auxPai->setCor(PRET);
+        auxAvo->setCor(VER);
+    }
+    // caso Esquerda-Direita
+    if(auxAvo->getEsq() == auxPai && auxPai->getDir() == x)
+    {
+        rotacaoEsq(x, auxPai);
+        rotacaoDir(x, auxAvo);
+        x->setCor(PRET);
+        x->getDir()->setCor(VER);
+    }
+    // caso Direita-Esquerda
+    if(auxAvo->getDir() == auxPai && auxPai->getEsq() == x)
+    {
+        rotacaoDir(x, auxPai);
+        rotacaoEsq(x, auxAvo);
+        x->setCor(PRET);
+        auxAvo->setCor(VER);
+    }
+}
+//Função de rotação à esquerda
+void arvoreRB::rotacaoEsq(nodoRB *x, nodoRB *pai)
+{
+    nodoRB *auxAvo = pai->getPai(); // nó para avo
+    // se avo diferente de NULL
+    if(auxAvo != NULL)
+    {
+        // se pai está a esquerda do avo
+        if(auxAvo->getEsq() == pai)
+            auxAvo->setEsq(x); // seta x a esquerda do avo
         else
-            pai->setCor(PRET); 
-    } 
+            auxAvo->setDir(x); // seta x a direita do avo
+    }
+    x->setPai(auxAvo);
+    pai->setPai(x);
+    pai->setDir(x->getEsq());
+    x->setEsq(pai);
+    // se pai era a raiz
+    if(pai == this->raiz)
+        this->raiz = x; // raiz agora é x
+}
+//Função de rotação à direita
+void arvoreRB::rotacaoDir(nodoRB *x, nodoRB *pai)
+{
+    nodoRB *auxAvo = pai->getPai(); // nó para avo
+    //se avo diferente de NULL
+    if(auxAvo != NULL)
+    {
+        // se pai está a esquerda do avo
+        if(auxAvo->getEsq() == pai)
+            auxAvo->setEsq(x); // seta x a esquerda do avo
+        else
+            auxAvo->setDir(x); // seta x a direita do avo
+    }
+    x->setPai(auxAvo); // seta avo como pai de x
+    pai->setPai(x); // seta x como pai de pai
+    pai->setEsq(x->getDir()); // seta direita de x a esquerda de pai
+    x->setDir(pai); // seta pai a direita de x
+    // se pai era raiz
+    if(pai == this->raiz)
+        this->raiz = x; // raiz agora é x
 }
 
 nodoRB* arvoreRB::busca(int chave, nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes){
@@ -277,26 +228,3 @@ nodoRB* arvoreRB::busca(int chave, nodoRB *no, unsigned *numTrocas, unsigned *nu
         aux = no->getEsq();
     }
     return busca(chave, aux, numTrocas, numComparacoes);
-}
-
-
-nodoRB* arvoreRB::substituto(nodoRB *no){
-    // quando o nó tem dois filhos
-    if (no->getEsq() != NULL && no->getDir() != NULL) {
-        nodoRB *aux = no;
-        while (aux->getEsq() != NULL) 
-            aux = aux->getEsq();
-
-        return aux; 
-     // quando o nó é folha 
-    }else if (no->getEsq() == NULL && no->getDir() == NULL) {
-        return NULL; 
-    // quando o nó tem apenas um filho
-    }else{
-        if (no->getEsq() != NULL) 
-            return no->getEsq(); 
-        else
-            return no->getDir(); 
-    }
-    
-}
