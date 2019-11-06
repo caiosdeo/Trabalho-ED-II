@@ -69,9 +69,9 @@ void arvoreRB::insereChave(int chave, string user)
 }
 
 
-void arvoreRB::removeChave(int chave){
+void arvoreRB::removeChave(int chave, unsigned *numTrocas, unsigned *numComparacoes){
     //Busca o nó a ser removido
-    nodoRB *v = busca(chave, this->raiz);
+    nodoRB *v = busca(chave, this->raiz, numTrocas, numComparacoes);
     // acha o nó que que substitui o nó deletado em uma BST 
     nodoRB *u = substituto(v); 
     // Verdadeiro quando u e v são pretos
@@ -86,7 +86,7 @@ void arvoreRB::removeChave(int chave){
       } else { 
         if (uvPreto) { 
           // u e v são pretos, se v é folha, conserta a dupla preta em v
-          fixDoubleBlack(v); 
+          fixDoubleBlack(v, numTrocas, numComparacoes); 
         }else { 
           // u ou v são vermelhos
           if (v->getIrmao() != NULL) 
@@ -122,7 +122,7 @@ void arvoreRB::removeChave(int chave){
         u->setPai(pai); 
         if (uvPreto) { 
           // u e v são pretos, conserta a dupla preta em u
-          fixDoubleBlack(u); 
+          fixDoubleBlack(u, numTrocas, numComparacoes); 
         } else { 
           // u ou v são vermelhos, u passa a ser preto
           u->setCor(PRET); 
@@ -140,16 +140,17 @@ void arvoreRB::removeChave(int chave){
     u->setUser(v->getUser()); 
     v->setChave(auxChave); 
     v->setUser(auxUser); 
-    removeChave(u->getChave()); 
+    removeChave(u->getChave(), numTrocas, numComparacoes); 
 }
 
 
 //Rotação a esquerda
-void arvoreRB::rotEsquerda(nodoRB *no) { 
+void arvoreRB::rotEsquerda(nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes) { 
     // novo pai vai ser o filho da direita do nó
     nodoRB *noPai = no->getDir(); 
   
     // atualiza a raiz se o nó atual for raiz 
+    (*numComparacoes)++;
     if (no == raiz) 
       raiz = noPai; 
   
@@ -172,10 +173,10 @@ void arvoreRB::rotEsquerda(nodoRB *no) {
   
     // liga o novo pai ao nó
     noPai->setEsq(no); 
-  }
+  } 
 
 //rotação a direita
-void arvoreRB::rotDireita(nodoRB *no) {
+void arvoreRB::rotDireita(nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes) {
     // novo pai vai ser o filho esquerdo do nó
     nodoRB *noPai = no->getEsq(); 
   
@@ -204,7 +205,7 @@ void arvoreRB::rotDireita(nodoRB *no) {
     noPai->setDir(no); 
 }
 
-void arvoreRB::fixDoubleBlack(nodoRB *no){
+void arvoreRB::fixDoubleBlack(nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes){
     if (no == raiz) 
       // Reached root 
       return; 
@@ -213,17 +214,17 @@ void arvoreRB::fixDoubleBlack(nodoRB *no){
     nodoRB *pai = no->getPai(); 
     if (irmao == NULL) { 
       // Sem irmão, dupla preta empurrada pra cima
-      fixDoubleBlack(pai); 
+      fixDoubleBlack(pai,numTrocas, numComparacoes); 
     }else if (irmao->getCor() == RUB){ // Irmao vermelho 
         pai->setCor(RUB); 
         irmao->setCor(PRET); 
         //se o irmão for o da esquerda
         if (irmao == irmao->getPai()->getEsq()) {  
-            rotDireita(pai); 
+            rotDireita(pai, numTrocas, numComparacoes); 
         }else { 
-            rotEsquerda(pai); 
+            rotEsquerda(pai, numTrocas, numComparacoes); 
         } 
-        fixDoubleBlack(no); 
+        fixDoubleBlack(no, numTrocas, numComparacoes); 
     }else if ((irmao->getEsq() != NULL && irmao->getEsq()->getCor() == RUB) || 
               (irmao->getDir() != NULL && irmao->getDir()->getCor() == RUB)) { // Irmão preto 
         // pelo menos um filho vermelho
@@ -232,24 +233,24 @@ void arvoreRB::fixDoubleBlack(nodoRB *no){
                 // left left 
                 irmao->getEsq()->setCor(irmao->getCor()); 
                 irmao->setCor(pai->getCor()); 
-                rotDireita(pai); 
+                rotDireita(pai, numTrocas, numComparacoes); 
             }else { 
                 // right left 
                 irmao->getEsq()->setCor(pai->getCor()); 
-                rotDireita(irmao); 
-                rotEsquerda(pai); 
+                rotDireita(irmao, numTrocas, numComparacoes); 
+                rotEsquerda(pai, numTrocas, numComparacoes); 
             } 
         }else { 
             if (irmao == irmao->getPai()->getEsq()) { 
             // left right 
             irmao->getDir()->setCor(pai->getCor()); 
-            rotEsquerda(irmao); 
-            rotDireita(pai); 
+            rotEsquerda(irmao, numTrocas, numComparacoes); 
+            rotDireita(pai, numTrocas, numComparacoes); 
             } else { 
             // right right 
             irmao->getDir()->setCor(irmao->getCor()); 
             irmao->setCor(pai->getCor()); 
-            rotEsquerda(pai); 
+            rotEsquerda(pai, numTrocas, numComparacoes); 
             } 
         } 
         pai->setCor(PRET); 
@@ -257,22 +258,25 @@ void arvoreRB::fixDoubleBlack(nodoRB *no){
         // 2 filhos pretos
         irmao->setCor(RUB); 
         if (pai->getCor() == PRET) 
-            fixDoubleBlack(pai); 
+            fixDoubleBlack(pai, numTrocas, numComparacoes); 
         else
             pai->setCor(PRET); 
     } 
 }
 
-nodoRB* arvoreRB::busca(int chave, nodoRB *no){
+nodoRB* arvoreRB::busca(int chave, nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes){
     nodoRB *aux = no;
     if(no->getChave() == chave){
+        (*numComparacoes)++;
         return aux;
     }else if(no->getChave() > chave){
+        (*numComparacoes)++;
         aux = no->getDir();
     }else {
+        (*numComparacoes)++;
         aux = no->getEsq();
     }
-    return busca(chave, aux);
+    return busca(chave, aux, numTrocas, numComparacoes);
 }
 
 
