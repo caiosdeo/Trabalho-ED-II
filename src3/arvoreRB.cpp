@@ -216,17 +216,16 @@ void arvoreRB::rotacaoDir(nodoRB *x, nodoRB *pai)
 }
 
 nodoRB* arvoreRB::busca(int chave, nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes){
-    nodoRB *aux = no;
     if(no->getChave() == chave){
         (*numComparacoes)++;
-        return aux;
-    }else if(no->getChave() > chave && no->getChave() != NULL){
-        (*numComparacoes)++;
-        aux = no->getDir();
+        return no;
     }else if(no->getChave() < chave && no->getChave() != NULL){
         (*numComparacoes)++;
-        aux = no->getEsq();
+        return busca(chave, no->getDir(), numTrocas, numComparacoes);
+    }else if(no->getChave() > chave && no->getChave() != NULL){
+        (*numComparacoes)++;
+        return busca(chave, no->getEsq(), numTrocas, numComparacoes);
     }else{
-        return aux;
+        return no;
     }
-    return busca(chave, aux, numTrocas, numComparacoes);
+}
