@@ -214,6 +214,7 @@ void arvoreRB::rotacaoDir(nodoRB *x, nodoRB *pai)
     if(pai == this->raiz)
         this->raiz = x; // raiz agora é x
 }
+<<<<<<< HEAD
 
 nodoRB* arvoreRB::busca(int chave, nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes){
     if(no != NULL)
@@ -226,4 +227,20 @@ nodoRB* arvoreRB::busca(int chave, nodoRB *no, unsigned *numTrocas, unsigned *nu
         return (no->getChave() > chave) ? busca(chave, no->getEsq(), numTrocas, numComparacoes):busca(chave, no->getDir(), numTrocas, numComparacoes);
     }
     return NULL;
+=======
+// função de busca para chave X
+nodoRB* arvoreRB::busca(int chave, nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes){
+    if(no->getChave() == chave){
+        (*numComparacoes)++;
+        return no;
+    }else if(no->getChave() < chave && no->getChave() != NULL){
+        (*numComparacoes)++;
+        return busca(chave, no->getDir(), numTrocas, numComparacoes);
+    }else if(no->getChave() > chave && no->getChave() != NULL){
+        (*numComparacoes)++;
+        return busca(chave, no->getEsq(), numTrocas, numComparacoes);
+    }else{
+        return no;
+    }
+>>>>>>> andre
 }

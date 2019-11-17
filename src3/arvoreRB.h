@@ -12,6 +12,7 @@ class arvoreRB //classe
         void insereChave(int chave, unsigned *numTrocas, unsigned *numComp); //função de inserção da informação de campo Id
         void removeChave(int chave, unsigned *numTrocas, unsigned *numComp); //funções de remoção de chave (Id)
         bool recolorir(nodoRB *x); // função para verificar casos de recolorição
+        nodoRB *busca(int chave, nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes); //função de busca para chave X
 
     private:
         nodoRB *raiz; //ponteiro para raiz
