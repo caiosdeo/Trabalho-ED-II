@@ -214,7 +214,7 @@ void arvoreRB::rotacaoDir(nodoRB *x, nodoRB *pai)
     if(pai == this->raiz)
         this->raiz = x; // raiz agora é x
 }
-
+// função de busca para chave X
 nodoRB* arvoreRB::busca(int chave, nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes){
     if(no->getChave() == chave){
         (*numComparacoes)++;
