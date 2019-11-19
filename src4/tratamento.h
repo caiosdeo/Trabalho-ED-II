@@ -83,5 +83,19 @@ void salvar(string* conjunto, unsigned n);
  */
 void salvarComprimido(string* conjunto, unsigned n);
 
+/**
+ * Método para retornar a taxa de compressão
+ * @author eliascassis
+ * @param m mensagem original
+ * @param Cm mensagem codificada
+ */
+float taxaCompressao(string m, string cM);
+
+/**
+ * Método para retornar o tamanho em bytes ocupado em disco por uma mensagem
+ * @author eliascassis
+ * @param m 
+ */
+int armazenamentoDisco(string m);
 
 #endif //TRATAMENTO_H_INCLUDED

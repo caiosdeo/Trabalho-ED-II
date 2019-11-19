@@ -169,3 +169,15 @@ void salvarComprimido(string* conjunto, unsigned n){
         exit(1);
     }
 }
+
+float taxaCompressao(string m, string cM){
+
+    return cM.size() / m.size();
+
+}
+
+int armazenamentoDisco(string m){
+
+    return m.size();
+
+}
