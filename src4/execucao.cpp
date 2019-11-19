@@ -38,7 +38,7 @@ void executar(){
                     // ! serão 5 execuções para cada conjunto     
                     for (int i = 0; i < 5; i++){
 
-                        // Colocando dados no conjunto
+                        // Armazenando N descrições
                         string* conjunto = leituraDescricoes(dataset, n);
 
                         // Embaralhando as descrições
@@ -49,15 +49,8 @@ void executar(){
                         // Imprimindo a execução atual do Fluxo
                         cout << "Execução: " << i + 1 << endl;
 
-                        // Salvando o conjnto
-                        salvar(conjunto, n);
-
-                        // TODO: chamar fluxo de compressão aqui
                         // Executando para as versoes, o conjunto
                         fluxo(conjunto, n, saida); 
-
-                        // Salvando o conjunto comprimido
-                        salvarComprimido(conjunto, n);
 
                         //Limpa a tela
                         unsigned clear = system("clear");
@@ -90,8 +83,12 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
     //Loop para rodar para os dois algoritmos de compressão em única execução
     for (int versao = 0; versao < 2; versao++){
 
+        // Conjunto auxiliar com as N descrições
+        auxConjunto = conjunto;
+
         // Métricas de desempenho
-        unsigned long long numComparacoes = 0, numCopias = 0;
+        unsigned long long taxaCompressao = 0, armazenamento = 0;
+        auto tempoProcessamento = 0;
 
         switch(versao){
 
@@ -99,21 +96,28 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
 
                 cout << "Comprimindo com Algoritmo de Huffman" << endl;
 
-                // Ponto de inicio de contagem para tempo de execução do algoritmo
-                auto inicio = chrono::high_resolution_clock::now();
-                
-                // * Chamada do algoritmo
-                // TODO: Chamar algoritmo de compressão no conjunto
-                // TODO: Pegar as métricas
+                for(int i = 0; i < n; i++){
 
-                // Ponto de parada de contagem para o tempo de execução do algoritmo
-                auto parada = chrono::high_resolution_clock::now();
-        
-                //Tempo de processamento do algoritmo
-                auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
+                    // Ponto de inicio de contagem para tempo de execução do algoritmo
+                    auto inicio = chrono::high_resolution_clock::now();
+                    
+                    // * Chamada do algoritmo
+                    // TODO: Chamar algoritmo de compressão para auxConjunto[i]
+
+                    // Ponto de parada de contagem para o tempo de execução do algoritmo
+                    auto parada = chrono::high_resolution_clock::now();
             
+                    //Tempo de processamento do algoritmo
+                    tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
+
+                    // ! Serão acumuladores
+                    // TODO: taxa compressao = No. bits comprimido / No. bit original
+                    // TODO: armazenamento = tamanho do conjunto em bytes
+
+                }
+
                 // Imprimindo resultados no arquivo de saída
-                imprimirSaida(saida, versao, n, numComparacoes, numCopias, tempoProcessamento);
+                imprimirSaida(saida, versao, n, taxaCompressao, armazenamento, tempoProcessamento);
 
                 break;
 
@@ -123,21 +127,28 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
 
                 cout << "Comprimindo com Algoritmo de LZW" << endl;
 
-                // Ponto de inicio de contagem para tempo de execução do algoritmo
-                auto inicio = chrono::high_resolution_clock::now();
-                
-                // * Chamada do algoritmo
-                // TODO: Chamar algoritmo de compressão no conjunto
-                // TODO: Pegar as métricas
+                for(int i = 0; i < n; i++){
 
-                // Ponto de parada de contagem para o tempo de execução do algoritmo
-                auto parada = chrono::high_resolution_clock::now();
-        
-                //Tempo de processamento do algoritmo
-                auto tempoProcessamento = chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
+                    // Ponto de inicio de contagem para tempo de execução do algoritmo
+                    auto inicio = chrono::high_resolution_clock::now();
+                    
+                    // * Chamada do algoritmo
+                    // TODO: Chamar algoritmo de compressão para auxConjunto[i]
+
+                    // Ponto de parada de contagem para o tempo de execução do algoritmo
+                    auto parada = chrono::high_resolution_clock::now();
             
+                    //Tempo de processamento do algoritmo
+                    tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
+
+                    // ! Serão acumuladores
+                    // TODO: taxa compressao = No. bits comprimido / No. bit original
+                    // TODO: armazenamento = tamanho do conjunto em bytes
+
+                }
+
                 // Imprimindo resultados no arquivo de saída
-                imprimirSaida(saida, versao, n, numComparacoes, numCopias, tempoProcessamento);
+                imprimirSaida(saida, versao, n, taxaCompressao, armazenamento, tempoProcessamento);
 
                 break;
             
