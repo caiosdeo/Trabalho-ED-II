@@ -2,6 +2,7 @@
 #include <fstream>
 #include <chrono>
 #include "tratamento.h"
+#include "noHuffman.h"
 
 // Imprime saída 
 void imprimirSaida(fstream &saida, unsigned estrutura, unsigned n, float numComparacoes, float numCopias, float tempoProcessamento){
@@ -179,5 +180,41 @@ float taxaCompressao(string m, string cM){
 int armazenamentoDisco(string m){
 
     return m.size();
+
+}
+
+int* tabelaFrequencias(string m, unsigned int n){
+
+    int* tabela = (int*)calloc(n, sizeof(int)); // aloca tabela de frequências
+    // Loop para contagem de frequências de cada caracter da mensagem m
+    for(int i = 0; i < m.size(); i++)
+        tabela[m[i]-' ']++;
+
+}
+
+NoHuff* gerarHuffHeap(int* tabelaFrequencias, int n){
+
+    // Calcula o tamanho do vetor de nós de huffman
+    int t = 0;
+    for(int i = 0; i < n; i++)
+        if(tabelaFrequencias[i] > 0)
+            t++;
+
+    NoHuff* huffHeap = (NoHuff*)malloc(t*sizeof(NoHuff)); // Aloca vetor de nós de huffman
+    t = 0; // Reinicializa tem com zero
+
+    // Loop para inicializar vetor de nós de huffman
+    for(int i = 0; i < n; i++){
+        // Caracter existe na mensagem
+        if(tabelaFrequencias[i] > 0){
+
+            // Inicializa nó de huffman com o caractere válido da mensagem e sua respectiva frequência
+            NoHuff aux = NoHuff(' ' + i, tabelaFrequencias[i]); 
+            huffHeap[t] = aux; // Insere nó no vetor
+            t++; // Incrementa posição do vetor
+
+        }
+
+    }
 
 }
