@@ -84,7 +84,7 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
     for (int versao = 0; versao < 2; versao++){
 
         // Conjunto auxiliar com as N descrições
-        auxConjunto = conjunto;
+        string* auxConjunto = conjunto;
 
         // Métricas de desempenho
         unsigned long long taxaCompressao = 0, armazenamento = 0;
