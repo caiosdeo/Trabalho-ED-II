@@ -94,8 +94,24 @@ float taxaCompressao(string m, string cM);
 /**
  * Método para retornar o tamanho em bytes ocupado em disco por uma mensagem
  * @author eliascassis
- * @param m 
+ * @param m mensagem
  */
 int armazenamentoDisco(string m);
+
+/**
+ * Método para construir a tabela de frequência dos caracteres de uma mensagem m
+ * @author eliascassis
+ * @param m mensagem
+ * @param n número de caracteres do alfabeto
+ */
+int* tabelaFrequencias(string m, unsigned int n);
+
+/**
+ * Método para construir vetor que conterá os nós de Huffman
+ * @author eliascassis
+ * @param m tabelaFrequências tabela de frequência dos caracteres de uma mensagem
+ * @param n tamanho da tabela de frequências
+ */
+NoHuff* gerarHuffHeap(int* tabelaFrequencias, int n);
 
 #endif //TRATAMENTO_H_INCLUDED

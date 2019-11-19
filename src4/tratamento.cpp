@@ -205,7 +205,7 @@ NoHuff* gerarHuffHeap(int* tabelaFrequencias, int n){
 
     // Loop para inicializar vetor de nós de huffman
     for(int i = 0; i < n; i++){
-        // Caracter existe na mensagem
+        // Caractere existe na mensagem
         if(tabelaFrequencias[i] > 0){
 
             // Inicializa nó de huffman com o caractere válido da mensagem e sua respectiva frequência
