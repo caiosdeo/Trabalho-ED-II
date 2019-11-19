@@ -111,17 +111,18 @@ void huffTree(NoHuff *huffHeap, unsigned tam){
         for (int i = tam / 2 -1; i >= 0; i--)
             heapify(huffHeap, tam, i);
 
-        auxEsq = huffHeap[0];
+        auxEsq = huffHeap[0]; // retira menor frequência
+        swap(huffHeap, 0, tam-1); // Desconsidera menor frequência retirada
+        tam--;
 
         // Constrói a heap de mínimo (menor da direita)
         for (int i = tam / 2 -1; i >= 0; i--)
             heapify(huffHeap, tam, i);
 
-        auxDir = huffHeap[0];
+        auxDir = huffHeap[0]; // retira menor frequência
+        swap(huffHeap, 0, tam-1); // Desconsidera menor frequência retirada
         int novaFreq = auxDir.getFrequencia() + auxEsq.getFrequencia(); // Somando frequências dos filhos
         NoHuff pai = NoHuff(novaFreq, &auxDir, &auxEsq); // Alocando pai
-
-        tam--;
 
         huffHeap[tam-1] = pai; // Colocando pai na huffHeap
 
