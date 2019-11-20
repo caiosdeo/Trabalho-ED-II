@@ -104,7 +104,7 @@ int armazenamentoDisco(string m);
  * @param m mensagem
  * @param n número de caracteres do alfabeto
  */
-int* tabelaFrequencias(string m, unsigned int n);
+int* tabelaFrequencias(string m, unsigned n);
 
 /**
  * Método para construir vetor que conterá os nós de Huffman
@@ -112,6 +112,6 @@ int* tabelaFrequencias(string m, unsigned int n);
  * @param m tabelaFrequências tabela de frequência dos caracteres de uma mensagem
  * @param n tamanho da tabela de frequências
  */
-NoHuff* gerarHuffHeap(int* tabelaFrequencias, int n);
+tuple<NoHuff*, int> gerarHuffHeap(int* tabelaFrequencias, unsigned n);
 
 #endif //TRATAMENTO_H_INCLUDED
