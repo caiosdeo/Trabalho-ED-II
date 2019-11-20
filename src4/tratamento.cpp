@@ -7,9 +7,9 @@
 #include <cmath>
 
 // Imprime saída 
-void imprimirSaida(fstream &saida, unsigned estrutura, unsigned n, float numComparacoes, float numCopias, float tempoProcessamento){
+void imprimirSaida(fstream &saida, unsigned estrutura, unsigned n, float taxaCompressao, float armazenamento, float tempoProcessamento){
 
-    saida << estrutura << "," << n << "," << numComparacoes << "," << numCopias << "," << tempoProcessamento << endl;
+    saida << estrutura << "," << n << "," << taxaCompressao << "," << armazenamento << "," << tempoProcessamento << endl;
 
 }
 
@@ -83,105 +83,3 @@ string* leituraDescricoes(fstream &dataset, int n){
     return d;
 
 }
-
-void salvar(string* conjunto, unsigned n){
-
-    // Arquivo de Descricao para salvar em disco
-    fstream arqDescricao;
-
-    // Caminho do arquivo
-    string caminhoArq;
-
-    // Definindo o caminho do arquivo
-    if(n == 1000)
-        caminhoArq = "../../d1000.txt";
-    
-    else if(n == 5000)
-        caminhoArq = "../../d5000.txt";
-    
-    else if(n == 10000)
-        caminhoArq = "../../d10000.txt";
-    
-    else if(n == 50000)
-        caminhoArq = "../../d50000.txt";
-    
-    else if(n == 100000)
-        caminhoArq = "../../d100000.txt";
-    
-    else
-        caminhoArq = "../../d500000.txt";            
-
-    arqDescricao.open(caminhoArq, ios::out);
-
-    if(arqDescricao.is_open()){
-    
-        // Preenchendo o arquivo
-        for(int i = 0; i < n; i++)
-            arqDescricao << conjunto[i] << endl;
-
-        arqDescricao.close();
-    
-    }
-    else{
-        cerr << "Não foi possível salvar o conjunto" << endl;
-        exit(1);
-    }
-
-}
-
-void salvarComprimido(string* conjunto, unsigned n){
-
-    // Arquivo de Descricao para salvar em disco
-    fstream arqDescricao;
-
-    // Caminho do arquivo
-    string caminhoArq;
-
-    // Definindo o caminho do arquivo
-    if(n == 1000)
-        caminhoArq = "../../d1000comp.txt";
-    
-    else if(n == 5000)
-        caminhoArq = "../../d5000comp.txt";
-    
-    else if(n == 10000)
-        caminhoArq = "../../d10000comp.txt";
-    
-    else if(n == 50000)
-        caminhoArq = "../../d50000comp.txt";
-    
-    else if(n == 100000)
-        caminhoArq = "../../d100000comp.txt";
-    
-    else
-        caminhoArq = "../../d500000comp.txt";            
-
-    arqDescricao.open(caminhoArq, ios::out);
-
-    if(arqDescricao.is_open()){
-    
-        // Preenchendo o arquivo
-        for(int i = 0; i < n; i++)
-            arqDescricao << conjunto[i] << endl;
-
-        arqDescricao.close();
-    
-    }
-    else{
-        cerr << "Não foi possível salvar o conjunto" << endl;
-        exit(1);
-    }
-}
-
-float taxaCompressao(string m, string cM){
-
-    return cM.size() / m.size();
-
-}
-
-int armazenamentoDisco(string m){
-
-    return m.size();
-
-}
-

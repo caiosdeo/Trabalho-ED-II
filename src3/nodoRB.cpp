@@ -8,7 +8,7 @@
 using namespace std;
 
 //Construtor
-nodoRB::nodoRB(int chave)
+NodoRB::NodoRB(int chave)
 {
     //inicializamdo variaveis chave(id) e cor
     this->chave = chave;
@@ -19,47 +19,47 @@ nodoRB::nodoRB(int chave)
     this->pai = NULL;
 }
 //funcao que retorna variavel Id
-int nodoRB::getId()
+int NodoRB::getChave()
 {
     return this->chave;
 }
 //funcao que retorna variavel Cor
-bool nodoRB::getCor()
+bool NodoRB::getCor()
 {
     return this->cor;
 }
 //funcao que retorna ponteiro do filho a esquerda
-nodoRB* nodoRB::getEsq()
+NodoRB* NodoRB::getEsq()
 {
     return this->esq;
 }
 //funcao que retorna ponteiro do filho a direita
-nodoRB* nodoRB::getDir()
+NodoRB* NodoRB::getDir()
 {
     return this->dir;
 }
 //funcao que retorna ponteiro do pai
-nodoRB* nodoRB::getPai()
+NodoRB* NodoRB::getPai()
 {
     return this->pai;
 }
 //funcao para colocar cor
-void nodoRB::setCor(bool cor)
+void NodoRB::setCor(bool cor)
 {
     this->cor = cor;
 }
 //funcao para colocar filho a esquerda
-void nodoRB::setEsq(nodoRB *esq)
+void NodoRB::setEsq(NodoRB *esq)
 {
     this->esq = esq;
 }
 //funcao para colocar filho a direita
-void nodoRB::setDir(nodoRB *dir)
+void NodoRB::setDir(NodoRB *dir)
 {
     this->dir = dir;
 }
 //funcao para colocar pai
-void nodoRB::setPai(nodoRB *pai)
+void NodoRB::setPai(NodoRB *pai)
 {
     this->pai = pai;
 }

@@ -4,24 +4,23 @@
 #include <iostream>
 
 
-class arvoreRB //classe
+class ArvoreRB //classe
 {
     public:
-        arvoreRB(); // Construtor (Inicializando a árvore RB como vazia)
-        ~arvoreRB(); //destrutor
-        void insereChave(int chave, unsigned *numTrocas, unsigned *numComp); //função de inserção da informação de campo Id
-        void removeChave(int chave, unsigned *numTrocas, unsigned *numComp); //funções de remoção de chave (Id)
-        bool recolorir(nodoRB *x); // função para verificar casos de recolorição
-        nodoRB *busca(int chave, nodoRB *no, unsigned *numTrocas, unsigned *numComparacoes); //função de busca para chave X
+        ArvoreRB(); // Construtor (Inicializando a árvore RB como vazia)
+        NodoRB* getRaiz();
+        void insereChave(int chave, unsigned long long *numTrocas, unsigned long long *numComp); //função de inserção da informação de campo Id
+        void removeChave(int chave, unsigned long long *numTrocas, unsigned long long *numComp); //funções de remoção de chave (Id)
+        bool recolorir(NodoRB *x); // função para verificar casos de recolorição
+        NodoRB *busca(int chave, NodoRB *no, unsigned long long *numTrocas, unsigned long long *numComparacoes); //função de busca para chave X
 
     private:
-        nodoRB *raiz; //ponteiro para raiz
-        nodoRB* libera(nodoRB *aux); //função que deleta nó recursivamente
-        void rotacaoEsq(nodoRB *pai, nodoRB *avo); //função de rotação à esquerda
-        void rotacaoDir(nodoRB *pai, nodoRB *avo); //função de rotação à direita
-        void balancearInsercao(nodoRB *x); //função de balanceamento para inserção
-        void auxBalancear(nodoRB *x, nodoRB *auxPai); //função auxiliar de balanceamento para inserção
-        void auxRecolorir(nodoRB *x); //função auxiliar para recolorir
+        NodoRB *raiz; //ponteiro para raiz
+        void rotacaoEsq(NodoRB *pai, NodoRB *avo); //função de rotação à esquerda
+        void rotacaoDir(NodoRB *pai, NodoRB *avo); //função de rotação à direita
+        void balancearInsercao(NodoRB *x); //função de balanceamento para inserção
+        void auxBalancear(NodoRB *x, NodoRB *auxPai); //função auxiliar de balanceamento para inserção
+        void auxRecolorir(NodoRB *x); //função auxiliar para recolorir
 
 };
 

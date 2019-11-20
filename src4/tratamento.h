@@ -19,13 +19,12 @@ using namespace std;
  * @author caiosdeo
  * @param saida Arquivo de saída com as métricas
  * @param estrutura 0 para vetor de unsigned; 1 para vetor de struct
- * @param estado 0 para insercao; 1 para busca
  * @param n Tamanho do conjunto
- * @param numComparacoes Valor de comparações
- * @param numCopias Valor de cópias
+ * @param taxaCompressao Taxa de compressão
+ * @param armazenamento Armazenamento em Disco
  * @param tempoProcessamento valor de tempo de processamento
  */
-void imprimirSaida(fstream &saida, unsigned estrutura, unsigned n, float numComparacoes, float numCopias, float tempoProcessamento);
+void imprimirSaida(fstream &saida, unsigned estrutura, unsigned n, float taxaCompressao, float armazenamento, float tempoProcessamento);
 
 /**
  * Embaralhamento de vetor de descrições.
@@ -66,22 +65,6 @@ int converterStringInteiro(string str);
  * @return d Vetor com dados
  */
 string* leituraDescricoes(fstream &dataset, int n);
-
-/**
- * Método para salvar o conjunto de descricao em disco
- * @author caiosdeo
- * @param conjunto conjunto de tamanho N
- * @param n tamanho do conjunto
- */
-void salvar(string* conjunto, unsigned n);
-
-/**
- * Método para salvar o conjunto de descricao comprimido em disco
- * @author caiosdeo
- * @param conjunto conjunto de tamanho N
- * @param n tamanho do conjunto
- */
-void salvarComprimido(string* conjunto, unsigned n);
 
 /**
  * Método para retornar a taxa de compressão
