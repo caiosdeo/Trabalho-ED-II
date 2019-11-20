@@ -80,6 +80,8 @@ int* tabelaFrequencias(string m, unsigned n){
     for(int i = 0; i < m.size(); i++)
         tabela[m[i]-' ']++;
 
+    return tabela;
+
 }
 
 tuple<NoHuff*, int> gerarHuffHeap(int* tabelaFrequencias, unsigned n){

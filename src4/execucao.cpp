@@ -2,6 +2,7 @@
 #include <fstream>
 #include "tratamento.h"
 #include "execucao.h"
+#include "funcoesHuffman.h"
 
 using namespace std;
 
@@ -22,15 +23,16 @@ void executar(){
             // Lendo quantos conjuntos teremos
             entrada >> qtdConjuntos;
 
+            //Limpando o arquivo
+            saida.open("../../saidaFase4.csv", ios::out);
+            saida.close();
+
+            //Abrindo arquivo de saida do cenário 
+            saida.open("../../saidaFase4.csv", ios::out | ios::app); // Arquivo de saída como escrita
+
+
             // Lendo os N
             while(entrada >> n){
-
-                //Limpando o arquivo
-                saida.open("../../saidaFase4.csv", ios::out);
-                saida.close();
-
-                //Abrindo arquivo de saida do cenário 
-                saida.open("../../saidaFase4.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
                 // Verificando se o arquivo de saida está aberto
                 if(saida.is_open()){
@@ -87,7 +89,8 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
         string* auxConjunto = conjunto;
 
         // Métricas de desempenho
-        unsigned long long taxaCompressao = 0, armazenamento = 0;
+        int armazenamento = 0;
+        float taxaComp = 0;
         auto tempoProcessamento = 0;
 
         switch(versao){
@@ -102,7 +105,7 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                     auto inicio = chrono::high_resolution_clock::now();
                     
                     // * Chamada do algoritmo
-                    // TODO: Chamar algoritmo de compressão para auxConjunto[i]
+                    string comprimida = compactarMensagemHuffman(conjunto[i], 224);
 
                     // Ponto de parada de contagem para o tempo de execução do algoritmo
                     auto parada = chrono::high_resolution_clock::now();
@@ -111,13 +114,13 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                     tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
                     // ! Serão acumuladores
-                    // TODO: taxa compressao = No. bits comprimido / No. bit original
-                    // TODO: armazenamento = tamanho do conjunto em bytes
+                    taxaComp += taxaCompressao(conjunto[i], comprimida);
+                    armazenamento += armazenamentoDisco(comprimida);
 
                 }
 
                 // Imprimindo resultados no arquivo de saída
-                imprimirSaida(saida, versao, n, taxaCompressao, armazenamento, tempoProcessamento);
+                imprimirSaida(saida, versao, n, taxaComp, armazenamento, tempoProcessamento);
 
                 break;
 
@@ -142,13 +145,13 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                     tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
                     // ! Serão acumuladores
-                    // TODO: taxa compressao = No. bits comprimido / No. bit original
-                    // TODO: armazenamento = tamanho do conjunto em bytes
+                    //taxaComp += taxaCompressao(conjunto[i], comprimida);
+                    //armazenamento += armazenamentoDisco(comprimida);
 
                 }
 
                 // Imprimindo resultados no arquivo de saída
-                imprimirSaida(saida, versao, n, taxaCompressao, armazenamento, tempoProcessamento);
+                imprimirSaida(saida, versao, n, taxaComp, armazenamento, tempoProcessamento);
 
                 break;
             
