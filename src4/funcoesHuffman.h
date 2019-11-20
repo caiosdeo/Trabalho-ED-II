@@ -71,7 +71,7 @@ string compactarAscII(string mC);
 /**
  * Método para compactar uma string
  * @author eliascassis
- * @param m string com mensagem codificada em binário
+ * @param m mensagem original
  * @param n número de caracteres do alfabeto
  * @return mensagem compactada
  */

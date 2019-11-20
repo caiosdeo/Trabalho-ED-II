@@ -83,3 +83,15 @@ string* leituraDescricoes(fstream &dataset, int n){
     return d;
 
 }
+
+float taxaCompressao(string m, string cM){
+
+    return cM.size() / m.size();
+
+}
+
+int armazenamentoDisco(string m){
+
+    return m.size();
+
+}
