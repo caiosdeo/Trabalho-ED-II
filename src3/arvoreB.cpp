@@ -19,14 +19,14 @@ void ArvoreB::percorrerArvore(){
 } 
   
 // Função para procurar a chave k na árvore
-NoB* ArvoreB::buscarChave(int k, unsigned *numTrocas, unsigned *numComparacoes){  
+NoB* ArvoreB::buscarChave(int k, unsigned long long *numTrocas, unsigned long long *numComparacoes){  
 
     return (raiz == nullptr) ? nullptr : this->raiz->buscarChave(k, numTrocas, numComparacoes); 
 
 } 
 
 // Função principal para inserir uma nova chave na árvore B
-void ArvoreB::inserirChave(int k, unsigned *numTrocas, unsigned *numComparacoes){ 
+void ArvoreB::inserirChave(int k, unsigned long long *numTrocas, unsigned long long *numComparacoes){ 
 
     // If a árvore estiver vazia
     if(this->raiz == nullptr){ 
@@ -72,7 +72,7 @@ void ArvoreB::inserirChave(int k, unsigned *numTrocas, unsigned *numComparacoes)
 }
 
 // Função para remover uma chave da árvore
-void ArvoreB::removerChave(int k, unsigned *numTrocas, unsigned *numComparacoes){ 
+void ArvoreB::removerChave(int k, unsigned long long *numTrocas, unsigned long long *numComparacoes){ 
 
     if(!this->raiz){ 
 
