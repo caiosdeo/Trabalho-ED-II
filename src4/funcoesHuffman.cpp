@@ -206,5 +206,6 @@ string compactarMensagemHuffman(string m, unsigned n){
     tie(huff, t) = gerarHuffHeap(tab, n); // Gerar vetor de nós de huffman
     NoHuff* raiz = huffTree(huff, t); // Constrói árvore de Huffman retornando a raiz
     string mensagemCodificada = gerarMensagemCodificada(m, tab, raiz); // Codifica a mensagem
+    return mensagemCodificada;
 
 }

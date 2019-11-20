@@ -88,6 +88,7 @@ void salvarComprimido(string* conjunto, unsigned n);
  * @author eliascassis
  * @param m mensagem original
  * @param Cm mensagem codificada
+ * @return taxa de compressão
  */
 float taxaCompressao(string m, string cM);
 
@@ -95,6 +96,7 @@ float taxaCompressao(string m, string cM);
  * Método para retornar o tamanho em bytes ocupado em disco por uma mensagem
  * @author eliascassis
  * @param m mensagem
+ * @return tamanho da string em bytes
  */
 int armazenamentoDisco(string m);
 
