@@ -166,7 +166,7 @@ int gerarCodigoAscII(string s){
     int t = s.size(); // Tamanho da string s
 
     // Converte binário para decimal nos bits de s
-    for(int i = t - 1; i >= 0; i++)
+    for(int i = t - 1; i >= 0; i--)
         if(s[i] == '1')
             codigo += pow(2, i - t);
 
