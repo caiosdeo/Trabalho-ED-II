@@ -3,6 +3,10 @@
 #include "review.h"
 #include "tratamento.h"
 #include "execucao.h"
+#include "arvoreB.h"
+#include "arvoreRB.h"
+#include "nodoRB.h"
+#include "noB.h"
 
 using namespace std;
 
@@ -23,15 +27,15 @@ void executar(){
             // Lendo quantos conjuntos teremos
             entrada >> qtdConjuntos;
 
+            //Limpando o arquivo
+            saida.open("../saidaFase3.csv", ios::out);
+            saida.close();
+
+            //Abrindo arquivo de saida do cenário 
+            saida.open("../saidaFase3.csv", ios::out | ios::app); // Arquivo de saída como escrita
+
             // Lendo os N
             while(entrada >> n){
-
-                //Limpando o arquivo
-                saida.open("../saidaFase3.csv", ios::out);
-                saida.close();
-
-                //Abrindo arquivo de saida do cenário 
-                saida.open("../saidaFase3.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
                 // Verificando se o arquivo de saida está aberto
                 if(saida.is_open()){
@@ -58,21 +62,25 @@ void executar(){
                     }
                 
                 }
-                else
-                    cout << "Não foi possível abrir o arquivo de saída" << endl;                    
-
+                else{
+                    cout << "Não foi possível abrir o arquivo de saída" << endl; 
+                    exit(1);                   
+                }
                 // Salvando e fechando os arquivos usados
                 //saida.close();                    
-                
+
             }
 
         }
-        else
+        else{
             cout << "Não foi possível abrir o arquivo de dados" << endl;
+            exit(1);
+        }
     }
-    else
+    else{
         cout << "Não foi possível abrir o arquivo de entrada" << endl;
-
+        exit(1);
+    }
     //entrada.close();
     //dataset.close();
 
@@ -87,29 +95,32 @@ void fluxo(Review* conjunto, unsigned n, fstream &saida){
     for (int versao = 0; versao < 3; versao++){
 
         // Métricas de desempenho
-        unsigned long long numComparacoes = 0, numCopias = 0;
+        unsigned long long numComparacoes, numCopias;
 
         switch(versao){
 
             case 0:{ // * Árvore Rubro Negra
 
-                // TODO: Criar árvore aqui
+                ArvoreRB arvore;
 
                 for(int estado = 0; estado < 2; estado++){
 
+                    numComparacoes = 0;
+                    numCopias = 0;
+
                     if(estado){ // Estado de Busca
 
-                        cout << "Busca por X na Arvore Rubro Negra" << endl;
+                        // Definindo chave a ser buscada, de forma aleatória
+                        srand(time(0));
+                        int x = ids[rand() % n];
 
-                        // TODO: Definir X
-                        // unsigned x = ids[n/3];
+                        cout << "Busca por " << x << " na Arvore Rubro Negra" << endl;
 
                         // Ponto de inicio de contagem para tempo de execução do algoritmo
                         auto inicio = chrono::high_resolution_clock::now();
                         
-                        // * Chamada dos algoritmos
-                        // TODO: Chamar método de Busca da árvore para o X
-                        // TODO: Pegar as métricas de comparação e acessos
+                        // * Buscando X
+                        NodoRB* no = arvore.busca(x, arvore.getRaiz(), &numCopias, &numComparacoes);
 
                         // Ponto de parada de contagem para o tempo de execução do algoritmo
                         auto parada = chrono::high_resolution_clock::now();
@@ -127,9 +138,9 @@ void fluxo(Review* conjunto, unsigned n, fstream &saida){
                         // Ponto de inicio de contagem para tempo de execução do algoritmo
                         auto inicio = chrono::high_resolution_clock::now();
                         
-                        // * Chamada dos algoritmos
-                        // TODO: Colocar o laço para inserção na árvore aqui
-                        // TODO: Pegar as métricas de comparação e acessos
+                        // * Inserindo os nós na árvore
+                        for(int i = 0; i < n; i++)
+                            arvore.insereChave(ids[i], &numCopias, &numComparacoes);
 
                         // Ponto de parada de contagem para o tempo de execução do algoritmo
                         auto parada = chrono::high_resolution_clock::now();
@@ -150,23 +161,26 @@ void fluxo(Review* conjunto, unsigned n, fstream &saida){
 
             case 1:{ // * Árvore B d = 2
 
-                // TODO: Criar árvore aqui
+                ArvoreB arvore = ArvoreB(2);
 
                 for(int estado = 0; estado < 2; estado++){
+                                  
+                    numComparacoes = 0;
+                    numCopias = 0;
 
                     if(estado){ // Estado de Busca
 
-                        cout << "Busca por X na Arvore Rubro Negra" << endl;
+                        // Definindo chave a ser buscada, de forma aleatória
+                        srand(time(0));
+                        unsigned x = ids[rand() % n];
 
-                        // TODO: Definir X
-                        // unsigned x = ids[n/3];
+                        cout << "Busca por " << x << " na Arvore B d = 2" << endl;
 
                         // Ponto de inicio de contagem para tempo de execução do algoritmo
                         auto inicio = chrono::high_resolution_clock::now();
                         
-                        // * Chamada dos algoritmos
-                        // TODO: Chamar método de Busca da árvore para o X
-                        // TODO: Pegar as métricas de comparação e acessos
+                        // * Buscando X
+                        NoB* no = arvore.buscarChave(x, &numCopias, &numComparacoes);
 
                         // Ponto de parada de contagem para o tempo de execução do algoritmo
                         auto parada = chrono::high_resolution_clock::now();
@@ -180,14 +194,14 @@ void fluxo(Review* conjunto, unsigned n, fstream &saida){
                     }
 
                     else{
-                        cout << "Inserção na Arvore Rubro Negra" << endl;
+                        cout << "Inserção na Arvore B d = 2" << endl;
 
                         // Ponto de inicio de contagem para tempo de execução do algoritmo
                         auto inicio = chrono::high_resolution_clock::now();
                         
-                        // * Chamada dos algoritmos
-                        // TODO: Colocar o laço para inserção na árvore aqui
-                        // TODO: Pegar as métricas de comparação e acessos
+                        // * Inserindo os nós na árvore
+                        for(int i = 0; i < n; i++)
+                            arvore.inserirChave(ids[i], &numCopias, &numComparacoes);
 
                         // Ponto de parada de contagem para o tempo de execução do algoritmo
                         auto parada = chrono::high_resolution_clock::now();
@@ -208,23 +222,26 @@ void fluxo(Review* conjunto, unsigned n, fstream &saida){
             
             case 2:{ // * Árvore B d = 20
 
-                // TODO: Criar árvore aqui
+                ArvoreB arvore = ArvoreB(20);
 
                 for(int estado = 0; estado < 2; estado++){
 
+                    numComparacoes = 0;
+                    numCopias = 0;
+
                     if(estado){ // Estado de Busca
 
-                        cout << "Busca por X na Arvore Rubro Negra" << endl;
+                        // Definindo chave a ser buscada, de forma aleatória
+                        srand(time(0));
+                        unsigned x = ids[rand() % n];
 
-                        // TODO: Definir X
-                        // unsigned x = ids[n/3];
+                        cout << "Busca por " << x << " na Arvore B d = 20" << endl;
 
                         // Ponto de inicio de contagem para tempo de execução do algoritmo
                         auto inicio = chrono::high_resolution_clock::now();
                         
-                        // * Chamada dos algoritmos
-                        // TODO: Chamar método de Busca da árvore para o X
-                        // TODO: Pegar as métricas de comparação e acessos
+                        // * Buscando X
+                        NoB* no = arvore.buscarChave(x, &numCopias, &numComparacoes);
 
                         // Ponto de parada de contagem para o tempo de execução do algoritmo
                         auto parada = chrono::high_resolution_clock::now();
@@ -238,14 +255,14 @@ void fluxo(Review* conjunto, unsigned n, fstream &saida){
                     }
 
                     else{
-                        cout << "Inserção na Arvore Rubro Negra" << endl;
+                        cout << "Inserção na Arvore B d = 20" << endl;
 
                         // Ponto de inicio de contagem para tempo de execução do algoritmo
                         auto inicio = chrono::high_resolution_clock::now();
                         
-                        // * Chamada dos algoritmos
-                        // TODO: Colocar o laço para inserção na árvore aqui
-                        // TODO: Pegar as métricas de comparação e acessos
+                        // * Inserindo os nós na árvore
+                        for(int i = 0; i < n; i++)
+                            arvore.inserirChave(ids[i], &numCopias, &numComparacoes);
 
                         // Ponto de parada de contagem para o tempo de execução do algoritmo
                         auto parada = chrono::high_resolution_clock::now();
@@ -269,8 +286,6 @@ void fluxo(Review* conjunto, unsigned n, fstream &saida){
 
         }
 
-        free(ids);
-
     }
-    
+
 }
