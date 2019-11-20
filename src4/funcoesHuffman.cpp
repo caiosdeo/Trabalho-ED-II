@@ -179,16 +179,19 @@ string compactarAscII(string mC){
     int t = mC.size(); // Tamanho da mensagem
 
     // Loop para compactação da mensagem
-    for(int i = 0; i < t; i++){
+    for(int i = 0, j = 0; i < t; i++, j = 0){
 
         // Pega 8 bits na string 
-        for(int j = 0; j < 7 || j + i < t; j++)
+        for(; j < 7 || j + i < t; j++)
             aux += mC[i];
 
         // Gerando código para cada byte da string e concatenando na mensagem compactada
         compactado += gerarCodigoAscII(aux);
         aux = '\0';
 
+        // Encerra compactação
+        if(j+i == t)
+            break;
 
     }
 
@@ -198,14 +201,13 @@ string compactarAscII(string mC){
 
 string compactarMensagemHuffman(string m, unsigned n){
 
-    string mensagemCompactada; // String que conterá mensagem compactada
-
+    string mensagemCodificada; // Declara variável que conterá a mensagem codificada
     int* tab = tabelaFrequencias(m, n); // Calcula tabela de frequência dos caracteres
     NoHuff* huff;
     int t;
     tie(huff, t) = gerarHuffHeap(tab, n); // Gerar vetor de nós de huffman
     NoHuff* raiz = huffTree(huff, t); // Constrói árvore de Huffman retornando a raiz
-    string mensagemCodificada = gerarMensagemCodificada(m, tab, raiz); // Codifica a mensagem
-    return mensagemCodificada;
+    mensagemCodificada = gerarMensagemCodificada(m, tab, raiz); // Codifica a mensagem
+    return compactarAscII(mensagemCodificada);
 
 }
