@@ -15,6 +15,7 @@ int main(){
         cout << "----" << endl;
         cout << "[1] Fase 1" << endl;
         cout << "[2] Fase 2" << endl;
+        cout << "[3] Fase 3" << endl;
         cout << "[0] Encerrar" << endl;
 
         cin >> selecao;
@@ -32,7 +33,12 @@ int main(){
                 int fase = system("./src2/a.out");
                 break;
             }
-        
+
+            case 3:{
+                int fase = system("./src3/a.out");
+                break;
+            }
+                
             default:
                 break;
         }
