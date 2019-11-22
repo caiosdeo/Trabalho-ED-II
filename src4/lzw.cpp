@@ -8,7 +8,7 @@
 
 using namespace std;
 
-vector<int> comprimirLZW(string m){
+string comprimirLZW(string m){
 
     unordered_map<string, int> dicionario; 
 
@@ -51,16 +51,17 @@ vector<int> comprimirLZW(string m){
         c = ""; 
     }
 
-    return codigoSaida;
+    codigoSaida.push_back(dicionario[p]); 
+    return gerarStringCodigoLZW(codigoSaida);
 
 
 }
 
-string gerarCodigoLZW(vector<int> c){
+string gerarStringCodigoLZW(vector<int> c){
 
     stringstream smsg;
 
-    copy(c.begin(),c.end(),ostream_iterator<int>(smsg," ")); //TODO: Trocar " " por ""
+    copy(c.begin(),c.end(),ostream_iterator<int>(smsg,""));
 
     string msg = smsg.str();
     

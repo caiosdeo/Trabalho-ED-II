@@ -14,15 +14,15 @@ using namespace std;
  * @param m string a ser comprimida
  * @return vector<int> codigo em int
  */
-vector<int> comprimirLZW(string m);
+string comprimirLZW(string m);
 
 /**
- * Retorna a string do LZW
+ * Retorna a string do codigo do LZW
  *
  * @author caiosdeo
  * @param c vector<int> codigo em int da compressao
  * @return string string do codigo 
  */
-string gerarCodigoLZW(vector<int> c);
+string gerarStringCodigoLZW(vector<int> c);
 
 #endif // LZW_H_INCLUDED
