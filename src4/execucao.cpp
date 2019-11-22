@@ -3,6 +3,7 @@
 #include "tratamento.h"
 #include "execucao.h"
 #include "funcoesHuffman.h"
+#include "lzw.h"
 
 using namespace std;
 
@@ -105,7 +106,7 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                     auto inicio = chrono::high_resolution_clock::now();
                     
                     // * Chamada do algoritmo
-                    string comprimida = compactarMensagemHuffman(conjunto[i], 224);
+                    //string comprimida = compactarMensagemHuffman(conjunto[i], 224);
 
                     // Ponto de parada de contagem para o tempo de execução do algoritmo
                     auto parada = chrono::high_resolution_clock::now();
@@ -114,8 +115,8 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                     tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
                     // ! Serão acumuladores
-                    taxaComp += taxaCompressao(conjunto[i], comprimida);
-                    armazenamento += armazenamentoDisco(comprimida);
+                    //taxaComp += taxaCompressao(conjunto[i], comprimida);
+                    //armazenamento += armazenamentoDisco(comprimida);
 
                 }
 
@@ -136,7 +137,7 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                     auto inicio = chrono::high_resolution_clock::now();
                     
                     // * Chamada do algoritmo
-                    // TODO: Chamar algoritmo de compressão para auxConjunto[i]
+                    //string comprimida = comprimirLZW(conjunto[i]);
 
                     // Ponto de parada de contagem para o tempo de execução do algoritmo
                     auto parada = chrono::high_resolution_clock::now();
