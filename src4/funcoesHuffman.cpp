@@ -113,50 +113,45 @@ tuple<NoHuff*, int> gerarHuffHeap(int* tabelaFrequencias, unsigned n){
 
 }
 
-string gerarCodigo(char c, int freq, NoHuff* raiz){
+void gerarCodigo(NoHuff* raiz, string codigo, string* codigos){
 
-    NoHuff* aux = raiz; // Inicializa auxiliar com a raiz
-    string codigo; // Declara string de código
+    if(raiz != nullptr){
 
-    // Enquanto uma folha não for atingida
-    while(aux != nullptr){
-
-        // Se a frequência é menor, procura símbolo à esquerda
-        if(freq < aux->getFrequencia()){
+        // Buscando código pela esquerda
+        if(raiz->getEsquerdo() != nullptr){
 
             codigo += '0';
-            aux = raiz->getEsquerdo();
-
-        }  
-        // Se a frequência é igual e o símbolo é o procurado, encerra a busca     
-        else if(aux->getFrequencia() == freq && aux->getInfo() == c){
-
-            aux = nullptr;
+            raiz = raiz->getEsquerdo();
+            gerarCodigo(raiz, codigo, codigos);
 
         }
-        // Se a frequência é maior, procura símbolo à direita
-        else{
+        else if(raiz->getDireito() != nullptr){ // Buscando código pela direita
 
             codigo += '1';
-            aux = raiz->getDireito();
+            raiz = raiz->getDireito();
+            gerarCodigo(raiz, codigo, codigos);
+
+        }
+        else{
+
+            codigos[raiz->getInfo()-' '] = codigo; // Se folha, recebe código final
+            raiz = nullptr; // Encerra codificação
 
         }
 
     }
 
-    return codigo; // Retorna código associado ao símbolo procurado na árvore de Huffman
-
 }
 
-string gerarMensagemCodificada(string m, int* tabelaFrequencias, NoHuff* raiz){
+string gerarMensagemCodificada(string m, string* codigos){
 
     string mensagemCodificada; // Declara mensagem codificada
 
-    // Loop que gera código de Huffman para cada caracater da mensagem
-    for(int i = 0; i < m.size(); i++)
-        mensagemCodificada += gerarCodigo(m[i], tabelaFrequencias[m[i]-' '], raiz);
+    // Loop para codificar cada caractere da mensagem
+    for(int i =0; i < m.size(); i++)
+        mensagemCodificada += codigos[m[i]-' '];
 
-    return mensagemCodificada; // Retorna mensagem codigicada em 0's e 1's
+    return mensagemCodificada; // Retorna mensagem codificada em 0's e 1's
 
 }
 
@@ -209,7 +204,10 @@ string compactarMensagemHuffman(string m, unsigned n){
     int t;
     tie(huff, t) = gerarHuffHeap(tab, n); // Gerar vetor de nós de huffman
     NoHuff* raiz = huffTree(huff, t); // Constrói árvore de Huffman retornando a raiz
-    mensagemCodificada = gerarMensagemCodificada(m, tab, raiz); // Codifica a mensagem
+    string* codigos = (string*)malloc(t*sizeof(string)); // Aloca vetor para armazenar códigos
+    string auxCodigo; // Declara string auxiliar
+    gerarCodigo(raiz, auxCodigo, codigos); // Gera vetor com códigos de cada caractere
+    mensagemCodificada = gerarMensagemCodificada(m, codigos); // Codifica a mensagem
     return compactarAscII(mensagemCodificada); // Retorna mensagem compactada
 
 }
