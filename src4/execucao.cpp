@@ -31,7 +31,6 @@ void executar(){
             //Abrindo arquivo de saida do cenário 
             saida.open("../../saidaFase4.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
-
             // Lendo os N
             while(entrada >> n){
 
@@ -137,7 +136,7 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                     auto inicio = chrono::high_resolution_clock::now();
                     
                     // * Chamada do algoritmo
-                    //string comprimida = comprimirLZW(conjunto[i]);
+                    string comprimida = comprimirLZW(conjunto[i]);
 
                     // Ponto de parada de contagem para o tempo de execução do algoritmo
                     auto parada = chrono::high_resolution_clock::now();
@@ -146,8 +145,8 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                     tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
                     // ! Serão acumuladores
-                    //taxaComp += taxaCompressao(conjunto[i], comprimida);
-                    //armazenamento += armazenamentoDisco(comprimida);
+                    taxaComp += taxaCompressao(conjunto[i], comprimida);
+                    armazenamento += armazenamentoDisco(comprimida);
 
                 }
 
