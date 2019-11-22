@@ -30,7 +30,6 @@ void executar(){
             //Abrindo arquivo de saida do cenário 
             saida.open("../../saidaFase4.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
-
             // Lendo os N
             while(entrada >> n){
 

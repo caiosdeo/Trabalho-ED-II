@@ -40,7 +40,7 @@ NoHuff* huffTree(NoHuff *huffHeap, unsigned tam);
  * @param raiz raiz da árvore de huffman 
  * @return código binário correspondente ao caractere na árvore de huffman
  */
-string gerarCodigo(char c, int freq, NoHuff* raiz);
+//string gerarCodigo(char c, int freq, NoHuff* raiz);
 
 /**
  * Método para codificar mensagem em binário
