@@ -35,22 +35,21 @@ NoHuff* huffTree(NoHuff *huffHeap, unsigned tam);
 /**
  * Método para representar o caractere em binário
  * @author eliascassis
- * @param c caractere
- * @param freq frequência do caractere c
- * @param raiz raiz da árvore de huffman 
+ * @param raiz raiz da árvore de huffman
+ * @param codigo string auxiliar para montagem do código
+ * @param codigos vetor a ser preenchido com os códigos gerados
  * @return código binário correspondente ao caractere na árvore de huffman
  */
-//string gerarCodigo(char c, int freq, NoHuff* raiz);
+void gerarCodigo(NoHuff* raiz, string codigo, string* codigos);
 
 /**
  * Método para codificar mensagem em binário
  * @author eliascassis
  * @param m string a ser codificada
- * @param tabelaFrequencias tabela de frequências dos caracteres da string
- * @param raiz raiz da árvore de huffman 
+ * @param codigos vetor com códigos gerados (binário)
  * @return mensagem codificada em binário
  */
-string gerarMensagemCodificada(string m, int* tabelaFrequencias, NoHuff* raiz);
+string gerarMensagemCodificada(string m, string* codigos);
 
 /**
  * Método para converter binário em inteiro
