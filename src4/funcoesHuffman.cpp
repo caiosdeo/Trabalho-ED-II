@@ -116,7 +116,7 @@ tuple<NoHuff**, int> gerarHuffHeap(int* tabelaFrequencias, unsigned n){
 
 }
 
-string gerarMensagemCodificada(string m, string* codigos){
+string gerarMensagemCodificada(string m, vector<string> &codigos){
 
     string mensagemCodificada; // Declara mensagem codificada
 
@@ -169,7 +169,7 @@ string compactarAscII(string mC){
  
 }
 
-void gerarCodigo(NoHuff* raiz, string codigo, string* codigos){
+void gerarCodigo(NoHuff* raiz, string codigo, vector<string> &codigos){
 
     if(raiz != nullptr){
 
@@ -191,7 +191,7 @@ void gerarCodigo(NoHuff* raiz, string codigo, string* codigos){
         }
         // Se filho esquerdo e filho direito forem nulos, então é folha
         if(raiz->getEsquerdo() == nullptr && raiz->getDireito() == nullptr){
-            cout << codigo << endl;
+
             codigos[raiz->getInfo()-' '] = codigo; // Se folha, recebe código final
             raiz = nullptr; // Encerra codificação
 
@@ -204,18 +204,20 @@ void gerarCodigo(NoHuff* raiz, string codigo, string* codigos){
 }
 
 string compactarMensagemHuffman(string m, unsigned n){
-    cout << m << endl;
+
     string mensagemCodificada; // Declara variável que conterá a mensagem codificada
     int* tab = tabelaFrequencias(m, n); // Calcula tabela de frequência dos caracteres
     NoHuff** huff;
     int t;
     tie(huff, t) = gerarHuffHeap(tab, n); // Gerar vetor de nós de huffman
     NoHuff* raiz = huffTree(huff, t); // Constrói árvore de Huffman retornando a raiz
-    string* codigos = (string*)malloc(n*sizeof(string)); // Aloca vetor para armazenar códigos
+    vector<string> codigos(n); // Aloca vetor para armazenar códigos
     string auxCodigo; // Declara string auxiliar
     gerarCodigo(raiz, auxCodigo, codigos); // Gera vetor com códigos de cada caractere
-    //exit(1);
+    for(int i = 0; i < m.size(); i++)
+        cout << codigos[m[i]-' '] << endl;
     mensagemCodificada = gerarMensagemCodificada(m, codigos); // Codifica a mensagem
+    exit(1);
     return compactarAscII(mensagemCodificada); // Retorna mensagem compactada
 
 }

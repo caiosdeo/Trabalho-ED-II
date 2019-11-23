@@ -3,6 +3,7 @@
 
 #include "noHuffman.h"
 #include<tuple>
+#include<vector>
 using namespace std;
 
 /**
@@ -40,7 +41,7 @@ NoHuff* huffTree(NoHuff** huffHeap, unsigned tam);
  * @param codigos vetor a ser preenchido com os códigos gerados
  * @return código binário correspondente ao caractere na árvore de huffman
  */
-void gerarCodigo(NoHuff* raiz, string codigo, string* codigos);
+void gerarCodigo(NoHuff* raiz, string codigo, vector<string> &codigos);
 
 /**
  * Método para codificar mensagem em binário
@@ -49,7 +50,7 @@ void gerarCodigo(NoHuff* raiz, string codigo, string* codigos);
  * @param codigos vetor com códigos gerados (binário)
  * @return mensagem codificada em binário
  */
-string gerarMensagemCodificada(string m, string* codigos);
+string gerarMensagemCodificada(string m, vector<string> &codigos);
 
 /**
  * Método para converter binário em inteiro
