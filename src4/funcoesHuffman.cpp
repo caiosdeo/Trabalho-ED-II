@@ -169,6 +169,40 @@ string compactarAscII(string mC){
  
 }
 
+void gerarCodigo(NoHuff* raiz, string codigo, string* codigos){
+
+    if(raiz != nullptr){
+
+        // Buscando código pela esquerda
+        if(raiz->getEsquerdo() != nullptr){
+
+            codigo += '0';
+            raiz = raiz->getEsquerdo();
+            gerarCodigo(raiz, codigo, codigos);
+
+        }
+        // Buscando código pela direita
+        if(raiz->getDireito() != nullptr){
+
+            codigo += '1';
+            raiz = raiz->getDireito();
+            gerarCodigo(raiz, codigo, codigos);
+
+        }
+        // Se filho esquerdo e filho direito forem nulos, então é folha
+        if(raiz->getEsquerdo() == nullptr && raiz->getDireito() == nullptr){
+            cout << codigo << endl;
+            codigos[raiz->getInfo()-' '] = codigo; // Se folha, recebe código final
+            raiz = nullptr; // Encerra codificação
+
+        }
+
+    }
+
+    return;
+
+}
+
 string compactarMensagemHuffman(string m, unsigned n){
     cout << m << endl;
     string mensagemCodificada; // Declara variável que conterá a mensagem codificada

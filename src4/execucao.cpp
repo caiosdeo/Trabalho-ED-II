@@ -110,7 +110,7 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                     auto inicio = chrono::high_resolution_clock::now();
                     
                     // * Chamada do algoritmo
-                    //string comprimida = compactarMensagemHuffman(conjunto[i], 224);
+                    string comprimida = compactarMensagemHuffman(conjunto[i], 224);
 
                     // Ponto de parada de contagem para o tempo de execução do algoritmo
                     auto parada = chrono::high_resolution_clock::now();
