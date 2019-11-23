@@ -134,9 +134,9 @@ int gerarCodigoAscII(string s){
     int t = s.size(); // Tamanho da string s
 
     // Converte binário para decimal nos bits de s
-    for(int i = t - 1; i >= 0; i--)
+    for(int i = t - 1; i >= 0; i--){
         if(s[i] == '1')
-            codigo += pow(2, i - t);
+            codigo += pow(2, i - t);}
 
     return codigo; // Retorna código ascii
 
@@ -147,14 +147,16 @@ string compactarAscII(string mC){
     string aux; // String auxiliar
     string compactado; // Variável para string compactada
     int t = mC.size(); // Tamanho da mensagem
-
+    cout << mC << endl;
     // Loop para compactação da mensagem
     for(int i = 0, j = 0; i < t; i++, j = 0){
 
         // Pega 8 bits na string 
-        for(; j < 7 || j + i < t; j++)
-            aux += mC[i];
-
+        for(; j < 7 || j + i < t; j++){
+            aux += mC[i];     
+            //cout << mC[i] << endl;
+        }
+        exit(1);
         // Gerando código para cada byte da string e concatenando na mensagem compactada
         compactado += gerarCodigoAscII(aux);
         aux = '\0';
@@ -214,10 +216,7 @@ string compactarMensagemHuffman(string m, unsigned n){
     vector<string> codigos(n); // Aloca vetor para armazenar códigos
     string auxCodigo; // Declara string auxiliar
     gerarCodigo(raiz, auxCodigo, codigos); // Gera vetor com códigos de cada caractere
-    for(int i = 0; i < m.size(); i++)
-        cout << codigos[m[i]-' '] << endl;
     mensagemCodificada = gerarMensagemCodificada(m, codigos); // Codifica a mensagem
-    exit(1);
     return compactarAscII(mensagemCodificada); // Retorna mensagem compactada
 
 }

@@ -111,7 +111,7 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                     
                     // * Chamada do algoritmo
                     string comprimida = compactarMensagemHuffman(conjunto[i], 224);
-
+                    cout << comprimida << endl; exit(1);
                     // Ponto de parada de contagem para o tempo de execução do algoritmo
                     auto parada = chrono::high_resolution_clock::now();
             
