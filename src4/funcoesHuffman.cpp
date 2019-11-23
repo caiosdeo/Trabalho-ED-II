@@ -128,17 +128,17 @@ string gerarMensagemCodificada(string m, vector<string> &codigos){
 
 }
 
-int gerarCodigoAscII(string s){
+char gerarCodigoAscII(string s){
 
     int codigo = 0; // Inicializa somador do código ascii
     int t = s.size(); // Tamanho da string s
 
     // Converte binário para decimal nos bits de s
-    for(int i = t - 1; i >= 0; i--){
+    for(int i = t - 1; i >= 0; i--)
         if(s[i] == '1')
-            codigo += pow(2, i - t);}
+            codigo += pow(2, t - 1 - i);
 
-    return codigo; // Retorna código ascii
+    return char(codigo + ' '); // Retorna código ascii
 
 }
 
@@ -156,7 +156,6 @@ string compactarAscII(string mC){
         for(int j = 0; j < 7; j++)
             aux += mC[i+j];
         compactado += gerarCodigoAscII(aux);
-        cout << compactado << endl;
         aux = '\0';
 
     }
@@ -166,8 +165,6 @@ string compactarAscII(string mC){
         aux += mC[t-1-i];
 
     compactado += gerarCodigoAscII(aux); // Codificando bits restantes
-
-    cout << compactado << endl;
 
     return compactado; // Retorna string compactada
  

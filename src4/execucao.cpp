@@ -111,15 +111,15 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                     
                     // * Chamada do algoritmo
                     string comprimida = compactarMensagemHuffman(conjunto[i], 224);
-                    cout << comprimida << endl; exit(1);
+                
                     // Ponto de parada de contagem para o tempo de execução do algoritmo
                     auto parada = chrono::high_resolution_clock::now();
             
                     //Tempo de processamento do algoritmo
                     tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
-                    //taxaComp += taxaCompressao(conjunto[i], comprimida);
-                    //armazenamento += armazenamentoDisco(comprimida);
+                    taxaComp += taxaCompressao(conjunto[i], comprimida);
+                    armazenamento += armazenamentoDisco(comprimida);
 
                 }
 

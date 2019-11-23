@@ -58,7 +58,7 @@ string gerarMensagemCodificada(string m, vector<string> &codigos);
  * @param s bits do caractere a serem codificados
  * @return código ascii
  */
-int gerarCodigoAscII(string s);
+char gerarCodigoAscII(string s);
 
 /**
  * Método para compactar uma string
