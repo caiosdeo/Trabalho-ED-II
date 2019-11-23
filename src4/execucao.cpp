@@ -12,36 +12,40 @@ void executar(){
     fstream entrada, dataset, saida;
 
     entrada.open("../database/entrada24.txt"); // Arquivo de entrada
-    dataset.open("../database/descricoes.txt", ios::in); // Arquivo de dados como leitura
 
     // Variaveis para leitura do arquivo de entrada
     unsigned qtdConjuntos, n;
 
     // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
     if(entrada.is_open()){
-        if(dataset.is_open()){
 
-            // Lendo quantos conjuntos teremos
-            entrada >> qtdConjuntos;
+        // Lendo quantos conjuntos teremos
+        entrada >> qtdConjuntos;
 
-            //Limpando o arquivo
-            saida.open("../../saidaFase4.csv", ios::out);
-            saida.close();
+        //Limpando o arquivo
+        saida.open("../../saidaFase4.csv", ios::out);
+        saida.close();
 
-            //Abrindo arquivo de saida do cenário 
-            saida.open("../../saidaFase4.csv", ios::out | ios::app); // Arquivo de saída como escrita
+        //Abrindo arquivo de saida do cenário 
+        saida.open("../../saidaFase4.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
-            // Lendo os N
-            while(entrada >> n){
+        // Lendo os N
+        while(entrada >> n){
 
-                // Verificando se o arquivo de saida está aberto
-                if(saida.is_open()){
+            // Verificando se o arquivo de saida está aberto
+            if(saida.is_open()){
 
-                    // ! serão 5 execuções para cada conjunto     
-                    for (int i = 0; i < 5; i++){
+                // ! serão 5 execuções para cada conjunto     
+                for (int i = 0; i < 5; i++){
+
+                    dataset.open("../database/descricoes.txt", ios::in); // Arquivo de dados como leitura
+
+                    if(dataset.is_open()){
 
                         // Armazenando N descrições
                         string* conjunto = leituraDescricoes(dataset, n);
+
+                        dataset.close();
 
                         // Embaralhando as descrições
                         embaralharDescricoes(conjunto, n);
@@ -58,19 +62,20 @@ void executar(){
                         unsigned clear = system("clear");
 
                     }
-                
+                    else
+                        cout << "Não foi possível abrir o arquivo de dados" << endl;
+
                 }
-                else
-                    cout << "Não foi possível abrir o arquivo de saída" << endl;                    
-
-                // Salvando e fechando os arquivos usados
-                //saida.close();                    
-                
+            
             }
+            else
+                cout << "Não foi possível abrir o arquivo de saída" << endl;                    
 
+            // Salvando e fechando os arquivos usados
+            //saida.close();                    
+            
         }
-        else
-            cout << "Não foi possível abrir o arquivo de dados" << endl;
+
     }
     else
         cout << "Não foi possível abrir o arquivo de entrada" << endl;
@@ -113,7 +118,6 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                     //Tempo de processamento do algoritmo
                     tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
-                    // ! Serão acumuladores
                     //taxaComp += taxaCompressao(conjunto[i], comprimida);
                     //armazenamento += armazenamentoDisco(comprimida);
 
@@ -144,7 +148,6 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                     //Tempo de processamento do algoritmo
                     tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
-                    // ! Serão acumuladores
                     taxaComp += taxaCompressao(conjunto[i], comprimida);
                     armazenamento += armazenamentoDisco(comprimida);
 
