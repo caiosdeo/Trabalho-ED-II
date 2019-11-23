@@ -21,7 +21,7 @@ int* tabelaFrequencias(string m, unsigned n);
  * @param n tamanho da tabela de frequências
  * @return uma tupla contendo o vetor de nós de huffman e seu respectivo tamanho
  */
-tuple<NoHuff*, int> gerarHuffHeap(int* tabelaFrequencias, unsigned n);
+tuple<NoHuff**, int> gerarHuffHeap(int* tabelaFrequencias, unsigned n);
 
 /**
  * Método para construir a árvore de Huffman
@@ -30,7 +30,7 @@ tuple<NoHuff*, int> gerarHuffHeap(int* tabelaFrequencias, unsigned n);
  * @param tam número de nós de Huffman 
  * @return raiz da árvore de huffman
  */
-NoHuff* huffTree(NoHuff *huffHeap, unsigned tam);
+NoHuff* huffTree(NoHuff** huffHeap, unsigned tam);
 
 /**
  * Método para representar o caractere em binário

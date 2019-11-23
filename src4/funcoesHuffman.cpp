@@ -1,11 +1,14 @@
 #include "funcoesHuffman.h"
 #include<cmath>
 
+#include<iostream>
+using namespace std;
+
 // Funções para construir a árvore de Huffman
 // Função de swap para vetor de nós de Huffman
-void swap(NoHuff* huffHeap, int i, int j){
+void swap(NoHuff** huffHeap, int i, int j){
 
-    NoHuff aux;
+    NoHuff* aux;
 
     aux = huffHeap[i];
     huffHeap[i] = huffHeap[j];
@@ -14,19 +17,19 @@ void swap(NoHuff* huffHeap, int i, int j){
 }
 
 // Constrói uma heap de mínimo
-void heapify(NoHuff *huffHeap, unsigned tam, unsigned indice){
+void heapify(NoHuff** huffHeap, unsigned tam, unsigned indice){
     
     unsigned menor = indice; // Pai
     unsigned esq = 2*indice + 1; // Filho da esquerda
     unsigned dir = 2*indice + 2; // Filho da direita
 
     // Atualiza menor valor se necessário
-    if(esq < tam && huffHeap[esq].getFrequencia() < huffHeap[menor].getFrequencia()){
+    if(esq < tam && huffHeap[esq]->getFrequencia() < huffHeap[menor]->getFrequencia()){
         menor = esq;
     }
 
     // Atualiza menor valor se necessário
-    if(dir < tam && huffHeap[dir].getFrequencia() < huffHeap[menor].getFrequencia()){
+    if(dir < tam && huffHeap[dir]->getFrequencia() < huffHeap[menor]->getFrequencia()){
         menor = dir;
     }
 
@@ -40,11 +43,11 @@ void heapify(NoHuff *huffHeap, unsigned tam, unsigned indice){
 }
 
 // Constrói a árvore de Huffman
-NoHuff* huffTree(NoHuff *huffHeap, unsigned tam){
+NoHuff* huffTree(NoHuff** huffHeap, unsigned tam){
 
     // Auxiliares para os filhos à direita e à esquerda
-    NoHuff auxDir;
-    NoHuff auxEsq;
+    NoHuff* auxDir;
+    NoHuff* auxEsq;
 
     while(tam > 1){
 
@@ -62,14 +65,14 @@ NoHuff* huffTree(NoHuff *huffHeap, unsigned tam){
 
         auxDir = huffHeap[0]; // retira menor frequência
         swap(huffHeap, 0, tam-1); // Desconsidera menor frequência retirada
-        int novaFreq = auxDir.getFrequencia() + auxEsq.getFrequencia(); // Somando frequências dos filhos
-        NoHuff pai = NoHuff(novaFreq, &auxDir, &auxEsq); // Alocando pai
+        int novaFreq = auxDir->getFrequencia() + auxEsq->getFrequencia(); // Somando frequências dos filhos
+        NoHuff* pai = new NoHuff(novaFreq, auxDir, auxEsq); // Alocando pai
 
         huffHeap[tam-1] = pai; // Colocando pai na huffHeap
 
     }
 
-    return &huffHeap[0]; // Retorna a raiz da árvore de Huffman
+    return huffHeap[0]; // Retorna a raiz da árvore de Huffman
 
 }
 
@@ -84,7 +87,7 @@ int* tabelaFrequencias(string m, unsigned n){
 
 }
 
-tuple<NoHuff*, int> gerarHuffHeap(int* tabelaFrequencias, unsigned n){
+tuple<NoHuff**, int> gerarHuffHeap(int* tabelaFrequencias, unsigned n){
 
     // Calcula o tamanho do vetor de nós de huffman
     int t = 0;
@@ -92,8 +95,8 @@ tuple<NoHuff*, int> gerarHuffHeap(int* tabelaFrequencias, unsigned n){
         if(tabelaFrequencias[i] > 0)
             t++;
 
-    NoHuff* huffHeap = (NoHuff*)malloc(t*sizeof(NoHuff)); // Aloca vetor de nós de huffman
-    t = 0; // Reinicializa tem com zero
+    NoHuff** huffHeap = (NoHuff**)malloc(t*sizeof(NoHuff*)); // Aloca vetor de nós de huffman
+    t = 0; // Reinicializa t com zero
 
     // Loop para inicializar vetor de nós de huffman
     for(int i = 0; i < n; i++){
@@ -101,7 +104,7 @@ tuple<NoHuff*, int> gerarHuffHeap(int* tabelaFrequencias, unsigned n){
         if(tabelaFrequencias[i] > 0){
 
             // Inicializa nó de huffman com o caractere válido da mensagem e sua respectiva frequência
-            NoHuff aux = NoHuff(' ' + i, tabelaFrequencias[i]); 
+            NoHuff* aux = new NoHuff(' ' + i, tabelaFrequencias[i]);
             huffHeap[t] = aux; // Insere nó no vetor
             t++; // Incrementa posição do vetor
 
@@ -113,42 +116,12 @@ tuple<NoHuff*, int> gerarHuffHeap(int* tabelaFrequencias, unsigned n){
 
 }
 
-void gerarCodigo(NoHuff* raiz, string codigo, string* codigos){
-
-    if(raiz != nullptr){
-
-        // Buscando código pela esquerda
-        if(raiz->getEsquerdo() != nullptr){
-
-            codigo += '0';
-            raiz = raiz->getEsquerdo();
-            gerarCodigo(raiz, codigo, codigos);
-
-        }
-        else if(raiz->getDireito() != nullptr){ // Buscando código pela direita
-
-            codigo += '1';
-            raiz = raiz->getDireito();
-            gerarCodigo(raiz, codigo, codigos);
-
-        }
-        else{
-
-            codigos[raiz->getInfo()-' '] = codigo; // Se folha, recebe código final
-            raiz = nullptr; // Encerra codificação
-
-        }
-
-    }
-
-}
-
 string gerarMensagemCodificada(string m, string* codigos){
 
     string mensagemCodificada; // Declara mensagem codificada
 
     // Loop para codificar cada caractere da mensagem
-    for(int i =0; i < m.size(); i++)
+    for(int i = 0; i < m.size(); i++)
         mensagemCodificada += codigos[m[i]-' '];
 
     return mensagemCodificada; // Retorna mensagem codificada em 0's e 1's
@@ -197,16 +170,17 @@ string compactarAscII(string mC){
 }
 
 string compactarMensagemHuffman(string m, unsigned n){
-
+    cout << m << endl;
     string mensagemCodificada; // Declara variável que conterá a mensagem codificada
     int* tab = tabelaFrequencias(m, n); // Calcula tabela de frequência dos caracteres
-    NoHuff* huff;
+    NoHuff** huff;
     int t;
     tie(huff, t) = gerarHuffHeap(tab, n); // Gerar vetor de nós de huffman
     NoHuff* raiz = huffTree(huff, t); // Constrói árvore de Huffman retornando a raiz
-    string* codigos = (string*)malloc(t*sizeof(string)); // Aloca vetor para armazenar códigos
+    string* codigos = (string*)malloc(n*sizeof(string)); // Aloca vetor para armazenar códigos
     string auxCodigo; // Declara string auxiliar
     gerarCodigo(raiz, auxCodigo, codigos); // Gera vetor com códigos de cada caractere
+    //exit(1);
     mensagemCodificada = gerarMensagemCodificada(m, codigos); // Codifica a mensagem
     return compactarAscII(mensagemCodificada); // Retorna mensagem compactada
 

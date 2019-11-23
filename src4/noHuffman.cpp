@@ -2,6 +2,8 @@
 
 // Construtores e destrutor
 NoHuff::NoHuff(){
+    this->esquerdo = nullptr;
+    this->direito = nullptr;
 }
 
 NoHuff::NoHuff(char info, int freq){
