@@ -147,25 +147,27 @@ string compactarAscII(string mC){
     string aux; // String auxiliar
     string compactado; // Variável para string compactada
     int t = mC.size(); // Tamanho da mensagem
-    cout << mC << endl;
-    // Loop para compactação da mensagem
-    for(int i = 0, j = 0; i < t; i++, j = 0){
+    int steps = t / 8; // Quantidade de passos de preenchimento de byte
+    int resto = t % 8; // Quantidade de caracteres restante para codificação
 
-        // Pega 8 bits na string 
-        for(; j < 7 || j + i < t; j++){
-            aux += mC[i];     
-            //cout << mC[i] << endl;
-        }
-        exit(1);
-        // Gerando código para cada byte da string e concatenando na mensagem compactada
+    // Adiciona 8 bits à variável auxiliar e os codifica
+    for(int i = 0; i < steps; i++){
+
+        for(int j = 0; j < 7; j++)
+            aux += mC[i+j];
         compactado += gerarCodigoAscII(aux);
+        cout << compactado << endl;
         aux = '\0';
 
-        // Encerra compactação
-        if(j+i == t)
-            break;
-
     }
+
+    // Adiciona o restante dos bits à variável auxiliar
+    for(int i = resto; i > 0; i--)
+        aux += mC[t-1-i];
+
+    compactado += gerarCodigoAscII(aux); // Codificando bits restantes
+
+    cout << compactado << endl;
 
     return compactado; // Retorna string compactada
  
