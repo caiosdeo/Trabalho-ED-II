@@ -3,7 +3,7 @@
 #include <cmath>
 #include <bits/stdc++.h>
 
-tuple<int*,vector<char>, int> tabelaFrequencias(string m, unsigned n){
+tuple<int*,char*, int> tabelaFrequencias(string m, unsigned n){
 
     int* tabela = (int*)calloc(n, sizeof(int)); // aloca tabela de frequências
     int fT = 0; // Contador para número de caracteres válidos
@@ -18,7 +18,7 @@ tuple<int*,vector<char>, int> tabelaFrequencias(string m, unsigned n){
             fT++;
 
     // Alocando memória para frequências e caracteres
-    vector<char> caracteres(fT);
+    char *caracteres = (char*)malloc(fT*sizeof(char));
     int* freqs = (int*)calloc(fT, sizeof(int));
     fT = 0;
     // Loop para inserir caracteres válidos
@@ -26,7 +26,7 @@ tuple<int*,vector<char>, int> tabelaFrequencias(string m, unsigned n){
 
         if(tabela[i] > 0){
 
-            caracteres.at(fT) = ' ' + i;
+            caracteres[fT] = ' ' + i;
             freqs[fT] = tabela[i];
             fT++;
 
@@ -34,31 +34,31 @@ tuple<int*,vector<char>, int> tabelaFrequencias(string m, unsigned n){
 
     }
 
+    delete [] tabela;
+
     return make_tuple(freqs, caracteres, fT); // Retorna tupla com os caracteres e suas respectivas frequências
 
 }
 
-int posicaoCaractere(char c, vector<char> *infos){
+int posicaoCaractere(char c, char *infos, int t){
 
     int i;
-    int t = infos->size();
 
     for(i = 0; i < t; i++)
-        if(c == infos->at(i))
+        if(c == infos[i])
             break;
 
-    return (i < t) ? i : i -1;
+    return (i < t) ? i : i - 1;
 
 }
 
-string gerarMensagemCodificada(string m, vector<string> *codigos, vector<char> *infos){
+string gerarMensagemCodificada(string m, char **codigos, char *infos, int t){
 
     string mensagemCodificada; // Declara mensagem codificada
-    mensagemCodificada.clear();
 
     // Loop para codificar cada caractere da mensagem
     for(int i = 0; i < m.size(); i++)
-        mensagemCodificada += codigos->at(posicaoCaractere(m[i], infos));
+        mensagemCodificada += string(codigos[posicaoCaractere(m[i],infos,t)]);
 
     return mensagemCodificada += '\0'; // Retorna mensagem codificada em 0's e 1's
 
@@ -121,12 +121,12 @@ string comprimirHuffman(string str){
 
     NoHuff *esquerdo, *direito, *pai; 
 
-    vector<char> infos;
-    int* freq;
+    char *infos;
+    int *freq;
     int fT;
     
     tie(freq, infos, fT) = tabelaFrequencias(str, 224); // 224 caracteres tabelas ascii
-  
+
     // Cria heap minima  
     priority_queue<NoHuff*, vector<NoHuff*>, compara> minHeap; 
   
@@ -156,20 +156,21 @@ string comprimirHuffman(string str){
         minHeap.push(pai); 
     } 
 
-    // Vetores auxiliares para armazenar info e seu respectivo codigo
-    vector<string> codigos;
-    infos.clear();
+    // Vetor auxiliares para armazenar código de respectiva info
+    char** codigos = (char**)malloc(fT*sizeof(char*));
 
     // Gera o código para a árvore de Huffman criada
-    gerarTabelaCodigos(minHeap.top(), "", &infos, &codigos);
+    gerarTabelaCodigos(minHeap.top(), "", infos, codigos, fT);
 
-    string mC = gerarMensagemCodificada(str, &codigos, &infos);
+    string mC = gerarMensagemCodificada(str, codigos, infos, fT);
     // Desaloca estruturas
     delete[] freq;
-    infos.clear();
-    codigos.clear();
+    delete[] infos;
+    for(int i = 0; i < fT; i++)
+        delete[] codigos[i];
+    delete[] codigos;
     // Retorna mensagem compactada
-    //cout << compactarAscII(mC) << endl;
+    cout << compactarAscII(mC) << endl;
     //cout << endl << endl;
     //exit(1);
     // Retorna mensagem compactada
@@ -177,7 +178,7 @@ string comprimirHuffman(string str){
 
 }
 
-void gerarTabelaCodigos(NoHuff* raiz, string str, vector<char> *infos, vector<string> *codigos){ 
+void gerarTabelaCodigos(NoHuff* raiz, string str, char *infos, char **codigos, int t){ 
 
     // Se é raiz, não tem código
     if (!raiz) 
@@ -186,13 +187,16 @@ void gerarTabelaCodigos(NoHuff* raiz, string str, vector<char> *infos, vector<st
     // Se é nó folha, adiciona a info e o codigo nos seus vetores
     if (raiz->getInfo() != '$'){
 
-        infos->push_back(raiz->getInfo());
-        codigos->push_back(str);
+        int posicao = posicaoCaractere(raiz->getInfo(), infos, t);
+        int tStr = str.size();
+        codigos[posicao] = (char*)malloc(tStr*sizeof(char));
+        for(int i = 0; i < tStr; i++)
+            codigos[posicao][i] += str[i];
 
     }
 
     // Chamada para filhos a esquerda e direita
-    gerarTabelaCodigos(raiz->getEsquerdo(), str + "0", infos, codigos); 
-    gerarTabelaCodigos(raiz->getDireito(), str + "1", infos, codigos); 
+    gerarTabelaCodigos(raiz->getEsquerdo(), str + "0", infos, codigos, t); 
+    gerarTabelaCodigos(raiz->getDireito(), str + "1", infos, codigos, t); 
 
 } 

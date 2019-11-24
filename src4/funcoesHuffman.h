@@ -13,7 +13,7 @@ using namespace std;
  * @param n número de caracteres do alfabeto
  * @return tabela de frequências
  */
-tuple<int*,vector<char>, int> tabelaFrequencias(string m, unsigned n);
+tuple<int*,char*, int> tabelaFrequencias(string m, unsigned n);
 
 /**
  * Método para codificar mensagem em binário
@@ -21,9 +21,10 @@ tuple<int*,vector<char>, int> tabelaFrequencias(string m, unsigned n);
  * @param m string a ser codificada
  * @param codigos vetor com códigos gerados (binário)
  * @param infos vetor de caracteres da mensagem
+ * @param t tamanho dos vetores
  * @return mensagem codificada em binário
  */
-string gerarMensagemCodificada(string m, vector<string> *codigos, vector<char> *infos);
+string gerarMensagemCodificada(string m, char **codigos, char *infos, int t);
 
 /**
  * Método para converter binário em inteiro
@@ -56,7 +57,8 @@ string comprimirHuffman(string str);
  * @param str codigo em binario
  * @param infos vetor de char a ser preenchido com as infos
  * @param codigos vetor de string a ser preenchido com os codigos em binarios de cada info
+ * @param t tamanho dos vetores
  */
-void gerarTabelaCodigos(NoHuff* raiz, string str, vector<char> *infos, vector<string> *codigos);
+void gerarTabelaCodigos(NoHuff* raiz, string str, char *infos, char **codigos, int t);
 
 #endif //FUNCOESHUFFMAN_H_INCLUDED
