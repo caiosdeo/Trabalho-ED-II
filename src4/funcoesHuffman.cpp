@@ -55,13 +55,20 @@ int posicaoCaractere(char c, char *infos, int t){
 string gerarMensagemCodificada(string m, char **codigos, char *infos, int t){
 
     string mensagemCodificada = ""; // Declara mensagem codificada
+    int tAux; // Tamanho auxiliar para vetor de caracteres
 
     // Loop para codificar cada caractere da mensagem
-    for(int i = 0; i < m.size(); i++)
-        mensagemCodificada += string(codigos[posicaoCaractere(m[i],infos,t)]);
+    for(int i = 0; i < m.size(); i++){
+
+        tAux = sizeof(codigos[posicaoCaractere(m[i],infos,t)]);
+
+        for(int j = 0; j < tAux; j++)
+            mensagemCodificada += codigos[posicaoCaractere(m[i],infos,t)][j]; 
+
+    }
 
     cout << mensagemCodificada << endl;
-    //exit(1);
+    exit(1);
 
     return mensagemCodificada; // Retorna mensagem codificada em 0's e 1's
 
@@ -133,7 +140,7 @@ string comprimirHuffman(string str){
     priority_queue<NoHuff*, vector<NoHuff*>, compara> minHeap; 
   
     // Insere todos os caracteres
-    for (int i = 0; i < str.size(); ++i) 
+    for (int i = 0; i < fT; i++) 
         minHeap.push(new NoHuff(infos[i], freq[i])); 
   
     // Loop até o tamanho da heap ser 1 
@@ -147,8 +154,8 @@ string comprimirHuffman(string str){
         minHeap.pop(); 
   
         // Cria um novo nó com frequência igual a soma dos dois nós anteriores
-        // com info = '$', valor para nós internos 
-        pai = new NoHuff('$', esquerdo->getFrequencia() + direito->getFrequencia()); 
+        // com info = 0, valor para nós internos 
+        pai = new NoHuff(0, esquerdo->getFrequencia() + direito->getFrequencia()); 
   
         // Os nós extraídos se tornam filhos do novo nó.
         pai->setEsquerdo(esquerdo); 
@@ -163,7 +170,7 @@ string comprimirHuffman(string str){
 
     // Gera o código para a árvore de Huffman criada
     gerarTabelaCodigos(minHeap.top(), "", infos, codigos, fT);
-    exit(1);
+    //exit(1);
 
     string mC = gerarMensagemCodificada(str, codigos, infos, fT);
     // Desaloca estruturas
@@ -184,12 +191,10 @@ string comprimirHuffman(string str){
 
 void gerarTabelaCodigos(NoHuff* raiz, string str, char *infos, char **codigos, int t){ 
 
-    // Se é raiz, não tem código
-    if (!raiz) 
-        return; 
-  
-    // Se é nó folha, adiciona a info e o codigo nos seus vetores
-    if (raiz->getInfo() != '$'){
+    if(!raiz)
+        return;
+
+    if(raiz->getInfo() != 0){
 
         int posicao = posicaoCaractere(raiz->getInfo(), infos, t);
         int tStr = str.size();
@@ -197,25 +202,9 @@ void gerarTabelaCodigos(NoHuff* raiz, string str, char *infos, char **codigos, i
         for(int i = 0; i < tStr; i++)
             codigos[posicao][i] = str[i];
 
-        for(int i = 0; i < tStr; i++)
-            cout << codigos[posicao][i];
-        cout << endl;    
-
     }
 
-    // Chamada para filhos a esquerda e direita
-    //if(raiz->getEsquerdo() != nullptr){
-
-        //str += '0';
-        gerarTabelaCodigos(raiz->getEsquerdo(), str + '0', infos, codigos, t); 
-
-    //}
-
-    //if(raiz->getDireito() != nullptr){
-
-        //str += '1';
-        gerarTabelaCodigos(raiz->getDireito(), str + '1', infos, codigos, t); 
-
-    //}
+    gerarTabelaCodigos(raiz->getEsquerdo(), str + '0', infos, codigos, t);
+    gerarTabelaCodigos(raiz->getDireito(), str + '1', infos, codigos, t); 
 
 } 
