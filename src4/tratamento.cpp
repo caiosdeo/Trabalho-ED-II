@@ -75,7 +75,7 @@ string* leituraDescricoes(fstream &dataset, int n){
             getline(dataset,descricao);
 
             // Selecionando descricoes a partir do resto de uma divisão por 3
-            if(rand() % 3 == 0 && descricao[0] != 0 && descricao[0] != (char)' '){ 
+            if(rand() % 3 == 0 && !descricao.empty()){ 
                 
                 //Atribuindo uma descricao
                 d[i] = descricao;
