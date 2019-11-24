@@ -99,7 +99,7 @@ string compactarAscII(string mC){
 
         for(int j = 0; j < 7; j++)
             aux += mC[i+j];
-        //cout << aux << endl;
+
         compactado += gerarCodigoAscII(aux);
         aux = "";
 
@@ -176,10 +176,7 @@ string comprimirHuffman(string str){
     for(int i = 0; i < fT; i++)
         delete[] codigos[i];
     delete[] codigos;
-    // Retorna mensagem compactada
-    cout << compactarAscII(mC) << endl;
-    //cout << endl << endl;
-    exit(1);
+
     // Retorna mensagem compactada
     return compactarAscII(mC);
 
