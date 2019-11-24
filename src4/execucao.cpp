@@ -11,7 +11,7 @@ void executar(){
 
     fstream entrada, dataset, saida;
 
-    entrada.open("../database/entrada24.txt"); // Arquivo de entrada
+    entrada.open("../database/entradaFase3.txt"); // Arquivo de entrada
 
     // Variaveis para leitura do arquivo de entrada
     int qtdConjuntos, n;
@@ -31,9 +31,6 @@ void executar(){
 
         // Lendo os N
         while(entrada >> n){
-
-            if(n != 50000)
-                continue;
 
             // Verificando se o arquivo de saida está aberto
             if(saida.is_open()){
