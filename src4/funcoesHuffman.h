@@ -13,7 +13,7 @@ using namespace std;
  * @param n número de caracteres do alfabeto
  * @return tabela de frequências
  */
-tuple<int*,char*> tabelaFrequencias(string m, unsigned n);
+tuple<int*,vector<char>> tabelaFrequencias(string m, unsigned n);
 
 /**
  * Método para codificar mensagem em binário
@@ -23,7 +23,7 @@ tuple<int*,char*> tabelaFrequencias(string m, unsigned n);
  * @param infos vetor de caracteres da mensagem
  * @return mensagem codificada em binário
  */
-string gerarMensagemCodificada(string m, vector<string> &codigos, vector<char> infos);
+string gerarMensagemCodificada(string m, vector<string> *codigos, vector<char> *infos);
 
 /**
  * Método para converter binário em inteiro
@@ -58,13 +58,5 @@ string comprimirHuffman(string str);
  * @param codigos vetor de string a ser preenchido com os codigos em binarios de cada info
  */
 void gerarTabelaCodigos(NoHuff* raiz, string str, vector<char> *infos, vector<string> *codigos);
-
-/**
- * Função que constrói uma string a partir de um vector<char>
- * @author caiosdeo
- * @param c vector a ser convertido a string
- * @return mensagem string com conteúdo do vector sem espaços
- */
-string gerarString(vector<char> c);
 
 #endif //FUNCOESHUFFMAN_H_INCLUDED

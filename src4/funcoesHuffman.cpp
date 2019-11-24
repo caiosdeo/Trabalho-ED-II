@@ -3,7 +3,7 @@
 #include <cmath>
 #include <bits/stdc++.h>
 
-tuple<int*,char*> tabelaFrequencias(string m, unsigned n){
+tuple<int*,vector<char>> tabelaFrequencias(string m, unsigned n){
 
     int* tabela = (int*)calloc(n, sizeof(int)); // aloca tabela de frequências
     int fT = 0; // Contador para número de caracteres válidos
@@ -18,7 +18,7 @@ tuple<int*,char*> tabelaFrequencias(string m, unsigned n){
             fT++;
 
     // Alocando memória para frequências e caracteres
-    char* caracteres = (char*)malloc(fT*sizeof(char));
+    vector<char> caracteres;
     int* freqs = (int*)calloc(fT, sizeof(int));
     fT = 0;
     // Loop para inserir caracteres válidos
@@ -26,7 +26,7 @@ tuple<int*,char*> tabelaFrequencias(string m, unsigned n){
 
         if(tabela[i] > 0){
 
-            caracteres[fT] = ' ' + i;
+            caracteres.push_back(' ' + i);
             freqs[fT] = tabela[i];
             fT++;
 
@@ -38,25 +38,25 @@ tuple<int*,char*> tabelaFrequencias(string m, unsigned n){
 
 }
 
-int posicaoCaractere(char c, vector<char> infos){
+int posicaoCaractere(char c, vector<char> *infos){
 
     int i;
 
-    for(i = 0; i < infos.size(); i++)
-        if(c == infos[i])
+    for(i = 0; i < infos->size(); i++)
+        if(c == infos->at(i))
             break;
 
     return i;
 
 }
 
-string gerarMensagemCodificada(string m, vector<string> &codigos, vector<char> infos){
+string gerarMensagemCodificada(string m, vector<string> *codigos, vector<char> *infos){
 
     string mensagemCodificada; // Declara mensagem codificada
 
     // Loop para codificar cada caractere da mensagem
     for(int i = 0; i < m.size(); i++)
-        mensagemCodificada += codigos[posicaoCaractere(m[i], infos)];
+        mensagemCodificada += codigos->at(posicaoCaractere(m[i], infos));
 
     return mensagemCodificada; // Retorna mensagem codificada em 0's e 1's
 
@@ -117,17 +117,17 @@ string comprimirHuffman(string str){
 
     NoHuff *esquerdo, *direito, *pai; 
 
-    char* info;
+    vector<char> infos;
     int* freq;
     
-    tie(freq, info) = tabelaFrequencias(str, 224); // 224 caracteres tabelas ascii
+    tie(freq, infos) = tabelaFrequencias(str, 224); // 224 caracteres tabelas ascii
   
     // Cria heap minima  
     priority_queue<NoHuff*, vector<NoHuff*>, compara> minHeap; 
   
     // Insere todos os caracteres
     for (int i = 0; i < str.size(); ++i) 
-        minHeap.push(new NoHuff(info[i], freq[i])); 
+        minHeap.push(new NoHuff(infos[i], freq[i])); 
   
     // Loop até o tamanho da heap ser 1 
     while (minHeap.size() != 1) { 
@@ -153,12 +153,17 @@ string comprimirHuffman(string str){
 
     // Vetores auxiliares para armazenar info e seu respectivo codigo
     vector<string> codigos;
-    vector<char> infos;
 
     // Gera o código para a árvore de Huffman criada
-    gerarTabelaCodigos(minHeap.top(), "", &infos, &codigos); 
+    gerarTabelaCodigos(minHeap.top(), "", &infos, &codigos);
 
-    return gerarMensagemCodificada(gerarString(infos), codigos, infos);
+    string mC = gerarMensagemCodificada(str, &codigos, &infos);
+    // Desaloca estruturas
+    delete[] freq;
+    infos.clear();
+    codigos.clear();
+    // Retorna mensagem codificada
+    return mC;
 
 }
 
@@ -181,17 +186,3 @@ void gerarTabelaCodigos(NoHuff* raiz, string str, vector<char> *infos, vector<st
     gerarTabelaCodigos(raiz->getDireito(), str + "1", infos, codigos); 
 
 } 
-
-string gerarString(vector<char> c){
-
-    stringstream smsg;
-
-    copy(c.begin(),c.end(),ostream_iterator<char>(smsg,""));
-
-    string msg = smsg.str();
-    
-    msg = msg.substr(0,msg.length());
-
-    return msg;
-
-}

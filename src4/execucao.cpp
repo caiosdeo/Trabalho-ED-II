@@ -32,6 +32,9 @@ void executar(){
         // Lendo os N
         while(entrada >> n){
 
+            if(n != 50000)
+                continue;
+
             // Verificando se o arquivo de saida está aberto
             if(saida.is_open()){
 
@@ -134,7 +137,7 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
 
                 cout << "Comprimindo com Algoritmo de LZW" << endl;
 
-                for(int i = 0; i < n; i++){
+               /* for(int i = 0; i < n; i++){
 
                     // Ponto de inicio de contagem para tempo de execução do algoritmo
                     auto inicio = chrono::high_resolution_clock::now();
@@ -154,7 +157,7 @@ void fluxo(string* conjunto, unsigned n, fstream &saida){
                 }
 
                 // Imprimindo resultados no arquivo de saída
-                imprimirSaida(saida, versao, n, taxaComp, armazenamento, tempoProcessamento);
+                imprimirSaida(saida, versao, n, taxaComp, armazenamento, tempoProcessamento);*/
 
                 break;
             
