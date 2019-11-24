@@ -203,19 +203,3 @@ void gerarCodigo(NoHuff* raiz, string codigo, vector<string> &codigos){
     return;
 
 }
-
-string compactarMensagemHuffman(string m, unsigned n){
-
-    string mensagemCodificada; // Declara variável que conterá a mensagem codificada
-    int* tab = tabelaFrequencias(m, n); // Calcula tabela de frequência dos caracteres
-    NoHuff** huff;
-    int t;
-    tie(huff, t) = gerarHuffHeap(tab, n); // Gerar vetor de nós de huffman
-    NoHuff* raiz = huffTree(huff, t); // Constrói árvore de Huffman retornando a raiz
-    vector<string> codigos(n); // Aloca vetor para armazenar códigos
-    string auxCodigo; // Declara string auxiliar
-    gerarCodigo(raiz, auxCodigo, codigos); // Gera vetor com códigos de cada caractere
-    mensagemCodificada = gerarMensagemCodificada(m, codigos); // Codifica a mensagem
-    return compactarAscII(mensagemCodificada); // Retorna mensagem compactada
-
-}

@@ -68,13 +68,4 @@ char gerarCodigoAscII(string s);
  */
 string compactarAscII(string mC);
 
-/**
- * Método para compactar uma string
- * @author eliascassis
- * @param m mensagem original
- * @param n número de caracteres do alfabeto
- * @return mensagem compactada
- */
-string compactarMensagemHuffman(string m, unsigned n);
-
 #endif //FUNCOESHUFFMAN_H_INCLUDED
