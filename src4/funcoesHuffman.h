@@ -13,7 +13,7 @@ using namespace std;
  * @param n número de caracteres do alfabeto
  * @return tabela de frequências
  */
-int* tabelaFrequencias(string m, unsigned n);
+tuple<int*,char*> tabelaFrequencias(string m, unsigned n);
 
 /**
  * Método para construir a árvore de Huffman
