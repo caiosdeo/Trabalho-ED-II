@@ -66,8 +66,7 @@ string gerarMensagemCodificada(string m, char **codigos, char *infos, int t){
 
     }
 
-    cout << mensagemCodificada << endl;
-    exit(1);
+    mensagemCodificada += '\0'; 
 
     return mensagemCodificada; // Retorna mensagem codificada em 0's e 1's
 
@@ -169,7 +168,6 @@ string comprimirHuffman(string str){
 
     // Gera o código para a árvore de Huffman criada
     gerarTabelaCodigos(minHeap.top(), "", infos, codigos, fT);
-    //exit(1);
 
     string mC = gerarMensagemCodificada(str, codigos, infos, fT);
     // Desaloca estruturas
@@ -178,11 +176,10 @@ string comprimirHuffman(string str){
     for(int i = 0; i < fT; i++)
         delete[] codigos[i];
     delete[] codigos;
-    //cout << mC << endl;
     // Retorna mensagem compactada
-    //cout << compactarAscII(mC) << endl;
+    cout << compactarAscII(mC) << endl;
     //cout << endl << endl;
-    //exit(1);
+    exit(1);
     // Retorna mensagem compactada
     return compactarAscII(mC);
 
