@@ -60,8 +60,7 @@ string gerarMensagemCodificada(string m, char **codigos, char *infos, int t){
     // Loop para codificar cada caractere da mensagem
     for(int i = 0; i < m.size(); i++){
 
-        tAux = sizeof(codigos[posicaoCaractere(m[i],infos,t)]);
-
+        tAux = strlen(codigos[posicaoCaractere(m[i],infos,t)]);
         for(int j = 0; j < tAux; j++)
             mensagemCodificada += codigos[posicaoCaractere(m[i],infos,t)][j]; 
 
@@ -197,6 +196,7 @@ void gerarTabelaCodigos(NoHuff* raiz, string str, char *infos, char **codigos, i
     if(raiz->getInfo() != 0){
 
         int posicao = posicaoCaractere(raiz->getInfo(), infos, t);
+        str += '\0';
         int tStr = str.size();
         codigos[posicao] = (char*)malloc(tStr*sizeof(char));
         for(int i = 0; i < tStr; i++)
