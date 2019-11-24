@@ -1,5 +1,7 @@
 #include "funcoesHuffman.h"
-#include<cmath>
+#include "noHuffman.h"
+#include <cmath>
+#include <bits/stdc++.h>
 
 int* tabelaFrequencias(string m, unsigned n){
 
@@ -64,4 +66,93 @@ string compactarAscII(string mC){
 
     return compactado; // Retorna string compactada
  
+}
+
+// Para comparação de dois nós da heap 
+struct compara { 
+  
+    bool operator()(NoHuff* esq, NoHuff* dir) { 
+        return (esq->getFrequencia() > dir->getFrequencia()); 
+    } 
+
+};
+
+string comprimirHuffman(string str){
+
+    NoHuff *esquerdo, *direito, *pai; 
+
+    int* freq = tabelaFrequencias(str, 224); // 224 caracteres tabelas ascii
+  
+    // Cria heap minima  
+    priority_queue<NoHuff*, vector<NoHuff*>, compara> minHeap; 
+  
+    // Insere todos os caracteres
+    for (int i = 0; i < str.size(); ++i) 
+        minHeap.push(new NoHuff(str[i], freq[i])); 
+  
+    // Loop até o tamanho da heap ser 1 
+    while (minHeap.size() != 1) { 
+  
+        // Extraindo os dois menos frequentes
+        esquerdo = minHeap.top(); 
+        minHeap.pop(); 
+  
+        direito = minHeap.top(); 
+        minHeap.pop(); 
+  
+        // Cria um novo nó com frequência igual a soma dos dois nós anteriores
+        // com info = '\0', valor para nós internos 
+        pai = new NoHuff('\0', esquerdo->getFrequencia() + direito->getFrequencia()); 
+  
+        // Os nós extraídos se tornam filhos do novo nó.
+        pai->setEsquerdo(esquerdo); 
+        pai->setDireito(direito); 
+  
+        // Adiciona o nó na heap minima 
+        minHeap.push(pai); 
+    } 
+
+    // Vetores auxiliares para armazenar info e seu respectivo codigo
+    vector<string> codigos;
+    vector<char> infos;
+
+    // Gera o código para a árvore de Huffman criada
+    gerarTabelaCodigos(minHeap.top(), "", &infos, &codigos); 
+
+    return gerarMensagemCodificada(gerarString(infos), codigos);
+
+}
+
+void gerarTabelaCodigos(NoHuff* raiz, string str, vector<char> *infos, vector<string> *codigos){ 
+
+    // Se é raiz, não tem código
+    if (!raiz) 
+        return; 
+  
+    // Se é nó folha, adiciona a info e o codigo nos seus vetores
+    if (raiz->getInfo() != '\0'){
+
+        infos->push_back(raiz->getInfo());
+        codigos->push_back(str);
+
+    }
+
+    // Chamada para filhos a esquerda e direita
+    gerarTabelaCodigos(raiz->getEsquerdo(), str + "0", infos, codigos); 
+    gerarTabelaCodigos(raiz->getDireito(), str + "1", infos, codigos); 
+
+} 
+
+string gerarString(vector<char> c){
+
+    stringstream smsg;
+
+    copy(c.begin(),c.end(),ostream_iterator<char>(smsg,""));
+
+    string msg = smsg.str();
+    
+    msg = msg.substr(0,msg.length());
+
+    return msg;
+
 }

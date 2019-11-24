@@ -49,4 +49,30 @@ char gerarCodigoAscII(string s);
  */
 string compactarAscII(string mC);
 
+/**
+ * Função que constrói árvore de Huffman e retorna o código
+ * @author caiosdeo
+ * @param str string a ser codificada em binário
+ * @return mensagem comprimida, codificada
+ */
+string comprimirHuffman(string str);
+
+/**
+ * Função recursiva que preenche os vetores: infos e codigos da arvore de Huffman
+ * @author caiosdeo
+ * @param raiz no a ser buscado
+ * @param str codigo em binario
+ * @param infos vetor de char a ser preenchido com as infos
+ * @param codigos vetor de string a ser preenchido com os codigos em binarios de cada info
+ */
+void gerarTabelaCodigos(NoHuff* raiz, string str, vector<char> *infos, vector<string> *codigos);
+
+/**
+ * Função que constrói uma string a partir de um vector<char>
+ * @author caiosdeo
+ * @param c vector a ser convertido a string
+ * @return mensagem string com conteúdo do vector sem espaços
+ */
+string gerarString(vector<char> c);
+
 #endif //FUNCOESHUFFMAN_H_INCLUDED
