@@ -13,7 +13,7 @@ using namespace std;
  * @param n número de caracteres do alfabeto
  * @return tabela de frequências
  */
-tuple<int*,vector<char>> tabelaFrequencias(string m, unsigned n);
+tuple<int*,vector<char>, int> tabelaFrequencias(string m, unsigned n);
 
 /**
  * Método para codificar mensagem em binário

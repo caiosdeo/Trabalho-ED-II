@@ -3,7 +3,7 @@
 #include <cmath>
 #include <bits/stdc++.h>
 
-tuple<int*,vector<char>> tabelaFrequencias(string m, unsigned n){
+tuple<int*,vector<char>, int> tabelaFrequencias(string m, unsigned n){
 
     int* tabela = (int*)calloc(n, sizeof(int)); // aloca tabela de frequências
     int fT = 0; // Contador para número de caracteres válidos
@@ -18,7 +18,7 @@ tuple<int*,vector<char>> tabelaFrequencias(string m, unsigned n){
             fT++;
 
     // Alocando memória para frequências e caracteres
-    vector<char> caracteres;
+    vector<char> caracteres(fT);
     int* freqs = (int*)calloc(fT, sizeof(int));
     fT = 0;
     // Loop para inserir caracteres válidos
@@ -26,7 +26,7 @@ tuple<int*,vector<char>> tabelaFrequencias(string m, unsigned n){
 
         if(tabela[i] > 0){
 
-            caracteres.push_back(' ' + i);
+            caracteres.at(fT) = ' ' + i;
             freqs[fT] = tabela[i];
             fT++;
 
@@ -34,19 +34,20 @@ tuple<int*,vector<char>> tabelaFrequencias(string m, unsigned n){
 
     }
 
-    return make_tuple(freqs, caracteres); // Retorna tupla com os caracteres e suas respectivas frequências
+    return make_tuple(freqs, caracteres, fT); // Retorna tupla com os caracteres e suas respectivas frequências
 
 }
 
 int posicaoCaractere(char c, vector<char> *infos){
 
     int i;
+    int t = infos->size();
 
-    for(i = 0; i < infos->size(); i++)
+    for(i = 0; i < t; i++)
         if(c == infos->at(i))
             break;
 
-    return i;
+    return (i < t) ? i : i -1;
 
 }
 
@@ -122,8 +123,9 @@ string comprimirHuffman(string str){
 
     vector<char> infos;
     int* freq;
+    int fT;
     
-    tie(freq, infos) = tabelaFrequencias(str, 224); // 224 caracteres tabelas ascii
+    tie(freq, infos, fT) = tabelaFrequencias(str, 224); // 224 caracteres tabelas ascii
   
     // Cria heap minima  
     priority_queue<NoHuff*, vector<NoHuff*>, compara> minHeap; 
@@ -155,7 +157,7 @@ string comprimirHuffman(string str){
     } 
 
     // Vetores auxiliares para armazenar info e seu respectivo codigo
-    vector<string> codigos;
+    vector<string> codigos(fT);
 
     // Gera o código para a árvore de Huffman criada
     gerarTabelaCodigos(minHeap.top(), "", &infos, &codigos);
@@ -166,8 +168,9 @@ string comprimirHuffman(string str){
     infos.clear();
     codigos.clear();
     // Retorna mensagem compactada
-    cout << compactarAscII(mC) << endl;
-    exit(1);
+    //cout << compactarAscII(mC) << endl;
+    //cout << endl << endl;
+    //exit(1);
     // Retorna mensagem compactada
     return compactarAscII(mC);
 
