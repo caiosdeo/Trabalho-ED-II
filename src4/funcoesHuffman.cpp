@@ -60,6 +60,9 @@ string gerarMensagemCodificada(string m, char **codigos, char *infos, int t){
     for(int i = 0; i < m.size(); i++)
         mensagemCodificada += string(codigos[posicaoCaractere(m[i],infos,t)]);
 
+    cout << mensagemCodificada << endl;
+    //exit(1);
+
     return mensagemCodificada; // Retorna mensagem codificada em 0's e 1's
 
 }
@@ -91,9 +94,9 @@ string compactarAscII(string mC){
 
         for(int j = 0; j < 7; j++)
             aux += mC[i+j];
+        //cout << aux << endl;
         compactado += gerarCodigoAscII(aux);
         aux = "";
-        cout << compactado << endl;
 
     }
 
@@ -160,6 +163,7 @@ string comprimirHuffman(string str){
 
     // Gera o código para a árvore de Huffman criada
     gerarTabelaCodigos(minHeap.top(), "", infos, codigos, fT);
+    exit(1);
 
     string mC = gerarMensagemCodificada(str, codigos, infos, fT);
     // Desaloca estruturas
@@ -168,11 +172,11 @@ string comprimirHuffman(string str){
     for(int i = 0; i < fT; i++)
         delete[] codigos[i];
     delete[] codigos;
-    cout << mC << endl;
+    //cout << mC << endl;
     // Retorna mensagem compactada
     //cout << compactarAscII(mC) << endl;
     //cout << endl << endl;
-    exit(1);
+    //exit(1);
     // Retorna mensagem compactada
     return compactarAscII(mC);
 
@@ -191,12 +195,27 @@ void gerarTabelaCodigos(NoHuff* raiz, string str, char *infos, char **codigos, i
         int tStr = str.size();
         codigos[posicao] = (char*)malloc(tStr*sizeof(char));
         for(int i = 0; i < tStr; i++)
-            codigos[posicao][i] += str[i];
+            codigos[posicao][i] = str[i];
+
+        for(int i = 0; i < tStr; i++)
+            cout << codigos[posicao][i];
+        cout << endl;    
 
     }
 
     // Chamada para filhos a esquerda e direita
-    gerarTabelaCodigos(raiz->getEsquerdo(), str + "0", infos, codigos, t); 
-    gerarTabelaCodigos(raiz->getDireito(), str + "1", infos, codigos, t); 
+    //if(raiz->getEsquerdo() != nullptr){
+
+        //str += '0';
+        gerarTabelaCodigos(raiz->getEsquerdo(), str + '0', infos, codigos, t); 
+
+    //}
+
+    //if(raiz->getDireito() != nullptr){
+
+        //str += '1';
+        gerarTabelaCodigos(raiz->getDireito(), str + '1', infos, codigos, t); 
+
+    //}
 
 } 
