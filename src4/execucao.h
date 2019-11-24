@@ -26,6 +26,6 @@ void executar();
  * @param n tamanho do conjunto
  * @param saida Arquivo de saída com as métricas
  */
-void fluxo(string* conjunto, unsigned n, fstream &saida);
+void fluxo(string* conjunto, int n, fstream &saida);
 
 #endif //EXECUCAO_H_INCLUDED

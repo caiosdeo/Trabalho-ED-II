@@ -2,10 +2,11 @@
 #include "noHuffman.h"
 #include <cmath>
 #include <bits/stdc++.h>
+#include<stdlib.h>
 
-tuple<int*,char*, int> tabelaFrequencias(string m, unsigned n){
+tuple<int*,char*, int> tabelaFrequencias(string m, int n){
 
-    int* tabela = (int*)calloc(n, sizeof(int)); // aloca tabela de frequências
+    int* tabela = (int*)calloc(n,sizeof(int)); // aloca tabela de frequências
     int fT = 0; // Contador para número de caracteres válidos
 
     // Loop para contagem de frequências de cada caracter da mensagem m
@@ -18,7 +19,7 @@ tuple<int*,char*, int> tabelaFrequencias(string m, unsigned n){
             fT++;
 
     // Alocando memória para frequências e caracteres
-    char *caracteres = (char*)calloc(fT,sizeof(char));
+    char *caracteres = (char*)malloc(fT*sizeof(char));
     int* freqs = (int*)calloc(fT, sizeof(int));
     fT = 0;
     // Loop para inserir caracteres válidos
@@ -34,8 +35,6 @@ tuple<int*,char*, int> tabelaFrequencias(string m, unsigned n){
 
     }
 
-    delete [] tabela;
-
     return make_tuple(freqs, caracteres, fT); // Retorna tupla com os caracteres e suas respectivas frequências
 
 }
@@ -44,6 +43,7 @@ int posicaoCaractere(char c, char *infos, int t){
 
     int i;
 
+    // Encontra a posição do caractere no vetor de caracteres
     for(i = 0; i < t; i++)
         if(c == infos[i])
             break;
@@ -126,6 +126,7 @@ struct compara {
 
 string comprimirHuffman(string str){
 
+    str += '\0';
     NoHuff *esquerdo, *direito, *pai; 
 
     char *infos;
@@ -139,7 +140,7 @@ string comprimirHuffman(string str){
   
     // Insere todos os caracteres
     for (int i = 0; i < fT; i++) 
-        minHeap.push(new NoHuff(infos[i], freq[i])); 
+        minHeap.push(new NoHuff(infos[i], freq[i], nullptr, nullptr)); 
   
     // Loop até o tamanho da heap ser 1 
     while (minHeap.size() != 1) { 
@@ -153,7 +154,7 @@ string comprimirHuffman(string str){
   
         // Cria um novo nó com frequência igual a soma dos dois nós anteriores
         // com info = 0, valor para nós internos 
-        pai = new NoHuff(0, esquerdo->getFrequencia() + direito->getFrequencia()); 
+        pai = new NoHuff(0, esquerdo->getFrequencia() + direito->getFrequencia(), nullptr, nullptr); 
   
         // Os nós extraídos se tornam filhos do novo nó.
         pai->setEsquerdo(esquerdo); 
@@ -164,18 +165,12 @@ string comprimirHuffman(string str){
     } 
 
     // Vetor auxiliares para armazenar código de respectiva info
-    char** codigos = (char**)calloc(fT,sizeof(char*));
+    char** codigos = (char**)malloc(fT*sizeof(char*));
 
     // Gera o código para a árvore de Huffman criada
     gerarTabelaCodigos(minHeap.top(), "", infos, codigos, fT);
 
     string mC = gerarMensagemCodificada(str, codigos, infos, fT);
-    // Desaloca estruturas
-    delete[] freq;
-    delete[] infos;
-    for(int i = 0; i < fT; i++)
-        delete[] codigos[i];
-    delete[] codigos;
 
     // Retorna mensagem compactada
     return compactarAscII(mC);
@@ -184,20 +179,23 @@ string comprimirHuffman(string str){
 
 void gerarTabelaCodigos(NoHuff* raiz, string str, char *infos, char **codigos, int t){ 
 
+    // Se nulo, interrompe a codificação
     if(!raiz)
         return;
 
+    // Se folha, armazena codificação
     if(raiz->getInfo() != 0){
 
         int posicao = posicaoCaractere(raiz->getInfo(), infos, t);
         str += '\0';
         int tStr = str.size();
-        codigos[posicao] = (char*)calloc(tStr,sizeof(char));
+        codigos[posicao] = (char*)malloc(tStr*sizeof(char));
         for(int i = 0; i < tStr; i++)
             codigos[posicao][i] = str[i];
 
     }
 
+    // Se não-folha, continua busca por folha à esquerda e à direita
     gerarTabelaCodigos(raiz->getEsquerdo(), str + '0', infos, codigos, t);
     gerarTabelaCodigos(raiz->getDireito(), str + '1', infos, codigos, t); 
 
