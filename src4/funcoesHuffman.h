@@ -16,15 +16,6 @@ using namespace std;
 tuple<int*,char*> tabelaFrequencias(string m, unsigned n);
 
 /**
- * Método para construir a árvore de Huffman
- * @author eliascassis
- * @param huffHeap vetor com nós de Huffman
- * @param tam número de nós de Huffman 
- * @return raiz da árvore de huffman
- */
-NoHuff* huffTree(NoHuff** huffHeap, unsigned tam);
-
-/**
  * Método para codificar mensagem em binário
  * @author eliascassis
  * @param m string a ser codificada
