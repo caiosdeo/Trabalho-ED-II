@@ -38,13 +38,25 @@ tuple<int*,char*> tabelaFrequencias(string m, unsigned n){
 
 }
 
-string gerarMensagemCodificada(string m, vector<string> &codigos){
+int posicaoCaractere(char c, vector<char> infos){
+
+    int i;
+
+    for(i = 0; i < infos.size(); i++)
+        if(c == infos[i])
+            break;
+
+    return i;
+
+}
+
+string gerarMensagemCodificada(string m, vector<string> &codigos, vector<char> infos){
 
     string mensagemCodificada; // Declara mensagem codificada
 
     // Loop para codificar cada caractere da mensagem
     for(int i = 0; i < m.size(); i++)
-        mensagemCodificada += codigos[m[i]-' '];
+        mensagemCodificada += codigos[posicaoCaractere(m[i], infos)];
 
     return mensagemCodificada; // Retorna mensagem codificada em 0's e 1's
 
@@ -146,7 +158,7 @@ string comprimirHuffman(string str){
     // Gera o código para a árvore de Huffman criada
     gerarTabelaCodigos(minHeap.top(), "", &infos, &codigos); 
 
-    return gerarMensagemCodificada(gerarString(infos), codigos);
+    return gerarMensagemCodificada(gerarString(infos), codigos, infos);
 
 }
 

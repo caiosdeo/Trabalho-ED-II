@@ -20,9 +20,10 @@ tuple<int*,char*> tabelaFrequencias(string m, unsigned n);
  * @author eliascassis
  * @param m string a ser codificada
  * @param codigos vetor com códigos gerados (binário)
+ * @param infos vetor de caracteres da mensagem
  * @return mensagem codificada em binário
  */
-string gerarMensagemCodificada(string m, vector<string> &codigos);
+string gerarMensagemCodificada(string m, vector<string> &codigos, vector<char> infos);
 
 /**
  * Método para converter binário em inteiro
