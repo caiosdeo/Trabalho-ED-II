@@ -1,32 +1,14 @@
 #include "noHuffman.h"
 
-// Construtores e destrutor
-NoHuff::NoHuff(){
-    this->esquerdo = nullptr;
-    this->direito = nullptr;
-}
-
-NoHuff::NoHuff(char info, int freq){
+// Construtor
+NoHuff::NoHuff(char info, int freq, NoHuff* direito, NoHuff* esquerdo){
 
     this->info = info;
-    this->freq = freq;
-    this->direito = nullptr;
-    this->esquerdo = nullptr;
-
-}
-
-NoHuff::NoHuff(int freq, NoHuff* direito, NoHuff* esquerdo){
-
-    this->info = '\0';
     this->freq = freq;
     this->direito = direito;
     this->esquerdo = esquerdo;
 
 }
-
-NoHuff::~NoHuff(){
-}
-
 
 // Funções de get
 char NoHuff::getInfo(){

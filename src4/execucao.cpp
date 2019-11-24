@@ -14,7 +14,7 @@ void executar(){
     entrada.open("../database/entrada24.txt"); // Arquivo de entrada
 
     // Variaveis para leitura do arquivo de entrada
-    unsigned qtdConjuntos, n;
+    int qtdConjuntos, n;
 
     // Verificação se os arquivos estão abertos para prosseguimento na execução do programa
     if(entrada.is_open()){
@@ -62,7 +62,7 @@ void executar(){
                         fluxo(conjunto, n, saida); 
 
                         //Limpa a tela
-                        unsigned clear = system("clear");
+                        int clear = system("clear");
 
                     }
                     else
@@ -88,7 +88,7 @@ void executar(){
 
 }
 
-void fluxo(string* conjunto, unsigned n, fstream &saida){
+void fluxo(string* conjunto, int n, fstream &saida){
 
     //Loop para rodar para os dois algoritmos de compressão em única execução
     for (int versao = 0; versao < 2; versao++){

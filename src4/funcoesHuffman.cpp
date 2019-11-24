@@ -2,10 +2,11 @@
 #include "noHuffman.h"
 #include <cmath>
 #include <bits/stdc++.h>
+#include<stdlib.h>
 
-tuple<int*,char*, int> tabelaFrequencias(string m, unsigned n){
+tuple<int*,char*, int> tabelaFrequencias(string m, int n){
 
-    int* tabela = (int*)calloc(n, sizeof(int)); // aloca tabela de frequências
+    int* tabela = (int*)calloc(n,sizeof(int)); // aloca tabela de frequências
     int fT = 0; // Contador para número de caracteres válidos
 
     // Loop para contagem de frequências de cada caracter da mensagem m
@@ -34,8 +35,6 @@ tuple<int*,char*, int> tabelaFrequencias(string m, unsigned n){
 
     }
 
-    delete [] tabela;
-
     return make_tuple(freqs, caracteres, fT); // Retorna tupla com os caracteres e suas respectivas frequências
 
 }
@@ -44,6 +43,7 @@ int posicaoCaractere(char c, char *infos, int t){
 
     int i;
 
+    // Encontra a posição do caractere no vetor de caracteres
     for(i = 0; i < t; i++)
         if(c == infos[i])
             break;
@@ -65,6 +65,8 @@ string gerarMensagemCodificada(string m, char **codigos, char *infos, int t){
             mensagemCodificada += codigos[posicaoCaractere(m[i],infos,t)][j]; 
 
     }
+
+    free(codigos); // Desaloca codigos
 
     mensagemCodificada += '\0'; 
 
@@ -99,7 +101,7 @@ string compactarAscII(string mC){
 
         for(int j = 0; j < 7; j++)
             aux += mC[i+j];
-        //cout << aux << endl;
+
         compactado += gerarCodigoAscII(aux);
         aux = "";
 
@@ -126,6 +128,7 @@ struct compara {
 
 string comprimirHuffman(string str){
 
+    str += '\0';
     NoHuff *esquerdo, *direito, *pai; 
 
     char *infos;
@@ -139,7 +142,7 @@ string comprimirHuffman(string str){
   
     // Insere todos os caracteres
     for (int i = 0; i < fT; i++) 
-        minHeap.push(new NoHuff(infos[i], freq[i])); 
+        minHeap.push(new NoHuff(infos[i], freq[i], nullptr, nullptr)); 
   
     // Loop até o tamanho da heap ser 1 
     while (minHeap.size() != 1) { 
@@ -153,7 +156,7 @@ string comprimirHuffman(string str){
   
         // Cria um novo nó com frequência igual a soma dos dois nós anteriores
         // com info = 0, valor para nós internos 
-        pai = new NoHuff(0, esquerdo->getFrequencia() + direito->getFrequencia()); 
+        pai = new NoHuff(0, esquerdo->getFrequencia() + direito->getFrequencia(), nullptr, nullptr); 
   
         // Os nós extraídos se tornam filhos do novo nó.
         pai->setEsquerdo(esquerdo); 
@@ -170,16 +173,7 @@ string comprimirHuffman(string str){
     gerarTabelaCodigos(minHeap.top(), "", infos, codigos, fT);
 
     string mC = gerarMensagemCodificada(str, codigos, infos, fT);
-    // Desaloca estruturas
-    delete[] freq;
-    delete[] infos;
-    for(int i = 0; i < fT; i++)
-        delete[] codigos[i];
-    delete[] codigos;
-    // Retorna mensagem compactada
-    cout << compactarAscII(mC) << endl;
-    //cout << endl << endl;
-    exit(1);
+
     // Retorna mensagem compactada
     return compactarAscII(mC);
 
@@ -187,9 +181,11 @@ string comprimirHuffman(string str){
 
 void gerarTabelaCodigos(NoHuff* raiz, string str, char *infos, char **codigos, int t){ 
 
+    // Se nulo, interrompe a codificação
     if(!raiz)
         return;
 
+    // Se folha, armazena codificação
     if(raiz->getInfo() != 0){
 
         int posicao = posicaoCaractere(raiz->getInfo(), infos, t);
@@ -201,6 +197,7 @@ void gerarTabelaCodigos(NoHuff* raiz, string str, char *infos, char **codigos, i
 
     }
 
+    // Se não-folha, continua busca por folha à esquerda e à direita
     gerarTabelaCodigos(raiz->getEsquerdo(), str + '0', infos, codigos, t);
     gerarTabelaCodigos(raiz->getDireito(), str + '1', infos, codigos, t); 
 

@@ -10,10 +10,7 @@ class NoHuff{
         NoHuff* direito; // Filho à direita
 
     public:
-        NoHuff(); // Construtor padrão
-        NoHuff(char info, int freq); // Construtor 1
-        NoHuff(int freq, NoHuff* direito, NoHuff* esquerdo); // Construtor 2
-        ~NoHuff(); // Destrutor
+        NoHuff(char info, int freq, NoHuff* direito, NoHuff* esquerdo); // Construtor
         // Gets
         char getInfo(); 
         int getFrequencia();
