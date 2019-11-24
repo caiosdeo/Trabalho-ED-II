@@ -3,14 +3,38 @@
 #include <cmath>
 #include <bits/stdc++.h>
 
-int* tabelaFrequencias(string m, unsigned n){
+tuple<int*,char*> tabelaFrequencias(string m, unsigned n){
 
     int* tabela = (int*)calloc(n, sizeof(int)); // aloca tabela de frequências
+    int fT = 0; // Contador para número de caracteres válidos
+
     // Loop para contagem de frequências de cada caracter da mensagem m
     for(int i = 0; i < m.size(); i++)
         tabela[m[i]-' ']++;
 
-    return tabela;
+    // Loop para contagem de caracteres válidos;
+    for(int i = 0; i < n; i++)
+        if(tabela[i] > 0)
+            fT++;
+
+    // Alocando memória para frequências e caracteres
+    char* caracteres = (char*)malloc(fT*sizeof(char));
+    int* freqs = (int*)calloc(fT, sizeof(int));
+    fT = 0;
+    // Loop para inserir caracteres válidos
+    for(int i = 0; i < n; i++){
+
+        if(tabela[i] > 0){
+
+            caracteres[fT] = ' ' + i;
+            freqs[fT] = tabela[i];
+            fT++;
+
+        }
+
+    }
+
+    return make_tuple(freqs, caracteres); // Retorna tupla com os caracteres e suas respectivas frequências
 
 }
 
