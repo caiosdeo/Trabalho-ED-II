@@ -157,7 +157,8 @@ string comprimirHuffman(string str){
     } 
 
     // Vetores auxiliares para armazenar info e seu respectivo codigo
-    vector<string> codigos(fT);
+    vector<string> codigos;
+    infos.clear();
 
     // Gera o código para a árvore de Huffman criada
     gerarTabelaCodigos(minHeap.top(), "", &infos, &codigos);
