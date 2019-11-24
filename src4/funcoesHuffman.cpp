@@ -66,6 +66,8 @@ string gerarMensagemCodificada(string m, char **codigos, char *infos, int t){
 
     }
 
+    free(codigos); // Desaloca codigos
+
     mensagemCodificada += '\0'; 
 
     return mensagemCodificada; // Retorna mensagem codificada em 0's e 1's
