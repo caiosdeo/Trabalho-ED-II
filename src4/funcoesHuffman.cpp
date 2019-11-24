@@ -81,7 +81,7 @@ string compactarAscII(string mC){
     }
 
     // Adiciona o restante dos bits à variável auxiliar
-    for(int i = resto; i > 0; i--)
+    for(int i = 0; i < resto; i++)
         aux += mC[t-1-i];
 
     compactado += gerarCodigoAscII(aux); // Codificando bits restantes
