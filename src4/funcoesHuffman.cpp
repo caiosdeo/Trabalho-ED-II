@@ -105,14 +105,17 @@ string comprimirHuffman(string str){
 
     NoHuff *esquerdo, *direito, *pai; 
 
-    int* freq = tabelaFrequencias(str, 224); // 224 caracteres tabelas ascii
+    char* info;
+    int* freq;
+    
+    tie(freq, info) = tabelaFrequencias(str, 224); // 224 caracteres tabelas ascii
   
     // Cria heap minima  
     priority_queue<NoHuff*, vector<NoHuff*>, compara> minHeap; 
   
     // Insere todos os caracteres
     for (int i = 0; i < str.size(); ++i) 
-        minHeap.push(new NoHuff(str[i], freq[i])); 
+        minHeap.push(new NoHuff(info[i], freq[i])); 
   
     // Loop até o tamanho da heap ser 1 
     while (minHeap.size() != 1) { 
