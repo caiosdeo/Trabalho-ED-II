@@ -53,12 +53,13 @@ int posicaoCaractere(char c, vector<char> *infos){
 string gerarMensagemCodificada(string m, vector<string> *codigos, vector<char> *infos){
 
     string mensagemCodificada; // Declara mensagem codificada
+    mensagemCodificada.clear();
 
     // Loop para codificar cada caractere da mensagem
     for(int i = 0; i < m.size(); i++)
         mensagemCodificada += codigos->at(posicaoCaractere(m[i], infos));
 
-    return mensagemCodificada; // Retorna mensagem codificada em 0's e 1's
+    return mensagemCodificada += '\0'; // Retorna mensagem codificada em 0's e 1's
 
 }
 
@@ -80,6 +81,8 @@ string compactarAscII(string mC){
 
     string aux; // String auxiliar
     string compactado; // Variável para string compactada
+    aux.clear();
+    compactado.clear();
     int t = mC.size(); // Tamanho da mensagem
     int steps = t / 8; // Quantidade de passos de preenchimento de byte
     int resto = t % 8; // Quantidade de caracteres restante para codificação
@@ -90,7 +93,7 @@ string compactarAscII(string mC){
         for(int j = 0; j < 7; j++)
             aux += mC[i+j];
         compactado += gerarCodigoAscII(aux);
-        aux = '\0';
+        aux.clear();
 
     }
 
@@ -100,7 +103,7 @@ string compactarAscII(string mC){
 
     compactado += gerarCodigoAscII(aux); // Codificando bits restantes
 
-    return compactado; // Retorna string compactada
+    return compactado += '\0'; // Retorna string compactada
  
 }
 
@@ -140,8 +143,8 @@ string comprimirHuffman(string str){
         minHeap.pop(); 
   
         // Cria um novo nó com frequência igual a soma dos dois nós anteriores
-        // com info = '\0', valor para nós internos 
-        pai = new NoHuff('\0', esquerdo->getFrequencia() + direito->getFrequencia()); 
+        // com info = '$', valor para nós internos 
+        pai = new NoHuff('$', esquerdo->getFrequencia() + direito->getFrequencia()); 
   
         // Os nós extraídos se tornam filhos do novo nó.
         pai->setEsquerdo(esquerdo); 
@@ -162,8 +165,11 @@ string comprimirHuffman(string str){
     delete[] freq;
     infos.clear();
     codigos.clear();
-    // Retorna mensagem codificada
-    return mC;
+    // Retorna mensagem compactada
+    cout << compactarAscII(mC) << endl;
+    exit(1);
+    // Retorna mensagem compactada
+    return compactarAscII(mC);
 
 }
 
@@ -174,7 +180,7 @@ void gerarTabelaCodigos(NoHuff* raiz, string str, vector<char> *infos, vector<st
         return; 
   
     // Se é nó folha, adiciona a info e o codigo nos seus vetores
-    if (raiz->getInfo() != '\0'){
+    if (raiz->getInfo() != '$'){
 
         infos->push_back(raiz->getInfo());
         codigos->push_back(str);
