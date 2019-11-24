@@ -134,7 +134,7 @@ void fluxo(string* conjunto, int n, fstream &saida){
 
                 cout << "Comprimindo com Algoritmo de LZW" << endl;
 
-               /* for(int i = 0; i < n; i++){
+                for(int i = 0; i < n; i++){
 
                     // Ponto de inicio de contagem para tempo de execução do algoritmo
                     auto inicio = chrono::high_resolution_clock::now();
@@ -154,7 +154,7 @@ void fluxo(string* conjunto, int n, fstream &saida){
                 }
 
                 // Imprimindo resultados no arquivo de saída
-                imprimirSaida(saida, versao, n, taxaComp, armazenamento, tempoProcessamento);*/
+                imprimirSaida(saida, versao, n, taxaComp, armazenamento, tempoProcessamento);
 
                 break;
             
