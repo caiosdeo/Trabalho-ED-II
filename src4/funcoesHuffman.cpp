@@ -18,7 +18,7 @@ tuple<int*,char*, int> tabelaFrequencias(string m, unsigned n){
             fT++;
 
     // Alocando memória para frequências e caracteres
-    char *caracteres = (char*)malloc(fT*sizeof(char));
+    char *caracteres = (char*)calloc(fT,sizeof(char));
     int* freqs = (int*)calloc(fT, sizeof(int));
     fT = 0;
     // Loop para inserir caracteres válidos
@@ -164,7 +164,7 @@ string comprimirHuffman(string str){
     } 
 
     // Vetor auxiliares para armazenar código de respectiva info
-    char** codigos = (char**)malloc(fT*sizeof(char*));
+    char** codigos = (char**)calloc(fT,sizeof(char*));
 
     // Gera o código para a árvore de Huffman criada
     gerarTabelaCodigos(minHeap.top(), "", infos, codigos, fT);
@@ -192,7 +192,7 @@ void gerarTabelaCodigos(NoHuff* raiz, string str, char *infos, char **codigos, i
         int posicao = posicaoCaractere(raiz->getInfo(), infos, t);
         str += '\0';
         int tStr = str.size();
-        codigos[posicao] = (char*)malloc(tStr*sizeof(char));
+        codigos[posicao] = (char*)calloc(tStr,sizeof(char));
         for(int i = 0; i < tStr; i++)
             codigos[posicao][i] = str[i];
 
