@@ -54,13 +54,13 @@ int posicaoCaractere(char c, char *infos, int t){
 
 string gerarMensagemCodificada(string m, char **codigos, char *infos, int t){
 
-    string mensagemCodificada; // Declara mensagem codificada
+    string mensagemCodificada = ""; // Declara mensagem codificada
 
     // Loop para codificar cada caractere da mensagem
     for(int i = 0; i < m.size(); i++)
         mensagemCodificada += string(codigos[posicaoCaractere(m[i],infos,t)]);
 
-    return mensagemCodificada += '\0'; // Retorna mensagem codificada em 0's e 1's
+    return mensagemCodificada; // Retorna mensagem codificada em 0's e 1's
 
 }
 
@@ -80,10 +80,8 @@ char gerarCodigoAscII(string s){
 
 string compactarAscII(string mC){
 
-    string aux; // String auxiliar
-    string compactado; // Variável para string compactada
-    aux.clear();
-    compactado.clear();
+    string aux = ""; // String auxiliar
+    string compactado = ""; // Variável para string compactada
     int t = mC.size(); // Tamanho da mensagem
     int steps = t / 8; // Quantidade de passos de preenchimento de byte
     int resto = t % 8; // Quantidade de caracteres restante para codificação
@@ -94,7 +92,8 @@ string compactarAscII(string mC){
         for(int j = 0; j < 7; j++)
             aux += mC[i+j];
         compactado += gerarCodigoAscII(aux);
-        aux.clear();
+        aux = "";
+        cout << compactado << endl;
 
     }
 
@@ -104,7 +103,7 @@ string compactarAscII(string mC){
 
     compactado += gerarCodigoAscII(aux); // Codificando bits restantes
 
-    return compactado += '\0'; // Retorna string compactada
+    return compactado; // Retorna string compactada
  
 }
 
@@ -169,10 +168,11 @@ string comprimirHuffman(string str){
     for(int i = 0; i < fT; i++)
         delete[] codigos[i];
     delete[] codigos;
+    cout << mC << endl;
     // Retorna mensagem compactada
-    cout << compactarAscII(mC) << endl;
+    //cout << compactarAscII(mC) << endl;
     //cout << endl << endl;
-    //exit(1);
+    exit(1);
     // Retorna mensagem compactada
     return compactarAscII(mC);
 
