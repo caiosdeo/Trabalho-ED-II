@@ -1,8 +1,8 @@
 BEGIN{
 
-  print "\\begin{table}[htbp]" >> "tabelaTratadosFase4.tex";
+  print "\\begin{table}[H]" >> "tabelaTratadosFase4.tex";
   print "\\caption{Média das Métricas de Desempenho}" >> "tabelaTratadosFase4.tex";
-  print "\\label{tab:table1}" >> "tabelaTratadosFase4.tex";
+  print "\\label{tab:compressao}" >> "tabelaTratadosFase4.tex";
   print "\\begin{tabular}{c|c|c|c|c}" >> "tabelaTratadosFase4.tex";
   print "\\textbf{Algoritmo} &\\textbf{N} & \\textbf{Taxa de Compressão} & \\textbf{Armazenamento} & \\textbf{Tempo (ms)}\\\\" >> "tabelaTratadosFase4.tex";
   print "\\hline" >> "tabelaTratadosFase4.tex";
