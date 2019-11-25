@@ -56,40 +56,28 @@ string* leituraDescricoes(fstream &dataset, int n){
     //Variavel auxiliar para controlar o tamanho do conjunto
     int i = 0;
 
-    // Alterando a semente com o tempo
-    srand(time(0));
-
     // Eliminando a primeira linha do arquivo
     getline(dataset,descricao);
 
-    // Loop para definir o conjunto reiniciando o arquivo
-    while(i < n){
+    // Extração de dados até o tamanho do conjunto e o fim do arquivo
+    while(dataset.good() && i < n){
 
-        // Extração de dados até o tamanho do conjunto e o fim do arquivo
-        while(dataset.good() && i < n){
+        if(i == n) // Se o tamanho do conjunto é igual ao n
+            continue; // Sai do laço 
+            
+        // Pegando as informações de cada descricao
+        getline(dataset,descricao);
 
-            if(i == n) // Se o tamanho do conjunto é igual ao n
-                continue; // Sai do laço 
-              
-            // Pegando as informações de cada descricao
-            getline(dataset,descricao);
+        // Selecionando descricoes a partir do resto de uma divisão por 3
+        if(!descricao.empty()){ 
+            
+            //Atribuindo uma descricao
+            d[i] = descricao;
 
-            // Selecionando descricoes a partir do resto de uma divisão por 3
-            if(rand() % 3 == 0 && !descricao.empty()){ 
-                
-                //Atribuindo uma descricao
-                d[i] = descricao;
-
-                i++;
-
-            }
+            i++;
 
         }
 
-        // Voltando para o inicio do arquivo de dados
-        dataset.clear();
-        dataset.seekg(0, ios::beg);
-        
     }
 
     // Retornando o conjunto de descricoes
