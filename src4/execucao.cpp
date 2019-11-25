@@ -38,7 +38,7 @@ void executar(){
                 // ! serão 5 execuções para cada conjunto     
                 for (int i = 0; i < 5; i++){
 
-                    dataset.open("database/descricoes.txt", ios::in); // Arquivo de dados como leitura
+                    dataset.open("../database/descricoes.txt", ios::in); // Arquivo de dados como leitura
 
                     if(dataset.is_open()){
 
