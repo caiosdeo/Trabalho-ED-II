@@ -14,8 +14,8 @@ void executar(){
 
     fstream entrada, dataset, saida;
 
-    entrada.open("../database/entrada24.txt"); // Arquivo de entrada
-    dataset.open("../database/processadosFase1.txt", ios::in); // Arquivo de dados como leitura
+    entrada.open("database/entrada24.txt"); // Arquivo de entrada
+    dataset.open("database/processadosFase1.txt", ios::in); // Arquivo de dados como leitura
 
     // Variaveis para leitura do arquivo de entrada
     unsigned qtdConjuntos, n;

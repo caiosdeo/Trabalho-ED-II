@@ -11,7 +11,7 @@ void executar(){
 
     fstream entrada, dataset, saida;
 
-    entrada.open("../database/entradaFase3.txt"); // Arquivo de entrada
+    entrada.open("database/entradaFase3.txt"); // Arquivo de entrada
 
     // Variaveis para leitura do arquivo de entrada
     int qtdConjuntos, n;
@@ -23,11 +23,11 @@ void executar(){
         entrada >> qtdConjuntos;
 
         //Limpando o arquivo
-        saida.open("../../saidaFase4.csv", ios::out);
+        saida.open("../saidaFase4.csv", ios::out);
         saida.close();
 
         //Abrindo arquivo de saida do cenário 
-        saida.open("../../saidaFase4.csv", ios::out | ios::app); // Arquivo de saída como escrita
+        saida.open("../saidaFase4.csv", ios::out | ios::app); // Arquivo de saída como escrita
 
         // Lendo os N
         while(entrada >> n){
@@ -38,7 +38,7 @@ void executar(){
                 // ! serão 5 execuções para cada conjunto     
                 for (int i = 0; i < 5; i++){
 
-                    dataset.open("../database/descricoes.txt", ios::in); // Arquivo de dados como leitura
+                    dataset.open("database/descricoes.txt", ios::in); // Arquivo de dados como leitura
 
                     if(dataset.is_open()){
 
