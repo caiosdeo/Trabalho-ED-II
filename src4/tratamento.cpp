@@ -85,9 +85,15 @@ string* leituraDescricoes(fstream &dataset, int n){
 
 }
 
-float taxaCompressao(string m, string cM){
+float taxaCompressaoHuffman(string m, string cM){
 
-    return cM.size() / m.size();
+    return float(cM.size()) / float(m.size());
+
+}
+
+float taxaCompressaoLZW(string m, vector<int> cM){
+
+    return float(cM.size()) / float(m.size());
 
 }
 

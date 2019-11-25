@@ -118,7 +118,7 @@ void fluxo(string* conjunto, int n, fstream &saida){
                     //Tempo de processamento do algoritmo
                     tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
-                    taxaComp += taxaCompressao(conjunto[i], comprimida);
+                    taxaComp += taxaCompressaoHuffman(conjunto[i], comprimida);
                     armazenamento += armazenamentoDisco(comprimida);
 
                 }
@@ -148,7 +148,7 @@ void fluxo(string* conjunto, int n, fstream &saida){
                     //Tempo de processamento do algoritmo
                     tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
-                    taxaComp += taxaCompressao(conjunto[i], comprimida);
+                    taxaComp += taxaCompressaoLZW(conjunto[i], comprimida);
                     armazenamento += armazenamentoDisco(comprimida);
 
                 }
