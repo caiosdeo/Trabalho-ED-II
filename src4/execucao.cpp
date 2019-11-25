@@ -11,7 +11,7 @@ void executar(){
 
     fstream entrada, dataset, saida;
 
-    entrada.open("database/entradaFase4.txt"); // Arquivo de entrada
+    entrada.open("../database/entradaFase4.txt"); // Arquivo de entrada
 
     // Variaveis para leitura do arquivo de entrada
     int qtdConjuntos, n;
