@@ -69,8 +69,6 @@ string gerarMensagemCodificada(string m, char **codigos, char *infos, int t){
     free(codigos); // Desaloca codigos
 
     mensagemCodificada += '\0'; 
-    cout << mensagemCodificada << endl;
-    cout << endl;
 
     return mensagemCodificada; // Retorna mensagem codificada em 0's e 1's
 
@@ -115,8 +113,7 @@ string compactarAscII(string mC){
 
     compactado += gerarCodigoAscII(aux); // Codificando bits restantes
     compactado += '\0';
-    cout << compactado << endl;
-    exit(1);
+
     return compactado += '\0'; // Retorna string compactada
  
 }
@@ -131,8 +128,7 @@ struct compara {
 };
 
 string comprimirHuffman(string str){
-    cout << str << endl;
-    cout << endl;
+
     str += '\0';
     NoHuff *esquerdo, *direito, *pai; 
 

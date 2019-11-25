@@ -32,6 +32,9 @@ void executar(){
         // Lendo os N
         while(entrada >> n){
 
+            if(n != 17000)
+                continue;
+
             // Verificando se o arquivo de saida está aberto
             if(saida.is_open()){
 
