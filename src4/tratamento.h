@@ -91,6 +91,14 @@ float taxaCompressaoLZW(string m, vector<int> cM);
  * @param m mensagem
  * @return tamanho da string em bytes
  */
-int armazenamentoDisco(string m);
+int armazenamentoDiscoHuffman(string m);
+
+/**
+ * Método para retornar o tamanho em bytes ocupado em disco por uma mensagem
+ * @author eliascassis
+ * @param m mensagem
+ * @return tamanho da string em bytes
+ */
+int armazenamentoDiscoLZW(vector<int> m);
 
 #endif //TRATAMENTO_H_INCLUDED
