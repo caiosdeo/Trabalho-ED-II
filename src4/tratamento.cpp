@@ -87,18 +87,24 @@ string* leituraDescricoes(fstream &dataset, int n){
 
 float taxaCompressaoHuffman(string m, string cM){
 
-    return float(cM.size()) / float(m.size());
+    return float(cM.size()*sizeof(char)) / float(m.size()*sizeof(char));
 
 }
 
 float taxaCompressaoLZW(string m, vector<int> cM){
 
-    return float(cM.size()) / float(m.size());
+    return float(cM.size()*sizeof(int)) / float(m.size()*sizeof(char));
 
 }
 
-int armazenamentoDisco(string m){
+int armazenamentoDiscoHuffman(string m){
 
-    return m.size();
+    return m.size()*sizeof(char);
+
+}
+
+int armazenamentoDiscoLZW(vector<int> m){
+
+    return m.size()*sizeof(int);
 
 }
