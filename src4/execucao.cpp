@@ -140,7 +140,7 @@ void fluxo(string* conjunto, int n, fstream &saida){
                     auto inicio = chrono::high_resolution_clock::now();
                     
                     // * Chamada do algoritmo
-                    string comprimida = comprimirLZW(conjunto[i]);
+                    vector<int> comprimida = comprimirLZW(conjunto[i]);
 
                     // Ponto de parada de contagem para o tempo de execução do algoritmo
                     auto parada = chrono::high_resolution_clock::now();

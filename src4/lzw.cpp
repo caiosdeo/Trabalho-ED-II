@@ -8,7 +8,7 @@
 
 using namespace std;
 
-string comprimirLZW(string m){
+vector<int> comprimirLZW(string m){
 
     unordered_map<string, int> dicionario; 
 
@@ -52,8 +52,7 @@ string comprimirLZW(string m){
     }
 
     codigoSaida.push_back(dicionario[p]); 
-    return gerarStringCodigoLZW(codigoSaida);
-
+    return codigoSaida;
 
 }
 
