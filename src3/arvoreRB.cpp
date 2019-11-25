@@ -260,13 +260,16 @@ NodoRB* ArvoreRB::busca(int chave, NodoRB *no, unsigned long long *numTrocas, un
         return no;
 
     (*numComparacoes)++;
-    if(no->getChave() < chave && no != nullptr)
+    if(no->getChave() < chave && no != nullptr){
+        (*numTrocas)++;
         return busca(chave, no->getDir(), numTrocas, numComparacoes);
-
-    (*numComparacoes)++;
-    if(no->getChave() > chave && no != nullptr)
-        return busca(chave, no->getEsq(), numTrocas, numComparacoes);
+    }
     
+    (*numComparacoes)++;
+    if(no->getChave() > chave && no != nullptr){
+        (*numTrocas)++;
+        return busca(chave, no->getEsq(), numTrocas, numComparacoes);
+    }
     return no;
     
 }
