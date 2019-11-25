@@ -26,22 +26,22 @@ int main(){
         switch(selecao){
 
             case 1:{
-                int fase = system("./src/a.out");
+                int fase = system("src/a.out");
                 break;
             }
 
             case 2:{
-                int fase = system("./src2/a.out");
+                int fase = system("src2/a.out");
                 break;
             }
 
             case 3:{
-                int fase = system("./src3/a.out");
+                int fase = system("src3/a.out");
                 break;
             }
 
             case 4:{
-                int fase = system("./src4/a.out");
+                int fase = system("src4/a.out");
                 break;
             }
 

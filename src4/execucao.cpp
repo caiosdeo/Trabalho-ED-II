@@ -11,7 +11,7 @@ void executar(){
 
     fstream entrada, dataset, saida;
 
-    entrada.open("../database/entradaFase4.txt"); // Arquivo de entrada
+    entrada.open("database/entradaFase4.txt"); // Arquivo de entrada
 
     // Variaveis para leitura do arquivo de entrada
     int qtdConjuntos, n;
@@ -38,7 +38,7 @@ void executar(){
                 // ! serão 5 execuções para cada conjunto     
                 for (int i = 0; i < 5; i++){
 
-                    dataset.open("../database/descricoes.txt", ios::in); // Arquivo de dados como leitura
+                    dataset.open("database/descricoes.txt", ios::in); // Arquivo de dados como leitura
 
                     if(dataset.is_open()){
 
