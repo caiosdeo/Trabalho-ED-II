@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "execucao.h"
+#include "lzw.h"
 
 using namespace std;
 

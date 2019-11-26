@@ -118,13 +118,13 @@ void fluxo(string* conjunto, int n, fstream &saida){
                     //Tempo de processamento do algoritmo
                     tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
-                    taxaComp += taxaCompressaoHuffman(conjunto[i], comprimida);
-                    armazenamento += armazenamentoDiscoHuffman(comprimida);
+                    taxaComp += taxaCompressao(conjunto[i], comprimida);
+                    armazenamento += armazenamentoDisco(comprimida);
 
                 }
 
                 // Imprimindo resultados no arquivo de saída
-                imprimirSaida(saida, versao, n, taxaComp, armazenamento, tempoProcessamento);
+                imprimirSaida(saida, versao, n, taxaComp / n, armazenamento / n, tempoProcessamento / n);
 
                 break;
 
@@ -140,7 +140,7 @@ void fluxo(string* conjunto, int n, fstream &saida){
                     auto inicio = chrono::high_resolution_clock::now();
                     
                     // * Chamada do algoritmo
-                    vector<int> comprimida = comprimirLZW(conjunto[i]);
+                    string comprimida = comprimirLZW(conjunto[i]);
 
                     // Ponto de parada de contagem para o tempo de execução do algoritmo
                     auto parada = chrono::high_resolution_clock::now();
@@ -148,13 +148,13 @@ void fluxo(string* conjunto, int n, fstream &saida){
                     //Tempo de processamento do algoritmo
                     tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
-                    taxaComp += taxaCompressaoLZW(conjunto[i], &comprimida);
-                    armazenamento += armazenamentoDiscoLZW(&comprimida);
+                    taxaComp += taxaCompressao(conjunto[i], comprimida);
+                    armazenamento += armazenamentoDisco(comprimida);
 
                 }
 
                 // Imprimindo resultados no arquivo de saída
-                imprimirSaida(saida, versao, n, taxaComp, armazenamento, tempoProcessamento);
+                imprimirSaida(saida, versao, n, taxaComp / n, armazenamento / n, tempoProcessamento / n);
 
                 break;
             
