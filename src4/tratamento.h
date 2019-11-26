@@ -6,7 +6,6 @@
 //Inclusão de outras interfaces/bibliotecas
 #include <fstream>
 #include <chrono>
-#include<vector>
 
 using namespace std;
 

@@ -54,15 +54,15 @@ string comprimirLZW(string m){
 
     codigoSaida.push_back(dicionario[p]); 
 
-    return gerarStringCodigoLZW(codigoSaida);
+    return gerarStringCodigoLZW(&codigoSaida);
 
 }
 
-string gerarStringCodigoLZW(vector<int> c){
+string gerarStringCodigoLZW(vector<int> *c){
 
     stringstream smsg;
 
-    copy(c.begin(),c.end(),ostream_iterator<int>(smsg,""));
+    copy(c->begin(),c->end(),ostream_iterator<int>(smsg,""));
 
     string msg = smsg.str();
     

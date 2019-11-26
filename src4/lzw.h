@@ -23,6 +23,6 @@ string comprimirLZW(string m);
  * @param c vector<int> codigo em int da compressao
  * @return string string do codigo 
  */
-string gerarStringCodigoLZW(vector<int> c);
+string gerarStringCodigoLZW(vector<int> *c);
 
 #endif // LZW_H_INCLUDED
