@@ -91,9 +91,9 @@ float taxaCompressaoHuffman(string m, string cM){
 
 }
 
-float taxaCompressaoLZW(string m, vector<int> cM){
+float taxaCompressaoLZW(string m, vector<int> *cM){
 
-    return float(cM.size()*sizeof(int)) / float(m.size()*sizeof(char));
+    return float(cM->size()*sizeof(int)) / float(m.size()*sizeof(char));
 
 }
 
@@ -103,8 +103,8 @@ int armazenamentoDiscoHuffman(string m){
 
 }
 
-int armazenamentoDiscoLZW(vector<int> m){
+int armazenamentoDiscoLZW(vector<int> *m){
 
-    return m.size()*sizeof(int);
+    return m->size()*sizeof(int);
 
 }

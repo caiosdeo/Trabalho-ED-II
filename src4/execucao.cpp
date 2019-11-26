@@ -31,10 +31,7 @@ void executar(){
 
         // Lendo os N
         while(entrada >> n){
-
-            if(n != 17000)
-                continue;
-
+            
             // Verificando se o arquivo de saida está aberto
             if(saida.is_open()){
 
@@ -151,8 +148,8 @@ void fluxo(string* conjunto, int n, fstream &saida){
                     //Tempo de processamento do algoritmo
                     tempoProcessamento += chrono::duration_cast<chrono::milliseconds>(parada - inicio).count();
 
-                    taxaComp += taxaCompressaoLZW(conjunto[i], comprimida);
-                    armazenamento += armazenamentoDiscoLZW(comprimida);
+                    taxaComp += taxaCompressaoLZW(conjunto[i], &comprimida);
+                    armazenamento += armazenamentoDiscoLZW(&comprimida);
 
                 }
 

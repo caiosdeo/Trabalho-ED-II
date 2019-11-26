@@ -83,7 +83,7 @@ float taxaCompressaoHuffman(string m, string cM);
  * @param Cm mensagem codificada
  * @return taxa de compressão
  */
-float taxaCompressaoLZW(string m, vector<int> cM);
+float taxaCompressaoLZW(string m, vector<int> *cM);
 
 /**
  * Método para retornar o tamanho em bytes ocupado em disco por uma mensagem
@@ -99,6 +99,6 @@ int armazenamentoDiscoHuffman(string m);
  * @param m mensagem
  * @return tamanho da string em bytes
  */
-int armazenamentoDiscoLZW(vector<int> m);
+int armazenamentoDiscoLZW(vector<int> *m);
 
 #endif //TRATAMENTO_H_INCLUDED
