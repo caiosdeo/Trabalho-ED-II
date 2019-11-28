@@ -13,10 +13,10 @@ int main(){
 
         cout << "MENU" << endl;
         cout << "----" << endl;
-        cout << "[1] Fase 1" << endl;
-        cout << "[2] Fase 2" << endl;
-        cout << "[3] Fase 3" << endl;
-        cout << "[4] Fase 4" << endl;
+        cout << "[1] Fase 1 - Avaliacao dos Algoritmos" << endl;
+        cout << "[2] Fase 2 - Categorias Frequentes e Usuarios Ativos" << endl;
+        cout << "[3] Fase 3 - Analise das Arvores" << endl;
+        cout << "[4] Fase 4 - Huffman e LZW" << endl;
         cout << "[0] Encerrar" << endl;
 
         cin >> selecao;

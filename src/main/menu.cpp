@@ -17,10 +17,10 @@ unsigned menu()
 
     cout << "Fase 1" << endl;
     cout << "----" << endl;
-    cout << "[1] Cenário 1" << endl;
-    cout << "[2] Cenário 2" << endl;
-    cout << "[3] Cenário 3" << endl;
-    cout << "[4] Cenário 4" << endl;
+    cout << "[1] Cenário 1 - Estruturas Diferentes" << endl;
+    cout << "[2] Cenário 2 - Variacoes do Quicksort" << endl;
+    cout << "[3] Cenário 3 - Diferentes Algoritmos de Ordenacao" << endl;
+    cout << "[4] Cenário 4 - Tratamento de Colisoes" << endl;
     cout << "[0] Voltar" << endl;
 
     cin >> selecao;
