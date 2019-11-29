@@ -66,8 +66,6 @@ string gerarMensagemCodificada(string m, char **codigos, char *infos, int t){
 
     }
 
-    free(codigos); // Desaloca codigos
-
     mensagemCodificada += '\0'; 
 
     return mensagemCodificada; // Retorna mensagem codificada em 0's e 1's
@@ -84,7 +82,7 @@ char gerarCodigoAscII(string s){
         if(s[i] == '1')
             codigo += pow(2, t - 1 - i);
 
-    return char(codigo + ' '); // Retorna código ascii
+    return char(codigo + ' ' + 1); // Retorna código ascii
 
 }
 
@@ -112,8 +110,9 @@ string compactarAscII(string mC){
         aux += mC[t-1-i];
 
     compactado += gerarCodigoAscII(aux); // Codificando bits restantes
+    compactado += '\0';
 
-    return compactado; // Retorna string compactada
+    return compactado += '\0'; // Retorna string compactada
  
 }
 
@@ -135,7 +134,7 @@ string comprimirHuffman(string str){
     int *freq;
     int fT;
     
-    tie(freq, infos, fT) = tabelaFrequencias(str, 224); // 224 caracteres tabelas ascii
+    tie(freq, infos, fT) = tabelaFrequencias(str, 223); // 223 caracteres tabelas ascii
 
     // Cria heap minima  
     priority_queue<NoHuff*, vector<NoHuff*>, compara> minHeap; 

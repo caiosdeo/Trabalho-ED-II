@@ -8,9 +8,9 @@
 
 using namespace std;
 
-vector<int> comprimirLZW(string m){
+string comprimirLZW(string m){
 
-    unordered_map<string, int> dicionario; 
+    unordered_map<string, int> dicionario;
 
     // Mapeando o dicionario de caracteres
     for (int i = 0; i < 256; i++) { 
@@ -42,6 +42,7 @@ vector<int> comprimirLZW(string m){
         else { 
 
             codigoSaida.push_back(dicionario[p]); // Código de saída para p
+
             // Adiciona "p + c" no dicionario
             dicionario[p + c] = codigo; 
             codigo++; 
@@ -52,15 +53,16 @@ vector<int> comprimirLZW(string m){
     }
 
     codigoSaida.push_back(dicionario[p]); 
-    return codigoSaida;
+
+    return gerarStringCodigoLZW(&codigoSaida);
 
 }
 
-string gerarStringCodigoLZW(vector<int> c){
+string gerarStringCodigoLZW(vector<int> *c){
 
     stringstream smsg;
 
-    copy(c.begin(),c.end(),ostream_iterator<int>(smsg,""));
+    copy(c->begin(),c->end(),ostream_iterator<int>(smsg,""));
 
     string msg = smsg.str();
     

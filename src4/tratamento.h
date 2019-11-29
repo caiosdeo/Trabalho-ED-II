@@ -6,7 +6,6 @@
 //Inclusão de outras interfaces/bibliotecas
 #include <fstream>
 #include <chrono>
-#include<vector>
 
 using namespace std;
 
@@ -74,16 +73,7 @@ string* leituraDescricoes(fstream &dataset, int n);
  * @param Cm mensagem codificada
  * @return taxa de compressão
  */
-float taxaCompressaoHuffman(string m, string cM);
-
-/**
- * Método para retornar a taxa de compressão
- * @author eliascassis
- * @param m mensagem original
- * @param Cm mensagem codificada
- * @return taxa de compressão
- */
-float taxaCompressaoLZW(string m, vector<int> cM);
+float taxaCompressao(string m, string cM);
 
 /**
  * Método para retornar o tamanho em bytes ocupado em disco por uma mensagem
@@ -91,14 +81,6 @@ float taxaCompressaoLZW(string m, vector<int> cM);
  * @param m mensagem
  * @return tamanho da string em bytes
  */
-int armazenamentoDiscoHuffman(string m);
-
-/**
- * Método para retornar o tamanho em bytes ocupado em disco por uma mensagem
- * @author eliascassis
- * @param m mensagem
- * @return tamanho da string em bytes
- */
-int armazenamentoDiscoLZW(vector<int> m);
+int armazenamentoDisco(string m);
 
 #endif //TRATAMENTO_H_INCLUDED
